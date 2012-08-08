@@ -2861,6 +2861,11 @@ public final class Settings {
 
         public static final String NFC_POLLING_MODE = "nfc_polling_mode";
 
+        /**
+         * Toggle for 6 bar signal bars
+         * @hide
+         */
+        public static final String STATUSBAR_6BAR_SIGNAL = "statusbar_6bar_signal";
 
         /**
          * HALO enabled, should default to 0 (HALO is disabled)
