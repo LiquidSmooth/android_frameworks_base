@@ -265,4 +265,8 @@
     <!-- [CHAR LIMIT=40] Title of dialog that is shown when performing a system install. -->
     <string name="android_installing_title">Android is installing\u2026</string>
 
+    <string name="permlab_preventpower">override power key</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_preventpower">Allows an app to override the power key.</string>
+
 </resources>
