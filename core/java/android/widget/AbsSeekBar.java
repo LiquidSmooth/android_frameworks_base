@@ -16,6 +16,7 @@
 
 package android.widget;
 
+import android.animation.ObjectAnimator;
 import android.annotation.Nullable;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -702,19 +703,20 @@ public abstract class AbsSeekBar extends ProgressBar {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (isEnabled()) {
-            int progress = getProgress();
+            int increment = mKeyProgressIncrement;
             switch (keyCode) {
                 case KeyEvent.KEYCODE_DPAD_LEFT:
-                    if (progress <= 0) break;
-                    setProgress(progress - mKeyProgressIncrement, true);
-                    onKeyChange();
-                    return true;
-
+                    increment = -increment;
+                    // fallthrough
                 case KeyEvent.KEYCODE_DPAD_RIGHT:
-                    if (progress >= getMax()) break;
-                    setProgress(progress + mKeyProgressIncrement, true);
-                    onKeyChange();
-                    return true;
+                    increment = isLayoutRtl() ? -increment : increment;
+                    int progress = getProgress() + increment;
+                    if (progress > -mKeyProgressIncrement &&
+                        progress < getMax() + mKeyProgressIncrement) {
+                        setProgress(progress);
+                        onKeyChange();
+                        return true;
+                    }
             }
         }
 
