@@ -2143,6 +2143,7 @@ public class LocationManagerService extends ILocationManager.Stub {
         synchronized (mLock) {
             return mMockProviders.containsKey(provider);
         }
+
     }
 
     private Location screenLocationLocked(Location location, String provider) {
@@ -2225,6 +2226,10 @@ public class LocationManagerService extends ILocationManager.Stub {
         synchronized (mLock) {
             if (isAllowedByCurrentUserSettingsLocked(provider)) {
                 if (!passive) {
+                    location = screenLocationLocked(location, provider);
+                    if (location == null) {
+                        return;
+                    }
                     // notify passive provider of the new location
                     mPassiveProvider.updateLocation(myLocation);
                 }

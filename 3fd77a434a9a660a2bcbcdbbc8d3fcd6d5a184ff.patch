@@ -1,0 +1,30 @@
+From 3fd77a434a9a660a2bcbcdbbc8d3fcd6d5a184ff Mon Sep 17 00:00:00 2001
+From: Alex Cruz <mazdarider23@gmail.com>
+Date: Tue, 30 Sep 2014 15:52:28 -0400
+Subject: [PATCH] Keep people from complaining about logcat spam
+
+Change-Id: Ia5e3a183a26fae885dd2545677602924eef618bf
+---
+ .../src/com/android/systemui/statusbar/policy/NetworkController.java    | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/policy/NetworkController.java b/packages/SystemUI/src/com/android/systemui/statusbar/policy/NetworkController.java
+index 71dda0b..eb328fa 100644
+--- a/packages/SystemUI/src/com/android/systemui/statusbar/policy/NetworkController.java
++++ b/packages/SystemUI/src/com/android/systemui/statusbar/policy/NetworkController.java
+@@ -1393,7 +1393,6 @@ else if (!mDataConnected && !mWifiConnected && !mBluetoothTethered && !mWimaxCon
+         if (!TextUtils.isEmpty(carrierNumber)) {
+             mCarrierIconId = context.getResources().getIdentifier("l" + carrierNumber,
+                                       "drawable", context.getPackageName());
+-            Log.w(TAG, "Search for network drawable from carrier number : l" + carrierNumber);
+         }
+ 
+         if (mCarrierIconId <= 0) {
+@@ -1401,7 +1400,6 @@ else if (!mDataConnected && !mWifiConnected && !mBluetoothTethered && !mWimaxCon
+                 carrierName = filterNetworkName(carrierName);
+                 mCarrierIconId = context.getResources().getIdentifier("l" + carrierName,
+                                          "drawable", context.getPackageName());
+-                Log.w(TAG, "Search for network drawable from carrier name : l" + carrierName);
+             }
+         }
+ 
