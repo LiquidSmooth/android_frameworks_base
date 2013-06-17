@@ -1591,7 +1591,10 @@ public class NotificationManagerService extends INotificationManager.Stub
             boolean queryRemove = false;
             boolean packageChanged = false;
             boolean cancelNotifications = true;
-            
+
+            boolean ScreenOnNotificationLed = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SCREEN_ON_NOTIFICATION_LED, 1) == 1;
+
             if (action.equals(Intent.ACTION_PACKAGE_ADDED)
                     || (queryRemove=action.equals(Intent.ACTION_PACKAGE_REMOVED))
                     || action.equals(Intent.ACTION_PACKAGE_RESTARTED)
@@ -1682,7 +1685,7 @@ public class NotificationManagerService extends INotificationManager.Stub
                 if (userHandle >= 0) {
                     cancelAllNotificationsInt(null, 0, 0, true, userHandle);
                 }
-            } else if (action.equals(Intent.ACTION_USER_PRESENT)) {
+            } else if (action.equals(Intent.ACTION_USER_PRESENT) && !ScreenOnNotificationLed) {
                 // turn off LED when user passes through lock screen
                 if (!mDreaming) {
                     if (mLedNotification == null) {
@@ -2794,7 +2797,11 @@ public class NotificationManagerService extends INotificationManager.Stub
     }
 
     // lock on mNotificationList
-    private void updateLightsLocked() {
+    private void updateLightsLocked()
+    {
+        boolean ScreenOnNotificationLed = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SCREEN_ON_NOTIFICATION_LED, 1) == 1;
+
         // handle notification lights
         if (mLedNotification == null) {
             // get next notification, if any
@@ -2806,8 +2813,8 @@ public class NotificationManagerService extends INotificationManager.Stub
 
         // Don't flash while we are in a call, screen is
         // on or we are in quiet hours with light dimmed
-        if (mBatterySaverDisableLED || mLedNotification == null || mInCall || (mScreenOn && !mDreaming)
-                || Settings.System.getInt(mContext.getContentResolver(),
+        if (mBatterySaverDisableLED || mLedNotification == null || mInCall || (mScreenOn && !mDreaming) &&
+                (!ScreenOnNotificationLed) || Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.QUIET_HOURS_DIM, 0) == 2) {
             mNotificationLight.turnOff();
         } else if (mNotificationPulseEnabled) {
