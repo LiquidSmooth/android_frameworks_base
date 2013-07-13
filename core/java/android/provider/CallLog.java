@@ -167,6 +167,11 @@ public class CallLog {
         /** Call had video. */
         public static final int FEATURES_VIDEO = 0x1;
 
+        /** Call log type for blacklisted calls
+         * @hide
+         */
+        public static final int BLACKLIST_TYPE = 5;
+
         /**
          * The phone number as the user entered it.
          * <P>Type: TEXT</P>
