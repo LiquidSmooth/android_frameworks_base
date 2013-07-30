@@ -3475,6 +3475,13 @@ public final class Settings {
         public static final String QS_SMART_PULLDOWN = "qs_smart_pulldown";
 
         /**
+         * Quick Settings Launch in Floating Window
+         *
+         * @hide
+         */
+        public static final String QS_FLOATING_WINDOW = "qs_floating_window";
+
+        /**
          * Display style of the status bar battery information
          * default: 0
          * @hide
