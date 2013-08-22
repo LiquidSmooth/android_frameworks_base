@@ -31,4 +31,8 @@
     <!-- Name of that key handler class -->
     <string name="config_deviceKeyHandlerClass" translatable="false"></string>
 
+   <integer name="config_buttonBrightnessSettingDefault">255</integer>
+   <integer name="config_keyboardBrightnessSettingDefault">0</integer>
+   <bool name="config_deviceHasVariableButtonBrightness">false</bool>
+
 </resources>
