@@ -91,7 +91,6 @@ LOCAL_SRC_FILES:= \
 	android_graphics_Canvas.cpp \
 	android_graphics_Picture.cpp \
 	android/graphics/AutoDecodeCancel.cpp \
-	android/graphics/Bitmap.cpp \
 	android/graphics/BitmapFactory.cpp \
 	android/graphics/Camera.cpp \
 	android/graphics/CanvasProperty.cpp \
@@ -248,6 +247,20 @@ LOCAL_SHARED_LIBRARIES := \
 	libstlport \
 	libprocessgroup \
 	libnativebridge \
+
+ifeq ($(TARGET_ARCH), arm)
+  ifeq ($(TARGET_USE_KRAIT_BIONIC_OPTIMIZATION), true)
+    TARGET_arm_CFLAGS += -DUSE_NEON_BITMAP_OPTS -mvectorize-with-neon-quad
+    LOCAL_SRC_FILES+= \
+		android/graphics/Bitmap.cpp.arm
+  else
+    LOCAL_SRC_FILES+= \
+		android/graphics/Bitmap.cpp
+  endif
+else
+    LOCAL_SRC_FILES+= \
+		android/graphics/Bitmap.cpp
+endif
 
 ifeq ($(USE_OPENGL_RENDERER),true)
 	LOCAL_SHARED_LIBRARIES += libhwui
