@@ -2299,7 +2299,6 @@
 
   <!-- From SignalStrength -->
   <java-symbol type="integer" name="config_LTE_RSRP_threshold_type" />
-
   <java-symbol type="bool" name="config_wifiApFirmwareReload" />
 
   <!-- ADB notification -->
@@ -2309,5 +2308,7 @@
 
   <!-- Gesture Sensor -->
   <java-symbol type="bool" name="config_enableGestureService" />
+
+  <java-symbol type="bool" name="config_samsung_stk" />
 
 </resources>

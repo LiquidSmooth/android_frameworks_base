@@ -2242,4 +2242,7 @@
 	<!--Dummy for CMs wakekeys-->
 	<integer name="config_deviceHardwareWakeKeys">0</integer>
 	
+    <!-- Boolean to enable stk functionality on Samsung phones -->
+    <bool name="config_samsung_stk">false</bool>
+
 </resources>
