@@ -1028,13 +1028,13 @@ public class AudioService extends IAudioService.Stub {
                                             AudioManager.VIBRATE_TYPE_RINGER,
                                             mHasVibrator ? AudioManager.VIBRATE_SETTING_ONLY_SILENT
                                                             : AudioManager.VIBRATE_SETTING_OFF);
+            
+            mSafeVolumeEnabled = new Boolean(safeVolumeEnabled(cr));
+            mVolumeKeysControlMediaStream = Settings.System.getIntForUser(cr,
+                    Settings.System.VOLUME_KEYS_CONTROL_MEDIA_STREAM, 0, UserHandle.USER_CURRENT) == 1;
 
             updateRingerModeAffectedStreams();
             readDockAudioSettings(cr);
-            mSafeVolumeEnabled = new Boolean(safeVolumeEnabled(cr));
-
-            mVolumeKeysControlMediaStream = Settings.System.getIntForUser(cr,
-                    Settings.System.VOLUME_KEYS_CONTROL_MEDIA_STREAM, 0, UserHandle.USER_CURRENT) == 1;
         }
 
         mMuteAffectedStreams = System.getIntForUser(cr,
