@@ -3665,6 +3665,18 @@ public final class Settings {
         public static final String STATUS_BAR_SHOW_NETWORK_ACTIVITY = "status_bar_show_network_activity";
 
         /**
+         * Whether to use the custom status bar header or not
+         * @hide
+         */
+        public static final String STATUS_BAR_CUSTOM_HEADER = "status_bar_custom_header";
+
+        /**
+         * Current active provider
+         * @hide
+         */
+        public static final String STATUS_BAR_CUSTOM_HEADER_PROVIDER = "status_bar_custom_header_provider";
+
+        /**
          * Whether to use slim recents
          * @hide
          */
