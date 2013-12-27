@@ -262,8 +262,14 @@ static jlong nativeLockCanvas(JNIEnv* env, jclass clazz,
                         reinterpret_cast<jlong>(&bitmap));
 
     if (dirtyRectPtr) {
-        SkCanvas* nativeCanvas = GraphicsJNI::getNativeCanvas(env, canvasObj);
-        nativeCanvas->clipRect( SkRect::Make(reinterpret_cast<const SkIRect&>(dirtyRect)) );
+        SkRect r;
+        android::Point lt = dirtyRect.leftTop();
+        android::Point rb = dirtyRect.rightBottom();
+        r.set(SkIntToScalar(lt.x),
+              SkIntToScalar(lt.y),
+              SkIntToScalar(rb.x),
+              SkIntToScalar(rb.y));
+        nativeCanvas->clipRect( r );
     }
 
     if (dirtyRectObj) {
