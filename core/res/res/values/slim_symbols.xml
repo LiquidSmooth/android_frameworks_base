@@ -143,4 +143,8 @@
 
   <!-- In WiFi AP notification -->
   <java-symbol type="string" name="notify_turn_wifi_ap_off_title" />
+
+  <!-- Hardware key rebinding -->
+  <java-symbol type="integer" name="config_deviceHardwareKeys" />
+
 </resources>
