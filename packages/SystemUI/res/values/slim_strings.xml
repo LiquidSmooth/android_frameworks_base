@@ -31,4 +31,10 @@
     <!-- Battery level text while charging [CHAR LIMIT=2] -->
     <string name="battery_level_template_charging"><xliff:g id="level" example="45">%d</xliff:g>~</string>
 
+    <!-- Kill app toast -->
+    <string name="app_killed_message">App Killed</string>
+
+    <!-- Screenshot -->
+    <string name="shortcut_screenshot">Screenshot</string>
+	
 </resources>
