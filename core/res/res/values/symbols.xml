@@ -301,7 +301,6 @@
   <java-symbol type="bool" name="config_wifi_only_link_same_credential_configurations" />
   <java-symbol type="bool" name="config_wifi_enable_disconnection_debounce" />
   <java-symbol type="bool" name="config_wifi_enable_5GHz_preference" />
-  <java-symbol type="bool" name="config_forceDisableHardwareKeyboard" />
   <java-symbol type="integer" name="config_wifi_framework_5GHz_preference_boost_threshold" />
   <java-symbol type="integer" name="config_wifi_framework_5GHz_preference_boost_factor" />
   <java-symbol type="integer" name="config_wifi_framework_5GHz_preference_penalty_threshold" />
@@ -342,7 +341,9 @@
   <java-symbol type="integer" name="config_wifi_framework_max_connection_errors_to_blacklist" />
   <java-symbol type="integer" name="config_wifi_framework_max_auth_errors_to_blacklist" />
   <java-symbol type="integer" name="config_wifi_framework_network_black_list_min_time_milli" />
+
   <java-symbol type="integer" name="config_wifi_framework_current_network_boost" />
+
   <java-symbol type="integer" name="config_bluetooth_max_advertisers" />
   <java-symbol type="integer" name="config_bluetooth_max_scan_filters" />
   <java-symbol type="integer" name="config_cursorWindowSize" />
@@ -927,12 +928,6 @@
   <java-symbol type="string" name="default_audio_route_name_dock_speakers" />
   <java-symbol type="string" name="default_media_route_name_hdmi" />
   <java-symbol type="string" name="default_audio_route_category_name" />
-  <java-symbol type="string" name="stk_cc_ss_to_dial" />
-  <java-symbol type="string" name="stk_cc_ss_to_ss" />
-  <java-symbol type="string" name="stk_cc_ss_to_ussd" />
-  <java-symbol type="string" name="stk_cc_ussd_to_dial" />
-  <java-symbol type="string" name="stk_cc_ussd_to_ss" />
-  <java-symbol type="string" name="stk_cc_ussd_to_ussd" />
   <java-symbol type="string" name="safe_media_volume_warning" />
   <java-symbol type="string" name="media_route_status_scanning" />
   <java-symbol type="string" name="media_route_status_connecting" />
@@ -2134,6 +2129,7 @@
   <java-symbol type="bool" name="config_switch_phone_on_voice_reg_state_change" />
   <java-symbol type="string" name="whichHomeApplicationNamed" />
   <java-symbol type="bool" name="config_sms_force_7bit_encoding" />
+
   <java-symbol type="bool" name="config_defaultWindowFeatureOptionsPanel" />
   <java-symbol type="bool" name="config_defaultWindowFeatureContextMenu" />
 
@@ -2164,4 +2160,5 @@
   <java-symbol type="string" name="adb_active_generic_notification_message" />
 
   <java-symbol type="bool" name="config_fetch_apn_from_omh_card" />
+
 </resources>

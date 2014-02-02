@@ -81,6 +81,8 @@ public class HeadsUpNotificationView extends LinearLayout implements SwipeHelper
     private int mUser;
     private String mMostRecentPackageName;
 
+    private static int sRoundedRectCornerRadius = 0;
+
     public HeadsUpNotificationView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
@@ -93,6 +95,8 @@ public class HeadsUpNotificationView extends LinearLayout implements SwipeHelper
         mSnoozedPackages = new ArrayMap<>();
         mDefaultSnoozeLengthMs = resources.getInteger(R.integer.heads_up_default_snooze_length_ms);
         mSnoozeLengthMs = mDefaultSnoozeLengthMs;
+        sRoundedRectCornerRadius = context.getResources().getDimensionPixelSize(
+                R.dimen.notification_material_rounded_rect_radius);
     }
 
     public void updateResources() {
@@ -260,9 +264,10 @@ public class HeadsUpNotificationView extends LinearLayout implements SwipeHelper
             int outlineTop = view.getPaddingTop();
 
             // Apply padding to shadow.
-            outline.setRect(outlineLeft, outlineTop,
+            outline.setRoundRect(outlineLeft, outlineTop,
                     view.getWidth() - outlineLeft - view.getPaddingRight(),
-                    view.getHeight() - outlineTop - view.getPaddingBottom());
+                    view.getHeight() - outlineTop - view.getPaddingBottom(),
+                    sRoundedRectCornerRadius);
         }
     };
 
