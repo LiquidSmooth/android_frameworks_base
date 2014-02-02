@@ -22,6 +22,7 @@ import android.os.IBinder;
 public final class ResourcesKey {
     final String mResDir;
     final float mScale;
+    final private boolean mIsThemeable;
     private final int mHash;
     private final IBinder mToken;
 
@@ -29,13 +30,14 @@ public final class ResourcesKey {
     public final Configuration mOverrideConfiguration = new Configuration();
 
     public ResourcesKey(String resDir, int displayId, Configuration overrideConfiguration,
-            float scale, IBinder token) {
+            float scale, boolean isThemeable, ThemeConfig themeConfig, IBinder token) {
         mResDir = resDir;
         mDisplayId = displayId;
         if (overrideConfiguration != null) {
             mOverrideConfiguration.setTo(overrideConfiguration);
         }
         mScale = scale;
+        mIsThemeable = isThemeable;
         mToken = token;
 
         int hash = 17;
@@ -44,6 +46,8 @@ public final class ResourcesKey {
         hash = 31 * hash + (mOverrideConfiguration != null
                 ? mOverrideConfiguration.hashCode() : 0);
         hash = 31 * hash + Float.floatToIntBits(mScale);
+        hash = 31 * hash + (mIsThemeable ? 1 : 0);
+        hash = 31 * hash + (themeConfig != null ? themeConfig.hashCode() : 0);
         mHash = hash;
     }
 
@@ -88,7 +92,7 @@ public final class ResourcesKey {
         if (mScale != peer.mScale) {
             return false;
         }
-        return true;
+        return mIsThemeable == peer.mIsThemeable;
     }
 
     @Override
