@@ -44,6 +44,7 @@ import android.content.pm.UserInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.ServiceConnection;
+import android.content.res.ThemeConfig;
 import android.database.ContentObserver;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
@@ -107,6 +108,7 @@ import com.android.systemui.SystemUI;
 import com.android.systemui.chaos.lab.gestureanywhere.GestureAnywhereView;
 import com.android.systemui.statusbar.NotificationData.Entry;
 import com.android.systemui.statusbar.appcirclesidebar.AppCircleSidebar;
+import com.android.systemui.statusbar.phone.KeyguardTouchDelegate;
 import com.android.systemui.statusbar.phone.NavigationBarView;
 import com.android.systemui.statusbar.phone.StatusBarKeyguardViewManager;
 import com.android.systemui.statusbar.policy.HeadsUpNotificationView;
@@ -802,7 +804,8 @@ public abstract class BaseStatusBar extends SystemUI implements
 
         if (entry.icon != null) {
             if (entry.targetSdk >= Build.VERSION_CODES.LOLLIPOP) {
-                entry.icon.setColorFilter(mContext.getResources().getColor(android.R.color.white));
+                entry.icon.setColorFilter(mContext.getResources().getColor(
+                    R.color.notification_icon_color));
             } else {
                 entry.icon.setColorFilter(null);
             }
@@ -1481,12 +1484,15 @@ public abstract class BaseStatusBar extends SystemUI implements
         // set up the adaptive layout
         View contentViewLocal = null;
         View bigContentViewLocal = null;
+        final ThemeConfig themeConfig = mContext.getResources().getConfiguration().themeConfig;
+        String themePackageName = themeConfig != null ?
+                themeConfig.getOverlayPkgNameForApp(mContext.getPackageName()) : null;
         try {
             contentViewLocal = contentView.apply(mContext, expanded,
-                    mOnClickHandler);
+                    mOnClickHandler, themePackageName);
             if (bigContentView != null) {
                 bigContentViewLocal = bigContentView.apply(mContext, expanded,
-                        mOnClickHandler);
+                        mOnClickHandler, themePackageName);
             }
         }
         catch (RuntimeException e) {

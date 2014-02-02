@@ -43,6 +43,7 @@ import android.database.sqlite.SQLiteDebug;
 import android.database.sqlite.SQLiteDebug.DbStats;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Typeface;
 import android.hardware.display.DisplayManagerGlobal;
 import android.net.ConnectivityManager;
 import android.net.IConnectivityManager;
@@ -75,6 +76,7 @@ import android.os.SystemProperties;
 import android.os.Trace;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.AndroidRuntimeException;
 import android.util.ArrayMap;
 import android.util.DisplayMetrics;
@@ -87,6 +89,7 @@ import android.util.Slog;
 import android.util.SuperNotCalledException;
 import android.view.Display;
 import android.view.HardwareRenderer;
+import android.view.InflateException;
 import android.view.IWindowManager;
 import android.view.IWindowSessionCallback;
 import android.view.View;
@@ -1661,9 +1664,19 @@ public final class ActivityThread {
      */
     Resources getTopLevelResources(String resDir, String[] splitResDirs, String[] overlayDirs,
             String[] libDirs, int displayId, Configuration overrideConfiguration,
-            LoadedApk pkgInfo) {
+            LoadedApk pkgInfo, Context context, String pkgName) {
         return mResourcesManager.getTopLevelResources(resDir, splitResDirs, overlayDirs, libDirs,
-                displayId, overrideConfiguration, pkgInfo.getCompatibilityInfo(), null);
+                displayId, pkgName, overrideConfiguration, pkgInfo.getCompatibilityInfo(), null,
+                context);
+    }
+
+    /**
+     * Creates the top level resources for the given package.
+     */
+    Resources getTopLevelThemedResources(String resDir, int displayId, LoadedApk pkgInfo,
+                                         String pkgName, String themePkgName) {
+        return mResourcesManager.getTopLevelThemedResources(resDir, displayId, pkgName,
+                themePkgName, pkgInfo.getCompatibilityInfo(), null);
     }
 
     final Handler getHandler() {
@@ -1771,8 +1784,7 @@ public final class ActivityThread {
                 ref = mResourcePackages.get(aInfo.packageName);
             }
             LoadedApk packageInfo = ref != null ? ref.get() : null;
-            if (packageInfo == null || (packageInfo.mResources != null
-                    && !packageInfo.mResources.getAssets().isUpToDate())) {
+            if (packageInfo == null) {
                 if (localLOGV) Slog.v(TAG, (includeCode ? "Loading code package "
                         : "Loading resource-only package ") + aInfo.packageName
                         + " (in " + (mBoundApplication != null
@@ -1795,6 +1807,10 @@ public final class ActivityThread {
                     mResourcePackages.put(aInfo.packageName,
                             new WeakReference<LoadedApk>(packageInfo));
                 }
+            }
+            if (packageInfo.mResources != null
+                    && !packageInfo.mResources.getAssets().isUpToDate()) {
+                packageInfo.mResources = null;
             }
             return packageInfo;
         }
@@ -4138,8 +4154,10 @@ public final class ActivityThread {
         if (configDiff != 0) {
             // Ask text layout engine to free its caches if there is a locale change
             boolean hasLocaleConfigChange = ((configDiff & ActivityInfo.CONFIG_LOCALE) != 0);
-            if (hasLocaleConfigChange) {
+            boolean hasFontConfigChange = ((configDiff & ActivityInfo.CONFIG_THEME_FONT) != 0);
+            if (hasLocaleConfigChange || hasFontConfigChange) {
                 Canvas.freeTextLayoutCaches();
+                Typeface.recreateDefaults();
                 if (DEBUG_CONFIGURATION) Slog.v(TAG, "Cleared TextLayout Caches");
             }
         }
