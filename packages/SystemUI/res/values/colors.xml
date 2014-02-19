@@ -130,4 +130,34 @@
     <color name="segmented_button_unselected">#B3B0BEC5</color><!-- 70% blue grey 200 -->
     <color name="volume_panel_divider">#1FFFFFFF</color><!-- 12% white -->
 
+<<<<<<< HEAD
 </resources>
+=======
+    <!-- Navigation bar -->
+    <color name="navigationbar_button_default_color">#FFFFFFFF</color>
+
+    <!-- Pie controls -->
+    <color name="pie_overlay_color">#ff000000</color>
+    <color name="pie_snap_color">#ffffffff</color>
+    <color name="pie_text_color">#ffffffff</color>
+    <color name="pie_foreground_color">#ffffffff</color>
+    <color name="pie_background_color">#ff000000</color>
+    <color name="pie_selected_color">#ff5c5c5c</color>
+    <color name="pie_long_pressed_color">#ff8c8c8c</color>
+    <color name="pie_outline_color">#ff5c5c5c</color>
+
+    <!-- Slim recent -->
+    <color name="recent_background">#80000000</color>
+
+    <!-- Card Color -->
+    <color name="card_background">#ffffffff</color>
+    <color name="card_background_header">#00ffffff</color>
+    <color name="card_backgroundExpand">#00ffffff</color>
+
+    <color name="card_text_color_header">#ff000000</color>
+
+    <!-- Used by selector -->
+    <color name="card_pressed">#7e3c3c3c</color>
+
+</resources>
+>>>>>>> 30a012f... Frameworks: Slim recent app screen
