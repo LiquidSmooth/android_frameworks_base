@@ -8914,6 +8914,13 @@ public final class Settings {
                 "battery_saver_option";
 
         /**
+         * NFC polling mode configuration key
+         *
+         * @hide
+         */
+        public static final String NFC_POLLING_MODE = "nfc_polling_mode";
+
+        /**
          * @hide
          */
         public static final String BATTERY_SAVER_NORMAL_MODE =
