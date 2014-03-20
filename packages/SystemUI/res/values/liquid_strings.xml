@@ -194,6 +194,7 @@
 
     <!-- Hide notification icons -->
     <string name="status_bar_notification_hide_icon_packages">Hide status bar app\'s notification icon(s)</string>
+    <string name="app_stop_item_title">Kill app</string>
 
     <!-- Smart PullDown Warning -->
     <string name="smart_pulldown_disabled">Smart pulldown is disabled</string>
