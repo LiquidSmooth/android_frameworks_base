@@ -5985,12 +5985,15 @@ public class Activity extends ContextThemeWrapper
                 scaleFloatingWindow();
             }
 
-            mWindow.setFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND,
-                    WindowManager.LayoutParams.FLAG_DIM_BEHIND);
             WindowManager.LayoutParams params = mWindow.getAttributes();
-            params.alpha = 1f;
-            params.dimAmount = 0.5f;
-            mWindow.setAttributes((WindowManager.LayoutParams) params);
+            params.privateFlags |= WindowManager.LayoutParams.PRIVATE_FLAG_NO_MOVE_ANIMATION;
+            if (this instanceof LayerActivity || android.os.Process.myUid() == android.os.Process.SYSTEM_UID) {
+	            mWindow.setFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND,
+	                    WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+	            params.alpha = 1f;
+	            params.dimAmount = 0.25f;
+            }
+            mWindow.setAttributes(params);
 
             refreshAppLayoutSize();
             return true;

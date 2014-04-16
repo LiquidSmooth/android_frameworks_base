@@ -485,5 +485,8 @@
                   android:theme="@style/Theme.DummyActivity">
         </activity>
 
+        <activity android:name="com.android.systemui.Transparent"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
     </application>
 </manifest>
