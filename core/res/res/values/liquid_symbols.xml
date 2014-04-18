@@ -121,6 +121,7 @@
   <!-- Hardware key rebinding -->
   <java-symbol type="integer" name="config_deviceHardwareKeys" />
   <java-symbol type="bool" name="config_singleStageCameraKey" />
+  <java-symbol type="bool" name="config_batterySdCardAccessibility" />
 
   <!-- EdgeGesture service -->
   <java-symbol type="dimen" name="edge_gesture_trigger_distance" />
