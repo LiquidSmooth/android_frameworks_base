@@ -61,6 +61,7 @@ public class QSConstants {
         public static final String TILE_CUSTOM_DELIMITER = " =action= ";
         public static final String TILE_FCHARGE = "toggleFastCharge";
         public static final String TILE_ONTHEGO = "toggleOnTheGo";
+        public static final String TILE_BATTERYSAVER = "toggleBatterySaver";
         public static final String TILE_DELIMITER = "|";
         public static ArrayList<String> TILES_DEFAULT = new ArrayList<String>();
 
