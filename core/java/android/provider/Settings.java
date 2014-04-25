@@ -5096,6 +5096,14 @@ public final class Settings {
         public static final String HFM_DISABLE_ADS = "hfm_disable_ads";
 
         /**
+         * Recents longpress switchs apps.
+         * 0 = off
+         * 1 = on
+         * @hide
+         */
+        public static final String RECENTS_SWITCH = "recents_switch";
+
+        /**
          * @hide
          */
         public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
@@ -5206,6 +5214,7 @@ public final class Settings {
         public static final String[] SETTINGS_TO_RESET = {
             RECENTS_SWIPE_FLOATING,
             STATUS_BAR_NOTIFICATION_SWIPE_FLOATING
+            RECENTS_SWITCH
         };
 
         // Settings moved to Settings.Secure
