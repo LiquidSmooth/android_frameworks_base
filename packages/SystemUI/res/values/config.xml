@@ -56,6 +56,9 @@
     <!-- Amount of time to hold off before showing the search panel when the user presses home -->
     <integer name="config_show_search_delay">200</integer>
 
+    <!-- Amount of time to hold off before switching apps when the user presses recents -->
+    <integer name="config_switch_app_delay">500</integer>
+
     <!-- Vibration duration for MultiWaveView used in SearchPanelView -->
     <integer translatable="false" name="config_vibration_duration">0</integer>
 

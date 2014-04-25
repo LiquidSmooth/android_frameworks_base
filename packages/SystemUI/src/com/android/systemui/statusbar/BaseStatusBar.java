@@ -71,6 +71,7 @@ import android.service.gesture.EdgeGestureManager;
 import android.service.notification.StatusBarNotification;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.SettingConfirmationHelper;
 import android.util.Slog;
 import android.view.Display;
 import android.view.Gravity;
@@ -100,6 +101,8 @@ import com.android.internal.util.liquid.ButtonConfig;
 import com.android.internal.util.liquid.DeviceUtils;
 import com.android.systemui.R;
 import com.android.systemui.RecentsComponent;
+import com.android.systemui.recent.RecentTasksLoader;
+import com.android.systemui.recent.TaskDescription;
 import com.android.systemui.SearchPanelView;
 import com.android.systemui.SystemUI;
 import com.android.systemui.slimrecent.RecentController;
@@ -1086,6 +1089,50 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     protected abstract View getStatusBarView();
 
+    protected boolean mSwitchingApp = false;
+    private RecentTasksLoader mRecentTasksLoader;
+    protected int mSwitchLastAppHoldoff = 200;
+    private Runnable mSwitchLastApp = new Runnable() {
+        public void run() {
+            int selection = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.RECENTS_SWITCH, 0);
+            int clearAllSelection = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.NAVBAR_RECENTS_CLEAR_ALL, 0);
+            if (clearAllSelection != 0 && clearAllSelection != 3 && (selection == 0 || selection == 3)) {
+                selectSwitchApps();
+            } else {
+                boolean switchApps = selection == 1;
+                if (!switchApps) {
+                    toggleRecentsActivity();
+                } else {
+                    mSwitchingApp = true;
+                    if (mRecentTasksLoader == null) {
+                        mRecentTasksLoader = RecentTasksLoader.getInstance(mContext);
+                    }
+                    TaskDescription task = mRecentTasksLoader.getFirstTask(true);
+                    if (task != null) {
+                        Intent intent = task.getIntent();
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mContext.startActivity(intent);
+                    } else {
+                        toggleRecentsActivity();
+                    }
+                }
+            }
+        }
+    };
+
+    private void selectSwitchApps() {
+        Resources r = mContext.getResources();
+
+        SettingConfirmationHelper helper = new SettingConfirmationHelper(mContext);
+        helper.showConfirmationDialogForSetting(
+                r.getString(R.string.enable_switch_apps_title),
+                r.getString(R.string.enable_switch_apps_message),
+                r.getDrawable(R.drawable.switch_apps),
+                Settings.System.RECENTS_SWITCH);
+    }
+
     protected View.OnTouchListener mRecentsPreloadOnTouchListener = new View.OnTouchListener() {
         // additional optimization when we have software system buttons - start loading the recent
         // tasks on touch down
@@ -1094,12 +1141,20 @@ public abstract class BaseStatusBar extends SystemUI implements
             int action = event.getAction() & MotionEvent.ACTION_MASK;
             if (action == MotionEvent.ACTION_DOWN) {
                 preloadRecentTasksList();
+                mSwitchingApp = false;
+                ContentResolver resolver = mContext.getContentResolver();
+                if (!isRecentAppsVisible()) {
+                    mHandler.removeCallbacks(mSwitchLastApp);
+                    mHandler.postDelayed(mSwitchLastApp, mSwitchLastAppHoldoff);
+                }
             } else if (action == MotionEvent.ACTION_CANCEL) {
                 cancelPreloadingRecentTasksList();
+                mHandler.removeCallbacks(mSwitchLastApp);
             } else if (action == MotionEvent.ACTION_UP) {
-                if (!v.isPressed()) {
+                if (!v.isPressed() || mSwitchingApp) {
                     cancelPreloadingRecentTasksList();
                 }
+                mHandler.removeCallbacks(mSwitchLastApp);
 
             }
             return false;

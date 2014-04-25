@@ -56,6 +56,10 @@ public final class TaskDescription {
         packageName = null;
     }
 
+    public Intent getIntent() {
+        return intent;
+    }
+
     public void setLoaded(boolean loaded) {
         mLoaded = loaded;
     }
