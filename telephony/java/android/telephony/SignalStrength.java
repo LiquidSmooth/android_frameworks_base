@@ -515,7 +515,8 @@ public class SignalStrength implements Parcelable {
         if (isGsm) {
             boolean oldRil = needsOldRilFeature("signalstrength");
             level = getLteLevel();
-            if ((level == SIGNAL_STRENGTH_NONE_OR_UNKNOWN && getGsmAsuLevel() != 99 && lteChecks) || oldRil) {
+            if ((level == SIGNAL_STRENGTH_NONE_OR_UNKNOWN && ((getGsmAsuLevel() != 99 && lteChecks)
+                   || getTdScdmaLevel() != SIGNAL_STRENGTH_NONE_OR_UNKNOWN)) || oldRil) {
                 level = getTdScdmaLevel();
                 if (level == SIGNAL_STRENGTH_NONE_OR_UNKNOWN) {
                     level = getGsmLevel();
@@ -548,7 +549,9 @@ public class SignalStrength implements Parcelable {
         int asuLevel = 0;
         if (isGsm) {
             boolean oldRil = needsOldRilFeature("signalstrength");
-            if ((getLteLevel() == SIGNAL_STRENGTH_NONE_OR_UNKNOWN && getGsmAsuLevel() != 99 && lteChecks) || oldRil) {
+            boolean lteChecks = (getLteRsrp() == INVALID && getLteRsrq() == INVALID && getLteRssnr() == INVALID && getLteSignalStrength() == 99);
+            if ((getLteLevel() == SIGNAL_STRENGTH_NONE_OR_UNKNOWN && ( (getGsmAsuLevel() != 99 &&
+                   lteChecks) || getTdScdmaAsuLevel() != 99 )) || oldRil) {
                 if (getTdScdmaLevel() == SIGNAL_STRENGTH_NONE_OR_UNKNOWN) {
                     asuLevel = getGsmAsuLevel();
                 } else {
@@ -584,9 +587,10 @@ public class SignalStrength implements Parcelable {
         int dBm = INVALID;
 
         if(isGsm()) {
-            boolean lteChecks = (getLteRsrp() == INVALID && getLteRsrq() == INVALID && getLteRssnr() == INVALID && getLteSignalStrength() == 99);
             boolean oldRil = needsOldRilFeature("signalstrength");
-            if ((getLteLevel() == SIGNAL_STRENGTH_NONE_OR_UNKNOWN && getGsmAsuLevel() != 99 && lteChecks) || oldRil) {
+            boolean lteChecks = (getLteRsrp() == INVALID && getLteRsrq() == INVALID && getLteRssnr() == INVALID && getLteSignalStrength() == 99);
+            if ((getLteLevel() == SIGNAL_STRENGTH_NONE_OR_UNKNOWN && ( (getGsmAsuLevel() != 99 && lteChecks)
+                    || getTdScdmaAsuLevel() != 99 )) || oldRil) {
                 if (getTdScdmaLevel() == SIGNAL_STRENGTH_NONE_OR_UNKNOWN) {
                     dBm = getGsmDbm();
                 } else {
