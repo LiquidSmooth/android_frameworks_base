@@ -211,4 +211,8 @@ public class QuickSettingsTile implements OnClickListener {
             if (mVibrator.hasVibrator()) { mVibrator.vibrate(duration); }
         }
     }
+
+    public void onSettingsHidden() { }
+
+    public void onSettingsVisible() { }
 }

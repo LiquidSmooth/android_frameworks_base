@@ -1487,6 +1487,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 }
             }
 
+            if (mQS != null) {
+                mQS.shutdown();
+                mQS = null;
+            }
+
             // wherever you find it, Quick Settings needs a container to survive
             mSettingsContainer = (QuickSettingsContainerView)
                     mStatusBarWindow.findViewById(R.id.quick_settings_container);
@@ -1618,6 +1623,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         } else {
             mStatusHeaderImage.setImageDrawable(dw);
         }
+    }
+
+    protected void onQuickSettingsHidden() {
+        mQS.onSettingsHidden();
+    }
+
+    protected void onQuickSettingsVisible() {
+        mQS.onSettingsVisible();
     }
 
     @Override

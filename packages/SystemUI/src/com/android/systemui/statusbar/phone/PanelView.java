@@ -89,6 +89,9 @@ public class PanelView extends FrameLayout {
     private ObjectAnimator mPeekAnimator;
     private FlingTracker mVelocityTracker;
 
+    protected PhoneStatusBar mStatusBar;
+    private boolean mQuickSettingsVisible;
+
     /**
      * A very simple low-pass velocity filter for motion events; not nearly as sophisticated as
      * VelocityTracker but optimized for the kinds of gestures we expect to see in status bar
@@ -635,6 +638,11 @@ public class PanelView extends FrameLayout {
         if (!(mRubberbandingEnabled && (mTracking || mRubberbanding)) && h > fh) h = fh;
 
         mExpandedHeight = h;
+        if (isFullyCollapsed()) {
+            onQuickSettingsHidden();
+        } else {
+            onQuickSettingsVisible();
+        }
 
         if (DEBUG) logf("setExpansion: height=%.1f fh=%.1f tracking=%s rubber=%s", h, fh, mTracking?"T":"f", mRubberbanding?"T":"f");
 
@@ -644,6 +652,20 @@ public class PanelView extends FrameLayout {
 //        setLayoutParams(lp);
 
         mExpandedFraction = Math.min(1f, (fh == 0) ? 0 : h / fh);
+    }
+
+    protected void onQuickSettingsHidden() {
+        if (mQuickSettingsVisible) {
+            mQuickSettingsVisible = false;
+            mStatusBar.onQuickSettingsHidden();
+        }
+    }
+
+    protected void onQuickSettingsVisible() {
+        if (!mQuickSettingsVisible) {
+            mQuickSettingsVisible = true;
+            mStatusBar.onQuickSettingsVisible();
+        }
     }
 
     private float getFullHeight() {
@@ -693,6 +715,10 @@ public class PanelView extends FrameLayout {
 
     public void setBar(PanelBar panelBar) {
         mBar = panelBar;
+    }
+
+    public void setStatusBar(PhoneStatusBar phoneStatusBar) {
+        mStatusBar = phoneStatusBar;
     }
 
     public void collapse() {
