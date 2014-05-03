@@ -26,7 +26,7 @@
 #endif
 
 #ifdef USE_NEON_BITMAP_OPTS
-    #define __BITMAP_OPTS __attribute__((optimize("-ftree-vectorize", "-fprefetch-loop-arrays")))
+    #define __BITMAP_OPTS __attribute__((optimize("-fno-tree-vectorize", "-fprefetch-loop-arrays")))
 #else
     #define __BITMAP_OPTS
 #endif

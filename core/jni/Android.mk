@@ -248,25 +248,9 @@ LOCAL_SHARED_LIBRARIES := \
 	libprocessgroup \
 	libnativebridge \
 
-ifeq ($(TARGET_ARCH), arm)
-  ifeq ($(TARGET_USE_KRAIT_BIONIC_OPTIMIZATION), true)
-    TARGET_arm_CFLAGS += -DUSE_NEON_BITMAP_OPTS -mvectorize-with-neon-quad
-    LOCAL_SRC_FILES+= \
+TARGET_arm_CFLAGS += -DUSE_NEON_BITMAP_OPTS -mfpu=neon-vfpv4 -mtune=cortex-a15 -mcpu=cortex-a15 -mvectorize-with-neon-quad -fgcse-las -funroll-loops -funsafe-loop-optimizations -funswitch-loops -fpredictive-commoning -fgcse-after-reload
+LOCAL_SRC_FILES+= \
 		android/graphics/Bitmap.cpp.arm
-  else
-    ifeq ($(TARGET_ARCH_VARIANT_CPU), cortex-a15)
-      TARGET_arm_CFLAGS += -DUSE_NEON_BITMAP_OPTS -mvectorize-with-neon-quad
-      LOCAL_SRC_FILES+= \
-		android/graphics/Bitmap.cpp.arm
-    else
-      LOCAL_SRC_FILES+= \
-		android/graphics/Bitmap.cpp
-    endif
-  endif
-else
-    LOCAL_SRC_FILES+= \
-		android/graphics/Bitmap.cpp
-endif
 
 ifeq ($(USE_OPENGL_RENDERER),true)
 	LOCAL_SHARED_LIBRARIES += libhwui
