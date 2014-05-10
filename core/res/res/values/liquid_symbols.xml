@@ -52,9 +52,6 @@
   <java-symbol type="string" name="reboot_progress" />
   <java-symbol type="string" name="reboot_system" />
 
-  <!-- Telephony -->
-  <java-symbol type="array" name="config_telephony_set_audioparameters" />
-
   <!-- Config IME switcher -->
   <java-symbol type="bool" name="config_show_IMESwitcher" />
 
