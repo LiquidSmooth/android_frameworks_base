@@ -673,6 +673,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mNotificationShortcutsIsActive = !(notificationShortcutsIsActive == null
                     || notificationShortcutsIsActive.isEmpty());
 
+            updateCustomHeaderStatus();
+
             if (mCarrierLabel != null) {
                 mHideLabels = Settings.System.getIntForUser(resolver,
                         Settings.System.NOTIFICATION_HIDE_LABELS, 0, UserHandle.USER_CURRENT);
