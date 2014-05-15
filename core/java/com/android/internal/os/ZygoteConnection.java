@@ -221,6 +221,11 @@ class ZygoteConnection {
                 ZygoteInit.setCloseOnExec(serverPipeFd, true);
             }
 
+            //Replace the font cache if the theme changed
+            if (parsedArgs.refreshTheme) {
+                Typeface.recreateDefaults();
+            }
+
             pid = Zygote.forkAndSpecialize(parsedArgs.uid, parsedArgs.gid, parsedArgs.gids,
                     parsedArgs.debugFlags, rlimits, parsedArgs.mountExternal, parsedArgs.seInfo,
                     parsedArgs.niceName);
