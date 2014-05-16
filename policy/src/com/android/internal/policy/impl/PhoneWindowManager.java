@@ -893,14 +893,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mHandler.removeMessages(MSG_POWER_DELAYED_PRESS);
         }
 
-        // Detect user pressing the power button in panic when an application has
-        // taken over the whole screen.
-        boolean panic = mImmersiveModeConfirmation.onPowerKeyDown(interactive,
-                SystemClock.elapsedRealtime(), isImmersiveMode(mLastSystemUiFlags));
-        if (panic) {
-            mHandler.post(mRequestTransientNav);
-        }
-
         // Latch power key state to detect screenshot chord.
         if (interactive && !mScreenshotChordPowerKeyTriggered
                 && (event.getFlags() & KeyEvent.FLAG_FALLBACK) == 0) {
@@ -4960,6 +4952,30 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 isWakeKey = false; // wake-up will be handled separately
                 if (down) {
                     interceptPowerKeyDown(event, interactive);
+                    if (interactive && !mScreenshotChordPowerKeyTriggered
+                            && (event.getFlags() & KeyEvent.FLAG_FALLBACK) == 0) {
+                        mScreenshotChordPowerKeyTriggered = true;
+                        mScreenshotChordPowerKeyTime = event.getDownTime();
+                        interceptScreenshotChord();
+                    }
+
+                    TelecomManager telecomManager = getTelecommService();
+                    boolean hungUp = false;
+                    if (telecomManager != null) {
+                        if (telecomManager.isRinging()) {
+                            // Pressing Power while there's a ringing incoming
+                            // call should silence the ringer.
+                            telecomManager.silenceRinger();
+                        } else if ((mIncallPowerBehavior
+                                & Settings.Secure.INCALL_POWER_BUTTON_BEHAVIOR_HANGUP) != 0
+                                && telecomManager.isInCall() && interactive) {
+                            // Otherwise, if "Power button ends call" is enabled,
+                            // the Power button will hang up any current active call.
+                            hungUp = telecomManager.endCall();
+                        }
+                    }
+                    //interceptPowerKeyDown(!interactive || hungUp
+                            //|| mScreenshotChordVolumeDownKeyTriggered || mScreenshotChordVolumeUpKeyTriggered);
                 } else {
                     interceptPowerKeyUp(event, interactive, canceled);
                 }
