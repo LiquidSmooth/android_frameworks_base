@@ -84,7 +84,7 @@ public class BatterySaverTile extends QuickSettingsTile {
             mLabel = mContext.getString(R.string.quick_settings_battery_saver_label);
         } else {
             mDrawable = R.drawable.ic_qs_battery_saver_off;
-            mLabel = mContext.getString(R.string.quick_settings_battery_saver_off_label);
+            mLabel = mContext.getString(R.string.quick_settings_battery_saver_label);
         }
     }
 

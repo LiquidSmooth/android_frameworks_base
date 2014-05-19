@@ -138,8 +138,7 @@
     <string name="quick_settings_reminder_noti_dismiss">Dismiss</string>
     <string name="quick_settings_reminder_noti_later">Update Time</string>
     <string name="quick_settings_reminder_help_message">Touch the empty space above to set or change the reminder. Long-press to clear the current reminder.</string>
-    <string name="quick_settings_battery_saver_label">Battery saver on</string>
-    <string name="quick_settings_battery_saver_off_label">Battery saver off</string>
+    <string name="quick_settings_battery_saver_label">Battery saver</string>
     <string name="quick_settings_network_type">Status</string>
     <string name="quick_settings_network_unknown">Unknown</string>
     <string name="quick_settings_network_disable">No internet</string>
