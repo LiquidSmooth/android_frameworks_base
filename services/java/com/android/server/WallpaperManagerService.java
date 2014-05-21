@@ -98,6 +98,7 @@ class WallpaperManagerService extends IWallpaperManager.Stub {
     static final long MIN_WALLPAPER_CRASH_TIME = 10000;
     static final String WALLPAPER = "wallpaper";
     static final String WALLPAPER_INFO = "wallpaper_info.xml";
+    static final String WALLPAPER_INFO_TMP = "wallpaper_info.xml.tmp";
 
     /**
      * Name of the component used to display bitmap wallpapers from either the gallery or
@@ -150,6 +151,11 @@ class WallpaperManagerService extends IWallpaperManager.Stub {
                                 false, mWallpaper, null);
                         saveSettingsLocked(mWallpaper);
                     }
+                } else if (WALLPAPER_INFO_TMP.equals(path) &&
+                        mWallpaper.wallpaperComponent != null &&
+                        !IMAGE_WALLPAPER.equals(mWallpaper.wallpaperComponent) &&
+                        event == CLOSE_WRITE) {
+                    notifyCallbacksLocked(mWallpaper);
                 }
             }
         }
