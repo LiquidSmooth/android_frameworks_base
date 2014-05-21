@@ -1471,8 +1471,6 @@ public abstract class BaseStatusBar extends SystemUI implements
         } else {
             mPeek.addNotification(entry.notification);
         }
-
-        mHandler.removeCallbacks(mPanelCollapseRunnable);
     }
 
     private void addNotificationViews(IBinder key, StatusBarNotification notification) {
