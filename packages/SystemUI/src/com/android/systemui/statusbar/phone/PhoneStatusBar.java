@@ -553,23 +553,23 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.REMINDER_ALERT_INTERVAL),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.VOLUME_KEY_CURSOR_CONTROL), false, this,
-                    UserHandle.USER_ALL);
+                    Settings.System.VOLUME_KEY_CURSOR_CONTROL),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.SHAKE_LISTENER_ENABLED), false, this,
-                    UserHandle.USER_ALL);
+                    Settings.System.SHAKE_LISTENER_ENABLED),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.SHAKE_SENSITIVITY), false, this,
-                    UserHandle.USER_ALL);
+                    Settings.System.SHAKE_SENSITIVITY),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QS_QUICK_ACCESS), false, this,
-                    UserHandle.USER_ALL);
+                    Settings.System.QS_QUICK_ACCESS),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QS_QUICK_ACCESS_LINKED), false, this,
-                    UserHandle.USER_ALL);
+                    Settings.System.QS_QUICK_ACCESS_LINKED),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QUICK_SETTINGS_RIBBON_TILES), false, this,
-                    UserHandle.USER_ALL);
+                    Settings.System.QUICK_SETTINGS_RIBBON_TILES),
+                    false, this, UserHandle.USER_ALL);
 
             update();
         }
