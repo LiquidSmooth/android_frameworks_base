@@ -1485,11 +1485,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 } else {
                     mSettingsPanel = (SettingsPanelView) mStatusBarWindow.findViewById(R.id.settings_panel);
                 }
-            }
 
-            if (mQS != null) {
-                mQS.shutdown();
-                mQS = null;
+                if (mSettingsPanel != null) {
+                    mSettingsPanel.setStatusBar(this);
+                }
             }
 
             // wherever you find it, Quick Settings needs a container to survive
