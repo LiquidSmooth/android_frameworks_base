@@ -345,12 +345,7 @@ public final class Installer {
 
     public int idmap(String targetApkPath, String overlayApkPath, String redirectionsPath, int uid,
                      int targetHash, int overlayHash) {
-        StringBuilder builder = new StringBuilder();
-        if (TextUtils.isEmpty(redirectionsPath)) {
-            builder.append("idmap");
-        } else {
-            builder.append("idmap_with_redirs");
-        }
+        StringBuilder builder = new StringBuilder("idmap");
         builder.append(' ');
         builder.append(targetApkPath);
         builder.append(' ');
@@ -361,7 +356,7 @@ public final class Installer {
         builder.append(targetHash);
         builder.append(' ');
         builder.append(overlayHash);
-        if (!TextUtils.isEmpty(redirectionsPath)) {
+        if (redirectionsPath != null) {
             builder.append(' ');
             builder.append(redirectionsPath);
         }
