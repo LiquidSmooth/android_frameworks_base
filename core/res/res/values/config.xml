@@ -1417,7 +1417,7 @@
     <integer name="config_panelAutoBrightnessValue">-1</integer>
 
     <!-- Device supports LED flashlight -->
-    <bool name="config_enableTorch">false</bool>
+    <bool name="config_enableTorch">true</bool>
 
     <!-- Set to empty string to disable. Can be added to device overlay for device-specific path -->
     <string name="config_fastChargePath" translatable="false">/sys/kernel/fast_charge/force_fast_charge</string>
