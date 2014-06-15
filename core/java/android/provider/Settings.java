@@ -4427,6 +4427,16 @@ public final class Settings {
         public static final String CUSTOM_FLING_VELOCITY = "custom_fling_velocity";
 
         /**
+         * Preference for the button backlight. The value is enum.
+         * 0 for on touch
+         * 1 for off
+         * 2 for on
+         * 3 for force off
+         * 4 for force on
+         */
+        public static final String BUTTON_BACKLIGHT_MODE = "button_backlight_mode";
+
+        /**
          * Determine custom overscroll distance.
          * @hide
          */

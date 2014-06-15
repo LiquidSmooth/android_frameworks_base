@@ -395,6 +395,9 @@ public final class PowerManagerService extends IPowerManager.Stub
     // Use -1 to disable.
     private int mButtonBrightnessOverrideFromWindowManager = -1;
 
+    // The button backlight preference
+    private int mButtonModeSetting = 0;
+
     // The user activity timeout override from the window manager
     // to allow the current foreground activity to override the user activity timeout.
     // Use -1 to disable.
@@ -594,6 +597,9 @@ public final class PowerManagerService extends IPowerManager.Stub
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.PROXIMITY_ON_WAKE),
                     false, mSettingsObserver, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.BUTTON_BACKLIGHT_MODE),
+                    false, mSettingsObserver, UserHandle.USER_ALL);
 
             // Go.
             readConfigurationLocked();
@@ -699,6 +705,10 @@ public final class PowerManagerService extends IPowerManager.Stub
         mKeyboardBrightness = Settings.System.getIntForUser(resolver,
                 Settings.System.KEYBOARD_BRIGHTNESS, mKeyboardBrightnessSettingDefault,
                 UserHandle.USER_CURRENT);
+
+        mButtonModeSetting = Settings.System.getIntForUser(resolver,
+                Settings.System.BUTTON_BACKLIGHT_MODE,
+                0, UserHandle.USER_CURRENT);
 
         mDirty |= DIRTY_SETTINGS;
     }
@@ -1729,7 +1739,8 @@ public final class PowerManagerService extends IPowerManager.Stub
                     if (now < nextTimeout) {
                         int buttonBrightness, keyboardBrightness;
                         if (mButtonBrightnessOverrideFromWindowManager >= 0) {
-                            buttonBrightness = mButtonBrightnessOverrideFromWindowManager;
+                            buttonBrightness = (mButtonModeSetting == 2 || mButtonModeSetting == 4)
+                                    ? mButtonBrightnessOverrideFromWindowManager : 0;
                             keyboardBrightness = mButtonBrightnessOverrideFromWindowManager;
                         } else {
                             buttonBrightness = mButtonBrightness;
@@ -1738,8 +1749,20 @@ public final class PowerManagerService extends IPowerManager.Stub
 
                         mKeyboardLight.setBrightness(mKeyboardVisible ? keyboardBrightness : 0);
                         if (mButtonTimeout != 0 && now > mLastUserActivityTime + mButtonTimeout) {
-                            mButtonsLight.setBrightness(0);
+                            buttonBrightness = (mButtonModeSetting == 2 || mButtonModeSetting == 4)
+                                    ? mDisplayPowerRequest.screenBrightness : 0;
+                            mButtonsLight.setBrightness(buttonBrightness);
                         } else {
+                            buttonBrightness = mDisplayPowerRequest.screenBrightness;
+                            if (mButtonModeSetting == 1 || mButtonModeSetting == 3) {
+                                // Default or force off
+                                buttonBrightness = 0;
+                            }
+                            if (mButtonModeSetting < 3) { // Not forcing
+                                buttonBrightness = mButtonBrightnessOverrideFromWindowManager >= 0
+                                        ? mButtonBrightnessOverrideFromWindowManager
+                                        : buttonBrightness;
+                            }
                             mButtonsLight.setBrightness(buttonBrightness);
                             if (buttonBrightness != 0 && mButtonTimeout != 0) {
                                 nextTimeout = now + mButtonTimeout;
