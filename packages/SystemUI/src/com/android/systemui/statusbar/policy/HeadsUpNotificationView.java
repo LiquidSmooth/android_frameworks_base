@@ -35,6 +35,7 @@ import com.android.systemui.R;
 import com.android.systemui.SwipeHelper;
 import com.android.systemui.statusbar.BaseStatusBar;
 import com.android.systemui.statusbar.NotificationData;
+import com.android.systemui.statusbar.notification.NotificationHelper;
 
 public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.Callback, ExpandHelper.Callback {
     private static final String TAG = "HeadsUpNotificationView";
@@ -58,6 +59,9 @@ public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.
     private boolean mHeadsUpIsExpanded;
     private boolean mSnoozeButtonVisibility;
 
+    // Notification helper
+    protected NotificationHelper mNotificationHelper;
+
     public HeadsUpNotificationView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
@@ -79,6 +83,10 @@ public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.
         }
     }
 
+    public void setNotificationHelper(NotificationHelper notificationHelper) {
+        mNotificationHelper = notificationHelper;
+    }    
+
     public ViewGroup getHolder() {
         return mContentHolder;
     }
@@ -86,6 +94,7 @@ public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.
     public boolean setNotification(NotificationData.Entry headsUp, boolean isExpanded) {
         mHeadsUp = headsUp;
         mHeadsUpIsExpanded = isExpanded;
+        mHeadsUp.content.setOnClickListener(mNotificationHelper.getNotificationClickListener(headsUp, true));
         mHeadsUp.row.setExpanded(isExpanded && mHeadsUp.row.isExpandable());
         if (mContentHolder == null) {
             // too soon!
