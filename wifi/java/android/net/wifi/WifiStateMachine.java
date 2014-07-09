@@ -3203,31 +3203,14 @@ public class WifiStateMachine extends StateMachine {
                     }
                     break;
                 case CMD_SET_COUNTRY_CODE:
-                    String country = (String) message.obj;
-                    final boolean persist = (message.arg2 == 1);
-                    final int sequence = message.arg1;
-                    if (sequence != mCountryCodeSequence.get()) {
-                        if (DBG) log("set country code ignored due to sequence num");
-                        break;
-                    }
-                    if (DBG) log("set country code " + country);
-                    if (persist) {
-                        mPersistedCountryCode = country;
-                        Settings.Global.putString(mContext.getContentResolver(),
-                                Settings.Global.WIFI_COUNTRY_CODE,
-                                country);
-                    }
-                    country = country.toUpperCase(Locale.ROOT);
-                    if (mLastSetCountryCode == null
-                            || country.equals(mLastSetCountryCode) == false) {
-                        if (mWifiNative.setCountryCode(country)) {
-                            mLastSetCountryCode = country;
-                        } else {
-                            loge("Failed to set country code " + country);
-                        }
-                    }
-                    mWifiP2pChannel.sendMessage(WifiP2pService.SET_COUNTRY_CODE, country);
-                    break;
+                     String country = (String) message.obj;
+                      if (DBG) log("set country code " + country);
+                    if (mWifiNative.setCountryCode(country.toUpperCase())) {
+                        mCountryCode = country;
+                    } else {
+                          loge("Failed to set country code " + country);
+                      }
+                      break;
                 case CMD_SET_FREQUENCY_BAND:
                     int band =  message.arg1;
                     if (DBG) log("set frequency band " + band);
