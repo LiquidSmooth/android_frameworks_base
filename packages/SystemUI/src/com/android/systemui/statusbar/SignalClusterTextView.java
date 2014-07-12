@@ -137,7 +137,9 @@ public class SignalClusterTextView
     }
 
     final void updateSignalText() {
-
+        if (mMobileSignalText == null) {
+            return;
+        }
         if (mAirplaneMode || dBm == 0) {
             mMobileGroup.setVisibility(View.GONE);
             return;
