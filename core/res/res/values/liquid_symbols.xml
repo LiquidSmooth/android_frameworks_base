@@ -301,4 +301,6 @@
   <!-- Maximum wallpaper width -->
   <java-symbol type="integer" name="config_wallpaperMaxWidth" />
 
+  <!-- PA Recents card margin -->
+  <java-symbol type="dimen" name="status_bar_recents_card_margin" />
 </resources>

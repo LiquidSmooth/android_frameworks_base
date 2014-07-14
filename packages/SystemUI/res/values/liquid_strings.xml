@@ -297,4 +297,10 @@
     <string name="pie_hour_format_24">HH:mm</string>
     <string name="pie_am_pm">a</string>
 
+   <!-- PA recents title -->
+   <string name="status_bar_recents_card_stack" translatable="false">@string/status_bar_recents_card_stack_title</string>
+
+   <!-- Recents card stack view confirmation dialog -->
+   <string name="status_bar_recents_card_stack_title">Recents card stack view</string>
+   <string name="status_bar_recents_card_stack_message">Would you like to enable recents card stack view?</string>
 </resources>

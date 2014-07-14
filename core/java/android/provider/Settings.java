@@ -5244,6 +5244,17 @@ public final class Settings {
 
         /**
          * Pie trigger fraction, should default to 1
+         * Card stack view for recents
+         * @hide
+         */
+        public static final String STATUS_BAR_RECENTS_CARD_STACK = "status_bar_recents_card_stack";
+
+        /**
+         * Pie control panel. Meet him on the spot.
+         * State (full/lite) based on immersive mode.
+         * 0 = off
+         * 1 = on
+         * Changes aspect depends on status bar visibility.
          * @hide
          */
         public static final String PA_PIE_TRIGGER = "pa_pie_trigger";
@@ -5457,6 +5468,12 @@ public final class Settings {
         public static final String[] SETTINGS_TO_RESET = {
             RECENTS_SWIPE_FLOATING,
             STATUS_BAR_NOTIFICATION_SWIPE_FLOATING
+            QUICK_SETTINGS_QUICK_PULL_DOWN,
+            SAFE_HEADSET_VOLUME,
+            PIE_STATE,
+            NAVBAR_RECENTS_CLEAR_ALL,
+            RECENTS_SWITCH,
+            STATUS_BAR_RECENTS_CARD_STACK
         };
 
         // Settings moved to Settings.Secure
