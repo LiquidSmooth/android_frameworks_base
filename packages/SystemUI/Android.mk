@@ -25,3 +25,5 @@ LOCAL_AAPT_FLAGS += --extra-packages com.android.cards
 include $(BUILD_PACKAGE)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
+
+Hi
