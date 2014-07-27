@@ -527,7 +527,7 @@ public final class PowerManager {
      */
     public void wakeUpFromKeyEvent(long time) {
         try {
-            mService.wakeUpWithProximityCheck(time);
+            mService.wakeUpFromKeyEvent(time);
         } catch (RemoteException e) {
         }
     }
