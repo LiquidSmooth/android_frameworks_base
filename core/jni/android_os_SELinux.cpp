@@ -415,7 +415,7 @@ static jboolean native_restorecon(JNIEnv *env, jobject, jstring pathnameStr) {
         return false;
     }
 
-    int ret = selinux_android_restorecon(pathname.c_str(), 0);
+    int ret = selinux_android_restorecon(pathname.c_str());
     ALOGV("restorecon(%s) => %d", pathname.c_str(), ret);
     return (ret == 0);
 }
