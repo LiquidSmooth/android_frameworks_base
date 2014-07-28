@@ -63,5 +63,5 @@ interface IPowerManager
     // blocked wakelock support
     String getSeenWakeLocks();
 
-    void wakeUpFromKeyEvent(long time);
+    void wakeUpWithProximityCheck(long time);
 }
