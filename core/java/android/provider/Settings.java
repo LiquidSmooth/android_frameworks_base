@@ -5074,6 +5074,13 @@ public final class Settings {
         public static final String HOVER_LONG_FADE_OUT_DELAY = "hover_long_fade_out_delay";
 
         /**
+         * Option to disable lockscreen notifications (default = disabled)
+         *
+         * @hide
+         */
+        public static final String HOVER_DISABLE_LOCKSCREEN = "hover_disable_lockscreen";
+
+        /**
          * Whether power menu user switcher is enabled
          * @hide
          */

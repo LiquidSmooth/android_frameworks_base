@@ -400,6 +400,11 @@ public class Hover {
                 Settings.System.HOVER_EXCLUDE_LOW_PRIORITY, 0) != 0;
     }
 
+    public boolean disableHoverLockScreen() {
+        return Settings.System.getBoolean(mContext.getContentResolver(),
+                Settings.System.HOVER_DISABLE_LOCKSCREEN, false);
+    }
+
     public boolean excludeTopmost() {
         return Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.HOVER_EXCLUDE_TOPMOST, 0) != 0;
@@ -726,7 +731,8 @@ public class Hover {
         }
 
         // second, if we've just expanded statusbar or turned screen off return
-        if (!isScreenOn() | isStatusBarExpanded() | isKeyguardSecureShowing()) {
+        if (!isScreenOn() | isStatusBarExpanded() | isKeyguardSecureShowing() |
+                (!disableHoverLockScreen())) {
             if (mShowing) {
                 dismissHover(true, true);
             } else {
