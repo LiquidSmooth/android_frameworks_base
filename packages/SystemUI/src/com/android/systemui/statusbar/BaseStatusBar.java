@@ -1743,6 +1743,10 @@ public abstract class BaseStatusBar extends SystemUI implements
                 && !TextUtils.equals(notification.getNotification().tickerText,
                         oldEntry.notification.getNotification().tickerText)) && (!mHoverActive || mHaloActive);
         boolean isTopAnyway = isTopNotification(rowParent, oldEntry);
+
+        boolean disableHeadsUp = Settings.System.getBoolean(mContext.getContentResolver(),
+                Settings.System.HEADS_UP_DISABLE_LOCKSCREEN, false);
+
         if (contentsUnchanged && bigContentsUnchanged && (orderUnchanged || isTopAnyway)) {
             if (DEBUG) Log.d(TAG, "reusing notification for key: " + key);
             oldEntry.notification = notification;
@@ -1760,7 +1764,8 @@ public abstract class BaseStatusBar extends SystemUI implements
                         updateNotificationViews(mInterruptingNotificationEntry, notification, true);
                     }
                 } else if (shouldInterrupt(notification)
-                        && panelsEnabled() && !isHeadsUpInSnooze() && mShowHeadsUpUpdates) {
+                        && panelsEnabled() && !isHeadsUpInSnooze()
+                        && mShowHeadsUpUpdates && !disableHeadsUp) {
                     final NotificationData.Entry newEntry = mNotificationData.findByKey(key);
                     populateHeadsUp(key, notification, newEntry);
                 }
@@ -1798,7 +1803,8 @@ public abstract class BaseStatusBar extends SystemUI implements
                 newEntry.row.setUserExpanded(true);
             }
             if (mInterruptingNotificationEntry == null && shouldInterrupt(notification)
-                    && panelsEnabled() && !isHeadsUpInSnooze() && mShowHeadsUpUpdates) {
+                    && panelsEnabled() && !isHeadsUpInSnooze()
+                    && mShowHeadsUpUpdates && !disableHeadsUp) {
                 populateHeadsUp(key, notification, newEntry);
             }
         }
@@ -1896,6 +1902,11 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     protected void resetHeadsUpSnoozeTimer() {
         mHeadsUpSnoozeStartTime = 0;
+    }
+
+    public boolean disableHeadsUpLockScreen() {
+        return Settings.System.getBoolean(mContext.getContentResolver(),
+                Settings.System.HEADS_UP_DISABLE_LOCKSCREEN, false);
     }
 
     @Override // CommandQueue

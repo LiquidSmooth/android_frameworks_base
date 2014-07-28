@@ -3735,6 +3735,13 @@ public final class Settings {
         public static final String HEADS_UP_FLOATING_WINDOW = "heads_up_floating_window";
 
         /**
+         * Option to disable lockscreen notifications (default = disabled)
+         *
+         * @hide
+         */
+        public static final String HEADS_UP_DISABLE_LOCKSCREEN = "heads_up_disable_lockscreen";
+
+        /**
          * Sensitivity of all system shake events
          * @hide
          */
