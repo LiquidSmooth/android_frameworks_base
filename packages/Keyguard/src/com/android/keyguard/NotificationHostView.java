@@ -33,6 +33,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -614,6 +615,21 @@ public class NotificationHostView extends FrameLayout {
     }
 
     public void showAllNotifications() {
+        boolean disableHeadsup = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.LOCKSCREEN_NOTIFICATIONS_DISABLE_HEADS_UP, 0) == 1;
+
+        if (disableHeadsup) {
+            final IStatusBarService barService =
+                    IStatusBarService.Stub.asInterface(
+                    ServiceManager.getService(Context.STATUS_BAR_SERVICE));
+            try {
+                if (barService != null) {
+                    barService.hideHeadsUp();
+                }
+            } catch (RemoteException e) {
+                // This should never happen
+            }
+        }
         for (NotificationView nv : mNotifications.values()) {
             showNotification (nv);
         }

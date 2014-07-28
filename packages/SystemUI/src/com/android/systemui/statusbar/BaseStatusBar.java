@@ -1743,6 +1743,7 @@ public abstract class BaseStatusBar extends SystemUI implements
                 && !TextUtils.equals(notification.getNotification().tickerText,
                         oldEntry.notification.getNotification().tickerText)) && (!mHoverActive || mHaloActive);
         boolean isTopAnyway = isTopNotification(rowParent, oldEntry);
+
         if (contentsUnchanged && bigContentsUnchanged && (orderUnchanged || isTopAnyway)) {
             if (DEBUG) Log.d(TAG, "reusing notification for key: " + key);
             oldEntry.notification = notification;

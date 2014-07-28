@@ -4724,6 +4724,12 @@ public final class Settings {
 		 */
 		public static final String LOCKSCREEN_NOTIFICATIONS_DYNAMIC_WIDTH = "lockscreen_notifications_dynamic_width";
 
+        /**
+         * Disable heads up on the lockscreen when notifications are enabled
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_DISABLE_HEADS_UP = "lockscreen_notifications_disable_heads_up";
+
 		/**
 		 * Enable Menu key
 		 * @hide
