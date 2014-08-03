@@ -161,8 +161,13 @@
     <string name="setting_confirmation_ask_me_later">Ask later</string>
     <string name="setting_confirmation_yes">Yes</string>
     <string name="setting_confirmation_no">No</string>
-    <string name="setting_reset_title">To Reset Swipe left to float</string>
-    <string name="setting_reset_message">Open Settings\n--&gt; Backup &amp; reset\n----&gt; Reset preferences.</string>
+    <string name="setting_reset_hint_title">To reset preferences:</string>
+    <string name="setting_reset_hint_message">
+        <![CDATA[
+        <p>Open <b>Settings</b><br/>
+        Below Personal divider: <b>Backup & Reset</b><br/>
+        Below Personalization divider: <b>Reset preferences</b></p>
+        ]]></string>
 
     <!-- WiFi turn off notification -->
     <string name="notify_turn_wifi_off_title">Turn Wi-Fi off</string>
@@ -181,7 +186,7 @@
     <string name="permlab_accessThemeService">access theme service</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_accessThemeService">Allows an app to access the theme service. Should never be needed for normal apps.</string>
-  
+
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_readThemes">read your theme info</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->

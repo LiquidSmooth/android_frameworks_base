@@ -4500,14 +4500,6 @@ public final class Settings {
 		public static final String PROGRESSBAR_COLOR_4 = "progressbar_color_4";
 
         /**
-         * Whether to show how to reset the "On-The-Spot Preference" on appearance
-         * 0 = not the first run
-         * 1 = first run
-         * @hide
-         */
-        public static final String ON_THE_SPOT_FIRST_TIME = "on_the_spot_first_time";
-
-        /**
          * Toast Animations
          * @hide
          */
