@@ -4204,6 +4204,24 @@ public final class Settings {
         public static final String LISTVIEW_INTERPOLATOR = "listview_interpolator";
 
         /**
+         * NotificationPanel BlurBackground
+         * @hide
+         */
+         public static final String NOTIFICATIONPANEL_BLURBACKGROUND = "notificationpanel_blurbackground";
+
+        /**
+         * NotificationPanel BlurBackground Blur Radius
+         * @hide
+         */
+         public static final String NOTIFICATIONPANEL_BLURBACKGROUND_BLUR_RADIUS = "notificationpanel_blurbackground_blur_radius";
+
+        /**
+         * NotificationPanel BlurBackground Blur Fade
+         * @hide
+         */
+         public static final String NOTIFICATIONPANEL_BLURBACKGROUND_FADE = "notificationpanel_blurbackground_fade";
+
+        /**
          * Holds the text for the Carrier label. An empty string
          * will bring the default text back.
          * @hide

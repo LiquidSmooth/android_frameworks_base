@@ -1,5 +1,7 @@
 /*
  * Copyright (C) 2012 The Android Open Source Project
+ * This code has been modified. Portions copyright (C) 2014, DokdoProject - GwonHyeok
+ *     thank's to Serafin A. Albiero Jr. - Blurred-System-UI
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +40,9 @@ import android.view.Display;
 import android.view.Surface;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 
 import com.android.systemui.EventLogTags;
 import com.android.systemui.R;
@@ -65,6 +69,7 @@ public class NotificationPanelView extends PanelView {
     ImageView mBackground;
     PhoneStatusBar mStatusBar;
     boolean mOkToFlip;
+    ImageView mBlurredBackground;
 
     private float mGestureStartX;
     private float mGestureStartY;
@@ -91,6 +96,44 @@ public class NotificationPanelView extends PanelView {
         mHandleView = findViewById(R.id.handle);
         mBackground = (ImageView) findViewById(R.id.notification_wallpaper);
         setBackgroundDrawables();
+
+        mBlurredBackground = new ImageView(mContext);
+        mBlurredBackground.setScaleType(ScaleType.CENTER_CROP);
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
+        addView(mBlurredBackground, 0, lp);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        if(mBlurredBackground == null) {
+            return;
+        }
+        // Check Blur fadein out
+        if(Settings.System.getInt(mContext.getContentResolver(),
+                       Settings.System.NOTIFICATIONPANEL_BLURBACKGROUND_FADE, 0) != 1) {
+            if(mBlurredBackground.getAlpha() != 1.0f) {
+                mBlurredBackground.setAlpha(1.0f);
+            }
+            return;
+        }
+        int height = getMeasuredHeight();
+        float alpha = 0f;
+        if(height > 0) {
+            alpha = (float) height / (float) mBlurredBackground.getHeight();
+        }
+        if(alpha >= 0 && alpha <= 1) {
+            mBlurredBackground.setAlpha(alpha);
+        }
+    }
+
+    public ImageView getBlurredImageView() {
+        return mBlurredBackground;
+    }
+
+    public void removeBlurredImageView() {
+        mBlurredBackground.setImageDrawable(null);
     }
 
     @Override

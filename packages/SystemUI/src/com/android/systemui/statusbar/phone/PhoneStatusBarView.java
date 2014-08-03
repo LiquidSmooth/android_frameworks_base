@@ -1,5 +1,7 @@
 /*
  * Copyright (C) 2008 The Android Open Source Project
+ * This code has been modified. Portions copyright (C) 2014, DokdoProject - GwonHyeok
+ *     thank's to Serafin A. Albiero Jr. - Blurred-System-UI
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,13 +22,27 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.renderscript.Allocation;
+import android.renderscript.Element;
+import android.renderscript.RenderScript;
+import android.renderscript.ScriptIntrinsicBlur;
+import android.os.AsyncTask;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.EventLog;
 import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
+import android.view.Surface;
+import android.view.SurfaceControl;
 import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.GestureDetector;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.os.PowerManager;
 import android.provider.Settings;
 
@@ -47,7 +63,8 @@ public class PhoneStatusBarView extends PanelBar {
     boolean mFullWidthNotifications;
     PanelView mFadingPanel = null;
     PanelView mLastFullyOpenedPanel = null;
-    PanelView mNotificationPanel, mSettingsPanel;
+    PanelView mSettingsPanel;
+    NotificationPanelView mNotificationPanel;
     private boolean mShouldFade;
     private final PhoneStatusBarTransitions mBarTransitions;
     private GestureDetector mDoubleTapGesture;
@@ -105,7 +122,7 @@ public class PhoneStatusBarView extends PanelBar {
     public void addPanel(PanelView pv) {
         super.addPanel(pv);
         if (pv.getId() == R.id.notification_panel) {
-            mNotificationPanel = pv;
+            mNotificationPanel = (NotificationPanelView) pv;
         } else if (pv.getId() == R.id.settings_panel){
             mSettingsPanel = pv;
         }
@@ -231,6 +248,14 @@ public class PhoneStatusBarView extends PanelBar {
     public boolean onTouchEvent(MotionEvent event) {
         boolean barConsumedEvent = mBar.interceptTouchEvent(event);
 
+        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+            if(Settings.System.getInt(mContext.getContentResolver(),
+                       Settings.System.NOTIFICATIONPANEL_BLURBACKGROUND, 0) == 1) {
+                new backgroundBlurTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            } else {
+                mNotificationPanel.removeBlurredImageView();
+            }
+        }
         if (DEBUG_GESTURES) {
             if (event.getActionMasked() != MotionEvent.ACTION_MOVE) {
                 EventLog.writeEvent(EventLogTags.SYSUI_PANELBAR_TOUCH,
@@ -294,5 +319,94 @@ public class PhoneStatusBarView extends PanelBar {
         mBar.animateHeadsUp(mNotificationPanel == panel, mPanelExpandedFractionSum);
         mBar.panelIsAnimating(mFullyOpenedPanel == null);
 
+    }
+
+    class backgroundBlurTask extends AsyncTask<Void, Void, Bitmap> {
+        private int[] mScreenDimens;
+        private float[] mDims;
+        private Bitmap mScreenBitmap;
+        private Display display;
+        private DisplayMetrics metrics;
+
+        @Override
+        protected void onPreExecute() {
+            WindowManager wm = (WindowManager)mContext.getSystemService(Context.WINDOW_SERVICE);
+            display = wm.getDefaultDisplay();
+            metrics = new DisplayMetrics();
+            display.getRealMetrics(metrics);
+            mScreenDimens = new int[]{metrics.widthPixels, metrics.heightPixels};
+            mDims = new float[]{metrics.widthPixels, metrics.heightPixels};
+        }
+
+        @Override
+        protected Bitmap doInBackground(Void... arg) {
+            boolean isRotation = false;
+            float degrees = 0f;
+            Matrix displayMatrix = new Matrix();
+
+            switch(display.getRotation()) {
+                case Surface.ROTATION_90:
+                    isRotation = true;
+                    degrees = 90f;
+                    break;
+                case Surface.ROTATION_180:
+                    isRotation = true;
+                    degrees = 180f;
+                    break;
+                case Surface.ROTATION_270:
+                    isRotation = true;
+                    degrees = 270f;
+                    break;
+                default:
+                    isRotation = false;
+                    degrees = 0f;
+                    break;
+            }
+            if(isRotation) {
+                displayMatrix.reset();
+                displayMatrix.preRotate(-degrees);
+                displayMatrix.mapPoints(mDims);
+                mDims[0] = Math.abs(mDims[0]);
+                mDims[1] = Math.abs(mDims[1]);
+            }
+            mScreenBitmap = SurfaceControl.screenshot((int) mDims[0], (int) mDims[1]);
+
+            if(mScreenBitmap !=null) {
+                if(isRotation) {
+                    Bitmap ss = Bitmap.createBitmap(metrics.widthPixels, metrics.heightPixels, Bitmap.Config.ARGB_8888);
+                    Canvas c = new Canvas(ss);
+                    c.translate(ss.getWidth() / 2, ss.getHeight() / 2);
+                    c.rotate(360f - degrees);
+                    c.translate(-mDims[0] / 2, -mDims[1] / 2);
+                    c.drawBitmap(mScreenBitmap, 0, 0, null);
+                    c.setBitmap(null);
+                    mScreenBitmap = ss;
+                }
+            }
+
+            mScreenBitmap.setHasAlpha(false);
+            mScreenBitmap.prepareToDraw();
+            Bitmap scaled = Bitmap.createScaledBitmap(mScreenBitmap, mScreenDimens[0] / 20, mScreenDimens[1] / 20, true);
+
+            RenderScript mRenderScript = RenderScript.create(mContext);
+            ScriptIntrinsicBlur mScriptIntrinsicBlur = ScriptIntrinsicBlur.create(mRenderScript, Element.U8_4 (mRenderScript));
+            Allocation input = Allocation.createFromBitmap(mRenderScript, scaled);
+            Allocation output = Allocation.createTyped(mRenderScript, input.getType());
+            mScriptIntrinsicBlur.setRadius(4f);
+            mScriptIntrinsicBlur.setInput(input);
+            mScriptIntrinsicBlur.forEach(output);
+            output.copyTo(scaled);
+            return scaled;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            if(bitmap != null) {
+                ImageView imageview = mNotificationPanel.getBlurredImageView();
+                imageview.setImageBitmap(bitmap);
+                mScreenBitmap.recycle();
+                mScreenBitmap = null;
+            }
+        }
     }
 }
