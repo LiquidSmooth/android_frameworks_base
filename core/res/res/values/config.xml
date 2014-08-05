@@ -1394,6 +1394,7 @@
          2 - The device DOES NOT have a permanent menu key; ignore autodetection. -->
     <integer name="config_overrideHasPermanentMenuKey">0</integer>
 
+<<<<<<< HEAD
     <!-- The list of components which should be automatically disabled. -->
     <string-array name="config_disabledComponents" translatable="false">
     </string-array>
@@ -1484,5 +1485,11 @@
            1. Lenient threshold
     -->
     <integer name="config_LTE_RSRP_threshold_type">0</integer>
+
+    <!-- Default value for proximity check on screen wake
+         NOTE ! - Enable for devices that have a fast response proximity sensor (ideally < 300ms)
+    -->
+    <bool name="config_proximityCheckOnWake">false</bool>
+    <integer name="config_proximityCheckTimeout">250</integer>
 
 </resources>
