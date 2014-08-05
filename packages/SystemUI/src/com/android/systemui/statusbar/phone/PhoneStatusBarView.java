@@ -23,8 +23,10 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.PorterDuff;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
@@ -402,8 +404,11 @@ public class PhoneStatusBarView extends PanelBar {
         @Override
         protected void onPostExecute(Bitmap bitmap) {
             if(bitmap != null) {
+                int ColorFilterColor = Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.NOTIFICATIONPANEL_BLURBACKGROUND_COLORFILTER, Color.GRAY);
                 ImageView imageview = mNotificationPanel.getBlurredImageView();
                 imageview.setImageBitmap(bitmap);
+                imageview.setColorFilter(ColorFilterColor, PorterDuff.Mode.MULTIPLY);
                 mScreenBitmap.recycle();
                 mScreenBitmap = null;
             }

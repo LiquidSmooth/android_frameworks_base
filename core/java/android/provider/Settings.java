@@ -4222,6 +4222,12 @@ public final class Settings {
          public static final String NOTIFICATIONPANEL_BLURBACKGROUND_FADE = "notificationpanel_blurbackground_fade";
 
         /**
+         * NotificationPanel BlurBackground Blur Colorfilter
+         * @hide
+         */
+         public static final String NOTIFICATIONPANEL_BLURBACKGROUND_COLORFILTER = "notificationpanel_blurbackground_color";
+
+        /**
          * Holds the text for the Carrier label. An empty string
          * will bring the default text back.
          * @hide
