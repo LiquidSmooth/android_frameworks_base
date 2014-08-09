@@ -144,6 +144,7 @@ public class PieController implements BaseStatusBar.NavigationBarCallback, PieVi
     private boolean mPieTriggerMaskLocked;
     private int mRestorePieTriggerMask;
     private EdgeGesturePosition mPosition;
+    private int mSensitivity = 4;
 
     private EdgeGestureManager.EdgeGestureActivationListener mPieActivationListener =
             new EdgeGestureManager.EdgeGestureActivationListener(Looper.getMainLooper()) {
@@ -225,6 +226,9 @@ public class PieController implements BaseStatusBar.NavigationBarCallback, PieVi
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.PIE_IME_CONTROL), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.PAC.getUriFor(
+                    Settings.System.PIE_TRIGGER_SENSITIVITY), false, this,
                     UserHandle.USER_ALL);
         }
 
@@ -414,10 +418,12 @@ public class PieController implements BaseStatusBar.NavigationBarCallback, PieVi
                 Settings.System.PIE_GRAVITY, EdgeGesturePosition.LEFT.FLAG,
                 UserHandle.USER_CURRENT);
 
-        int sensitivity = mContext.getResources().getInteger(R.integer.pie_gesture_sensivity);
-        if (sensitivity < EdgeServiceConstants.SENSITIVITY_LOWEST
-                || sensitivity > EdgeServiceConstants.SENSITIVITY_HIGHEST) {
-            sensitivity = EdgeServiceConstants.SENSITIVITY_DEFAULT;
+        mSensitivity = Settings.System.getInt(resolver,
+                Settings.System.PIE_TRIGGER_SENSITIVITY, mSensitivity);
+
+        if (mSensitivity < EdgeServiceConstants.SENSITIVITY_LOWEST
+                || mSensitivity > EdgeServiceConstants.SENSITIVITY_HIGHEST) {
+            mSensitivity = EdgeServiceConstants.SENSITIVITY_DEFAULT;
         }
 
         int flags = mPieTriggerSlots & mPieTriggerMask;
@@ -429,7 +435,7 @@ public class PieController implements BaseStatusBar.NavigationBarCallback, PieVi
         }
 
         mPieManager.updateEdgeGestureActivationListener(mPieActivationListener,
-                sensitivity<<EdgeServiceConstants.SENSITIVITY_SHIFT | flags);
+                mSensitivity<<EdgeServiceConstants.SENSITIVITY_SHIFT | flags);
     }
 
     private void setupNavigationItems() {
