@@ -11112,12 +11112,6 @@ public class WindowManagerService extends IWindowManager.Stub
         return mLastStatusBarVisibility;
     }
 
-    /* @hide */
-    @Override
-    public void updateStatusBarNavBarHeight() {
-        mPolicy.updateStatusBarNavBarHeight();
-    }
-
     private void moveTaskAndActivityToFront(int taskId) {
         try {
             moveTaskToTop(taskId);
@@ -11230,5 +11224,9 @@ public class WindowManagerService extends IWindowManager.Stub
         } else {
             return new Rect(0, 0, (int)(appWidth * 0.9f) , (int)(appHeight * 0.7f));
         }
+    }
+
+    public void updateStatusBarNavBarHeight() {
+        mPolicy.updateStatusBarNavBarHeight();
     }
 }

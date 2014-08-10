@@ -16,8 +16,11 @@
 
 package android.util;
 
+import android.content.res.Configuration;
 import android.os.SystemProperties;
+import android.util.Log;
 
+import com.android.internal.util.liquid.DensityUtils;
 
 /**
  * A structure describing general information about a display, such as its
@@ -200,6 +203,12 @@ public class DisplayMetrics {
      */
     public float noncompatYdpi;
 
+    /**
+     * Cached copy of Configuration.fontScale.
+     * @hide
+     */
+    private float fontScale = 1.0f;
+
     public DisplayMetrics() {
     }
     
@@ -239,16 +248,25 @@ public class DisplayMetrics {
     }
 
     public void updateDensity() {
-        density = getCurrentDensity() / (float) DENSITY_DEFAULT;
-        densityDpi = getCurrentDensity();
-        scaledDensity = density;
-        xdpi = getCurrentDensity();
-        ydpi = getCurrentDensity();
+        int newDensity = DensityUtils.getCurrentDensity();
+        density = newDensity / (float) DENSITY_DEFAULT;
+        densityDpi = newDensity;
+        scaledDensity = density * fontScale;
+        xdpi = newDensity;
+        ydpi = newDensity;
         noncompatDensity = density;
         noncompatDensityDpi = densityDpi;
         noncompatScaledDensity = scaledDensity;
         noncompatXdpi = xdpi;
         noncompatYdpi = ydpi;
+    }
+
+    /** @hide */
+    public void updateConfiguration(Configuration config) {
+        // Keep a copy of the fontScale variable when the configuration is
+        // changed. This is needed to calculate scaledDensity, otherwise, the
+        // font size will be stuck at the default size.
+        fontScale = config.fontScale;
     }
 
     @Override
@@ -303,10 +321,6 @@ public class DisplayMetrics {
         return "DisplayMetrics{density=" + density + ", width=" + widthPixels +
             ", height=" + heightPixels + ", scaledDensity=" + scaledDensity +
             ", xdpi=" + xdpi + ", ydpi=" + ydpi + "}";
-    }
-
-    public static int getCurrentDensity() {
-        return SystemProperties.getInt("persist.sys.lcd_density", DENSITY_DEVICE);
     }
 
     public static int getDeviceDensity() {

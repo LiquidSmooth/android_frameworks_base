@@ -5137,6 +5137,25 @@ public final class Settings {
         public static final String HEADS_UP_EXCLUDE_FROM_LOCK_SCREEN = "heads_up_exclude_from_lock_screen";
 
         /**
+         * Carrier Label Custom Color
+         * @hide
+         */
+        public static final String STATUS_BAR_CARRIER_COLOR = "status_bar_carrier_color";
+
+        /**
+         * show carrier in statusbar. The value is
+         * boolean (1 or 0).
+         */
+        public static final String STATUS_BAR_CARRIER = "status_bar_carrier";
+
+        /**
+         * Stores the custom lcd density value.
+         *
+         * @hide
+         */
+        public static final String CUSTOM_LCD_DENSITY = "custom_lcd_density";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
