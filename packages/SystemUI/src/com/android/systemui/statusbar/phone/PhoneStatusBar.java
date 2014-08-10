@@ -4643,6 +4643,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mCurrentDensity = density;
             recreateStatusBar(true);
             recreatePie(isPieEnabled());
+            setTakenSpace();
+            updateOrientation();
             return;
         }
 
@@ -4665,21 +4667,25 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         int orientation = res.getConfiguration().orientation;
         if (orientation != mCurrOrientation) {
             mCurrOrientation = orientation;
-            // Update the settings container
-            if (mSettingsContainer != null) {
-                mSettingsContainer.updateResources();
-            }
-
-            if (mReminderEnabled) {
-                toggleVisibleFlipper();
-                if (mExpandedVisible) {
-                    // Reset to first view since we're expanded and start flipping again
-                    toggleReminderFlipper(true);
-                }
-            }
+            updateOrientation();
         } else {
             if (mQS != null) {
                 mQS.updateResources();
+            }
+        }
+    }
+
+    private void updateOrientation() {
+        // Update the settings container
+        if (mSettingsContainer != null) {
+            mSettingsContainer.updateResources();
+        }
+
+        if (mReminderEnabled) {
+            toggleVisibleFlipper();
+            if (mExpandedVisible) {
+                // Reset to first view since we're expanded and start flipping again
+                toggleReminderFlipper(true);
             }
         }
     }

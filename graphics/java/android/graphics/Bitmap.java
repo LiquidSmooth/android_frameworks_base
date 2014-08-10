@@ -20,6 +20,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.DisplayMetrics;
 
+import com.android.internal.util.liquid.DensityUtils;
+
 import java.io.OutputStream;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
@@ -89,7 +91,7 @@ public final class Bitmap implements Parcelable {
     }
 
     static int getDefaultDensity() {
-        return DisplayMetrics.getCurrentDensity();
+        return DensityUtils.getCurrentDensity();
     }
 
     /**

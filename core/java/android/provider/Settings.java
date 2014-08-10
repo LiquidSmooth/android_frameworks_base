@@ -5137,6 +5137,13 @@ public final class Settings {
         public static final String HEADS_UP_EXCLUDE_FROM_LOCK_SCREEN = "heads_up_exclude_from_lock_screen";
 
         /**
+         * Stores the custom lcd density value.
+         *
+         * @hide
+         */
+        public static final String CUSTOM_LCD_DENSITY = "custom_lcd_density";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
