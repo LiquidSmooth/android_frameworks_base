@@ -4755,7 +4755,17 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
 
             if (hijackRecentsLongPress) {
-                ActionUtils.switchToLastApp(mContext, mCurrentUserId);
+                final ActivityManager am =
+                        (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+                ActivityManager.RunningTaskInfo lastTask = getLastTask(am);
+
+                if (lastTask != null) {
+                    if (DEBUG) Log.d(TAG, "switching to " + lastTask.topActivity.getPackageName());
+                    final ActivityOptions opts = ActivityOptions.makeCustomAnimation(mContext,
+                            R.anim.last_app_in, R.anim.last_app_out);
+                    am.moveTaskToFront(lastTask.id, ActivityManager.MOVE_TASK_NO_USER_ACTION,
+                            opts.toBundle());
+                }
             }
 
             return sendBackLongPress;
@@ -4763,6 +4773,29 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             Log.d(TAG, "Unable to reach activity manager", e);
             return false;
         }
+    }
+
+    private ActivityManager.RunningTaskInfo getLastTask(final ActivityManager am) {
+        final String defaultHomePackage = resolveCurrentLauncherPackage();
+        List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(5);
+
+        for (int i = 1; i < tasks.size(); i++) {
+            String packageName = tasks.get(i).topActivity.getPackageName();
+            if (!packageName.equals(defaultHomePackage)
+                    && !packageName.equals(mContext.getPackageName())) {
+                return tasks.get(i);
+            }
+        }
+
+        return null;
+    }
+
+    private String resolveCurrentLauncherPackage() {
+        final Intent launcherIntent = new Intent(Intent.ACTION_MAIN)
+                .addCategory(Intent.CATEGORY_HOME);
+        final PackageManager pm = mContext.getPackageManager();
+        final ResolveInfo launcherInfo = pm.resolveActivity(launcherIntent, 0);
+        return launcherInfo.activityInfo.packageName;
     }
 
     private ActivityManager.RunningTaskInfo getLastTask(final ActivityManager am) {

@@ -85,7 +85,6 @@ public class KeyButtonView extends ImageView {
 
     private PowerManager mPm;
     private final Handler mHandler = new Handler();
-
     private boolean mPerformedLongClick;
 
     private final Runnable mCheckLongPress = new Runnable() {
