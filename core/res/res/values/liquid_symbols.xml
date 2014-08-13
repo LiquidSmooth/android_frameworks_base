@@ -166,4 +166,8 @@
   <java-symbol type="string" name="theme_reset_notification_title" />
   <java-symbol type="string" name="theme_reset_notification_body" />
 
+  <!-- Last app switch animations -->
+  <java-symbol type="anim" name="last_app_in" />
+  <java-symbol type="anim" name="last_app_out" />
+
 </resources>

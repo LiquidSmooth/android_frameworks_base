@@ -87,12 +87,16 @@ public class KeyButtonView extends ImageView {
 
     private PowerManager mPm;
 
+    private boolean mPerformedLongClick;
+
     private final Runnable mCheckLongPress = new Runnable() {
         public void run() {
             mIsLongpressed = true;
             if (isPressed()) {
                 // Log.d("KeyButtonView", "longpressed: " + this);
                 if (isLongClickable()) {
+                    // Just an old-fashioned ImageView
+                    mPerformedLongClick = true;
                     performLongClick();
                 } else {
                     sendEvent(KeyEvent.ACTION_DOWN, KeyEvent.FLAG_LONG_PRESS);
@@ -298,7 +302,7 @@ public class KeyButtonView extends ImageView {
                         }
                     } else {
                         // no key code, it is a custom click action
-                        if (doIt) {
+                        if (doIt && !mPerformedLongClick) {
                             if (mClickAction != null
                                 && !Action.isActionKeyEvent(mClickAction)) {
                                 performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -313,6 +317,7 @@ public class KeyButtonView extends ImageView {
                 if (mSupportsLongpress) {
                     removeCallbacks(mCheckLongPress);
                 }
+                mPerformedLongClick = false;
                 break;
         }
 
