@@ -4028,6 +4028,14 @@ public final class Settings {
         public static final String HARDWARE_KEY_REBINDING = "hardware_key_rebinding";
 
         /**
+         * Control the display of the action overflow button within app UI.
+         * 0 = use system default
+         * 1 = force on
+         * @hide
+         */
+        public static final String UI_OVERFLOW_BUTTON = "ui_overflow_button";
+
+        /**
          * Action to perform when the back key is pressed (default: ACTION_BACK)
          * (See ButtonsConstants.java for valid values)
          * @hide
