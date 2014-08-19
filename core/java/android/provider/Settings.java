@@ -4224,6 +4224,18 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_BLUR_RADIUS = "lockscreen_blur_radius";
 
+         /**
+         * Whether to allow killing of the foreground app by long-pressing the Back button
+         * @hide
+         */
+        public static final String KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
+
+        /**
+         * Delay Control of Back to Kill
+         * @hide
+         */
+        public static final String KILL_APP_LONGPRESS_BACK_DELAY = "kill_app_longpress_back_delay";
+
         /**
          * Recent panel expanded mode (auto = 0, always = 1, never = 2).
          * @hide
