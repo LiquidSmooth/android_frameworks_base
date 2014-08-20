@@ -26,7 +26,8 @@
   <string name="reboot_system" product="default">Telefon neustarten</string>
   <string name="global_action_screenshot">Screenshot</string>
   <string name="reboot_reboot">Neustart</string>
-  <string name="reboot_recovery">Wiederherstellung</string>
+  <string name="reboot_recovery">Recovery</string>
+  <string name="reboot_soft">Soft-Reboot</string>
   <string name="reboot_bootloader">Bootloader</string>
   <string name="reboot_bootmenu">Bootmenü</string>
   <string name="reboot_fastboot">Fastboot</string>
