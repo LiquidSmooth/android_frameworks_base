@@ -210,4 +210,7 @@
     <string name="permlab_changeHeadsUpState">enable or disable heads up</string>
     <string name="permdesc_changeHeadsUpState">Allows the application to change whether another application is allowed to show normal notifications as heads up notification.</string>
 
+    <!-- USB OTG notification message -->
+    <string name="usb_storage_notification_manage_message">Tap to manage</string>
+
 </resources>
