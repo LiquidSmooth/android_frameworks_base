@@ -271,7 +271,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     AccessibilityController mAccessibilityController;
     MSimNetworkControllerImpl mMSimNetworkController;
     WeatherControllerImpl mWeatherController;
-
     int mNaturalBarHeight = -1;
     int mIconSize = -1;
     int mIconHPadding = -1;
@@ -317,7 +316,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     // settings
     View mFlipSettingsView;
-    private QSPanel mQSPanel;
+    public QSPanel mQSPanel;
     private DevForceNavbarObserver mDevForceNavbarObserver;
 
     // task manager
@@ -3093,6 +3092,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     }
 
     public void topAppWindowChanged(boolean showMenu) {
+        if (mPieControlPanel != null)
+            mPieControlPanel.setMenu(showMenu);
+
         if (DEBUG) {
             Log.d(TAG, (showMenu?"showing":"hiding") + " the MENU button");
         }
