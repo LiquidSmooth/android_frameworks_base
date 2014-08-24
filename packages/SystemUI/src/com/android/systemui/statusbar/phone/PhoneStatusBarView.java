@@ -174,4 +174,13 @@ public class PhoneStatusBarView extends PanelBar {
         mScrimController.setPanelExpansion(frac);
         mBar.updateCarrierLabelVisibility(false);
     }
+
+    // PIE
+    @Override
+    public void collapseAllPanels(boolean animate) {
+        super.collapseAllPanels(animate);
+
+        if (mBar.mPieControlPanel != null)
+            mBar.mPieControlPanel.animateCollapsePanels();
+    }
 }

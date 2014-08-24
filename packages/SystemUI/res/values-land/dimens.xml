@@ -44,4 +44,7 @@
     <!-- Standard notification width + gravity -->
     <dimen name="notification_panel_width">@dimen/standard_notification_panel_width</dimen>
     <integer name="notification_panel_layout_gravity">@integer/standard_notification_panel_layout_gravity</integer>
+
+    <!-- The fixed height of PIE -->
+    <dimen name="pie_panel_padding">100dp</dimen>
 </resources>
