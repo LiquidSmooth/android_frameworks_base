@@ -67,17 +67,11 @@ public class DensityUtils {
             } catch (Exception e) {
             }
         }
-        return Integer.parseInt(prop.getProperty(DENSITY_PERSIST_PROP, "-1"));
+        return Integer.parseInt(prop.getProperty(DENSITY_PERSIST_PROP));
     }
 
     public static int getMinimumDensity() {
-        int min = -1;
-        int[] densities = { 91, 121, 161, 241, 321, 481 };
-        for (int density : densities) {
-            if (density < mMaxDensity) {
-                min = density;
-            }
-        }
-        return min;
+
+        return DENSITY_DEFAULT;
     }
 }
