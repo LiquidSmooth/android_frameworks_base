@@ -5320,12 +5320,10 @@ public class WindowManagerService extends IWindowManager.Stub
                 InputManagerService.SW_LID);
         if (sw > 0) {
             // Switch state: AKEY_STATE_DOWN or AKEY_STATE_VIRTUAL.
-            sw = InputManagerService.SW_LID_INVERT ? LID_OPEN : LID_CLOSED;
-            return sw;
+            return LID_CLOSED;
         } else if (sw == 0) {
             // Switch state: AKEY_STATE_UP.
-            sw = InputManagerService.SW_LID_INVERT ? LID_CLOSED : LID_OPEN;
-            return sw;
+            return LID_OPEN;
         } else {
             // Switch state: AKEY_STATE_UNKNOWN.
             return LID_ABSENT;
