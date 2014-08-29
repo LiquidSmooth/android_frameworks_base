@@ -4541,6 +4541,12 @@ public final class Settings {
         public static final String TOAST_ANIMATION = "toast_animation";
 
         /**
+         * Toggle for 6 bar signal bars
+         * @hide
+         */
+        public static final String STATUSBAR_6BAR_SIGNAL = "statusbar_6bar_signal";
+
+        /**
          * The alpha value of the On-The-Go overlay.
          *
          * @hide
