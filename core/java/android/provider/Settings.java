@@ -2868,12 +2868,6 @@ public final class Settings {
          */
         public static final String HALO_ENABLED = "halo_enabled";
 
-        /** 
-         * Display second in the Clock
-         * @hide
-         */
-        public static final String CLOCK_USE_SECOND = "clock_use_second";
-
         /**
          * HALO, should default to 0 (no, do not show)
          * @hide
