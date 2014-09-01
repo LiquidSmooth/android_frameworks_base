@@ -842,15 +842,17 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         final boolean showSearch = disableHome && !disableSearch;
 
         final boolean showNotifs = showSearch &&
-                Settings.System.getInt(mContext.getContentResolver(),
-                        Settings.System.LOCKSCREEN_NOTIFICATIONS, 1) == 1 &&
-                Settings.System.getInt(mContext.getContentResolver(),
-                        Settings.System.LOCKSCREEN_NOTIFICATIONS_PRIVACY_MODE, 0) == 0;
+                Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.LOCKSCREEN_NOTIFICATIONS, 1,
+                UserHandle.USER_CURRENT) == 1 &&
+                Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.LOCKSCREEN_NOTIFICATIONS_PRIVACY_MODE, 0,
+                UserHandle.USER_CURRENT) == 0;
 
-        final View notifsButton = getNotifsButton();
-        if (notifsButton != null) {
-            setVisibleOrGone(notifsButton, showNotifs && mWasNotifsButtonVisible);
-        }
+        setVisibleOrGone(getSearchLight(), showSearch);
+        setVisibleOrGone(getCameraButton(), shouldShowCamera && !mCameraDisabledByDpm
+                    && !mCameraDisabledByUser);
+        setVisibleOrGone(getNotifsButton(), showNotifs && mWasNotifsButtonVisible);
 
         mBarTransitions.applyBackButtonQuiescentAlpha(mBarTransitions.getMode(), true /*animate*/);
 
