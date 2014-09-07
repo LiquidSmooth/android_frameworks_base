@@ -62,7 +62,7 @@
 
     <!-- When the lock screen is showing and the phone is discharging, and always show battery
          is turned on, show the current charge %.  -->
-    <string name="keyguard_discharging">Discharging, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+
 
     <!-- When the lock screen is showing and the battery is low, warn user to plug
          in the phone soon, and show the current charge %. -->
