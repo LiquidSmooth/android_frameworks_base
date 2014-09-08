@@ -4439,6 +4439,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
 
         mLidState = newLidState;
+
+	Intent intent = new Intent(ACTION_LID_STATE_CHANGED);
+        intent.putExtra(EXTRA_LID_STATE, mLidState);
+        mContext.sendStickyBroadcastAsUser(intent, UserHandle.ALL);
+
         applyLidSwitchState();
         updateRotation(true);
 
