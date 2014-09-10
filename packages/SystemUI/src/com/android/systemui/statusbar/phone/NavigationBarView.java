@@ -757,6 +757,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         }
         handleIMENavigation(backAlt, false);
         setDisabledFlags(mDisabledFlags, true);
+        mBarTransitions.resetColorBackground(backAlt);
     }
 
     public void setButtonDrawable(int buttonId, final int iconId) {
