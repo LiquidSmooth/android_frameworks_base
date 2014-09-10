@@ -679,6 +679,13 @@ public class Intent implements Parcelable, Cloneable {
     public static final String ACTION_BATTERY_SERVICES = "android.intent.action.BATTERY_SERVICES";
 
     /**
+     * Registered and foreground services only
+     * @hide
+     */
+    public static final String ACTION_ACTIVITY_COLOR_DETECTOR =
+            "android.intent.action.ACTIVITY_COLOR_DETECTOR";
+
+    /**
      * Activity Action: Creates a shortcut.
      * <p>Input: Nothing.</p>
      * <p>Output: An Intent representing the shortcut. The intent must contain three
