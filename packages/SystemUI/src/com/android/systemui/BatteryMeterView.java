@@ -526,6 +526,30 @@ public class BatteryMeterView extends View implements DemoMode {
         }
     }
 
+    public void updateSettings(int defaultColor) {
+
+        mCircleTextColor = defaultColor;
+        mCircleTextChargingColor = defaultColor;
+        mCircleColor = defaultColor;
+
+        mPaintSystem.setColor(mCircleColor);
+        mRectLeft = null;
+        mCircleSize = 0;
+
+        int batteryStyle = Settings.System.getIntForUser(getContext().getContentResolver(),
+                                Settings.System.STATUS_BAR_BATTERY_STYLE, 0
+                                , UserHandle.USER_CURRENT);
+
+        mCirclePercent = batteryStyle == 4;
+        mActivated = (batteryStyle == 3 || mCirclePercent);
+
+        setVisibility(mActivated ? View.VISIBLE : View.GONE);
+
+        if (mActivated && mAttached) {
+            invalidate();
+        }
+    }
+
     private void updateBattery() {
         mPercentageOnly = false;
         SHOW_100_PERCENT = false;

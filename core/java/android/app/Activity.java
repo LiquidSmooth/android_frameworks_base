@@ -40,9 +40,13 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Point;
+import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.net.Uri;
@@ -682,6 +686,7 @@ public class Activity extends ContextThemeWrapper
         Dialog mDialog;
         Bundle mArgs;
     }
+
     private SparseArray<ManagedDialog> mManagedDialogs;
 
     // set by the thread after the constructor and before onCreate(Bundle savedInstanceState) is called.
@@ -889,7 +894,7 @@ public class Activity extends ContextThemeWrapper
         mLoaderManager = getLoaderManager("(root)", mLoadersStarted, true);
         return mLoaderManager;
     }
-    
+
     LoaderManagerImpl getLoaderManager(String who, boolean started, boolean create) {
         if (mAllLoaderManagers == null) {
             mAllLoaderManagers = new ArrayMap<String, LoaderManagerImpl>();
@@ -1199,6 +1204,100 @@ public class Activity extends ContextThemeWrapper
         }
     }
 
+    private void setupColorActionBar(boolean reload) {
+        if (mActionBar != null) {
+            if (reload && mActionBar.isShowing()) {
+                mActionBar.changeColorFromActionBar();
+            }
+        } else {
+            if (reload) {
+                sendFeedbackIntoSystem();
+            }
+        }
+    }
+
+    private void sendFeedbackIntoSystem() {
+        sendAppColorBroadcast(-3, -3, -3, -3);
+    }
+
+    /**
+     * @hide
+     */
+    public boolean isBrightColor(int color) {
+        if (color == -3) {
+            return false;
+        }
+
+        if (color == Color.TRANSPARENT) {
+            return true;
+        }
+
+        boolean rtnValue = false;
+
+        int[] rgb = { Color.red(color), Color.green(color), Color.blue(color) };
+
+        int brightness = (int) Math.sqrt(rgb[0] * rgb[0] * .241 + rgb[1]
+            * rgb[1] * .691 + rgb[2] * rgb[2] * .068);
+
+        // color is light
+        if (brightness >= 200) {
+            rtnValue = true;
+        }
+
+        return rtnValue;
+    }
+
+    /**
+     * @hide
+     */
+    public int getMainColorFromActionBarDrawable(Drawable drawable) {
+        if (drawable == null) {
+            return -3;
+        }
+
+        Drawable copyDrawable = drawable.getConstantState().newDrawable();
+        if (copyDrawable == null) {
+            return -3;
+        }
+        if (copyDrawable instanceof ColorDrawable) {
+            return ((ColorDrawable) drawable).getColor();
+        }
+        Bitmap bitmap = drawableToBitmap(copyDrawable);
+        if (bitmap == null) {
+            return -3;
+        }
+        int pixel = bitmap.getPixel(0, 5);
+        int red = Color.red(pixel);
+        int blue = Color.blue(pixel);
+        int green = Color.green(pixel);
+        int alpha = Color.alpha(pixel);
+        return Color.argb(alpha, red, green, blue);
+    }
+
+    private Bitmap drawableToBitmap(Drawable drawable) {
+        if (drawable == null) {
+            return null;
+        }
+
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable) drawable).getBitmap();
+        }
+
+        Bitmap bitmap;
+        int width = drawable.getIntrinsicWidth();
+        int height = drawable.getIntrinsicHeight();
+        if (width > 0 && height > 0) {
+            bitmap = Bitmap.createBitmap(width, height, Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            drawable.draw(canvas);
+        } else {
+            bitmap = null;
+        }
+
+        return bitmap;
+    }
+
     /**
      * Called after {@link #onStop} when the current activity is being
      * re-displayed to the user (the user has navigated back to it).  It will
@@ -1246,6 +1345,7 @@ public class Activity extends ContextThemeWrapper
     protected void onResume() {
         if (DEBUG_LIFECYCLE) Slog.v(TAG, "onResume " + this);
         setupFloatingActionBar(true);
+        setupColorActionBar(true);
         getApplication().dispatchActivityResumed(this);
         mCalled = true;
     }
@@ -1663,11 +1763,11 @@ public class Activity extends ContextThemeWrapper
      * by that attribute, then instead of reporting it the system will stop
      * and restart the activity (to have it launched with the new
      * configuration).
-     * 
+     *
      * <p>At the time that this function has been called, your Resources
      * object will have been updated to return resource values matching the
      * new configuration.
-     * 
+     *
      * @param newConfig The new device configuration.
      */
     public void onConfigurationChanged(Configuration newConfig) {
@@ -2074,7 +2174,7 @@ public class Activity extends ContextThemeWrapper
     public View findViewById(int id) {
         return getWindow().findViewById(id);
     }
-    
+
     /**
      * Retrieve a reference to this activity's ActionBar.
      *
@@ -2084,7 +2184,7 @@ public class Activity extends ContextThemeWrapper
         initActionBar();
         return mActionBar;
     }
-    
+
     /**
      * Creates a new ActionBar, locates the inflated ActionBarView,
      * initializes the ActionBar with the view, and sets mActionBar.
@@ -2183,7 +2283,7 @@ public class Activity extends ContextThemeWrapper
     public void setFinishOnTouchOutside(boolean finish) {
         mWindow.setCloseOnTouchOutside(finish);
     }
-    
+
     /**
      * Use with {@link #setDefaultKeyMode} to turn off default handling of
      * keys.
@@ -2307,6 +2407,7 @@ public class Activity extends ContextThemeWrapper
                 event.startTracking();
             } else {
                 onBackPressed();
+                setupColorActionBar(true);
             }
             return true;
         }
@@ -2389,6 +2490,7 @@ public class Activity extends ContextThemeWrapper
             if (keyCode == KeyEvent.KEYCODE_BACK && event.isTracking()
                     && !event.isCanceled()) {
                 onBackPressed();
+                setupColorActionBar(true);
                 return true;
             }
         }
@@ -2661,6 +2763,7 @@ public class Activity extends ContextThemeWrapper
                   case MotionEvent.ACTION_DOWN:
                        setTouchViewDown(ev.getX(), ev.getY());
                        onUserInteraction();
+                       sendFeedbackIntoSystem();
                        updateFocusApp();
                        if (viewY < actionBarHeight) {
                            if (!mChangedPreviousRange) {
@@ -2684,6 +2787,7 @@ public class Activity extends ContextThemeWrapper
                            mChangedFlags = false;
                            finishSnap(isValidSnap() && mTimeoutDone);
                            discardTimeout();
+	                       sendFeedbackIntoSystem();
                            mChangedPreviousRange = false;
                        }
                        break;
@@ -3183,6 +3287,22 @@ public class Activity extends ContextThemeWrapper
     };
 
     /**
+     * @hide
+     */
+    public void sendAppColorBroadcast(int st_color, int nv_color, int icst_color, int icnv_color) {
+        Intent colorIntent = new Intent(Intent.ACTION_ACTIVITY_COLOR_DETECTOR);
+        colorIntent.putExtra("packagename", getPackageName());
+        colorIntent.putExtra("packagetoken", mToken);
+        colorIntent.putExtra("packagestcolor", st_color);
+        colorIntent.putExtra("packagenvcolor", nv_color);
+        colorIntent.putExtra("packageicstcolor", icst_color);
+        colorIntent.putExtra("packageicnvcolor", icnv_color);
+        colorIntent.addFlags(
+                Intent.FLAG_RECEIVER_REGISTERED_ONLY | Intent.FLAG_RECEIVER_FOREGROUND);
+        sendBroadcastAsUser(colorIntent, UserHandle.CURRENT_OR_SELF);
+    }
+
+    /**
      * Called to process trackball events.  You can override this to
      * intercept all trackball events before they are dispatched to the
      * window.  Be sure to call this implementation for trackball events
@@ -3363,7 +3483,7 @@ public class Activity extends ContextThemeWrapper
                 mFragments.dispatchOptionsMenuClosed(menu);
                 onOptionsMenuClosed(menu);
                 break;
-                
+
             case Window.FEATURE_CONTEXT_MENU:
                 onContextMenuClosed(menu);
                 break;
@@ -3593,7 +3713,7 @@ public class Activity extends ContextThemeWrapper
     public void openOptionsMenu() {
         mWindow.openPanel(Window.FEATURE_OPTIONS_PANEL, null);
     }
-    
+
     /**
      * Progammatically closes the options menu. If the options menu is already
      * closed, this method does nothing.
@@ -5894,7 +6014,7 @@ public class Activity extends ContextThemeWrapper
     }
 
     // ------------------ Internal API ------------------
-    
+
     final void setParent(Activity parent) {
         mParent = parent;
     }
@@ -5930,7 +6050,7 @@ public class Activity extends ContextThemeWrapper
             mWindow.setUiOptions(info.uiOptions);
         }
         mUiThread = Thread.currentThread();
-        
+
         mMainThread = aThread;
         mInstrumentation = instr;
         mToken = token;
@@ -6136,7 +6256,7 @@ public class Activity extends ContextThemeWrapper
         onUserInteraction();
         onUserLeaveHint();
     }
-    
+
     final void performStop() {
         mDoReportFullyDrawn = false;
         if (mLoadersStarted) {
