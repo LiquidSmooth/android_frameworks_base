@@ -47,6 +47,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.util.Log;
@@ -506,9 +507,116 @@ public class ActionBarImpl extends ActionBar {
         return bitmap;
     }
 
+    /**
+     * @hide
+     */
+    public void changeColorFromActionBar() {
+        Drawable drawable = null;
+        int textColor = -3;
+        int iconTint = Color.WHITE;
+
+        if (mActionMode != null) {
+            if (drawable == null) {
+                View viewAM = mActionMode.getCustomView();
+                if (viewAM != null) {
+                    drawable = viewAM.getBackground();
+                }
+            }
+        }
+
+        if (mContainerView != null) {
+            if (drawable == null) {
+                drawable = mContainerView.getPrimaryBackground();
+                if (drawable == null) {
+                    drawable = mContainerView.getStackedBackground();
+                    if (drawable == null) {
+                        drawable = mContainerView.getSplitBackground();
+                    }
+                }
+            }
+        }
+        if (mActionView != null) {
+            TextView titleView = mActionView.getTitleViewActionBar();
+            if (titleView != null) {
+                if (titleView.getVisibility() == View.VISIBLE) {
+                    textColor = titleView.getCurrentTextColor();
+                }
+            }
+            if ((drawable == null) && (textColor != -3)) {
+                drawable = mActionView.getBackgroundActionBar();
+                if (drawable == null) {
+                    View viewAV = getCustomView();
+                    if (viewAV != null) {
+                        drawable = viewAV.getBackground();
+                    }
+                }
+            }
+        }
+
+        int color = mActivity.getMainColorFromActionBarDrawable(drawable);
+
+        if (textColor != -3) {
+            iconTint = textColor;
+        } else {
+            if (mActivity.isBrightColor(color)) {
+                iconTint = Color.BLACK;
+            }
+        }
+
+        mActivity.sendAppColorBroadcast(color, color, iconTint, iconTint);
+    }
+
+    private void changeColorFromActionBar(Drawable drawable) {
+        int textColor = -3;
+        int iconTint = Color.WHITE;
+
+        if (mContainerView != null) {
+            if (drawable == null) {
+                drawable = mContainerView.getPrimaryBackground();
+                if (drawable == null) {
+                    drawable = mContainerView.getStackedBackground();
+                    if (drawable == null) {
+                        drawable = mContainerView.getSplitBackground();
+                    }
+                }
+            }
+        }
+
+        if (mActionView != null) {
+            TextView titleView = mActionView.getTitleViewActionBar();
+            if (titleView != null) {
+                if (titleView.getVisibility() == View.VISIBLE) {
+                    textColor = titleView.getCurrentTextColor();
+                }
+            }
+            if ((drawable == null) && (textColor != -3)) {
+                drawable = mActionView.getBackgroundActionBar();
+                if (drawable == null) {
+                    View viewAV = mActionView.getCustomNavigationView();
+                    if (viewAV != null) {
+                        drawable = viewAV.getBackground();
+                    }
+                }
+            }
+        }
+
+        int color = mActivity.getMainColorFromActionBarDrawable(drawable);
+
+        if (textColor != -3) {
+            iconTint = textColor;
+        } else {
+            if (mActivity.isBrightColor(color)) {
+                iconTint = Color.BLACK;
+            }
+        }
+
+        mActivity.sendAppColorBroadcast(color, color, iconTint, iconTint);
+    }
+
     public void setBackgroundDrawable(Drawable d) {
         changeColorFromActionBar();
         mContainerView.setPrimaryBackground(d);
+        changeColorFromActionBar();
     }
 
     public void setStackedBackgroundDrawable(Drawable d) {
@@ -727,6 +835,7 @@ public class ActionBarImpl extends ActionBar {
             mHiddenByApp = true;
             updateVisibility(false);
         }
+        mActivity.sendAppColorBroadcast(-3, -3, -3, -3);
         if (mFloatingWindowView != null) {
             changeFloatingWindowColor(Color.TRANSPARENT, Color.WHITE);
         }
@@ -1006,6 +1115,17 @@ public class ActionBarImpl extends ActionBar {
         }
 
         public boolean dispatchOnCreate() {
+            int[] attributes = new int [] {android.R.attr.actionModeBackground,
+                                           android.R.attr.actionModeSplitBackground};
+	        TypedArray styledAttributes = getThemedContext().obtainStyledAttributes(attributes);
+	        Drawable drawable = null;
+	        if (mContextDisplayMode == CONTEXT_DISPLAY_NORMAL) {
+	            drawable = styledAttributes.getDrawable(0);
+	        } else {
+	            drawable = styledAttributes.getDrawable(1);
+            }
+	        styledAttributes.recycle();
+            changeColorFromActionBar(drawable);
             mMenu.stopDispatchingItemsChanged();
             try {
                 return mCallback.onCreateActionMode(this, mMenu);

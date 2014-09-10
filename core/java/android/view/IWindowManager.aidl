@@ -354,4 +354,7 @@ interface IWindowManager
     Rect getAppMinimumViewRect();
     Rect getFloatViewRect();
     void notifyFloatActivityTouched(IBinder token, boolean force);
+
+    /** Tinted Statusbar **/
+    Bitmap getScreenshotFromApplications(IBinder appToken);
 }
