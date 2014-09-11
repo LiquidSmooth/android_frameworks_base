@@ -163,6 +163,7 @@ LOCAL_SRC_FILES += \
 	core/java/android/nfc/INfcCardEmulation.aidl \
 	core/java/android/os/IBatteryPropertiesListener.aidl \
 	core/java/android/os/IBatteryPropertiesRegistrar.aidl \
+        core/java/android/os/IBlurService.aidl \
 	core/java/android/os/ICancellationSignal.aidl \
 	core/java/android/os/IHardwareService.aidl \
 	core/java/android/os/IMessenger.aidl \
