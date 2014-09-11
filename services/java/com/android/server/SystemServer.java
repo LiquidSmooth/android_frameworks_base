@@ -69,6 +69,7 @@ import com.android.server.input.InputManagerService;
 import com.android.server.media.MediaRouterService;
 import com.android.server.net.NetworkPolicyManagerService;
 import com.android.server.net.NetworkStatsService;
+import com.android.server.os.BlurService;
 import com.android.server.os.SchedulingPolicyService;
 import com.android.server.gesture.EdgeGestureService;
 import com.android.server.pm.Installer;
@@ -185,6 +186,7 @@ class ServerThread {
         InputManagerService inputManager = null;
         TelephonyRegistry telephonyRegistry = null;
         ConsumerIrService consumerIr = null;
+        BlurService blurService = null;
 
         // Create a handler thread just for the window manager to enjoy.
         HandlerThread wmHandlerThread = new HandlerThread("WindowManager");
@@ -303,6 +305,10 @@ class ServerThread {
 
             Slog.i(TAG, "System Content Providers");
             ActivityManagerService.installSystemProviders();
+
+            Slog.i(TAG, "Blur Service");
+            blurService = new BlurService(context);
+            ServiceManager.addService(Context.BLUR_SERVICE, blurService);
 
             Slog.i(TAG, "Lights Service");
             lights = new LightsService(context);
