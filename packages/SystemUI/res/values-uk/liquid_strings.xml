@@ -88,7 +88,7 @@
   <string name="quick_settings_shakeevents">Події струсу</string>
   <string name="quick_settings_shakeevents_off">Shake events off</string>
   <string name="quick_settings_volume">Гучність</string>
-  <string name="quick_settings_expanded_desktop">Розгорнута</string>
+  <string name="quick_settings_expanded_desktop">Expanded</string>
   <string name="quick_settings_expanded_desktop_off">Нормальний</string>
   <string name="quick_settings_music_play">Грати</string>
   <string name="quick_settings_music_pause">Pause</string>

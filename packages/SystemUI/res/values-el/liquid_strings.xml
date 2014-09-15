@@ -88,7 +88,7 @@
   <string name="quick_settings_shakeevents">Ανακινήστε εκδηλώσεις</string>
   <string name="quick_settings_shakeevents_off">Shake events off</string>
   <string name="quick_settings_volume">Ένταση ήχου</string>
-  <string name="quick_settings_expanded_desktop">Επεκταμένη</string>
+  <string name="quick_settings_expanded_desktop">Expanded</string>
   <string name="quick_settings_expanded_desktop_off">Κανονική</string>
   <string name="quick_settings_music_play">Παιχνίδι</string>
   <string name="quick_settings_music_pause">Pause</string>

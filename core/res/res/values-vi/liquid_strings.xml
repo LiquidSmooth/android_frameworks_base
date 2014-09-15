@@ -17,103 +17,97 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="permlab_changePrivacyGuardState">Увімк. або вимк. захищений режим</string>
-  <string name="permdesc_changePrivacyGuardState">Програма може вибрати, чи буде друга програма працювати в захищеному режимі. Коли програму запущено в захищеному режимі, вона не отримує доступ до персональних даних, таких як контакти, повідомлення чи журнал дзвінків.</string>
-  <string name="privacy_guard_notification">Захищений режим увімкнено</string>
-  <string name="privacy_guard_notification_detail"><xliff:g id="app"> %1$s </xliff:g> не зможуть отримати доступ до особистих даних</string>
-  <string name="privacy_guard_custom_notification_detail"><xliff:g id="app"> %1$s </xliff:g> не зможуть отримати доступ до користувацьких дозволів</string>
-  <string name="default_string">За замовчуванням</string>
-  <string name="reboot_system" product="tablet">Перезавантажити планшет</string>
-  <string name="reboot_system" product="default">Перезавантажити телефон</string>
+  <string name="permlab_changePrivacyGuardState">bật hoặc vô hiệu hóa bảo vệ quyền riêng tư</string>
+  <string name="permdesc_changePrivacyGuardState">Cho phép các ứng dụng để thay đổi cho dù một ứng dụng chạy với bảo vệ sự riêng tư. Khi một ứng dụng đang chạy với bảo vệ sự riêng tư, nó sẽ không có quyền truy cập vào các dữ liệu cá nhân như danh bạ, bản ghi cuộc gọi hoặc tin nhắn.</string>
+  <string name="privacy_guard_notification">Đang hoạt động bảo vệ quyền riêng tư</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app"> %1$s </xliff:g> sẽ không thể truy cập vào dữ liệu cá nhân</string>
+  <string name="privacy_guard_custom_notification_detail"><xliff:g id="app"> %1$s </xliff:g> sẽ không thể truy cập tùy chỉnh cấp phép</string>
+  <string name="default_string">Стандартний</string>
+  <string name="reboot_system" product="tablet">Khởi động lại máy tính bảng</string>
+  <string name="reboot_system" product="default">Khởi động lại điện thoại</string>
   <string name="global_action_screenshot">Знімок екрана</string>
   <string name="reboot_reboot">Перезавантажити</string>
-  <string name="reboot_recovery">Режим відновлення</string>
-  <string name="reboot_bootloader">Завантажувач</string>
-  <string name="reboot_bootmenu">Меню завантаження</string>
+  <string name="reboot_recovery">Recovery</string>
+  <string name="reboot_bootloader">Bootloader</string>
+  <string name="reboot_bootmenu">Menu khởi động</string>
   <string name="reboot_fastboot">Fastboot</string>
-  <string name="reboot_download">Завантажити</string>
-  <string name="reboot_soft">Soft reboot</string>
-  <string name="reboot_progress">Перезавантаження\u2026</string>
-  <string name="reboot_confirm">Ваш телефон буде перезавантажено.</string>
+  <string name="reboot_download">Download</string>
+  <string name="reboot_soft">Khởi động lại mềm</string>
+  <string name="reboot_progress">Rebooting\u2026</string>
+  <string name="reboot_confirm">Điện thoại của bạn sẽ khởi động lại.</string>
   <string name="global_action_reboot">Перезавантажити</string>
   <string name="global_action_choose_profile">Профіль</string>
-  <string name="notify_turn_wifi_ap_off_title">Вимкнути точку доступу Wi-Fi</string>
-  <string name="global_actions_expanded_desktop_mode_on_status">Розширений робочий стіл увімкнуто</string>
-  <string name="global_actions_expanded_desktop_mode_off_status">Розширений робочий стіл вимкнено</string>
-  <string name="global_actions_pie_mode_on_status">Панель навігації PIE  увімкнуто</string>
-  <string name="global_actions_pie_mode_off_status">Панель навігації PIE  вимкнено</string>
-  <string name="disable_pie_navigation_error">Ви не можете відключити панель навігації PIE. Жодну з інших нав. панелей не ввімкнуто. Спочатку увімкніть нав. панель, щоб вимкнути панель навігації PIE.</string>
-  <string name="global_actions_nav_bar_mode_on_status">Панель навігації  увімкнуто</string>
-  <string name="global_actions_nav_bar_mode_off_status">Панель навігації  вимкнено</string>
-  <string name="disable_navigation_pie_error">Ви не можете відключити панель навігації. Жодної іншої нав. панелей не ввімкнуто. Спочатку увімкніть панель навігації PIE, щоб вимкнути поточну панель навігації.</string>
-  <string name="accessibility_target_direction">Проведіть для активації цілі</string>
+  <string name="notify_turn_wifi_ap_off_title">Tắt Wi-Fi AP</string>
+  <string name="global_actions_expanded_desktop_mode_on_status">Mở rộng màn hình đang bật</string>
+  <string name="global_actions_expanded_desktop_mode_off_status">Mở rộng màn hình là tắt</string>
+  <string name="global_actions_pie_mode_on_status">Kiểm soát pie là bật</string>
+  <string name="global_actions_pie_mode_off_status">Kiểm soát pie là tắt</string>
+  <string name="disable_pie_navigation_error">Bạn không thể vô hiệu hóa điều khiển pie. Không có điều hướng khác được kích hoạt. Đầu tiên cho phép thanh điều hướng để tắt điều khiển pie.</string>
+  <string name="global_actions_nav_bar_mode_on_status">Thanh điều hướng là bật</string>
+  <string name="global_actions_nav_bar_mode_off_status">Thanh điều hướng là tắt</string>
+  <string name="disable_navigation_pie_error">Bạn không thể vô hiệu hóa thanh điều hướng. Không có điều hướng khác được kích hoạt. Đầu tiên cho phép điều khiển pie để tắt thanh điều hướng.</string>
+  <string name="accessibility_target_direction">Swipe to activate a target</string>
   <string name="stylus_app_not_installed">%s не встановлено</string>
-  <string name="theme_auto_switch_mode_error">Увімкнений режим автоматичної зміни яскравості. Ручні зміни неможливі.</string>
-  <string name="permlab_preventpower">не реагувати на кнопку живлення</string>
-  <string name="permdesc_preventpower">Дозволити програмі нехтувати кнопкою ввімкнення</string>
-  <string name="permlab_recordScreen">Відображення записаного змісту</string>
-  <string name="permdesc_recordScreen">Дозволити програмі записувати вміст екрану користувача.</string>
-  <string name="permlab_revokePermissions">Дозволити переглядати і редагувати скасовані дозволи. Не для використання звичайними програмами.</string>
-  <string name="permdesc_revokePermissions">Дозволити зчитувати і записувати скасовані дозволи. Не для використання звичайними програмами.</string>
+  <string name="theme_auto_switch_mode_error">Включений режим автоматичної зміни. Ручне перемикання неможливе.</string>
+  <string name="permlab_preventpower">ngăn chặn phím nguồn</string>
+  <string name="permdesc_preventpower">Cho phép một ứng dụng ngắt chức năng phím nguồn</string>
+  <string name="permlab_recordScreen">Ghi lại nội dung được hiển thị</string>
+  <string name="permdesc_recordScreen">Cho phép các ứng dụng ghi lại màn hình người dùng.</string>
+  <string name="permlab_revokePermissions">Cho phép xem và chỉnh sửa các quyền đã bị thu hồi. Không dành cho ứng dụng bình thường.</string>
+  <string name="permdesc_revokePermissions">Cho phép đọc và ghi các quyền đã bị thu hồi. Không dành cho ứng dụng bình thường.</string>
   <string name="profile_picker_title">Профілі</string>
-  <string name="profile_none">Жоден</string>
-  <string name="profileNameDefault">За замовчуванням</string>
-  <string name="profileNameWork">На роботі</string>
-  <string name="profileNameHome">Вдома</string>
+  <string name="profile_none">Нічого</string>
+  <string name="profileNameDefault">Стандартний</string>
+  <string name="profileNameWork">Công việc</string>
+  <string name="profileNameHome">Додому</string>
   <string name="profileNameSilent">Беззвучний</string>
-  <string name="profileNameNight">Нічний</string>
-  <string name="profileNameAutomobile">За кермом</string>
+  <string name="profileNameNight">Ban đêm</string>
+  <string name="profileNameAutomobile">Xe ô tô</string>
   <string name="profileGroupPhone">Телефон</string>
   <string name="profileGroupCalendar">Календар</string>
   <string name="profileGroupGmail">Пошта Gmail</string>
   <string name="profileGroupEmail">Електронна пошта</string>
-  <string name="profileGroupSMS">SMS</string>
-  <string name="wildcardProfile">Інші</string>
-  <string name="floating_window_snap_top">Приліпити зверху</string>
-  <string name="floating_window_snap_bottom">Приліпити до низу</string>
-  <string name="floating_window_snap_left">Приліпити зліва</string>
-  <string name="floating_window_snap_right">Приліпити зправа</string>
+  <string name="profileGroupSMS">Tin Nhắn SMS</string>
+  <string name="wildcardProfile">Khác</string>
+  <string name="floating_window_snap_top">Snap top</string>
+  <string name="floating_window_snap_bottom">Snap bottom</string>
+  <string name="floating_window_snap_left">Snap left</string>
+  <string name="floating_window_snap_right">Snap right</string>
   <string name="animation_fade">Затухання</string>
   <string name="animation_slide_right">Зсунути праворуч</string>
   <string name="animation_slide_left">Зсунути ліворуч</string>
-  <string name="animation_slide_right_no_fade">Зсунути праворуч (без затухання)</string>
-  <string name="animation_slide_left_no_fade">Зсунути ліворуч (без затухання)</string>
+  <string name="animation_slide_right_no_fade">Trượt ở bên phải (No fade)</string>
+  <string name="animation_slide_left_no_fade">Slide ở bên trái (No fade)</string>
   <string name="animation_slide_up">Зсунути вниз</string>
-  <string name="animation_slide_down">Зсунути вверх</string>
-  <string name="animation_default">За замовчуванням</string>
+  <string name="animation_slide_down">Trượt lên trên cùng</string>
+  <string name="animation_default">Стандартний</string>
   <string name="animation_translucent">Напівпрозорий</string>
-  <string name="animation_grow_shrink">Збільшення (догори)</string>
-  <string name="animation_grow_shrink_center">Збільшення (всередину)</string>
-  <string name="animation_grow_shrink_bottom">Збільшення (донизу)</string>
-  <string name="animation_grow_shrink_left">Збільшення (наліво)</string>
-  <string name="animation_grow_shrink_right">Збільшення (направо)</string>
-  <string name="action_null">Порожньо</string>
-  <string name="setting_confirmation_ask_me_later">Запитати пізніше</string>
-  <string name="setting_confirmation_yes">Так</string>
-  <string name="setting_confirmation_no">Ні</string>
-  <string name="setting_reset_hint_title">To reset preferences:</string>
+  <string name="animation_grow_shrink">Lớn dần tới (Phía trên)</string>
+  <string name="animation_grow_shrink_center">Lớn dần tới (Trung tâm)</string>
+  <string name="animation_grow_shrink_bottom">Lớn dần tới (Phía dưới)</string>
+  <string name="animation_grow_shrink_left">Lớn dần tới (phía trái)</string>
+  <string name="animation_grow_shrink_right">Lớn dần tới (Phía phải)</string>
+  <string name="action_null">Trống</string>
+  <string name="setting_confirmation_ask_me_later">Hỏi sau</string>
+  <string name="setting_confirmation_yes">Vâng</string>
+  <string name="setting_confirmation_no">Không</string>
+  <string name="setting_reset_hint_title">Để thiết lập lại tùy chọn:</string>
   <string name="setting_reset_hint_message">
-        <![CDATA[
-        <p>Open <b>Settings</b><br/>
-        Below Personal divider: <b>Backup & Reset</b><br/>
-        Below Personalization divider: <b>Reset preferences</b></p>
-        ]]></string>
-  <string name="notify_turn_wifi_off_title">Вимкнення Wi-Fi</string>
-  <string name="permlab_interceptSmsSent">Перехоплення вихідних SMS</string>
-  <string name="permdesc_interceptSmsSent">Дозволити програмі перехоплювати вихідні SMS. Шкідливі програми можуть використовувати цей дозвіл, щоб перешкоджати відправці SMS-повідомлень.</string>
-  <string name="permlab_setKeyguardWallpaper">встановлення шпалер екрану блокування</string>
-  <string name="permdesc_setKeyguardWallpaper">Дозволяє програмі міняти шпалери екрану блокування.</string>
-  <string name="permlab_accessThemeService">доступ до служби тем</string>
-  <string name="permdesc_accessThemeService">Дозволяє програмі отримувати доступ до служби тем. Цей дозвіл не використовується звичайними програмами.</string>
-  <string name="permlab_readThemes">читати дані про вашу тему</string>
-  <string name="permdesc_readThemesDesc">Дозволяє програмам читати дані про теми і
-       виявляти яку тему ви застосували.</string>
-  <string name="permlab_writeThemes">змінювати ваші теми</string>
-  <string name="permdesc_writeThemesDesc">Дозволяє програмам додавати та 
-       модифікувати теми які ви застосовуєте.</string>
-  <string name="permlab_resetBatteryStats">скинути статистику акумулятора</string>
-  <string name="permdesc_resetBatteryStats">Дозволити програмі cтирати дані про використання батареї пристрою.</string>
-  <string name="permlab_changeHeadsUpState">увімкнути або вимкнути спливаючі сповіщення</string>
-  <string name="permdesc_changeHeadsUpState">Дозволити програмі змінювати вигляд сповіщень: показувати сповіщення як звичайні або спливаючі.</string>
-  <string name="usb_storage_notification_manage_message">Tap to manage</string>
+        <! [CDATA [<p>mở <b>cài đặt</b> <br/>         Dưới cá nhân chia: <b>Sao lưu &amp; Thiết lập lại</b> <br/> dưới cá nhân hoá chia: <b>đặt lại tuỳ chọn</b></p>]] ></string>
+  <string name="notify_turn_wifi_off_title">Tắt Wi-Fi</string>
+  <string name="permlab_interceptSmsSent">chặn gửi đi tin nhắn SMS</string>
+  <string name="permdesc_interceptSmsSent">Cho phép các ứng dụng để chặn một tin nhắn SMS gửi đi. Có thể sử dụng để ngăn chặn ứng dụng độc hại gửi đi tin nhắn SMS.</string>
+  <string name="permlab_setKeyguardWallpaper">thiết lập phím bảo vệ hình nền</string>
+  <string name="permdesc_setKeyguardWallpaper">Cho phép một ứng dụng được thay đổi hình nền màn hình khóa.</string>
+  <string name="permlab_accessThemeService">truy cập chủ đề dịch vụ</string>
+  <string name="permdesc_accessThemeService">Cho phép một ứng dụng để truy cập vào chủ đề dịch vụ. Nên không bao giờ cần thiết cho các ứng dụng bình thường.</string>
+  <string name="permlab_readThemes">đọc thông tin chủ đề của bạn</string>
+  <string name="permdesc_readThemesDesc">Cho phép các ứng dụng để đọc chủ đề của bạn và xác định chủ đề mà bạn đã áp dụng.</string>
+  <string name="permlab_writeThemes">Sửa đổi chủ đề của bạn</string>
+  <string name="permdesc_writeThemesDesc">Cho phép các ứng dụng để chèn chủ đề mới và sửa đổi các chủ đề mà bạn đã áp dụng.</string>
+  <string name="permlab_resetBatteryStats">Đặt lại thống kê pin</string>
+  <string name="permdesc_resetBatteryStats">Cho phép một ứng dụng để thiết lập lại dữ liệu mới sử dụng pin mức độ thấp.</string>
+  <string name="permlab_changeHeadsUpState">bật hoặc vô hiệu hóa heads up</string>
+  <string name="permdesc_changeHeadsUpState">Cho phép các ứng dụng để thay đổi cho dù ứng dụng khác được phép hiển thị bình thường thông báo như là thông báo heads up.</string>
+  <string name="usb_storage_notification_manage_message">Bấm vào để quản lý</string>
 </resources>

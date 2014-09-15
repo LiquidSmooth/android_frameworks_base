@@ -44,7 +44,7 @@
   <string name="shortcut_toggle_title">Action to perform</string>
   <string name="shortcut_chamber">Chamber of Secrets</string>
   <string name="chamber_disabled">Chamber of secrets is closed</string>
-  <string name="chamber_title">Liquid Dungeon</string>
+  <string name="chamber_title">Input Settings string</string>
   <string name="chamber_message">Input a Settings string that is either an on and off (checkbox) function or possibly a list-preference. For example, quiet_hours_ringer or similar. Settings can be found in the Settings.java file. WARNING: This process is dangerous!</string>
   <string name="chamber_invalid">This is an invalid input. Be careful.</string>
   <string name="chamber_invalid_setting">Try toggling the setting manually to ensure the settings database for this action exists.</string>
@@ -88,7 +88,7 @@
   <string name="quick_settings_shakeevents">Shake events</string>
   <string name="quick_settings_shakeevents_off">Shake events off</string>
   <string name="quick_settings_volume">Volume</string>
-  <string name="quick_settings_expanded_desktop">Extés</string>
+  <string name="quick_settings_expanded_desktop">Expanded</string>
   <string name="quick_settings_expanded_desktop_off">Normal</string>
   <string name="quick_settings_music_play">Play</string>
   <string name="quick_settings_music_pause">Pause</string>
@@ -130,10 +130,10 @@
   <string name="quick_settings_network_disable">No internet</string>
   <string name="quick_settings_compass_off">Compass off</string>
   <string name="quick_settings_compass_init">Initializing\u2026</string>
-  <string name="network_4G">4G (recommended)</string>
+  <string name="network_4G">4G/LTE</string>
   <string name="network_3G_only">3G Only</string>
   <string name="network_3G_auto">2G/3G Auto</string>
-  <string name="network_3G">2G/3G Preferred</string>
+  <string name="network_3G">2G/3G Pref</string>
   <string name="network_2G">2G Only</string>
   <string name="battery_saver_start">Battery Saver Enabled</string>
   <string name="battery_saver_stop">Battery Saver Disabled</string>

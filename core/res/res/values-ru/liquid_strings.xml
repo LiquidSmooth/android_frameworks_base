@@ -32,7 +32,7 @@
   <string name="reboot_bootmenu">Перезагрузка в загрузочное меню</string>
   <string name="reboot_fastboot">Перезагрузка в режим Fastboot</string>
   <string name="reboot_download">Загрузка</string>
-  <string name="reboot_soft">Soft reboot</string>
+  <string name="reboot_soft">Мягкая перезагрузка</string>
   <string name="reboot_progress">Перезагрузка</string>
   <string name="reboot_confirm">Ваш телефон будет перезагружен.</string>
   <string name="global_action_reboot">Перезагрузить</string>
@@ -67,7 +67,7 @@
   <string name="profileGroupCalendar">Календарь</string>
   <string name="profileGroupGmail">Gmail</string>
   <string name="profileGroupEmail">Электронная почта</string>
-  <string name="profileGroupSMS">SMS</string>
+  <string name="profileGroupSMS">СМС</string>
   <string name="wildcardProfile">Другие</string>
   <string name="floating_window_snap_top">Закрепить вверху</string>
   <string name="floating_window_snap_bottom">Закрепить внизу</string>
@@ -91,13 +91,12 @@
   <string name="setting_confirmation_ask_me_later">Спросить позже</string>
   <string name="setting_confirmation_yes">Да</string>
   <string name="setting_confirmation_no">Нет</string>
-  <string name="setting_reset_hint_title">To reset preferences:</string>
-  <string name="setting_reset_hint_message">
-        <![CDATA[
-        <p>Open <b>Settings</b><br/>
-        Below Personal divider: <b>Backup & Reset</b><br/>
-        Below Personalization divider: <b>Reset preferences</b></p>
-        ]]></string>
+  <string name="setting_reset_hint_title">Для сброса настроек:</string>
+  <string name="setting_reset_hint_message"><![CDATA[
+<p>Открыть <b>Настройки</b><br/>
+Персональный раздел: <b>Резервное копирование и сброс</b><br/>
+Персональный раздел: <b>Сброс настроек</b></p>
+]]></string>
   <string name="notify_turn_wifi_off_title">Выключить Wi-Fi</string>
   <string name="permlab_interceptSmsSent">Перехват исходящих SMS</string>
   <string name="permdesc_interceptSmsSent">Разрешить приложению перехватывать исходящие SMS. Вредоносные приложения могут использовать это разрешение, чтобы препятствовать отправке SMS-сообщений.</string>
@@ -113,5 +112,5 @@
   <string name="permdesc_resetBatteryStats">Разрешить приложению очищать данные об использовании аккумуляторной батареи устройства.</string>
   <string name="permlab_changeHeadsUpState">вкл. и выкл. высплывающих сообщений</string>
   <string name="permdesc_changeHeadsUpState">Разрешить приложению изменять вид уведомлений: показывать уведомления как  обычные или всплывающие.</string>
-  <string name="usb_storage_notification_manage_message">Tap to manage</string>
+  <string name="usb_storage_notification_manage_message">Нажмите для управления</string>
 </resources>

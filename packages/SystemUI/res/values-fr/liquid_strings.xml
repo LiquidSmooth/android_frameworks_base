@@ -88,7 +88,7 @@
   <string name="quick_settings_shakeevents">Shake events</string>
   <string name="quick_settings_shakeevents_off">Shake events off</string>
   <string name="quick_settings_volume">Volume</string>
-  <string name="quick_settings_expanded_desktop">Étendu</string>
+  <string name="quick_settings_expanded_desktop">Expanded</string>
   <string name="quick_settings_expanded_desktop_off">Normal</string>
   <string name="quick_settings_music_play">Lecture</string>
   <string name="quick_settings_music_pause">Pause</string>
@@ -155,7 +155,7 @@
   <string name="battery_saver_enable_title">Battery saver mode</string>
   <string name="battery_saver_airplane_ticker">Airplane mode enabled by battery saver</string>
   <string name="battery_saver_airplane_text">Airplane mode enabled by battery saver because there is no signal after 5 minutes</string>
-  <string name="battery_saver_disable">Désactiver</string>
+  <string name="battery_saver_disable">Désactivé</string>
   <string name="quick_settings_hover">Hover</string>
   <string name="pie_battery_status_charging">Charging (<xliff:g id="percent">%d</xliff:g>%%)</string>
   <string name="pie_battery_status_full">Charged</string>

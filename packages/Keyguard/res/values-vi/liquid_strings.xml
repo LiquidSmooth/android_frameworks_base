@@ -17,14 +17,14 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="keyboardview_keycode_random">Reload random buttons</string>
-  <string name="lockscreen_gesture_instructions">Draw gesture to unlock</string>
-  <string name="lockscreen_gesture_correct">Correct!</string>
-  <string name="lockscreen_gesture_wrong">Try again</string>
-  <string name="keyguard_accessibility_gesture_unlock">Gesture unlock.</string>
-  <string name="keyguard_accessibility_gesture_area">Gesture area.</string>
-  <string name="kg_forgot_gesture_button_text">Forgot Gesture</string>
-  <string name="kg_wrong_gesture">Wrong Gesture</string>
+  <string name="keyboardview_keycode_random">Tải lại các nút ngẫu nhiên</string>
+  <string name="lockscreen_gesture_instructions">Vẽ các cử chỉ để mở khóa</string>
+  <string name="lockscreen_gesture_correct">Chính xác!</string>
+  <string name="lockscreen_gesture_wrong">Thử lại</string>
+  <string name="keyguard_accessibility_gesture_unlock">Cử chỉ mở khóa.</string>
+  <string name="keyguard_accessibility_gesture_area">Khu vực cử chỉ.</string>
+  <string name="kg_forgot_gesture_button_text">Quên cử chỉ</string>
+  <string name="kg_wrong_gesture">Cử chỉ sai</string>
   <string name="kg_gesture_instructions">Намалюйте ваш жест</string>
   <string name="kg_too_many_failed_gesture_attempts_dialog_message">
         You have incorrectly drawn your unlock gesture <xliff:g id="number">%d</xliff:g> times.
