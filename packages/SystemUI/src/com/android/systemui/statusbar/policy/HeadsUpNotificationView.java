@@ -105,7 +105,7 @@ public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.
         mContentHolder.setAlpha(1f);
         mContentHolder.removeAllViews();
         mContentHolder.addView(mHeadsUp.row);
-        mSwipeHelper.snapChild(mContentSlider, 1f);
+        mSwipeHelper.snapChild(mContentSlider, 1f, false);
         mStartTouchTime = System.currentTimeMillis() + mTouchSensitivityDelay;
         return true;
     }
@@ -248,12 +248,12 @@ public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.
     // SwipeHelper.Callback methods
 
     @Override
-    public boolean canChildBeDismissed(View v) {
+    public boolean canChildBeDismissed(int gestureDirection, View v) {
         return true;
     }
 
     @Override
-    public void onChildDismissed(View v, boolean direction) {
+    public void onChildDismissed(int gestureDirection, View v, boolean direction) {
         Log.v(TAG, "User swiped heads up to dismiss");
         mBar.onHeadsUpDismissed(direction);
     }
@@ -281,5 +281,15 @@ public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.
     @Override
     public View getChildContentView(View v) {
         return mContentSlider;
+    }
+
+    @Override
+    public boolean isConstrainSwipeEnabled() {
+        return true;
+    }
+
+    @Override
+    public boolean isFadeoutEnabled(int gestureDirection) {
+        return true;
     }
 }

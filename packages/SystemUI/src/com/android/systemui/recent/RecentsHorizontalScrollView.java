@@ -245,7 +245,7 @@ public class RecentsHorizontalScrollView extends HorizontalScrollView
             super.onTouchEvent(ev);
     }
 
-    public boolean canChildBeDismissed(View v) {
+    public boolean canChildBeDismissed(int gestureDirection, View v) {
         return true;
     }
 
@@ -253,7 +253,7 @@ public class RecentsHorizontalScrollView extends HorizontalScrollView
         mSwipeHelper.dismissChild(v, 0);
     }
 
-    public void onChildDismissed(View v, boolean direction) {
+    public void onChildDismissed(int gestureDirection, View v, boolean direction) {
         addToRecycledViews(v);
         mLinearLayout.removeView(v);
         mCallback.handleSwipe(v);
@@ -324,6 +324,16 @@ public class RecentsHorizontalScrollView extends HorizontalScrollView
 
     public View getChildContentView(View v) {
         return v.findViewById(R.id.recent_item);
+    }
+
+    @Override
+    public boolean isConstrainSwipeEnabled() {
+        return true;
+    }
+
+    @Override
+    public boolean isFadeoutEnabled(int gestureDirection) {
+        return true;
     }
 
     @Override

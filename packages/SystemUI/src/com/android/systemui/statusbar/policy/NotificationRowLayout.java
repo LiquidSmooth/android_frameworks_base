@@ -161,7 +161,7 @@ public class NotificationRowLayout
                 super.onTouchEvent(ev);
     }
 
-    public boolean canChildBeDismissed(View v) {
+    public boolean canChildBeDismissed(int gestureDirection, View v) {
         final View veto = v.findViewById(R.id.veto);
         return (veto != null && veto.getVisibility() != View.GONE);
     }
@@ -183,7 +183,7 @@ public class NotificationRowLayout
         }
     }
 
-    public void onChildDismissed(View v, boolean direction) {
+    public void onChildDismissed(int gestureDirection, View v, boolean direction) {
         if (DEBUG) Log.v(TAG, "onChildDismissed: " + v + " mRemoveViews=" + mRemoveViews);
         final View veto = v.findViewById(R.id.veto);
         if (veto != null && veto.getVisibility() != View.GONE && mRemoveViews) {
@@ -257,6 +257,16 @@ public class NotificationRowLayout
 
     public View getChildContentView(View v) {
         return v;
+    }
+
+    @Override
+    public boolean isConstrainSwipeEnabled() {
+        return true;
+    }
+
+    @Override
+    public boolean isFadeoutEnabled(int gestureDirection) {
+        return true;
     }
 
     @Override
