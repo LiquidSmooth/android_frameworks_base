@@ -17,14 +17,14 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="quick_settings_battery_charging">Charging</string>
-  <string name="quick_settings_battery_discharging">Discharging</string>
+  <string name="quick_settings_battery_charging">Заряджається</string>
+  <string name="quick_settings_battery_discharging">Розряджається</string>
   <string name="app_killed_message">App Killed</string>
   <string name="screenshot_notification_delete">Видалити</string>
-  <string name="screenshot_delete_confirmation">Screenshot deleted</string>
+  <string name="screenshot_delete_confirmation">Скріншот видалено</string>
   <string name="accessibility_data_connection_HP">HSPA+</string>
   <string name="cancel">Скасувати</string>
-  <string name="dlg_ok">Ok</string>
+  <string name="dlg_ok">Ок</string>
   <string name="yes">Так</string>
   <string name="no">Ні</string>
   <string name="off">Вимкнений</string>
