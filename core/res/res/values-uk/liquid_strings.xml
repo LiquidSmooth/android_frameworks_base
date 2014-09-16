@@ -32,7 +32,7 @@
   <string name="reboot_bootmenu">Меню завантаження</string>
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Завантажити</string>
-  <string name="reboot_soft">Soft reboot</string>
+  <string name="reboot_soft">Програмне перезавантаження</string>
   <string name="reboot_progress">Перезавантаження\u2026</string>
   <string name="reboot_confirm">Ваш телефон буде перезавантажено.</string>
   <string name="global_action_reboot">Перезавантажити</string>
@@ -91,12 +91,12 @@
   <string name="setting_confirmation_ask_me_later">Запитати пізніше</string>
   <string name="setting_confirmation_yes">Так</string>
   <string name="setting_confirmation_no">Ні</string>
-  <string name="setting_reset_hint_title">To reset preferences:</string>
+  <string name="setting_reset_hint_title">Щоб скинути налаштування:</string>
   <string name="setting_reset_hint_message">
         <![CDATA[
-        <p>Open <b>Settings</b><br/>
-        Below Personal divider: <b>Backup & Reset</b><br/>
-        Below Personalization divider: <b>Reset preferences</b></p>
+        <p>Відкрити <b>Налаштування</b><br/>
+        Персональний розділ: <b>Резервне копіювання і Скидання</b><br/>
+        Персональний розділ: <b>Скидання налаштувань</b></p>
         ]]></string>
   <string name="notify_turn_wifi_off_title">Вимкнення Wi-Fi</string>
   <string name="permlab_interceptSmsSent">Перехоплення вихідних SMS</string>
@@ -115,5 +115,5 @@
   <string name="permdesc_resetBatteryStats">Дозволити програмі cтирати дані про використання батареї пристрою.</string>
   <string name="permlab_changeHeadsUpState">увімкнути або вимкнути спливаючі сповіщення</string>
   <string name="permdesc_changeHeadsUpState">Дозволити програмі змінювати вигляд сповіщень: показувати сповіщення як звичайні або спливаючі.</string>
-  <string name="usb_storage_notification_manage_message">Tap to manage</string>
+  <string name="usb_storage_notification_manage_message">Натисніть, щоб керувати</string>
 </resources>
