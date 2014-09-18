@@ -416,6 +416,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     private BatteryMeterView mBattery;
     private BatteryCircleMeterView mCircleBattery;
+    private ImageView mCarrierLogo;
     boolean mTransparentNav = false;
 
     private boolean mCustomColor;
@@ -1396,6 +1397,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mClock = (Clock) mStatusBarView.findViewById(R.id.clock);
         mClockCenter = (ClockCenter)mStatusBarView.findViewById(R.id.center_clock);
         mNotificationIcons = (IconMerger)mStatusBarView.findViewById(R.id.notificationIcons);
+        mCarrierLogo = (ImageView) mStatusBarView.findViewById(R.id.carrierLogo);
         mMoreIcon = mStatusBarView.findViewById(R.id.moreIcon);
         mNotificationIcons.setOverflowIndicator(mMoreIcon);
         mNotificationIcons.setClockCenter(mClockCenter);
@@ -1541,7 +1543,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 (SignalClusterView)mStatusBarView.findViewById(R.id.signal_cluster);
 
         mNetworkController.addSignalCluster(signalCluster);
+        mNetworkController.addCarrierCluster(signalCluster);
         signalCluster.setNetworkController(mNetworkController);
+        signalCluster.setStatusBar(this);
 
         final boolean isAPhone = mNetworkController.hasVoiceCallingFeature();
         if (isAPhone) {
@@ -4552,6 +4556,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
         }
     };
+
+    public void setCarrierVisibility(int vis) {
+        mCarrierLogo.setVisibility(vis);
+    }
+
+    public void setCarrierImageResource(int res) {
+        mCarrierLogo.setImageResource(res);
+    }
 
     // SystemUIService notifies SystemBars of configuration changes, which then calls down here
     @Override
