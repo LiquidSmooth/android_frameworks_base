@@ -5041,6 +5041,12 @@ public final class Settings {
         public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
 
         /**
+         * Carrier Logo toggle
+         * @hide
+         */
+        public static final String TOGGLE_CARRIER_LOGO = "toggle_carrier_logo";
+
+        /**
          * In call dialpad state.
          * 0 = hidden
          * 1 = showing
