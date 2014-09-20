@@ -20,19 +20,19 @@
   <string name="permlab_changePrivacyGuardState">Privacy Guard aktivieren / deaktivieren</string>
   <string name="permdesc_changePrivacyGuardState">Ermöglicht der App zu entscheiden, ob eine andere App mit Privacy Guard läuft. Läuft eine App mit Privacy Guard, hat diese keinen Zugriff auf Daten wie Kontakte, Anrufprotokolle oder SMS.</string>
   <string name="privacy_guard_notification">Privacy Guard aktiv</string>
-  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access personal data</string>
-  <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access custom permissions</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> wird keinen Zugriff auf persönliche Daten erlangen</string>
+  <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> wird keinen Zugriff auf benutzerdefinierte Berechtigungen haben</string>
   <string name="default_string">Standard</string>
   <string name="reboot_system" product="tablet">Tablet neustarten</string>
   <string name="reboot_system" product="default">Telefon neustarten</string>
   <string name="global_action_screenshot">Bildschirmfoto</string>
   <string name="reboot_reboot">Neustart</string>
-  <string name="reboot_recovery">Recovery</string>
+  <string name="reboot_recovery">Wiederherstellung</string>
   <string name="reboot_bootloader">Bootloader</string>
   <string name="reboot_bootmenu">Bootmenü</string>
-  <string name="reboot_fastboot">Fastboot</string>
+  <string name="reboot_fastboot">Schnellstart</string>
   <string name="reboot_download">Download</string>
-  <string name="reboot_soft">Soft reboot</string>
+  <string name="reboot_soft">Verkürzter Neustart</string>
   <string name="reboot_progress">Neustarten\u2026</string>
   <string name="reboot_confirm">Telefon wird neugestartet.</string>
   <string name="global_action_reboot">Neustart</string>
@@ -91,13 +91,13 @@
   <string name="setting_confirmation_ask_me_later">Später fragen</string>
   <string name="setting_confirmation_yes">Ja</string>
   <string name="setting_confirmation_no">Nein</string>
-  <string name="setting_reset_hint_title">To reset preferences:</string>
+  <string name="setting_reset_hint_title">Um alle Einstellungen zurückzusetzen:</string>
   <string name="setting_reset_hint_message">
-        <![CDATA[
-        <p>Open <b>Settings</b><br/>
-        Below Personal divider: <b>Backup & Reset</b><br/>
-        Below Personalization divider: <b>Reset preferences</b></p>
-        ]]></string>
+     <![CDATA[
+     <p>Öffne<b>Einstellungen</b><br/>
+     Unter dem eigenen Abstandhalter: <b>Backup & Wiederherstellung</b><br/>
+     Unter dem Personalisierungsabstandhalter: <b>Einstellungen zurücksetzen</b></p>
+     ]]></string>
   <string name="notify_turn_wifi_off_title">WLAN ausschalten</string>
   <string name="permlab_interceptSmsSent">Ausgehende SMS abfangen</string>
   <string name="permdesc_interceptSmsSent">Ermöglicht der App ausgehende SMS abzufangen. Bösartige Apps könnten so das Versenden von SMS Nachrichten verhindern.</string>
@@ -113,5 +113,5 @@
   <string name="permdesc_resetBatteryStats">Ermöglicht einer App, die aktuellen \"low-level\" Akku Verlaufsdetails zurückzusetzen.</string>
   <string name="permlab_changeHeadsUpState">Heads Up Benachrichtigungen ein-/ausschalten</string>
   <string name="permdesc_changeHeadsUpState">Ermöglicht einer App festzulegen, ob andere Apps Heads Up Benachrichtigungen zeigen dürfen.</string>
-  <string name="usb_storage_notification_manage_message">Tap to manage</string>
+  <string name="usb_storage_notification_manage_message">Zum Verwalten antippen</string>
 </resources>

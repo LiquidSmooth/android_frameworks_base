@@ -17,7 +17,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="keyboardview_keycode_random">Reload random buttons</string>
+  <string name="keyboardview_keycode_random">Перезавантажити випадкові кнопки</string>
   <string name="lockscreen_gesture_instructions">Намалюйте жест для розблокування</string>
   <string name="lockscreen_gesture_correct">Вірно!</string>
   <string name="lockscreen_gesture_wrong">Повторіть спробу</string>

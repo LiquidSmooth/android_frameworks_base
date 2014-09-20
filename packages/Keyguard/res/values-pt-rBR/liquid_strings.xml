@@ -17,7 +17,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="keyboardview_keycode_random">Reload random buttons</string>
+  <string name="keyboardview_keycode_random">Atualizar botões aleatórios</string>
   <string name="lockscreen_gesture_instructions">Desenhar o gesto para desbloquear</string>
   <string name="lockscreen_gesture_correct">Correto!</string>
   <string name="lockscreen_gesture_wrong">Tentar novamente</string>
