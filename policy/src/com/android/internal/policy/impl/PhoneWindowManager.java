@@ -422,6 +422,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     boolean mForceStatusBarFromKeyguard;
     boolean mHideLockScreen;
     boolean mForcingShowNavBar;
+    boolean mDisableImeNavbar;
     int mForcingShowNavBarLayer;
     int mExpandedDesktopStyle = -2;
 
@@ -630,6 +631,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.CAMERA_WAKE_SCREEN), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DISABLE_IME_NAVBAR), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.CAMERA_SLEEP_ON_RELEASE), false, this,
@@ -1619,6 +1623,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             if (mImmersiveModeConfirmation != null) {
                 mImmersiveModeConfirmation.loadSetting();
             }
+
+            mDisableImeNavbar = Settings.System.getBooleanForUser(resolver,
+                    Settings.System.DISABLE_IME_NAVBAR, true, UserHandle.USER_CURRENT);
         }
         if (updateRotation) {
             updateRotation(true);
@@ -3746,7 +3753,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 pf.bottom = df.bottom = of.bottom = cf.bottom
                         = mOverscanScreenTop + mOverscanScreenHeight;
             }
-        } else  if (attrs.type == TYPE_INPUT_METHOD) {
+        } else  if (attrs.type == TYPE_INPUT_METHOD && !mDisableImeNavbar) {
             pf.left = df.left = of.left = cf.left = vf.left = mDockLeft;
             pf.top = df.top = of.top = cf.top = vf.top = mDockTop;
             pf.right = df.right = of.right = cf.right = vf.right = mStableRight;
@@ -4201,7 +4208,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         if (DEBUG_LAYOUT) Slog.i(TAG, "Win " + win + ": isVisibleOrBehindKeyguardLw="
                 + win.isVisibleOrBehindKeyguardLw());
         if (mTopFullscreenOpaqueWindowState == null
-                && win.isVisibleLw() && attrs.type == TYPE_INPUT_METHOD) {
+                && win.isVisibleLw() && attrs.type == TYPE_INPUT_METHOD && !mDisableImeNavbar) {
             mForcingShowNavBar = true;
             mForcingShowNavBarLayer = win.getSurfaceLayer();
         }
