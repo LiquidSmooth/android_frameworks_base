@@ -17,10 +17,10 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="keyboardview_keycode_random">Reload random buttons</string>
+  <string name="keyboardview_keycode_random">重新載入隨機按鈕</string>
   <string name="lockscreen_gesture_instructions">Draw gesture to unlock</string>
-  <string name="lockscreen_gesture_correct">Correct!</string>
-  <string name="lockscreen_gesture_wrong">Try again</string>
+  <string name="lockscreen_gesture_correct">正確 ！</string>
+  <string name="lockscreen_gesture_wrong">試多一次</string>
   <string name="keyguard_accessibility_gesture_unlock">Gesture unlock.</string>
   <string name="keyguard_accessibility_gesture_area">Gesture area.</string>
   <string name="kg_forgot_gesture_button_text">Forgot Gesture</string>

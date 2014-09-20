@@ -17,11 +17,11 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="quick_settings_battery_charging">Charging</string>
-  <string name="quick_settings_battery_discharging">Discharging</string>
-  <string name="app_killed_message">App Killed</string>
+  <string name="quick_settings_battery_charging">En charge</string>
+  <string name="quick_settings_battery_discharging">Déchargement en cours</string>
+  <string name="app_killed_message">Application tuée</string>
   <string name="screenshot_notification_delete">Supprimer</string>
-  <string name="screenshot_delete_confirmation">Screenshot deleted</string>
+  <string name="screenshot_delete_confirmation">Capture d\'écran supprimée</string>
   <string name="accessibility_data_connection_HP">HSPA+</string>
   <string name="cancel">Annuler</string>
   <string name="dlg_ok">Ok</string>
@@ -29,16 +29,16 @@
   <string name="no">Non</string>
   <string name="off">Désactivé</string>
   <string name="on">Activé</string>
-  <string name="toggle">Toggle</string>
-  <string name="shortcut_picker">Shortcut Actions</string>
-  <string name="shortcut_immersive">Immersive Mode</string>
+  <string name="toggle">Activer/désactiver</string>
+  <string name="shortcut_picker">Actions de raccourci</string>
+  <string name="shortcut_immersive">Mode immersif</string>
   <string name="shortcut_quiethours">Quiethours (ignores time constraints)</string>
   <string name="shortcut_rotation">Rotation</string>
   <string name="shortcut_shakeevent">Shake events</string>
   <string name="shortcut_torch">Torche</string>
   <string name="shortcut_reboot">Redémarrer</string>
   <string name="shortcut_recovery">Recovery</string>
-  <string name="shortcut_last_app">Last App</string>
+  <string name="shortcut_last_app">Dernière app</string>
   <string name="shortcut_screenshot">Capture d\'écran</string>
   <string name="shortcut_volume">Volume</string>
   <string name="shortcut_toggle_title">Action to perform</string>
@@ -112,13 +112,13 @@
   <string name="quick_settings_custom_toggle">Personnalisé</string>
   <string name="quick_settings_contact_toggle">Contact</string>
   <string name="quick_settings_reminder">Reminder</string>
-  <string name="quick_settings_reminder_title">Title:</string>
-  <string name="quick_settings_reminder_message">Message:</string>
+  <string name="quick_settings_reminder_title">Titre :</string>
+  <string name="quick_settings_reminder_message">Message :</string>
   <string name="quick_settings_reminder_time">Reminder Time</string>
   <string name="quick_settings_reminder_set">Set Time</string>
   <string name="quick_settings_reminder_update">Update Time</string>
-  <string name="quick_settings_reminder_no_expire">No notification</string>
-  <string name="quick_settings_reminder_dismiss">Clear Reminder</string>
+  <string name="quick_settings_reminder_no_expire">Aucune notification</string>
+  <string name="quick_settings_reminder_dismiss">Effacer rappel</string>
   <string name="quick_settings_reminder_dismiss_message">Clear current reminder?</string>
   <string name="quick_settings_reminder_help_title">Touch</string>
   <string name="quick_settings_reminder_noti_dismiss">Abandonner</string>
@@ -152,15 +152,15 @@
   <string name="battery_saver_no_changes">No configuration restored</string>
   <string name="battery_saver_all">All configuration restored</string>
   <string name="battery_saver_enable_ticker">Battery saver mode running...</string>
-  <string name="battery_saver_enable_title">Battery saver mode</string>
-  <string name="battery_saver_airplane_ticker">Airplane mode enabled by battery saver</string>
-  <string name="battery_saver_airplane_text">Airplane mode enabled by battery saver because there is no signal after 5 minutes</string>
+  <string name="battery_saver_enable_title">Mode économiseur de batterie</string>
+  <string name="battery_saver_airplane_ticker">Mode avion activé par l\'économiseur de batterie</string>
+  <string name="battery_saver_airplane_text">Mode avion activé par l\'économiseur de batterie car il n\'y a aucun signal depuis 5 minutes</string>
   <string name="battery_saver_disable">Désactivé</string>
   <string name="quick_settings_hover">Hover</string>
   <string name="pie_battery_status_charging">Charging (<xliff:g id="percent">%d</xliff:g>%%)</string>
   <string name="pie_battery_status_full">Charged</string>
   <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% remaining</string>
-  <string name="pie_phone_status_no_service">No service</string>
+  <string name="pie_phone_status_no_service">Aucun service</string>
   <string name="pie_phone_status_airplane_mode">Airplane mode on</string>
   <string name="pie_phone_status_emergency_only">Emergency calls only</string>
   <string name="smart_pulldown_disabled">Smart pulldown is disabled</string>
@@ -170,10 +170,10 @@
   <string name="accessibility_halo">Create notification halo.</string>
   <string name="accessibility_hover">Create notification hover.</string>
   <string name="halo_dismiss">Dismiss notification</string>
-  <string name="halo_hide">Hide</string>
-  <string name="halo_clear_all">Dismiss all notifications</string>
+  <string name="halo_hide">Masquer</string>
+  <string name="halo_clear_all">Rejeter toute les notifications</string>
   <string name="halo_silence">Hide &amp; silence until woken</string>
-  <string name="halo_tutorial1">This is HALO</string>
+  <string name="halo_tutorial1">Voici HALO</string>
   <string name="halo_tutorial2">Move me: double tap &amp; drag</string>
   <string name="halo_tutorial3">Browse tasks: Horizontal drag</string>
   <string name="memory">RAM</string>

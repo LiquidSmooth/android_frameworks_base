@@ -17,103 +17,101 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="permlab_changePrivacyGuardState">activa o desactiva el guarda de privacitat</string>
-  <string name="permdesc_changePrivacyGuardState">Allows the app to change whether another app runs with Privacy Guard. When an app is running with Privacy Guard, it will not have access to personal data such as contacts, call logs, or messages.</string>
-  <string name="privacy_guard_notification">Guarda de privacitat actiu</string>
-  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access personal data</string>
-  <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access custom permissions</string>
-  <string name="default_string">Per defecte</string>
-  <string name="reboot_system" product="tablet">Reiniciar tablet</string>
-  <string name="reboot_system" product="default">Reinicia telèfon</string>
-  <string name="global_action_screenshot">Captura de pantalla</string>
-  <string name="reboot_reboot">Reiniciar</string>
-  <string name="reboot_recovery">Recovery</string>
-  <string name="reboot_bootloader">Bootloader</string>
-  <string name="reboot_bootmenu">Bootmenu</string>
-  <string name="reboot_fastboot">Fastboot</string>
-  <string name="reboot_download">Descarregar</string>
-  <string name="reboot_soft">Soft reboot</string>
-  <string name="reboot_progress">Reiniciant\u2026</string>
-  <string name="reboot_confirm">El teu telèfon es reiniciarà.</string>
-  <string name="global_action_reboot">Reiniciar</string>
-  <string name="global_action_choose_profile">Perfil</string>
-  <string name="notify_turn_wifi_ap_off_title">Desactivar WiFi AP</string>
-  <string name="global_actions_expanded_desktop_mode_on_status">L\'escriptori expandit està activat</string>
-  <string name="global_actions_expanded_desktop_mode_off_status">L\'escriptori expandit està desactivat</string>
-  <string name="global_actions_pie_mode_on_status">Control Pie activat</string>
-  <string name="global_actions_pie_mode_off_status">Control Pie desactivat</string>
-  <string name="disable_pie_navigation_error">You cannot disable pie controls. No other navigation is enabled. Enable first the navigation bar to turn off pie controls.</string>
-  <string name="global_actions_nav_bar_mode_on_status">Barra de navegació activada</string>
-  <string name="global_actions_nav_bar_mode_off_status">Barra de navegació desactivada</string>
-  <string name="disable_navigation_pie_error">You cannot disable the navigation bar. No other navigation is enabled. Enable first pie controls to turn off the navigation bar.</string>
-  <string name="accessibility_target_direction">Swipe to activate a target</string>
-  <string name="stylus_app_not_installed">%s no està instal·lada</string>
-  <string name="theme_auto_switch_mode_error">Automatic light condition change mode is enabled. Manual switching is not possible.</string>
-  <string name="permlab_preventpower">prevent power key</string>
-  <string name="permdesc_preventpower">Allows an application to override the power key</string>
-  <string name="permlab_recordScreen">Record content being displayed</string>
-  <string name="permdesc_recordScreen">Allows the app to record the users screen.</string>
-  <string name="permlab_revokePermissions">Allows view and edit of revoked permissions. Not for use by normal applications.</string>
-  <string name="permdesc_revokePermissions">Allows read and write for revoked permissions. Not for use by normal applications.</string>
-  <string name="profile_picker_title">Perfils</string>
-  <string name="profile_none">Cap</string>
-  <string name="profileNameDefault">Per defecte</string>
-  <string name="profileNameWork">Treball</string>
-  <string name="profileNameHome">Casa</string>
-  <string name="profileNameSilent">Silenci</string>
-  <string name="profileNameNight">Nit</string>
-  <string name="profileNameAutomobile">Automòbil</string>
-  <string name="profileGroupPhone">Telèfon</string>
-  <string name="profileGroupCalendar">Calendari</string>
+  <string name="permlab_changePrivacyGuardState">Povolit či zakázat ochranu soukromí</string>
+  <string name="permdesc_changePrivacyGuardState">Umožní aplikaci změnit, zda některá aplikace běží v režimu ochrany soukromí. Pokud aplikace běží v tomto režimu, nebude mít přístup k osobním údajům jako jsou kontakty, seznam hovorů, poloha nebo SMS/MMS zprávy.</string>
+  <string name="privacy_guard_notification">Ochrana soukromí je aktivní</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app"> %1$s </xliff:g> nebudou moci získat přístup k osobním datům</string>
+  <string name="privacy_guard_custom_notification_detail"><xliff:g id="app"> %1$s </xliff:g> nebudou moci získat přístup k vlastní oprávnění</string>
+  <string name="default_string">Výchozí</string>
+  <string name="reboot_system" product="tablet">Restartovat tablet</string>
+  <string name="reboot_system" product="default">Restartovat telefon</string>
+  <string name="global_action_screenshot">Snímek obrazovky</string>
+  <string name="reboot_reboot">Restartovat</string>
+  <string name="reboot_recovery">Obnovení</string>
+  <string name="reboot_bootloader">Zavaděč</string>
+  <string name="reboot_bootmenu">Spouštěcí nabídka</string>
+  <string name="reboot_fastboot">Rychlé spuštění</string>
+  <string name="reboot_download">Stáhnout</string>
+  <string name="reboot_soft">Jemný restart</string>
+  <string name="reboot_progress">Restartování\u2026</string>
+  <string name="reboot_confirm">Telefon bude restartován.</string>
+  <string name="global_action_reboot">Restartovat</string>
+  <string name="global_action_choose_profile">Profil</string>
+  <string name="notify_turn_wifi_ap_off_title">Vypnout přístupový bod Wi-Fi</string>
+  <string name="global_actions_expanded_desktop_mode_on_status">Rozšířená plocha je zapnuta</string>
+  <string name="global_actions_expanded_desktop_mode_off_status">Rozšířená plocha je vypnuta</string>
+  <string name="global_actions_pie_mode_on_status">Kruhová nabídka je zapnuta</string>
+  <string name="global_actions_pie_mode_off_status">Kruhová nabídka je vypnuta</string>
+  <string name="disable_pie_navigation_error">Nelze vypnout kruhovou nabídku. Žádný jiný způsob navigace není povolen. Nejprve povolte navigační panel pro vypnuti kruhové nabídky.</string>
+  <string name="global_actions_nav_bar_mode_on_status">Navigační panel je zapnutý</string>
+  <string name="global_actions_nav_bar_mode_off_status">Navigační panel je vypnutý</string>
+  <string name="disable_navigation_pie_error">Nelze vypnout navigační panel.  Žádný jiný způsob navigace není povolen. Nejprve povolte kruhovou nabídku pro vypnutí navigačního panelu.</string>
+  <string name="accessibility_target_direction">Přejeďte prstem pro aktivaci cíle</string>
+  <string name="stylus_app_not_installed">%s není nainstalován</string>
+  <string name="theme_auto_switch_mode_error">Je povolen automatický režim změny světelných podmínek. Manuální změna není možná.</string>
+  <string name="permlab_preventpower">Potlačí stisknutí tlačítka napájení</string>
+  <string name="permdesc_preventpower">Umožňuje aplikaci nedbat na tlačítko napájení</string>
+  <string name="permlab_recordScreen">Zobrazuje obsah záznamu</string>
+  <string name="permdesc_recordScreen">Umožňuje aplikaci nahrávání obrazovky uživatelů.</string>
+  <string name="permlab_revokePermissions">Povolit zobrazení a úpravu odvolaných oprávnění. Není určeno pro běžné aplikace.</string>
+  <string name="permdesc_revokePermissions">Povolí čtení a zápis odvolaných oprávnění. Není určeno pro běžné aplikace.</string>
+  <string name="profile_picker_title">Profily</string>
+  <string name="profile_none">Žádný</string>
+  <string name="profileNameDefault">Výchozí</string>
+  <string name="profileNameWork">Práce</string>
+  <string name="profileNameHome">Domov</string>
+  <string name="profileNameSilent">Tichý</string>
+  <string name="profileNameNight">Noc</string>
+  <string name="profileNameAutomobile">Automobil</string>
+  <string name="profileGroupPhone">Telefon</string>
+  <string name="profileGroupCalendar">Kalendář</string>
   <string name="profileGroupGmail">Gmail</string>
-  <string name="profileGroupEmail">Correu electrònic</string>
+  <string name="profileGroupEmail">E-mail</string>
   <string name="profileGroupSMS">SMS</string>
-  <string name="wildcardProfile">Altres</string>
-  <string name="floating_window_snap_top">Snap top</string>
-  <string name="floating_window_snap_bottom">Snap bottom</string>
-  <string name="floating_window_snap_left">Snap left</string>
-  <string name="floating_window_snap_right">Snap right</string>
-  <string name="animation_fade">Esvaïment</string>
-  <string name="animation_slide_right">Slide in right</string>
-  <string name="animation_slide_left">Slide in left</string>
-  <string name="animation_slide_right_no_fade">Slide in right (No fade)</string>
-  <string name="animation_slide_left_no_fade">Slide in left (No fade)</string>
-  <string name="animation_slide_up">Slide in bottom</string>
-  <string name="animation_slide_down">Slide in top</string>
-  <string name="animation_default">Per defecte</string>
-  <string name="animation_translucent">Translúcid</string>
-  <string name="animation_grow_shrink">Grow in (Top)</string>
-  <string name="animation_grow_shrink_center">Grow in (Center)</string>
-  <string name="animation_grow_shrink_bottom">Grow in (Bottom)</string>
-  <string name="animation_grow_shrink_left">Grow in (Left)</string>
-  <string name="animation_grow_shrink_right">Grow in (Right)</string>
-  <string name="action_null">En blanc</string>
-  <string name="setting_confirmation_ask_me_later">Preguntar més tard</string>
-  <string name="setting_confirmation_yes">Si</string>
-  <string name="setting_confirmation_no">No</string>
-  <string name="setting_reset_hint_title">To reset preferences:</string>
+  <string name="wildcardProfile">Ostatní</string>
+  <string name="floating_window_snap_top">Přichytit nahoru</string>
+  <string name="floating_window_snap_bottom">Přichytit dolů</string>
+  <string name="floating_window_snap_left">Přichytit vlevo</string>
+  <string name="floating_window_snap_right">Přichytit vpravo</string>
+  <string name="animation_fade">Prolínačka</string>
+  <string name="animation_slide_right">Skluz vpravo</string>
+  <string name="animation_slide_left">Skluz vlevo</string>
+  <string name="animation_slide_right_no_fade">Skluz vpravo (bez prolínačky)</string>
+  <string name="animation_slide_left_no_fade">Skluz vlevo (bez prolínačky)</string>
+  <string name="animation_slide_up">Skluz dolů</string>
+  <string name="animation_slide_down">Skluz nahoru</string>
+  <string name="animation_default">Výchozí</string>
+  <string name="animation_translucent">Průsvitný</string>
+  <string name="animation_grow_shrink">Růst (nahoře)</string>
+  <string name="animation_grow_shrink_center">Růst (uprostřed)</string>
+  <string name="animation_grow_shrink_bottom">Nárůst (dole)</string>
+  <string name="animation_grow_shrink_left">Růst (zleva)</string>
+  <string name="animation_grow_shrink_right">Růst (zprava)</string>
+  <string name="action_null">Prázdné</string>
+  <string name="setting_confirmation_ask_me_later">Zeptat se později</string>
+  <string name="setting_confirmation_yes">Ano</string>
+  <string name="setting_confirmation_no">Ne</string>
+  <string name="setting_reset_hint_title">Pro vymazání předvoleb:</string>
   <string name="setting_reset_hint_message">
         <![CDATA[
-        <p>Open <b>Settings</b><br/>
-        Below Personal divider: <b>Backup & Reset</b><br/>
-        Below Personalization divider: <b>Reset preferences</b></p>
+        <p>Otevřít <b>Nastavení</b><br/>
+        Pod osobním rozdělovačem: <b>Záloha & Reset</b><br/>
+        Pod personalizačním rozdělovačem: <b>Vymazat nastavení</b></p>
         ]]></string>
-  <string name="notify_turn_wifi_off_title">Desactivar WiFi</string>
-  <string name="permlab_interceptSmsSent">intercept outgoing SMS</string>
-  <string name="permdesc_interceptSmsSent">Allows the app to intercept an outgoing SMS. Malicious apps may use this to prevent outgoing SMS messages.</string>
-  <string name="permlab_setKeyguardWallpaper">set keyguard wallpaper</string>
-  <string name="permdesc_setKeyguardWallpaper">Allows an app to change the lock screen wallpaper.</string>
-  <string name="permlab_accessThemeService">access theme service</string>
-  <string name="permdesc_accessThemeService">Allows an app to access the theme service. Should never be needed for normal apps.</string>
-  <string name="permlab_readThemes">Llegeix la informació del teu tema</string>
-  <string name="permdesc_readThemesDesc">Allows the app to read your themes and
-       determine which theme you have applied.</string>
-  <string name="permlab_writeThemes">modifica els teus temes</string>
-  <string name="permdesc_writeThemesDesc">Allows the app to insert new themes and
-       modify which theme you have applied.</string>
-  <string name="permlab_resetBatteryStats">reinicia estadítiques de la bateria</string>
-  <string name="permdesc_resetBatteryStats">Allows an application to reset the current low-level battery use data.</string>
-  <string name="permlab_changeHeadsUpState">enable or disable heads up</string>
-  <string name="permdesc_changeHeadsUpState">Allows the application to change whether another application is allowed to show normal notifications as heads up notification.</string>
-  <string name="usb_storage_notification_manage_message">Tap to manage</string>
+  <string name="notify_turn_wifi_off_title">Vypnout Wi-Fi</string>
+  <string name="permlab_interceptSmsSent">zachytit odchozí SMS</string>
+  <string name="permdesc_interceptSmsSent">Umožní aplikaci zachytit odchozí SMS. Škodlivé aplikace mohou toto použít k zabránění odesílání SMS zpráv.</string>
+  <string name="permlab_setKeyguardWallpaper">Nastavit tapetu zámku kláves</string>
+  <string name="permdesc_setKeyguardWallpaper">Umožní aplikaci změnit tapetu na zamčené obrazovce.</string>
+  <string name="permlab_accessThemeService">Přístup ke službě motivu</string>
+  <string name="permdesc_accessThemeService">Umožní aplikaci přístup ke službě motivu. Pro normální aplikace by to nikdy nemělo být potřeba.</string>
+  <string name="permlab_readThemes">Číst informace o vašem motivu</string>
+  <string name="permdesc_readThemesDesc">Povolit aplikaci číst vaše motivy a tak určit, který motiv je použit.</string>
+  <string name="permlab_writeThemes">Změnit vaše motivy</string>
+  <string name="permdesc_writeThemesDesc">Povolit aplikaci vložit nové motivy a změnit, který motiv je použit.</string>
+  <string name="permlab_resetBatteryStats">Vynulovat statistiky baterie</string>
+  <string name="permdesc_resetBatteryStats">Povolí aplikaci vynulovat aktuální data o používání baterie při nízké úrovni nabití.</string>
+  <string name="permlab_changeHeadsUpState">Povolit nebo zakázat varování</string>
+  <string name="permdesc_changeHeadsUpState">Umožňuje změnit, zda jiná aplikace má dovoleno zobrazovat normální upozornění jako varování.</string>
+  <string name="usb_storage_notification_manage_message">Klepněte pro správu</string>
 </resources>

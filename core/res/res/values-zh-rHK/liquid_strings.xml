@@ -26,17 +26,17 @@
   <string name="reboot_system" product="tablet">重新啟動平板電腦</string>
   <string name="reboot_system" product="default">重新啟動電話</string>
   <string name="global_action_screenshot">螢幕截圖</string>
-  <string name="reboot_reboot">Reboot</string>
-  <string name="reboot_recovery">Recovery</string>
+  <string name="reboot_reboot">重新啟動</string>
+  <string name="reboot_recovery">恢復模式</string>
   <string name="reboot_bootloader">Bootloader</string>
-  <string name="reboot_bootmenu">Bootmenu</string>
-  <string name="reboot_fastboot">Fastboot</string>
-  <string name="reboot_download">Download</string>
-  <string name="reboot_soft">Soft reboot</string>
-  <string name="reboot_progress">Rebooting\u2026</string>
-  <string name="reboot_confirm">Your phone will reboot.</string>
-  <string name="global_action_reboot">Reboot</string>
-  <string name="global_action_choose_profile">Profile</string>
+  <string name="reboot_bootmenu">開機選單</string>
+  <string name="reboot_fastboot">快速啟動</string>
+  <string name="reboot_download">下載</string>
+  <string name="reboot_soft">軟重新啟動</string>
+  <string name="reboot_progress">重新啟動中\u2026</string>
+  <string name="reboot_confirm">您的手機將重新啟動。</string>
+  <string name="global_action_reboot">重新啟動</string>
+  <string name="global_action_choose_profile">個人資料</string>
   <string name="notify_turn_wifi_ap_off_title">Turn Wi-Fi AP off</string>
   <string name="global_actions_expanded_desktop_mode_on_status">Expanded desktop is ON</string>
   <string name="global_actions_expanded_desktop_mode_off_status">Expanded desktop is OFF</string>
@@ -55,20 +55,20 @@
   <string name="permdesc_recordScreen">Allows the app to record the users screen.</string>
   <string name="permlab_revokePermissions">Allows view and edit of revoked permissions. Not for use by normal applications.</string>
   <string name="permdesc_revokePermissions">Allows read and write for revoked permissions. Not for use by normal applications.</string>
-  <string name="profile_picker_title">Profiles</string>
-  <string name="profile_none">None</string>
-  <string name="profileNameDefault">Default</string>
-  <string name="profileNameWork">Work</string>
-  <string name="profileNameHome">Home</string>
-  <string name="profileNameSilent">Silent</string>
-  <string name="profileNameNight">Night</string>
-  <string name="profileNameAutomobile">Automobile</string>
-  <string name="profileGroupPhone">Phone</string>
-  <string name="profileGroupCalendar">Calendar</string>
+  <string name="profile_picker_title">設定檔</string>
+  <string name="profile_none">無</string>
+  <string name="profileNameDefault">預設</string>
+  <string name="profileNameWork">工作</string>
+  <string name="profileNameHome">住家</string>
+  <string name="profileNameSilent">靜音</string>
+  <string name="profileNameNight">夜間</string>
+  <string name="profileNameAutomobile">汽車</string>
+  <string name="profileGroupPhone">電話</string>
+  <string name="profileGroupCalendar">日曆</string>
   <string name="profileGroupGmail">Gmail</string>
   <string name="profileGroupEmail">Email</string>
-  <string name="profileGroupSMS">SMS</string>
-  <string name="wildcardProfile">Other</string>
+  <string name="profileGroupSMS">短訊</string>
+  <string name="wildcardProfile">其他</string>
   <string name="floating_window_snap_top">Snap top</string>
   <string name="floating_window_snap_bottom">Snap bottom</string>
   <string name="floating_window_snap_left">Snap left</string>
@@ -80,7 +80,7 @@
   <string name="animation_slide_left_no_fade">Slide in left (No fade)</string>
   <string name="animation_slide_up">Slide in bottom</string>
   <string name="animation_slide_down">Slide in top</string>
-  <string name="animation_default">Default</string>
+  <string name="animation_default">預設</string>
   <string name="animation_translucent">Translucent</string>
   <string name="animation_grow_shrink">Grow in (Top)</string>
   <string name="animation_grow_shrink_center">Grow in (Center)</string>
@@ -115,5 +115,5 @@
   <string name="permdesc_resetBatteryStats">Allows an application to reset the current low-level battery use data.</string>
   <string name="permlab_changeHeadsUpState">enable or disable heads up</string>
   <string name="permdesc_changeHeadsUpState">Allows the application to change whether another application is allowed to show normal notifications as heads up notification.</string>
-  <string name="usb_storage_notification_manage_message">Tap to manage</string>
+  <string name="usb_storage_notification_manage_message">輕按以管理</string>
 </resources>

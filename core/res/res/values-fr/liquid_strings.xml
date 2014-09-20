@@ -20,8 +20,8 @@
   <string name="permlab_changePrivacyGuardState">activer ou désactiver la protection des données</string>
   <string name="permdesc_changePrivacyGuardState">Permet à l\'application d\'en exécuter une autre avec la protection des données. Lorsqu\'une application est exécutée avec la protection des données, elle n\'aura pas accès aux données personnelles telles que les contacts, les journaux d\'appels ou les messages.</string>
   <string name="privacy_guard_notification">Protection des données activée</string>
-  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access personal data</string>
-  <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access custom permissions</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> ne sera pas en mesure d\'accéder aux données personnelles</string>
+  <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> ne sera pas en mesure d\'accéder aux utorisations personnalisées</string>
   <string name="default_string">Par défaut</string>
   <string name="reboot_system" product="tablet">Redémarrer la tablette</string>
   <string name="reboot_system" product="default">Redémarrer le téléphone</string>
@@ -32,7 +32,7 @@
   <string name="reboot_bootmenu">Menu de démarrage</string>
   <string name="reboot_fastboot">Démarrage rapide</string>
   <string name="reboot_download">Mode Téléchargement</string>
-  <string name="reboot_soft">Soft reboot</string>
+  <string name="reboot_soft">Redémarrage logiciel</string>
   <string name="reboot_progress">Redémarrage en cours\u2026</string>
   <string name="reboot_confirm">Votre téléphone va redémarrer.</string>
   <string name="global_action_reboot">Redémarrer</string>
@@ -91,12 +91,12 @@
   <string name="setting_confirmation_ask_me_later">Demander plus tard</string>
   <string name="setting_confirmation_yes">Oui</string>
   <string name="setting_confirmation_no">Non</string>
-  <string name="setting_reset_hint_title">To reset preferences:</string>
+  <string name="setting_reset_hint_title">Pour réinitialiser les préférences :</string>
   <string name="setting_reset_hint_message">
         <![CDATA[
-        <p>Open <b>Settings</b><br/>
-        Below Personal divider: <b>Backup & Reset</b><br/>
-        Below Personalization divider: <b>Reset preferences</b></p>
+        <p>Ouvrir <b>Paramètres</b><br/>
+        En dessous du diviseur personnels : <b>Sauvegarde & Réinitialiser</b><br/>
+        En dessous du diviseur personnalisé : <b>Réinitialiser préférences</b></p>
         ]]></string>
   <string name="notify_turn_wifi_off_title">Désactiver le Wi-Fi</string>
   <string name="permlab_interceptSmsSent">intercepter les SMS sortants</string>
@@ -113,5 +113,5 @@
   <string name="permdesc_resetBatteryStats">Autorise une application à réinitialiser les données d\'utilisation de la batterie.</string>
   <string name="permlab_changeHeadsUpState">active ou désactive la barre de notification HeadsUp</string>
   <string name="permdesc_changeHeadsUpState">Autorise l\'application à choisir si une application sera autorisée à afficher ses notifications courantes dans la barre HeadsUp.</string>
-  <string name="usb_storage_notification_manage_message">Tap to manage</string>
+  <string name="usb_storage_notification_manage_message">Appuyer pour gérer</string>
 </resources>

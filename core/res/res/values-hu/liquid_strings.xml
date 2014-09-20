@@ -32,7 +32,7 @@
   <string name="reboot_bootmenu">Bootmenü</string>
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Letöltés</string>
-  <string name="reboot_soft">Soft reboot</string>
+  <string name="reboot_soft">Lágy újraindítás</string>
   <string name="reboot_progress">Újraindítás\u2026</string>
   <string name="reboot_confirm">A telefon újra fog indulni.</string>
   <string name="global_action_reboot">Újraindítás</string>
@@ -91,7 +91,7 @@
   <string name="setting_confirmation_ask_me_later">Kérdezze később</string>
   <string name="setting_confirmation_yes">Igen</string>
   <string name="setting_confirmation_no">Nem</string>
-  <string name="setting_reset_hint_title">To reset preferences:</string>
+  <string name="setting_reset_hint_title">Beállítások alaphelyzetbe állítása:</string>
   <string name="setting_reset_hint_message">
         <![CDATA[
         <p>Open <b>Settings</b><br/>
@@ -113,5 +113,5 @@
   <string name="permdesc_resetBatteryStats">Lehetővé teszi az alkalmazás számára, hogy törölhesse az akkumulátor használati adatokat.</string>
   <string name="permlab_changeHeadsUpState">heads up engedélyezése vagy letiltása</string>
   <string name="permdesc_changeHeadsUpState">Lehetővé teszi az alkalmazás számára, hogy egy másik alkalmazás normál értesítéseit mint lebegő értesítéseket jelenítse meg.</string>
-  <string name="usb_storage_notification_manage_message">Tap to manage</string>
+  <string name="usb_storage_notification_manage_message">Érintse meg a kezeléshez</string>
 </resources>

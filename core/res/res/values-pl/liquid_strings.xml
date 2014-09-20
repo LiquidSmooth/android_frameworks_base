@@ -20,19 +20,19 @@
   <string name="permlab_changePrivacyGuardState">Włącznie lub wyłącznie ochrony prywatności</string>
   <string name="permdesc_changePrivacyGuardState">Pozwala aplikacji decydować, czy inna aplikacja uruchamiana jest za pomocą Strażnika Prywatności. Gdy aplikacja jest uruchomiona za pomocą Strażnika Prywatności, nie będzie ona miała dostępu do prywatnych danych takich jak kontakty, rejestry połączeń, czy wiadomości tekstowe.</string>
   <string name="privacy_guard_notification">Ochrona prywatności aktywna</string>
-  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access personal data</string>
-  <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access custom permissions</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g>nie będą mogły uzyskać dostępu do prywatnych danych</string>
+  <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g>nie będą mogły uzyskać dostępu do niestandardowych uprawnień</string>
   <string name="default_string">Domyślny</string>
   <string name="reboot_system" product="tablet">Uruchom ponownie tablet</string>
   <string name="reboot_system" product="default">Uruchom ponownie telefon</string>
   <string name="global_action_screenshot">Zrzut ekranu</string>
   <string name="reboot_reboot">Uruchom ponownie</string>
-  <string name="reboot_recovery">Recovery</string>
+  <string name="reboot_recovery">Odzyskiwanie</string>
   <string name="reboot_bootloader">Uruchom w trybie Bootloader</string>
   <string name="reboot_bootmenu">Uruchom Bootmenu</string>
   <string name="reboot_fastboot">Uruchom w trybie Fastboot</string>
   <string name="reboot_download">Pobierz</string>
-  <string name="reboot_soft">Soft reboot</string>
+  <string name="reboot_soft">Miękki restart</string>
   <string name="reboot_progress">Ponowne uruchamianie\u2026</string>
   <string name="reboot_confirm">Telefon zostanie uruchomiony ponownie.</string>
   <string name="global_action_reboot">Uruchom ponownie</string>
@@ -91,12 +91,12 @@
   <string name="setting_confirmation_ask_me_later">Zapytaj później</string>
   <string name="setting_confirmation_yes">Zatwierdź</string>
   <string name="setting_confirmation_no">Odrzuć</string>
-  <string name="setting_reset_hint_title">To reset preferences:</string>
+  <string name="setting_reset_hint_title">Aby zresetować ustawienia:</string>
   <string name="setting_reset_hint_message">
         <![CDATA[
-        <p>Open <b>Settings</b><br/>
-        Below Personal divider: <b>Backup & Reset</b><br/>
-        Below Personalization divider: <b>Reset preferences</b></p>
+        <p>Otwórz<b>Ustawienia</b><br/>
+        Below Personal divider: <b>Kopia zapasowa & Reset</b><br/>
+        Below Personalization divider:<b>Resetowanie ustawień</b></p>
         ]]></string>
   <string name="notify_turn_wifi_off_title">Wyłącz Wi-Fi</string>
   <string name="permlab_interceptSmsSent">przechwytywanie wiadomości wychodzących</string>
@@ -113,5 +113,5 @@
   <string name="permdesc_resetBatteryStats">Zezwala aplikacji na obecnym niskim poziomie baterii na reset szczegółów historii baterii.</string>
   <string name="permlab_changeHeadsUpState">włącz lub wyłącz HeadsUp</string>
   <string name="permdesc_changeHeadsUpState">Zezwala aplikacji na zdecydowanie, czy aplikacja będzie mogła wyświetlić swoje aktualne powiadomienia jako powiadomienia HeadsUp.</string>
-  <string name="usb_storage_notification_manage_message">Tap to manage</string>
+  <string name="usb_storage_notification_manage_message">Dotknij, aby zarządzać</string>
 </resources>
