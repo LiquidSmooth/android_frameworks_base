@@ -35,7 +35,7 @@ public class ClientsList {
     private static final String TAG = "ClientsList";
 
     /**
-     * Gets a list of the clients connected to the Hotspot, reachable timeout is 2500
+     * Gets a list of the clients connected to the Hotspot, reachable timeout is 3000
      *
      * @param onlyReachables {@code false} if the list should contain unreachable
      *                       (probably disconnected) clients, {@code true} otherwise
@@ -58,7 +58,7 @@ public class ClientsList {
 
                     if (mac.matches("..:..:..:..:..:..")) {
                         InetAddress address = InetAddress.getByName(splitted[0]);
-                        boolean isReachable = address.isReachable(2500);
+                        boolean isReachable = address.isReachable(3000);
 
                         if (!onlyReachables || isReachable) {
                             ClientScanResult client = new ClientScanResult();
