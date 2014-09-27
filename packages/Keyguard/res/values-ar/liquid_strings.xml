@@ -19,15 +19,35 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="keyboardview_keycode_random">Reload random buttons</string>
   <string name="lockscreen_gesture_instructions">Draw gesture to unlock</string>
-  <string name="lockscreen_gesture_correct">Correct!</string>
-  <string name="lockscreen_gesture_wrong">Try again</string>
-  <string name="keyguard_accessibility_gesture_unlock">Gesture unlock.</string>
-  <string name="keyguard_accessibility_gesture_area">Gesture area.</string>
-  <string name="kg_forgot_gesture_button_text">Forgot Gesture</string>
-  <string name="kg_wrong_gesture">Wrong Gesture</string>
-  <string name="kg_gesture_instructions">Draw your gesture</string>
+  <string name="lockscreen_gesture_correct">صحيح!</string>
+  <string name="lockscreen_gesture_wrong">حاول مرة أخرى</string>
+  <string name="keyguard_accessibility_gesture_unlock">فتح قفل النمط اليدوى.</string>
+  <string name="keyguard_accessibility_gesture_area">منطقة رسم النمط.</string>
+  <string name="kg_forgot_gesture_button_text">نسيت النمط</string>
+  <string name="kg_wrong_gesture">نمط خاطئ</string>
+  <string name="kg_gesture_instructions">ارسم النمط الخاص بك</string>
   <string name="kg_too_many_failed_gesture_attempts_dialog_message">
         You have incorrectly drawn your unlock gesture <xliff:g id="number">%d</xliff:g> times.
         \n\nTry again in <xliff:g id="number">%d</xliff:g> seconds.
     </string>
+  <plurals name="missed_calls">
+    <item quantity="zero">%d missed calls</item>
+    <item quantity="one">%d missed call</item>
+    <item quantity="two">%d missed calls</item>
+    <item quantity="few">%d missed calls</item>
+    <item quantity="many">%d missed calls</item>
+    <item quantity="other">%d missed calls</item>
+  </plurals>
+  <plurals name="unread_messages">
+    <item quantity="zero">%d unread messages</item>
+    <item quantity="one">%d unread message</item>
+    <item quantity="two">%d unread messages</item>
+    <item quantity="few">%d unread messages</item>
+    <item quantity="many">%d unread messages</item>
+    <item quantity="other">%d unread messages</item>
+  </plurals>
+  <string name="missed_call">missed call</string>
+  <string name="message_from">message from</string>
+  <string name="message_from_person">message from %1$s</string>
+  <string name="full_wday_month_day_no_year">EEEEMMMMd</string>
 </resources>

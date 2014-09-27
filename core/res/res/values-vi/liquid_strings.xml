@@ -19,13 +19,13 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="permlab_changePrivacyGuardState">bật hoặc vô hiệu hóa bảo vệ quyền riêng tư</string>
   <string name="permdesc_changePrivacyGuardState">Cho phép các ứng dụng để thay đổi cho dù một ứng dụng chạy với bảo vệ sự riêng tư. Khi một ứng dụng đang chạy với bảo vệ sự riêng tư, nó sẽ không có quyền truy cập vào các dữ liệu cá nhân như danh bạ, bản ghi cuộc gọi hoặc tin nhắn.</string>
-  <string name="privacy_guard_notification">Đang hoạt động bảo vệ quyền riêng tư</string>
+  <string name="privacy_guard_notification">Bảo vệ quyền riêng tư được kích hoạt</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app"> %1$s </xliff:g> sẽ không thể truy cập vào dữ liệu cá nhân</string>
   <string name="privacy_guard_custom_notification_detail"><xliff:g id="app"> %1$s </xliff:g> sẽ không thể truy cập tùy chỉnh cấp phép</string>
   <string name="default_string">Mặc định</string>
   <string name="reboot_system" product="tablet">Khởi động lại máy tính bảng</string>
   <string name="reboot_system" product="default">Khởi động lại điện thoại</string>
-  <string name="global_action_screenshot">Chụp màn hình</string>
+  <string name="global_action_screenshot">Chụp ảnh màn hình</string>
   <string name="reboot_reboot">Khởi động lại</string>
   <string name="reboot_recovery">Recovery</string>
   <string name="reboot_bootloader">Bootloader</string>
@@ -33,25 +33,25 @@
   <string name="reboot_fastboot">Fastboot</string>
   <string name="reboot_download">Download</string>
   <string name="reboot_soft">Khởi động lại mềm</string>
-  <string name="reboot_progress">Rebooting\u2026</string>
+  <string name="reboot_progress">Đang khởi động lại\u2026</string>
   <string name="reboot_confirm">Điện thoại của bạn sẽ khởi động lại.</string>
   <string name="global_action_reboot">Khởi động lại</string>
   <string name="global_action_choose_profile">Cấu hình</string>
   <string name="notify_turn_wifi_ap_off_title">Tắt Wi-Fi AP</string>
   <string name="global_actions_expanded_desktop_mode_on_status">Mở rộng màn hình đang bật</string>
-  <string name="global_actions_expanded_desktop_mode_off_status">Mở rộng màn hình là tắt</string>
-  <string name="global_actions_pie_mode_on_status">Kiểm soát pie là bật</string>
-  <string name="global_actions_pie_mode_off_status">Kiểm soát pie là tắt</string>
+  <string name="global_actions_expanded_desktop_mode_off_status">Mở rộng màn hình đã tắt</string>
+  <string name="global_actions_pie_mode_on_status">Kiểm soát pie đang bật</string>
+  <string name="global_actions_pie_mode_off_status">Kiểm soát pie đã tắt</string>
   <string name="disable_pie_navigation_error">Bạn không thể vô hiệu hóa điều khiển pie. Không có điều hướng khác được kích hoạt. Đầu tiên cho phép thanh điều hướng để tắt điều khiển pie.</string>
-  <string name="global_actions_nav_bar_mode_on_status">Thanh điều hướng là bật</string>
-  <string name="global_actions_nav_bar_mode_off_status">Thanh điều hướng là tắt</string>
+  <string name="global_actions_nav_bar_mode_on_status">Thanh điều hướng đang bật</string>
+  <string name="global_actions_nav_bar_mode_off_status">Thanh điều hướng đã tắt</string>
   <string name="disable_navigation_pie_error">Bạn không thể vô hiệu hóa thanh điều hướng. Không có điều hướng khác được kích hoạt. Đầu tiên cho phép điều khiển pie để tắt thanh điều hướng.</string>
-  <string name="accessibility_target_direction">Swipe to activate a target</string>
-  <string name="stylus_app_not_installed">%s là chưa cài đặt</string>
+  <string name="accessibility_target_direction">Kéo mạnh để kích hoạt một mục tiêu</string>
+  <string name="stylus_app_not_installed">%s chưa được cài đặt</string>
   <string name="theme_auto_switch_mode_error">Tự động thay đổi theo điều kiện ánh sáng chế độ được kích hoạt. Chuyển đổi thủ công là không thể.</string>
   <string name="permlab_preventpower">ngăn chặn phím nguồn</string>
   <string name="permdesc_preventpower">Cho phép một ứng dụng ngắt chức năng phím nguồn</string>
-  <string name="permlab_recordScreen">Ghi lại nội dung được hiển thị</string>
+  <string name="permlab_recordScreen">Ghi lại nội dung đang được hiển thị</string>
   <string name="permdesc_recordScreen">Cho phép các ứng dụng ghi lại màn hình người dùng.</string>
   <string name="permlab_revokePermissions">Cho phép xem và chỉnh sửa các quyền đã bị thu hồi. Không dành cho ứng dụng bình thường.</string>
   <string name="permdesc_revokePermissions">Cho phép đọc và ghi các quyền đã bị thu hồi. Không dành cho ứng dụng bình thường.</string>
@@ -60,28 +60,28 @@
   <string name="profileNameDefault">Mặc định</string>
   <string name="profileNameWork">Công việc</string>
   <string name="profileNameHome">Ở nhà</string>
-  <string name="profileNameSilent">Yên tĩnh</string>
+  <string name="profileNameSilent">Im lặng</string>
   <string name="profileNameNight">Ban đêm</string>
-  <string name="profileNameAutomobile">Xe ô tô</string>
+  <string name="profileNameAutomobile">trên Xe ô tô</string>
   <string name="profileGroupPhone">Điện thoại</string>
   <string name="profileGroupCalendar">Lịch</string>
   <string name="profileGroupGmail">Gmail</string>
   <string name="profileGroupEmail">Thư điện tử</string>
   <string name="profileGroupSMS">Tin Nhắn SMS</string>
   <string name="wildcardProfile">Khác</string>
-  <string name="floating_window_snap_top">Snap top</string>
-  <string name="floating_window_snap_bottom">Snap bottom</string>
-  <string name="floating_window_snap_left">Snap left</string>
-  <string name="floating_window_snap_right">Snap right</string>
+  <string name="floating_window_snap_top">Snap trên cùng</string>
+  <string name="floating_window_snap_bottom">Snap dưới cùng</string>
+  <string name="floating_window_snap_left">Snap trái</string>
+  <string name="floating_window_snap_right">Snap phải</string>
   <string name="animation_fade">Mờ dần</string>
   <string name="animation_slide_right">Trượt sang phải</string>
   <string name="animation_slide_left">Trượt sang trái</string>
   <string name="animation_slide_right_no_fade">Trượt ở bên phải (No fade)</string>
-  <string name="animation_slide_left_no_fade">Slide ở bên trái (No fade)</string>
+  <string name="animation_slide_left_no_fade">Trượt ở bên trái (No fade)</string>
   <string name="animation_slide_up">Trượt xuống phía dưới</string>
   <string name="animation_slide_down">Trượt lên trên cùng</string>
   <string name="animation_default">Mặc định</string>
-  <string name="animation_translucent">Translucent</string>
+  <string name="animation_translucent">Mờ</string>
   <string name="animation_grow_shrink">Lớn dần tới (Phía trên)</string>
   <string name="animation_grow_shrink_center">Lớn dần tới (Trung tâm)</string>
   <string name="animation_grow_shrink_bottom">Lớn dần tới (Phía dưới)</string>
@@ -89,14 +89,14 @@
   <string name="animation_grow_shrink_right">Lớn dần tới (Phía phải)</string>
   <string name="action_null">Trống</string>
   <string name="setting_confirmation_ask_me_later">Hỏi sau</string>
-  <string name="setting_confirmation_yes">Vâng</string>
+  <string name="setting_confirmation_yes">Đồng ý</string>
   <string name="setting_confirmation_no">Không</string>
   <string name="setting_reset_hint_title">Để thiết lập lại tùy chọn:</string>
   <string name="setting_reset_hint_message">
         <![CDATA[<p>mở <b>cài đặt</b><br/>
          Dưới cá nhân chia: <b>Sao lưu &amp; Thiết lập lại</b><br/>
          dưới cá nhân hoá chia: <b>đặt lại tuỳ chọn</b></p>
-         ]]></string>
+         ]]></string></string>
   <string name="notify_turn_wifi_off_title">Tắt Wi-Fi</string>
   <string name="permlab_interceptSmsSent">chặn gửi đi tin nhắn SMS</string>
   <string name="permdesc_interceptSmsSent">Cho phép các ứng dụng để chặn một tin nhắn SMS gửi đi. Có thể sử dụng để ngăn chặn ứng dụng độc hại gửi đi tin nhắn SMS.</string>

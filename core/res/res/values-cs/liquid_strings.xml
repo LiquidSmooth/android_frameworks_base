@@ -94,9 +94,9 @@
   <string name="setting_reset_hint_title">Pro vymazání předvoleb:</string>
   <string name="setting_reset_hint_message">
         <![CDATA[
-        <p>Open <b>Settings</b><br/>
-        Below Personal divider: <b>Backup & Reset</b><br/>
-        Below Personalization divider: <b>Reset preferences</b></p>
+        <p>Otevřít <b>Nastavení</b><br/>
+        Osobní podrozdělovač: <b>Záloha a Obnovení</b><br/>
+        Personalizační podrozdělovač: <b>Obnovit předvolby</b></p>
         ]]></string>
   <string name="notify_turn_wifi_off_title">Vypnout Wi-Fi</string>
   <string name="permlab_interceptSmsSent">zachytit odchozí SMS</string>

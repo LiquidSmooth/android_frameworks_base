@@ -22,20 +22,20 @@
   <string name="privacy_guard_notification">Privacy Guard active</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access personal data</string>
   <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access custom permissions</string>
-  <string name="default_string">Default</string>
-  <string name="reboot_system" product="tablet">Reboot tablet</string>
-  <string name="reboot_system" product="default">Reboot phone</string>
-  <string name="global_action_screenshot">Screenshot</string>
-  <string name="reboot_reboot">Reboot</string>
-  <string name="reboot_recovery">Recovery</string>
+  <string name="default_string">الإفتراضى</string>
+  <string name="reboot_system" product="tablet">اعادة تشغيل التابلت</string>
+  <string name="reboot_system" product="default">إعادة تشغيل الهاتف</string>
+  <string name="global_action_screenshot">التقاط صورة الشاشة</string>
+  <string name="reboot_reboot">اعادة تشغيل</string>
+  <string name="reboot_recovery">ريكوفرى</string>
   <string name="reboot_bootloader">Bootloader</string>
-  <string name="reboot_bootmenu">Bootmenu</string>
-  <string name="reboot_fastboot">Fastboot</string>
-  <string name="reboot_download">Download</string>
+  <string name="reboot_bootmenu">قائمة التشغيل</string>
+  <string name="reboot_fastboot">التشغيل السريع</string>
+  <string name="reboot_download">التحميل</string>
   <string name="reboot_soft">Soft reboot</string>
   <string name="reboot_progress">Rebooting\u2026</string>
-  <string name="reboot_confirm">Your phone will reboot.</string>
-  <string name="global_action_reboot">Reboot</string>
+  <string name="reboot_confirm">سيتم اعدة تشغيل الهاتف الآن.</string>
+  <string name="global_action_reboot">إعادة تشغيل </string>
   <string name="global_action_choose_profile">Profile</string>
   <string name="notify_turn_wifi_ap_off_title">Turn Wi-Fi AP off</string>
   <string name="global_actions_expanded_desktop_mode_on_status">Expanded desktop is ON</string>
@@ -57,7 +57,7 @@
   <string name="permdesc_revokePermissions">Allows read and write for revoked permissions. Not for use by normal applications.</string>
   <string name="profile_picker_title">Profiles</string>
   <string name="profile_none">None</string>
-  <string name="profileNameDefault">Default</string>
+  <string name="profileNameDefault">الإفتراضى</string>
   <string name="profileNameWork">Work</string>
   <string name="profileNameHome">Home</string>
   <string name="profileNameSilent">Silent</string>
@@ -80,7 +80,7 @@
   <string name="animation_slide_left_no_fade">Slide in left (No fade)</string>
   <string name="animation_slide_up">Slide in bottom</string>
   <string name="animation_slide_down">Slide in top</string>
-  <string name="animation_default">Default</string>
+  <string name="animation_default">الإفتراضى</string>
   <string name="animation_translucent">Translucent</string>
   <string name="animation_grow_shrink">Grow in (Top)</string>
   <string name="animation_grow_shrink_center">Grow in (Center)</string>

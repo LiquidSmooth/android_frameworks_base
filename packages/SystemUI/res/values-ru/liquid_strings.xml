@@ -204,21 +204,21 @@
   <string name="floating_mode_blacklisted_app">Текущего приложения в черный список, как она не может работать, как ожидалось в плавающий режим </string>
   <string name="status_bar_notification_floating_item_title">Плавающий режим</string>
   <string name="status_bar_floating_no_interface">Приложение не предоставляет интерфейс</string>
-  <string name="hover_cling_text">Hover is now enabled.\n\nWhen a new notification arrives, an overlay will show allowing you to respond to it without leaving current app.</string>
+  <string name="hover_cling_text">Hover включен.\n\nКогда вы получите новое уведомление, появится окно уведомления, что позволит вам ответить на него не покидая текущее приложение.</string>
   <string name="recents_swipe_floating_title">Свыйп для плавающего режима</string>
   <string name="recents_swipe_floating_message_portrait">Вы хотели бы Смахнуть влево для открытия приложения в плавающем окне?</string>
   <string name="recents_swipe_floating_message_landscape">Вы хотели бы Смахнуть вниз для открытия приложения в плавающем окне?</string>
   <string name="status_bar_notification_swipe_floating_title">Смахнуть для плавающего режима</string>
   <string name="status_bar_notification_swipe_floating_message">Вы хотели бы Смахнуть влево для открытия приложения в плавающем окне?</string>
-  <string name="status_bar_notification_heads_up_enable_title">Enable heads up</string>
-  <string name="status_bar_notification_heads_up_disable_title">Disable heads up</string>
-  <string name="heads_up_snooze_message">Heads up is disabled for <xliff:g id="number">%d</xliff:g> minutes.</string>
+  <string name="status_bar_notification_heads_up_enable_title">Включить \"Уведомления поверх\"</string>
+  <string name="status_bar_notification_heads_up_disable_title">Выключить \"Уведомления поверх\"</string>
+  <string name="heads_up_snooze_message">\"Уведомления поверх\" будет выключено в течение <xliff:g id="number">%d</xliff:g> минут[ы].</string>
   <string name="power_ac"> (AC)</string>
   <string name="power_usb"> (USB)</string>
-  <string name="power_wireless"> (wireless)</string>
+  <string name="power_wireless"> (беспроводной)</string>
   <string name="power_ac_usb"> (AC+USB)</string>
-  <string name="pie_date_format">ccc, dd MMM yyyy</string>
-  <string name="pie_hour_format_12">hh:mm</string>
-  <string name="pie_hour_format_24">HH:mm</string>
+  <string name="pie_date_format">ccc, дд МММ гггг</string>
+  <string name="pie_hour_format_12">чч:мм</string>
+  <string name="pie_hour_format_24">ЧЧ:мм</string>
   <string name="pie_am_pm">a</string>
 </resources>

@@ -163,12 +163,12 @@
   <string name="pie_phone_status_no_service">Brak usługi</string>
   <string name="pie_phone_status_airplane_mode">Tryb samolotowy włączony</string>
   <string name="pie_phone_status_emergency_only">Tylko połączenia alarmowe</string>
-  <string name="smart_pulldown_disabled">Smart pulldown is disabled</string>
+  <string name="smart_pulldown_disabled">Inteligentne przesunięcie w dół jest wyłączone</string>
   <string name="accessibility_ime_navigation_left">Kursor w lewo</string>
   <string name="accessibility_ime_navigation_right">Kursor w prawo</string>
   <string name="active_display_privacy_content">Treść wiadomości nie wyświetla się ze względu na ustawienia trybu prywatnego</string>
-  <string name="accessibility_halo">Create notification halo.</string>
-  <string name="accessibility_hover">Create notification hover.</string>
+  <string name="accessibility_halo">Tworzenie powiadomienia halo.</string>
+  <string name="accessibility_hover">Tworzenie powiadomienia hover.</string>
   <string name="halo_dismiss">Odrzucenie powiadomienia</string>
   <string name="halo_hide">Ukryj</string>
   <string name="halo_clear_all">Odrzuć wszystkie powiadomienia</string>

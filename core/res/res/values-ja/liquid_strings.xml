@@ -20,8 +20,8 @@
   <string name="permlab_changePrivacyGuardState">プライバシー保護を有効/無効にする</string>
   <string name="permdesc_changePrivacyGuardState">アプリに、他のアプリがプライバシー保護で実行するかどうか変更することを許可します。アプリがプライバシー保護で実行されるとそのアプリは連絡先、通話履歴、メッセージなどの個人データにアクセスできなくなります。</string>
   <string name="privacy_guard_notification">プライバシー保護はアクティブです</string>
-  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access personal data</string>
-  <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access custom permissions</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g>は個人データにアクセスできません</string>
+  <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g>はカスタム権限にアクセスできません</string>
   <string name="default_string">既定</string>
   <string name="reboot_system" product="tablet">タブレットを再起動</string>
   <string name="reboot_system" product="default">携帯電話を再起動</string>
@@ -32,7 +32,7 @@
   <string name="reboot_bootmenu">ブートメニュー</string>
   <string name="reboot_fastboot">ファストブート</string>
   <string name="reboot_download">ダウンロード</string>
-  <string name="reboot_soft">Soft reboot</string>
+  <string name="reboot_soft">ソフトリブート</string>
   <string name="reboot_progress">再起動中\u2026</string>
   <string name="reboot_confirm">携帯電話は再起動します。</string>
   <string name="global_action_reboot">再起動</string>
@@ -91,12 +91,12 @@
   <string name="setting_confirmation_ask_me_later">後で尋ねる</string>
   <string name="setting_confirmation_yes">はい</string>
   <string name="setting_confirmation_no">いいえ</string>
-  <string name="setting_reset_hint_title">To reset preferences:</string>
+  <string name="setting_reset_hint_title">設定をリセットする方法:</string>
   <string name="setting_reset_hint_message">
         <![CDATA[
-        <p>Open <b>Settings</b><br/>
-        Below Personal divider: <b>Backup & Reset</b><br/>
-        Below Personalization divider: <b>Reset preferences</b></p>
+        <p><b>設定</b>を開く<br/>
+        ユーザー設定カテゴリ: <b>バックアップとリセット</b><br/>
+        個人設定カテゴリ: <b>設定をリセット</b></p>
         ]]></string>
   <string name="notify_turn_wifi_off_title">Wi-Fiをオフにする</string>
   <string name="permlab_interceptSmsSent">送信するSMSの傍受</string>
@@ -113,5 +113,5 @@
   <string name="permdesc_resetBatteryStats">現在の電池消費量の低レベルデータをリセットすることをアプリに許可します。</string>
   <string name="permlab_changeHeadsUpState">有効にするかどうかたずねる</string>
   <string name="permdesc_changeHeadsUpState">アプリケーション別のアプリケーションは通知を表示する通常通知を頭として許可されているかどうかを変更することができます。</string>
-  <string name="usb_storage_notification_manage_message">Tap to manage</string>
+  <string name="usb_storage_notification_manage_message">タップして管理する</string>
 </resources>

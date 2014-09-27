@@ -30,4 +30,14 @@
         You have incorrectly drawn your unlock gesture <xliff:g id="number">%d</xliff:g> times.
         \n\nTry again in <xliff:g id="number">%d</xliff:g> seconds.
     </string>
+  <plurals name="missed_calls">
+    <item quantity="other">%d missed calls</item>
+  </plurals>
+  <plurals name="unread_messages">
+    <item quantity="other">%d unread messages</item>
+  </plurals>
+  <string name="missed_call">missed call</string>
+  <string name="message_from">message from</string>
+  <string name="message_from_person">message from %1$s</string>
+  <string name="full_wday_month_day_no_year">EEEEMMMMd</string>
 </resources>

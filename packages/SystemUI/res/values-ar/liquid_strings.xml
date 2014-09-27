@@ -17,7 +17,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="quick_settings_battery_charging">Charging</string>
+  <string name="quick_settings_battery_charging">جارى الشحن</string>
   <string name="quick_settings_battery_discharging">Discharging</string>
   <string name="app_killed_message">App Killed</string>
   <string name="screenshot_notification_delete">Delete</string>
@@ -37,7 +37,7 @@
   <string name="shortcut_shakeevent">Shake events</string>
   <string name="shortcut_torch">Torch</string>
   <string name="shortcut_reboot">Reboot</string>
-  <string name="shortcut_recovery">Recovery</string>
+  <string name="shortcut_recovery">ريكوفرى</string>
   <string name="shortcut_last_app">Last App</string>
   <string name="shortcut_screenshot">Screenshot</string>
   <string name="shortcut_volume">Volume</string>
@@ -65,7 +65,7 @@
   <string name="quick_settings_label_enabled">On</string>
   <string name="quick_settings_label_disabled">Off</string>
   <string name="quick_settings_ringer_normal">Sound</string>
-  <string name="quick_settings_lockscreen">Lock screen</string>
+  <string name="quick_settings_lockscreen">شاشة القفل</string>
   <string name="quick_settings_network_type">Status</string>
   <string name="quick_settings_report_bug">Report bug</string>
   <string name="quick_settings_sync">Sync</string>
@@ -97,7 +97,7 @@
   <string name="quick_settings_music_schedule_start">Start timer</string>
   <string name="quick_settings_music_schedule_cancel">Clear timer</string>
   <string name="quick_settings_music_schedule_update">Update timer</string>
-  <string name="quick_settings_reboot_recovery">Recovery</string>
+  <string name="quick_settings_reboot_recovery">ريكوفرى</string>
   <string name="quick_settings_reboot">Reboot</string>
   <string name="quick_settings_theme_switch_dark">Dark theme</string>
   <string name="quick_settings_theme_switch_light">Light theme</string>
@@ -126,7 +126,7 @@
   <string name="quick_settings_reminder_help_message">Touch the empty space above to set or change the reminder. Long-press to clear the current reminder.</string>
   <string name="quick_settings_battery_saver_label">Battery saver</string>
   <string name="quick_settings_network_type">Status</string>
-  <string name="quick_settings_network_unknown">Unknown</string>
+  <string name="quick_settings_network_unknown">غير معروف</string>
   <string name="quick_settings_network_disable">No internet</string>
   <string name="quick_settings_compass_off">Compass off</string>
   <string name="quick_settings_compass_init">Initializing\u2026</string>

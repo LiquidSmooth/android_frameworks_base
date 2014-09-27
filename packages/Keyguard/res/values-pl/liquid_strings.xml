@@ -27,7 +27,20 @@
   <string name="kg_wrong_gesture">Zły gest</string>
   <string name="kg_gesture_instructions">Narysuj swój gest</string>
   <string name="kg_too_many_failed_gesture_attempts_dialog_message">
-        You have incorrectly drawn your unlock gesture <xliff:g id="number">%d</xliff:g> times.
-        \n\nTry again in <xliff:g id="number">%d</xliff:g> seconds.
+        Wzór odblokowania został nieprawidłowo narysowany <xliff:g id="NUMBER_0">%d</xliff:g> razy. "\n\n"Spróbuj ponownie za <xliff:g id="NUMBER_1">%d</xliff:g> s.
     </string>
+  <plurals name="missed_calls">
+    <item quantity="one">%d missed call</item>
+    <item quantity="few">%d missed calls</item>
+    <item quantity="other">%d missed calls</item>
+  </plurals>
+  <plurals name="unread_messages">
+    <item quantity="one">%d unread message</item>
+    <item quantity="few">%d unread messages</item>
+    <item quantity="other">%d unread messages</item>
+  </plurals>
+  <string name="missed_call">missed call</string>
+  <string name="message_from">message from</string>
+  <string name="message_from_person">message from %1$s</string>
+  <string name="full_wday_month_day_no_year">EEEEMMMMd</string>
 </resources>
