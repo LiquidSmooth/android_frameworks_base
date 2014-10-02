@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- These resources are around just to allow their values to be customized
+     for different hardware and product builds. -->
+<resources>
+
+    <bool name="config_showSdcardAbsentIndicator">false</bool>
+    <bool name="config_showWifiIndicatorWhenEnabled">false</bool>
+    <bool name="config_showGpsIndicator">false</bool>
+    <bool name="config_showTogglesLayout">false</bool>
+    <bool name="config_showBrightnessToggles">false</bool>
+    <bool name="config_showHotSpotToggles">false</bool>
+    <bool name="config_showSyncToggles">false</bool>
+    <bool name="config_showGpsToggles">false</bool>
+
+</resources>
