@@ -44,11 +44,12 @@ import android.content.res.Resources;
 import android.content.ServiceConnection;
 import android.content.res.ThemeConfig;
 import android.database.ContentObserver;
-import android.graphics.PixelFormat;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.Rect;
+import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.BitmapDrawable;
@@ -206,6 +207,9 @@ public abstract class BaseStatusBar extends SystemUI implements
     protected ImageView mHaloButton;
     protected boolean mHaloButtonVisible = true;
 
+    // left-hand icons
+    public LinearLayout mStatusIcons;
+
     private Runnable mPanelCollapseRunnable = new Runnable() {
         @Override
         public void run() {
@@ -334,6 +338,26 @@ public abstract class BaseStatusBar extends SystemUI implements
                 updateNotificationIcons();
             }
         }
+    };
+
+    private class SettingsObserver extends ContentObserver {
+    public SettingsObserver(Handler handler) {
+        super(handler);
+    }
+
+    public void observe() {
+        ContentResolver resolver = mContext.getContentResolver();
+        update();
+    }
+
+    @Override
+    public void onChange(boolean selfChange) {
+        update();
+    }
+
+    private void update() {
+        ContentResolver resolver = mContext.getContentResolver();
+    }
     };
 
     private RemoteViews.OnClickHandler mOnClickHandler = new RemoteViews.OnClickHandler() {
@@ -509,6 +533,19 @@ public abstract class BaseStatusBar extends SystemUI implements
 
         pieOnStart();
 
+    // Listen for status bar icon color changes
+        mContext.getContentResolver().registerContentObserver(
+               Settings.System.getUriFor(Settings.System.SYSTEM_ICON_COLOR), false, new ContentObserver(new Handler()) {
+            @Override
+            public void onChange(boolean selfChange) {
+                updateIconColor();
+            }});
+
+        updateIconColor();
+
+        SettingsObserver settingsObserver = new SettingsObserver(new Handler());
+        settingsObserver.observe();
+
         // Listen for HALO enabled
 
         mContext.getContentResolver().registerContentObserver(
@@ -568,6 +605,26 @@ public abstract class BaseStatusBar extends SystemUI implements
 
         updateHalo();
         updateHoverActive();
+    }
+
+    private void updateIconColor() {
+        ContentResolver resolver = mContext.getContentResolver();
+
+    boolean mCustomColor = Settings.System.getIntForUser(resolver,
+        Settings.System.CUSTOM_SYSTEM_ICON_COLOR, 0, UserHandle.USER_CURRENT) == 1;
+    int systemColor = Settings.System.getIntForUser(resolver,
+        Settings.System.SYSTEM_ICON_COLOR, -2, UserHandle.USER_CURRENT);
+
+    if (mStatusIcons != null) {
+        for(int i = 0; i < mStatusIcons.getChildCount(); i++) {
+        Drawable iconDrawable = ((ImageView)mStatusIcons.getChildAt(i)).getDrawable();
+        if (mCustomColor) {
+            iconDrawable.setColorFilter(systemColor, PorterDuff.Mode.SRC_ATOP);
+        } else {
+            iconDrawable.clearColorFilter();
+        }
+            }
+    }
     }
 
     public void setHaloTaskerActive(boolean haloTaskerActive, boolean updateNotificationIcons) {
