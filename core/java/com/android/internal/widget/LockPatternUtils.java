@@ -149,6 +149,9 @@ public class LockPatternUtils {
             = "lockscreen.power_button_instantly_locks";
     public final static String LOCKSCREEN_WIDGETS_ENABLED = "lockscreen.widgets_enabled";
 
+    public final static String LOCKSCREEN_APPLICATION_WIDGET_ENABLED =
+            "lockscreen.application_widget_enabled";
+
     public final static String PASSWORD_HISTORY_KEY = "lockscreen.passwordhistory";
 
     private static final String LOCK_SCREEN_OWNER_INFO = Settings.Secure.LOCK_SCREEN_OWNER_INFO;
@@ -1567,4 +1570,19 @@ public class LockPatternUtils {
         setBoolean(LOCKSCREEN_WIDGETS_ENABLED, enabled, userId);
     }
 
+    public boolean getApplicationWidgetEnabled() {
+        return getApplicationWidgetEnabled(getCurrentOrCallingUserId());
+    }
+
+    public boolean getApplicationWidgetEnabled(int userId) {
+        return getBoolean(LOCKSCREEN_APPLICATION_WIDGET_ENABLED, true, userId);
+    }
+
+    public void setApplicationWidgetEnabled(boolean enabled) {
+        setApplicationWidgetEnabled(enabled, getCurrentOrCallingUserId());
+    }
+
+    public void setApplicationWidgetEnabled(boolean enabled, int userId) {
+        setBoolean(LOCKSCREEN_APPLICATION_WIDGET_ENABLED, enabled, userId);
+    }
 }

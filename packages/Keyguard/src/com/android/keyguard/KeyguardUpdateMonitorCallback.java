@@ -181,4 +181,9 @@ class KeyguardUpdateMonitorCallback {
      *    {@link WindowManagerPolicy#LID_CLOSED}
      */
     public void onLidStateChanged(int state) { }
+
+    /**
+     * Called when the package name and the icon change for the application widget
+     */
+    void onApplicationWidgetUpdated(String packageName, byte[] icon) { }
 }

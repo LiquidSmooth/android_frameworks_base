@@ -217,4 +217,9 @@
     <string name="theme_install_error_title">Failed to install theme</string>
     <string name="theme_install_error_message">%s failed to install</string>
 
+    <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
+    <string name="permlab_keyguardApplicationWidget">set keyguard application widget</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_keyguardApplicationWidget">Allows an app to set the application widget on the keyguard.</string>
+
 </resources>
