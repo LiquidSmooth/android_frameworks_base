@@ -37,7 +37,7 @@
   <string name="shortcut_shakeevent">Shake events</string>
   <string name="shortcut_torch">Torch</string>
   <string name="shortcut_reboot">Reboot</string>
-  <string name="shortcut_recovery">Recovery</string>
+  <string name="shortcut_recovery">Återställning</string>
   <string name="shortcut_last_app">Last App</string>
   <string name="shortcut_screenshot">Screenshot</string>
   <string name="shortcut_volume">Volume</string>
@@ -97,7 +97,7 @@
   <string name="quick_settings_music_schedule_start">Start timer</string>
   <string name="quick_settings_music_schedule_cancel">Clear timer</string>
   <string name="quick_settings_music_schedule_update">Update timer</string>
-  <string name="quick_settings_reboot_recovery">Recovery</string>
+  <string name="quick_settings_reboot_recovery">Återställning</string>
   <string name="quick_settings_reboot">Reboot</string>
   <string name="quick_settings_theme_switch_dark">Dark theme</string>
   <string name="quick_settings_theme_switch_light">Light theme</string>

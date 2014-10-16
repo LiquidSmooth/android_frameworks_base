@@ -25,9 +25,9 @@
   <string name="default_string">Default</string>
   <string name="reboot_system" product="tablet">Reboot tablet</string>
   <string name="reboot_system" product="default">Reboot phone</string>
-  <string name="global_action_screenshot">Screenshot</string>
-  <string name="reboot_reboot">Reboot</string>
-  <string name="reboot_recovery">Recovery</string>
+  <string name="global_action_screenshot">Skärmbild</string>
+  <string name="reboot_reboot">Omstart</string>
+  <string name="reboot_recovery">Återställning</string>
   <string name="reboot_bootloader">Bootloader</string>
   <string name="reboot_bootmenu">Bootmenu</string>
   <string name="reboot_fastboot">Fastboot</string>
@@ -37,7 +37,7 @@
   <string name="reboot_confirm">Your phone will reboot.</string>
   <string name="global_action_reboot">Reboot</string>
   <string name="global_action_choose_profile">Profile</string>
-  <string name="notify_turn_wifi_ap_off_title">Turn Wi-Fi AP off</string>
+  <string name="notify_turn_wifi_ap_off_title">Inaktivera Wi-Fi ap</string>
   <string name="global_actions_expanded_desktop_mode_on_status">Expanded desktop is ON</string>
   <string name="global_actions_expanded_desktop_mode_off_status">Expanded desktop is OFF</string>
   <string name="global_actions_pie_mode_on_status">Pie control is ON</string>

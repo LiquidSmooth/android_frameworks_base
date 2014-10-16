@@ -19,10 +19,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="keyboardview_keycode_random">Reload random buttons</string>
   <string name="lockscreen_gesture_instructions">Draw gesture to unlock</string>
-  <string name="lockscreen_gesture_correct">Correct!</string>
-  <string name="lockscreen_gesture_wrong">Try again</string>
+  <string name="lockscreen_gesture_correct">¡Correcto!</string>
+  <string name="lockscreen_gesture_wrong">Inténtelo de nuevo</string>
   <string name="keyguard_accessibility_gesture_unlock">Gesture unlock.</string>
-  <string name="keyguard_accessibility_gesture_area">Gesture area.</string>
+  <string name="keyguard_accessibility_gesture_area">Área de gesto.</string>
   <string name="kg_forgot_gesture_button_text">Forgot Gesture</string>
   <string name="kg_wrong_gesture">Wrong Gesture</string>
   <string name="kg_gesture_instructions">Dibujar su gesto</string>
@@ -38,8 +38,8 @@
     <item quantity="one">%d unread message</item>
     <item quantity="other">%d unread messages</item>
   </plurals>
-  <string name="missed_call">missed call</string>
-  <string name="message_from">message from</string>
-  <string name="message_from_person">message from %1$s</string>
+  <string name="missed_call">Llamada permida</string>
+  <string name="message_from">mensaje de</string>
+  <string name="message_from_person">mensaje de %1$s</string>
   <string name="full_wday_month_day_no_year">EEEEMMMMd</string>
 </resources>

@@ -114,6 +114,6 @@
   <string name="permlab_changeHeadsUpState">Povolit nebo zakázat varování</string>
   <string name="permdesc_changeHeadsUpState">Umožňuje změnit, zda jiná aplikace má dovoleno zobrazovat normální upozornění jako varování.</string>
   <string name="usb_storage_notification_manage_message">Klepněte pro správu</string>
-  <string name="theme_install_error_title">Failed to install theme</string>
-  <string name="theme_install_error_message">%s failed to install</string>
+  <string name="theme_install_error_title">Nepodařilo se nainstalovat motiv</string>
+  <string name="theme_install_error_message">%s se nepodařilo nainstalovat</string>
 </resources>

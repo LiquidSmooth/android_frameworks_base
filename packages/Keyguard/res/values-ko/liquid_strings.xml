@@ -17,27 +17,26 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="keyboardview_keycode_random">Reload random buttons</string>
-  <string name="lockscreen_gesture_instructions">Draw gesture to unlock</string>
-  <string name="lockscreen_gesture_correct">Correct!</string>
-  <string name="lockscreen_gesture_wrong">Try again</string>
-  <string name="keyguard_accessibility_gesture_unlock">Gesture unlock.</string>
-  <string name="keyguard_accessibility_gesture_area">Gesture area.</string>
-  <string name="kg_forgot_gesture_button_text">Forgot Gesture</string>
-  <string name="kg_wrong_gesture">Wrong Gesture</string>
-  <string name="kg_gesture_instructions">Draw your gesture</string>
-  <string name="kg_too_many_failed_gesture_attempts_dialog_message">
-        You have incorrectly drawn your unlock gesture <xliff:g id="number">%d</xliff:g> times.
-        \n\nTry again in <xliff:g id="number">%d</xliff:g> seconds.
-    </string>
+  <string name="keyboardview_keycode_random">랜덤버튼을 다시로드합니다.</string>
+  <string name="lockscreen_gesture_instructions">잠금을 해제할려면 제스처를 그리세요.</string>
+  <string name="lockscreen_gesture_correct">맞습니다!!</string>
+  <string name="lockscreen_gesture_wrong">재시도 해주세요 비번이 틀립니다.</string>
+  <string name="keyguard_accessibility_gesture_unlock">제스처 잠금 해제</string>
+  <string name="keyguard_accessibility_gesture_area">제스처 영역입니다.</string>
+  <string name="kg_forgot_gesture_button_text">제스처 forgot</string>
+  <string name="kg_wrong_gesture">잘못된 제스처</string>
+  <string name="kg_gesture_instructions">제스처를 그려주세요.</string>
+  <string name="kg_too_many_failed_gesture_attempts_dialog_message">제스처잠금해제를<xliff:g id="number">%d</xliff:g> 잘못그렸습니다.
+\n\nTry again in <xliff:g id="number">%d</xliff:g> 몆소후에 다시 시도 해주세요
+</string>
   <plurals name="missed_calls">
-    <item quantity="other">%d missed calls</item>
+    <item quantity="other">%d 부재중 전화</item>
   </plurals>
   <plurals name="unread_messages">
-    <item quantity="other">%d unread messages</item>
+    <item quantity="other">%d 몇개의 읽지 않은 메세지</item>
   </plurals>
-  <string name="missed_call">missed call</string>
-  <string name="message_from">message from</string>
-  <string name="message_from_person">message from %1$s</string>
+  <string name="missed_call">부재중 전화</string>
+  <string name="message_from">메신저 프럼</string>
+  <string name="message_from_person">메세지 프럼 %1$s</string>
   <string name="full_wday_month_day_no_year">EEEEMMMMd</string>
 </resources>

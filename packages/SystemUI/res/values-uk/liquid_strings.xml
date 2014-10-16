@@ -168,7 +168,7 @@
   <string name="accessibility_ime_navigation_right">Курсор вправо</string>
   <string name="active_display_privacy_content">Вміст повідомлення не показується, оскільки увімкнуто режим конфіденційності</string>
   <string name="accessibility_halo">Створити сповіщення halo.</string>
-  <string name="accessibility_hover">Create notification hover.</string>
+  <string name="accessibility_hover">Створити hover-сповіщення.</string>
   <string name="halo_dismiss">Скасувати сповіщення</string>
   <string name="halo_hide">Сховати</string>
   <string name="halo_clear_all">Скасувати всі сповіщення</string>
@@ -199,12 +199,12 @@
   <string name="app_stop_item_title">Завершити програму</string>
   <string name="advanced_dev_option_wipe_app">Стерти дані програми</string>
   <string name="advanced_dev_option_force_stop">Примусово припинити</string>
-  <string name="status_bar_notification_hide_icon_packages">Hide app notification icon(s)</string>
+  <string name="status_bar_notification_hide_icon_packages">Приховати значки сповіщень</string>
   <string name="status_bar_recent_floating_item_title">Плаваючий режим</string>
-  <string name="floating_mode_blacklisted_app">The current app is blacklisted as it may not work as expected in floating mode </string>
+  <string name="floating_mode_blacklisted_app">Поточна програма в чорному списку, і вона може не працювати належним чином у віконному режимі </string>
   <string name="status_bar_notification_floating_item_title">Плаваючий режим</string>
-  <string name="status_bar_floating_no_interface">App provides no interface</string>
-  <string name="hover_cling_text">Hover is now enabled.\n\nWhen a new notification arrives, an overlay will show allowing you to respond to it without leaving current app.</string>
+  <string name="status_bar_floating_no_interface">Програма не надає інтерфейсу</string>
+  <string name="hover_cling_text">Hover тепер увімкнено.\n\nКоли надходить нове сповіщення, появиться оверлей, і дозволить відповісти на нього не залишаючи поточну програму.</string>
   <string name="recents_swipe_floating_title">Swipe recents to float</string>
   <string name="recents_swipe_floating_message_portrait">Would you like to swipe left to open apps in floating window?</string>
   <string name="recents_swipe_floating_message_landscape">Would you like to swipe down to open apps in floating window?</string>

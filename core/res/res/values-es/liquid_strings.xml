@@ -30,9 +30,9 @@
   <string name="reboot_recovery">Recovery</string>
   <string name="reboot_bootloader">Bootloader</string>
   <string name="reboot_bootmenu">Menú de arranque</string>
-  <string name="reboot_fastboot">Fastboot</string>
+  <string name="reboot_fastboot">Reinicio Rápido</string>
   <string name="reboot_download">Descargar</string>
-  <string name="reboot_soft">Soft reboot</string>
+  <string name="reboot_soft">Reinicio rápido</string>
   <string name="reboot_progress">Reiniciando\u2026</string>
   <string name="reboot_confirm">El teléfono se reiniciará.</string>
   <string name="global_action_reboot">Reiniciar</string>
@@ -91,12 +91,12 @@
   <string name="setting_confirmation_ask_me_later">Preguntar más tarde</string>
   <string name="setting_confirmation_yes">Sí</string>
   <string name="setting_confirmation_no">No</string>
-  <string name="setting_reset_hint_title">To reset preferences:</string>
+  <string name="setting_reset_hint_title">Para restablecer las preferencias:</string>
   <string name="setting_reset_hint_message">
-        <![CDATA[
-        <p>Open <b>Settings</b><br/>
-        Below Personal divider: <b>Backup & Reset</b><br/>
-        Below Personalization divider: <b>Reset preferences</b></p>
+         <![CDATA[
+        <p>Abrir<b>Ajustes</b><br/>
+        En la sección Personal: <b>Copia de seguridad</b><br/>
+        En la sección Personalización: <b>Reiniciar</b></p>
         ]]></string>
   <string name="notify_turn_wifi_off_title">Desactivar Wi-Fi</string>
   <string name="permlab_interceptSmsSent">interceptar mensajes SMS salientes</string>
@@ -113,7 +113,7 @@
   <string name="permdesc_resetBatteryStats">Permite que la aplicación restablezca los datos del uso de la batería.</string>
   <string name="permlab_changeHeadsUpState">habilitar y deshabilitar heads up</string>
   <string name="permdesc_changeHeadsUpState">Permite la aplicación cambiar si otra aplicación se permite mostrar notificaciones normales como cabezas de notificación.</string>
-  <string name="usb_storage_notification_manage_message">Tap to manage</string>
-  <string name="theme_install_error_title">Failed to install theme</string>
+  <string name="usb_storage_notification_manage_message">Toque para gestionar</string>
+  <string name="theme_install_error_title">Error al instalar el tema</string>
   <string name="theme_install_error_message">%s failed to install</string>
 </resources>

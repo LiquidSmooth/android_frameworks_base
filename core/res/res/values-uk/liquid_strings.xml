@@ -116,6 +116,6 @@
   <string name="permlab_changeHeadsUpState">увімкнути або вимкнути спливаючі сповіщення</string>
   <string name="permdesc_changeHeadsUpState">Дозволити програмі змінювати вигляд сповіщень: показувати сповіщення як звичайні або спливаючі.</string>
   <string name="usb_storage_notification_manage_message">Натисніть, щоб керувати</string>
-  <string name="theme_install_error_title">Failed to install theme</string>
-  <string name="theme_install_error_message">%s failed to install</string>
+  <string name="theme_install_error_title">Не вдалося встановити тему</string>
+  <string name="theme_install_error_message">%s не вдалося встановити</string>
 </resources>

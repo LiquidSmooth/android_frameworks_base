@@ -114,6 +114,6 @@
   <string name="permlab_changeHeadsUpState">heads up engedélyezése vagy letiltása</string>
   <string name="permdesc_changeHeadsUpState">Lehetővé teszi az alkalmazás számára, hogy egy másik alkalmazás normál értesítéseit mint lebegő értesítéseket jelenítse meg.</string>
   <string name="usb_storage_notification_manage_message">Érintse meg a kezeléshez</string>
-  <string name="theme_install_error_title">Failed to install theme</string>
-  <string name="theme_install_error_message">%s failed to install</string>
+  <string name="theme_install_error_title">Téma telepítése nem sikerült</string>
+  <string name="theme_install_error_message">%s telepítése nem sikerült</string>
 </resources>

@@ -17,105 +17,103 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="permlab_changePrivacyGuardState">enable or disable privacy guard</string>
-  <string name="permdesc_changePrivacyGuardState">Allows the app to change whether another app runs with Privacy Guard. When an app is running with Privacy Guard, it will not have access to personal data such as contacts, call logs, or messages.</string>
-  <string name="privacy_guard_notification">Privacy Guard active</string>
-  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access personal data</string>
-  <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access custom permissions</string>
+  <string name="permlab_changePrivacyGuardState">프라이버시가드 활성화또는 비활성화</string>
+  <string name="permdesc_changePrivacyGuardState">프라이버시 가드와 함께 실행되는 다른앱으로 앱을 바꾸는것을 허용하기. 앱이 프라이버시 가드와 실행중일때, 연락처, 통화기록, 메시지와 같은 개인데이터에 접근할수없음.</string>
+  <string name="privacy_guard_notification">프라이버시가드 활성화</string>
+  <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> 은(는) 개인데이터에 접근할 수 없습니다.</string>
+  <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> 은(는) 사용자 지정 권한에 접근할 수 없습니다.</string>
   <string name="default_string">기본</string>
-  <string name="reboot_system" product="tablet">Reboot tablet</string>
-  <string name="reboot_system" product="default">Reboot phone</string>
-  <string name="global_action_screenshot">Screenshot</string>
+  <string name="reboot_system" product="tablet">태블릿을 다시 부팅합니다.</string>
+  <string name="reboot_system" product="default">휴대전화를 재부팅합니다.</string>
+  <string name="global_action_screenshot">스크린샷 화면캡쳐</string>
   <string name="reboot_reboot">재부팅</string>
   <string name="reboot_recovery">복구모드</string>
-  <string name="reboot_bootloader">Bootloader</string>
-  <string name="reboot_bootmenu">Bootmenu</string>
-  <string name="reboot_fastboot">Fastboot</string>
+  <string name="reboot_bootloader">다운로드모드</string>
+  <string name="reboot_bootmenu">부트메뉴</string>
+  <string name="reboot_fastboot">빠른재부팅</string>
   <string name="reboot_download">다운로드</string>
-  <string name="reboot_soft">Soft reboot</string>
-  <string name="reboot_progress">Rebooting\u2026</string>
-  <string name="reboot_confirm">Your phone will reboot.</string>
+  <string name="reboot_soft">빠른재부팅</string>
+  <string name="reboot_progress">재부팅중/u2026</string>
+  <string name="reboot_confirm">휴대전화가 재부팅됩니다.</string>
   <string name="global_action_reboot">재부팅</string>
   <string name="global_action_choose_profile">프로파일</string>
-  <string name="notify_turn_wifi_ap_off_title">Turn Wi-Fi AP off</string>
-  <string name="global_actions_expanded_desktop_mode_on_status">Expanded desktop is ON</string>
-  <string name="global_actions_expanded_desktop_mode_off_status">Expanded desktop is OFF</string>
-  <string name="global_actions_pie_mode_on_status">Pie control is ON</string>
-  <string name="global_actions_pie_mode_off_status">Pie control is OFF</string>
-  <string name="disable_pie_navigation_error">You cannot disable pie controls. No other navigation is enabled. Enable first the navigation bar to turn off pie controls.</string>
-  <string name="global_actions_nav_bar_mode_on_status">Navigation bar is ON</string>
-  <string name="global_actions_nav_bar_mode_off_status">Navigation bar is OFF</string>
-  <string name="disable_navigation_pie_error">You cannot disable the navigation bar. No other navigation is enabled. Enable first pie controls to turn off the navigation bar.</string>
+  <string name="notify_turn_wifi_ap_off_title">와이파이 핫스팟을  끕니다.</string>
+  <string name="global_actions_expanded_desktop_mode_on_status">데스크탑 확장을 킵니다.</string>
+  <string name="global_actions_expanded_desktop_mode_off_status">확장데스크탑을 끕니다.</string>
+  <string name="global_actions_pie_mode_on_status">파이 컨트롤을 킵니다.</string>
+  <string name="global_actions_pie_mode_off_status">파이 컨트롤을 끕니다.</string>
+  <string name="disable_pie_navigation_error">파이컨트롤을 실행할수 없습니다.  네비게이션바가 활성화 되있습니다.  네비게이션바를 꺼주세요</string>
+  <string name="global_actions_nav_bar_mode_on_status">네비게이션바를 킵니다.</string>
+  <string name="global_actions_nav_bar_mode_off_status">네비게이션바를 끕니다.</string>
+  <string name="disable_navigation_pie_error">네비게이션바를 실행할수 없습니다.
+Pie 컨트롤을 비활성화 해주세요.</string>
   <string name="accessibility_target_direction">Swipe to activate a target</string>
   <string name="stylus_app_not_installed">%s 은(는) 설치 되어 있지 않습니다.</string>
   <string name="theme_auto_switch_mode_error">자동 밝기 상태 변경 모드가 켜져있습니다. 수동 변경이 불가능 합니다.</string>
-  <string name="permlab_preventpower">prevent power key</string>
-  <string name="permdesc_preventpower">Allows an application to override the power key</string>
-  <string name="permlab_recordScreen">Record content being displayed</string>
-  <string name="permdesc_recordScreen">Allows the app to record the users screen.</string>
-  <string name="permlab_revokePermissions">Allows view and edit of revoked permissions. Not for use by normal applications.</string>
-  <string name="permdesc_revokePermissions">Allows read and write for revoked permissions. Not for use by normal applications.</string>
-  <string name="profile_picker_title">Profiles</string>
+  <string name="permlab_preventpower">전원키를 방지합니다.</string>
+  <string name="permdesc_preventpower">어플리케이션에서 전원키 무시를 허용합니다.</string>
+  <string name="permlab_recordScreen">녹음 콘테츠를 표시</string>
+  <string name="permdesc_recordScreen">응용프로그램을 사용자가 녹화할수 있습니다.</string>
+  <string name="permlab_revokePermissions">폐지된 권한에서 보기와 수정을 허용할 수 있습니다. 일반 어플리케이션에 사용 하지 마세요.</string>
+  <string name="permdesc_revokePermissions">폐지된 권한에서 보기와 수정을 허용할 수 있습니다. 일반 어플리케이션에 사용 하지 마세요.</string>
+  <string name="profile_picker_title">프로필</string>
   <string name="profile_none">없음</string>
   <string name="profileNameDefault">기본</string>
-  <string name="profileNameWork">Work</string>
-  <string name="profileNameHome">Home</string>
+  <string name="profileNameWork">직장</string>
+  <string name="profileNameHome">집</string>
   <string name="profileNameSilent">무음</string>
-  <string name="profileNameNight">Night</string>
-  <string name="profileNameAutomobile">Automobile</string>
+  <string name="profileNameNight">밤</string>
+  <string name="profileNameAutomobile">자동모바일</string>
   <string name="profileGroupPhone">휴대전화</string>
   <string name="profileGroupCalendar">달력</string>
-  <string name="profileGroupGmail">Gmail</string>
+  <string name="profileGroupGmail">G메일</string>
   <string name="profileGroupEmail">이메일</string>
-  <string name="profileGroupSMS">SMS</string>
-  <string name="wildcardProfile">Other</string>
-  <string name="floating_window_snap_top">Snap top</string>
-  <string name="floating_window_snap_bottom">Snap bottom</string>
-  <string name="floating_window_snap_left">Snap left</string>
-  <string name="floating_window_snap_right">Snap right</string>
+  <string name="profileGroupSMS">메세지</string>
+  <string name="wildcardProfile">기타</string>
+  <string name="floating_window_snap_top">스냅 탑</string>
+  <string name="floating_window_snap_bottom">스냅 버튼</string>
+  <string name="floating_window_snap_left">스냅 왼쪽</string>
+  <string name="floating_window_snap_right">스냅 오른쪽</string>
   <string name="animation_fade">페이드</string>
   <string name="animation_slide_right">오른쪽에서 슬라이드</string>
   <string name="animation_slide_left">왼쪽에서 슬라이드</string>
-  <string name="animation_slide_right_no_fade">Slide in right (No fade)</string>
-  <string name="animation_slide_left_no_fade">Slide in left (No fade)</string>
+  <string name="animation_slide_right_no_fade">오른쪽에서 슬라이드(페이드 없음)</string>
+  <string name="animation_slide_left_no_fade">왼쪽에서 슬라이드 (페이드 없음)</string>
   <string name="animation_slide_up">아래에서 슬라이드</string>
   <string name="animation_slide_down">위에서 슬라이드</string>
   <string name="animation_default">기본</string>
   <string name="animation_translucent">반투명</string>
-  <string name="animation_grow_shrink">Grow in (Top)</string>
-  <string name="animation_grow_shrink_center">Grow in (Center)</string>
-  <string name="animation_grow_shrink_bottom">Grow in (Bottom)</string>
-  <string name="animation_grow_shrink_left">Grow in (Left)</string>
-  <string name="animation_grow_shrink_right">Grow in (Right)</string>
-  <string name="action_null">Blank</string>
-  <string name="setting_confirmation_ask_me_later">Ask later</string>
-  <string name="setting_confirmation_yes">Yes</string>
-  <string name="setting_confirmation_no">No</string>
-  <string name="setting_reset_hint_title">To reset preferences:</string>
-  <string name="setting_reset_hint_message">
-        <![CDATA[
-        <p>Open <b>Settings</b><br/>
-        Below Personal divider: <b>Backup & Reset</b><br/>
-        Below Personalization divider: <b>Reset preferences</b></p>
-        ]]></string>
-  <string name="notify_turn_wifi_off_title">Turn Wi-Fi off</string>
-  <string name="permlab_interceptSmsSent">intercept outgoing SMS</string>
-  <string name="permdesc_interceptSmsSent">Allows the app to intercept an outgoing SMS. Malicious apps may use this to prevent outgoing SMS messages.</string>
-  <string name="permlab_setKeyguardWallpaper">set keyguard wallpaper</string>
-  <string name="permdesc_setKeyguardWallpaper">Allows an app to change the lock screen wallpaper.</string>
-  <string name="permlab_accessThemeService">access theme service</string>
-  <string name="permdesc_accessThemeService">Allows an app to access the theme service. Should never be needed for normal apps.</string>
-  <string name="permlab_readThemes">read your theme info</string>
-  <string name="permdesc_readThemesDesc">Allows the app to read your themes and
-       determine which theme you have applied.</string>
-  <string name="permlab_writeThemes">modify your themes</string>
-  <string name="permdesc_writeThemesDesc">Allows the app to insert new themes and
-       modify which theme you have applied.</string>
-  <string name="permlab_resetBatteryStats">reset battery statistics</string>
-  <string name="permdesc_resetBatteryStats">Allows an application to reset the current low-level battery use data.</string>
-  <string name="permlab_changeHeadsUpState">enable or disable heads up</string>
-  <string name="permdesc_changeHeadsUpState">Allows the application to change whether another application is allowed to show normal notifications as heads up notification.</string>
-  <string name="usb_storage_notification_manage_message">Tap to manage</string>
-  <string name="theme_install_error_title">Failed to install theme</string>
-  <string name="theme_install_error_message">%s failed to install</string>
+  <string name="animation_grow_shrink">커지기 (위에서)</string>
+  <string name="animation_grow_shrink_center">커지기 (가운데에서)</string>
+  <string name="animation_grow_shrink_bottom">커지기 (아래에서)</string>
+  <string name="animation_grow_shrink_left">커지기 (왼쪽에서) </string>
+  <string name="animation_grow_shrink_right">커지기 (오른쪽에서)</string>
+  <string name="action_null">비었습니다.</string>
+  <string name="setting_confirmation_ask_me_later">나중에 물어보기</string>
+  <string name="setting_confirmation_yes">예</string>
+  <string name="setting_confirmation_no">아니요/취소</string>
+  <string name="setting_reset_hint_title">환경설정 재설정</string>
+  <string name="setting_reset_hint_message"><![CDATA[
+<p>열기 <b>설정</b><br/>
+Below Personal divider: <b>백업& 리셋</b><br/>
+Below Personalization divider: <b>환경설정 재설젓</b></p>
+]]></string>
+  <string name="notify_turn_wifi_off_title">와이파이 끄기</string>
+  <string name="permlab_interceptSmsSent">보내는 메세지 차단</string>
+  <string name="permdesc_interceptSmsSent">보내는 SMS를 차단 하는 애플 리 케이 션을 수 있습니다. 악의적인 애플 리 케이 션을 보내는 SMS 메시지를 방지 하기 위해 사용할 수 있습니다.</string>
+  <string name="permlab_setKeyguardWallpaper">월페이퍼 키가드 설정</string>
+  <string name="permdesc_setKeyguardWallpaper">앱을 이용해 잠금화면 사진을 바꿀수 있습니다.</string>
+  <string name="permlab_accessThemeService">테마 서비스</string>
+  <string name="permdesc_accessThemeService">테마서비스에 액세스 할수 있는 애플리케이션이 있습니다.</string>
+  <string name="permlab_readThemes">테마 정보를 읽으십시오</string>
+  <string name="permdesc_readThemesDesc">당신은 테마를 변경할수도 있습니다.</string>
+  <string name="permlab_writeThemes">테마를 수정합니다.</string>
+  <string name="permdesc_writeThemesDesc">세로운 테마를 적용하고 수정할수 있습니다.</string>
+  <string name="permlab_resetBatteryStats">배터리 통계를 다시 설정 합니다.</string>
+  <string name="permdesc_resetBatteryStats">낮은 배터리를 사용하여 데이터를 다시 설정 할수 있습니다.  오역. .</string>
+  <string name="permlab_changeHeadsUpState">헤드업을 활성화 or 비활성화</string>
+  <string name="permdesc_changeHeadsUpState"> 응용프로그램이 헤드업 알림을 수정할수 있습니다.</string>
+  <string name="usb_storage_notification_manage_message">관리 탭</string>
+  <string name="theme_install_error_title">테마설치에 실패했습니다.</string>
+  <string name="theme_install_error_message">%s 설치하지 못했습니다.</string>
 </resources>
