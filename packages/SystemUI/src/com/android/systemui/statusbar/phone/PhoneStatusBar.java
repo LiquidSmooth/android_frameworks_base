@@ -492,6 +492,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_BATTERY_STYLE),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_TICKER_ENABLED),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -576,6 +579,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 boolean navLeftInLandscape = Settings.System.getInt(resolver,
                         Settings.System.NAVBAR_LEFT_IN_LANDSCAPE, 0) == 1;
                 mNavigationBarView.setLeftInLandscape(navLeftInLandscape);
+
+            mTickerEnabled = Settings.System.getIntForUser(
+                    resolver, Settings.System.STATUS_BAR_TICKER_ENABLED,
+                    mContext.getResources().getBoolean(R.bool.enable_ticker)
+                            ? 1 : 0, UserHandle.USER_CURRENT) == 1;
             }
         }
     }
