@@ -5365,7 +5365,14 @@ public final class Settings {
          */
         public static final String DATA_TO_WIFI_CONNECT_TYPE = "data_to_wifi_connect_type";
 
-         /**
+        /**
+         * Disable the statusbar ticker
+         * Default is enabled
+         * @hide
+         */
+        public static final String TICKER_DISABLED = "ticker_disabled";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
