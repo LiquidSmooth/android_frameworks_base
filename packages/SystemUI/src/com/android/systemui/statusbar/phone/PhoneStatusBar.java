@@ -380,6 +380,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // ticker
     private View mTickerView;
     private boolean mTicking;
+    private boolean mTickerDisabled;
 
     // Tracking finger for opening/closing.
     int mEdgeBorder; // corresponds to R.dimen.status_bar_edge_ignore
@@ -622,6 +623,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.TOGGLE_CARRIER_LOGO), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.TICKER_DISABLED), false, this);
                     UserHandle.USER_ALL);
             update();
         }
@@ -894,6 +898,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mShowStatusBarCarrier = Settings.System.getInt(
                     resolver, Settings.System.STATUS_BAR_CARRIER, 0) == 1;
                     showStatusBarCarrierLabel(mShowStatusBarCarrier);
+
+            mTickerDisabled = Settings.System.getInt(
+                resolver, Settings.System.TICKER_DISABLED, 0) == 1;
         }
     }
 
@@ -1537,11 +1544,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     View.STATUS_BAR_DISABLE_CLOCK);
         }
 
+        mTickerDisabled = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.TICKER_DISABLED, 0) == 1;
         mTicker = new MyTicker(context, mStatusBarView);
 
         TickerView tickerView = (TickerView)mStatusBarView.findViewById(R.id.tickerText);
         tickerView.mTicker = mTicker;
-        if (mHaloActive) mTickerView.setVisibility(View.GONE);
 
         mEdgeBorder = res.getDimensionPixelSize(R.dimen.status_bar_edge_ignore);
 
@@ -3931,6 +3939,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         // not for you
         if (!notificationIsForCurrentUser(n)) return;
+
+        // bitches be crazy
+        if (mTickerDisabled) return;
 
         // Show the ticker if one is requested. Also don't do this
         // until status bar window is attached to the window manager,
