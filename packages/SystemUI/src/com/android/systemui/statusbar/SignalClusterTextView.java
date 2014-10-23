@@ -39,6 +39,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
 
 import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.R;
@@ -56,10 +58,15 @@ public class SignalClusterTextView
     private int mSignalClusterStyle;
     private int mPhoneState;
 
+    private int mCurrentColor = -3;
+    private boolean mCustomColor;
+    private int systemColor;
+
     private SignalStrength signalStrength;
 
     ViewGroup mMobileGroup;
     TextView mMobileSignalText;
+    ImageView mMobileIcon;
 
     Handler mHandler;
     SettingsObserver mObserver;
@@ -76,6 +83,10 @@ public class SignalClusterTextView
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_SIGNAL_TEXT), false, this,
                     UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.CUSTOM_SYSTEM_ICON_COLOR), false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SYSTEM_ICON_COLOR), false, this, UserHandle.USER_ALL);
         }
 
         void unobserve() {
@@ -108,6 +119,7 @@ public class SignalClusterTextView
 
         mMobileGroup      = (ViewGroup) findViewById(R.id.mobile_signal_text_combo);
         mMobileSignalText = (TextView) findViewById(R.id.mobile_signal_text);
+        mMobileIcon       = (ImageView) findViewById(R.id.mobile_signal_text_icon);
 
         if (!mAttached) {
             mAttached = true;
@@ -137,6 +149,7 @@ public class SignalClusterTextView
     }
 
     final void updateSignalText() {
+        int nowColor;
         if (mMobileSignalText == null) {
             return;
         }
@@ -144,8 +157,23 @@ public class SignalClusterTextView
             mMobileGroup.setVisibility(View.GONE);
             return;
         } else if (mSignalClusterStyle == SIGNAL_CLUSTER_STYLE_TEXT) {
+            if (mCustomColor) {
+                nowColor=systemColor;
+            } else {
+                if (mCurrentColor != -3) {
+                    nowColor=mCurrentColor;
+                } else {
+                    nowColor=0xFFFFFFFF;
+                }
+            }
             mMobileGroup.setVisibility(View.VISIBLE);
+            Drawable drawable = getResources().getDrawable( R.drawable.stat_sys_signal_min ); 
+            if (drawable != null && mMobileIcon != null) {
+                drawable.setColorFilter(nowColor, Mode.MULTIPLY);
+                mMobileIcon.setImageDrawable(drawable);
+            }
             mMobileSignalText.setText(getSignalLevelString(dBm));
+            mMobileSignalText.setTextColor(nowColor);
         } else {
             mMobileGroup.setVisibility(View.GONE);
         }
@@ -179,6 +207,10 @@ public class SignalClusterTextView
         ContentResolver resolver = mContext.getContentResolver();
         mSignalClusterStyle = (Settings.System.getIntForUser(resolver,
                 Settings.System.STATUS_BAR_SIGNAL_TEXT, SIGNAL_CLUSTER_STYLE_NORMAL, UserHandle.USER_CURRENT));
+        mCustomColor = Settings.System.getIntForUser(resolver,
+                Settings.System.CUSTOM_SYSTEM_ICON_COLOR, 0, UserHandle.USER_CURRENT) == 1;
+        systemColor = Settings.System.getIntForUser(resolver,
+                Settings.System.SYSTEM_ICON_COLOR, -2, UserHandle.USER_CURRENT);
         updateSignalText();
     }
 }

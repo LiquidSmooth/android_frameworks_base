@@ -50,6 +50,8 @@ public class CarrierLabel extends TextView {
 
     private Context mContext;
 
+    private int mCurrentColor = -3;
+
     protected int mCarrierColor = com.android.internal.R.color.white;
     Handler mHandler;
 
@@ -172,6 +174,24 @@ public class CarrierLabel extends TextView {
             }
         }
         return operatorName.toUpperCase();
+    }
+
+    public void updateSettings(int defaultColor) {
+        int newColor = 0;
+        if (mCurrentColor != defaultColor) {
+            mCurrentColor = defaultColor;
+
+            mCarrierColor = Settings.System.getInt(mContext.getContentResolver(),
+                            Settings.System.STATUS_BAR_CARRIER_COLOR, newColor);
+            if  (mCarrierColor == Integer.MIN_VALUE) {
+                    // flag to reset the color
+                 	mCarrierColor = newColor;
+            }
+            if (mCarrierColor == 0xFFFFFFFF) {
+                mCarrierColor=mCurrentColor;
+            }
+            setTextColor(mCarrierColor);
+        }
     }
 
     private void updateColor() {

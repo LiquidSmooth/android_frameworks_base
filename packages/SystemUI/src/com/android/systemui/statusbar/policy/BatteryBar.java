@@ -34,6 +34,8 @@ public class BatteryBar extends RelativeLayout implements Animatable {
     private boolean shouldAnimateCharging = true;
     private boolean isAnimating = false;
 
+    private int mCurrentColor = -3;
+
     private Handler mHandler = new Handler();
 
     LinearLayout mBatteryBarLayout;
@@ -176,11 +178,22 @@ public class BatteryBar extends RelativeLayout implements Animatable {
         }
     };
 
+    public void updateSettings(int defaultColor) {
+        if (mCurrentColor != defaultColor) {
+            mCurrentColor = defaultColor;
+            updateSettings();
+        }
+    }
+
     private void updateSettings() {
         ContentResolver resolver = getContext().getContentResolver();
 
         int color = Settings.System.getInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR_COLOR,
                 0xFFFFFFFF);
+
+        if (color == 0xFFFFFFFF) {
+                color=mCurrentColor;
+        }
 
         shouldAnimateCharging = Settings.System.getInt(resolver,
                 Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE, 0) == 1;
