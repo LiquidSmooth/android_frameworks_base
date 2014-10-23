@@ -1279,4 +1279,23 @@ public interface WindowManagerPolicy {
      */
     public void updateStatusBarNavBarHeight();
 
+      /**
+     * @hide
+     */
+    public int getStatusbarDisplayHeight();
+
+    /**
+     * @hide
+     */
+    public int getNavigationbarDisplayHeight(int rotation);
+
+    /**
+     * @hide
+     */
+    public void sendActionColorBroadcast(int st_color, int ic_color);
+
+    /**
+     * @hide
+     */
+    public void sendAppColorBroadcast(int duration);
 }
