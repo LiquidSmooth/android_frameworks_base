@@ -50,10 +50,12 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.PorterDuff.Mode;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.ColorMatrix;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -99,6 +101,7 @@ import com.android.systemui.statusbar.phone.Ticker;
 import com.android.internal.widget.SizeAdaptiveLayout;
 import com.android.internal.util.liquid.ButtonConfig;
 import com.android.internal.util.liquid.DeviceUtils;
+import com.android.internal.util.liquid.ImageHelper;
 import com.android.systemui.R;
 import com.android.systemui.RecentsComponent;
 import com.android.systemui.SearchPanelView;
@@ -328,6 +331,28 @@ public abstract class BaseStatusBar extends SystemUI implements
         return mOnClickHandler;
     }
 
+    private static Drawable GrayscaleDrawable (Context context, Drawable drawable) {
+        int width = drawable.getIntrinsicWidth();
+        width = width > 0 ? width : 1;
+        int height = drawable.getIntrinsicHeight();
+        height = height > 0 ? height : 1;
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap_gray = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        Canvas canvas_gray = new Canvas(bitmap_gray);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        Paint paint = new Paint();
+        ColorMatrix colormatrix = new ColorMatrix();
+        colormatrix.setSaturation(0);
+        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(colormatrix);
+        paint.setAntiAlias(true);
+        paint.setColorFilter(filter);
+        canvas_gray.drawBitmap(bitmap, 0, 0, paint);
+        Drawable drawable_gray = new BitmapDrawable(context.getResources(), bitmap_gray);
+        return drawable_gray;
+    }
+
     private ContentObserver mProvisioningObserver = new ContentObserver(mHandler) {
         @Override
         public void onChange(boolean selfChange) {
@@ -342,10 +367,10 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     private class SettingsObserver extends ContentObserver {
     public SettingsObserver(Handler handler) {
-        super(handler);
+        super(handler);    
     }
 
-    public void observe() {
+    public void observe() {    
         ContentResolver resolver = mContext.getContentResolver();
         update();
     }
@@ -355,7 +380,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         update();
     }
 
-    private void update() {
+    private void update() {    
         ContentResolver resolver = mContext.getContentResolver();
     }
     };
@@ -534,17 +559,17 @@ public abstract class BaseStatusBar extends SystemUI implements
         pieOnStart();
 
     // Listen for status bar icon color changes
-        mContext.getContentResolver().registerContentObserver(
-               Settings.System.getUriFor(Settings.System.SYSTEM_ICON_COLOR), false, new ContentObserver(new Handler()) {
+    mContext.getContentResolver().registerContentObserver(
+       Settings.System.getUriFor(Settings.System.SYSTEM_ICON_COLOR), false, new ContentObserver(new Handler()) {
             @Override
             public void onChange(boolean selfChange) {
-                updateIconColor();
-            }});
+            updateIconColor();
+        }});
 
-        updateIconColor();
+    updateIconColor();
 
-        SettingsObserver settingsObserver = new SettingsObserver(new Handler());
-        settingsObserver.observe();
+    SettingsObserver settingsObserver = new SettingsObserver(new Handler());
+    settingsObserver.observe();
 
         // Listen for HALO enabled
 
@@ -607,24 +632,25 @@ public abstract class BaseStatusBar extends SystemUI implements
         updateHoverActive();
     }
 
-    private void updateIconColor() {
+    private void updateIconColor() {    
         ContentResolver resolver = mContext.getContentResolver();
 
-    boolean mCustomColor = Settings.System.getIntForUser(resolver,
-        Settings.System.CUSTOM_SYSTEM_ICON_COLOR, 0, UserHandle.USER_CURRENT) == 1;
-    int systemColor = Settings.System.getIntForUser(resolver,
-        Settings.System.SYSTEM_ICON_COLOR, -2, UserHandle.USER_CURRENT);
+        boolean mCustomColor = Settings.System.getIntForUser(resolver,
+            Settings.System.CUSTOM_SYSTEM_ICON_COLOR, 0, UserHandle.USER_CURRENT) == 1;
+        int systemColor = Settings.System.getIntForUser(resolver,
+            Settings.System.SYSTEM_ICON_COLOR, -2, UserHandle.USER_CURRENT); 
 
-    if (mStatusIcons != null) {
-        for(int i = 0; i < mStatusIcons.getChildCount(); i++) {
-        Drawable iconDrawable = ((ImageView)mStatusIcons.getChildAt(i)).getDrawable();
-        if (mCustomColor) {
-            iconDrawable.setColorFilter(systemColor, PorterDuff.Mode.SRC_ATOP);
-        } else {
-            iconDrawable.clearColorFilter();
-        }
+        if (mStatusIcons != null) {
+            for(int i = 0; i < mStatusIcons.getChildCount(); i++) {
+                Drawable iconDrawable = ((ImageView)mStatusIcons.getChildAt(i)).getDrawable();
+                if (mCustomColor) {
+                    iconDrawable=GrayscaleDrawable(mContext,iconDrawable);
+                    iconDrawable.setColorFilter(systemColor, Mode.MULTIPLY);
+                } else {
+                    iconDrawable.clearColorFilter();
+                }
             }
-    }
+        }
     }
 
     public void setHaloTaskerActive(boolean haloTaskerActive, boolean updateNotificationIcons) {
@@ -907,8 +933,6 @@ public abstract class BaseStatusBar extends SystemUI implements
                             .findItem(R.id.notification_inspect_item_force_stop).setVisible(false);
                     mNotificationBlamePopup.getMenu()
                             .findItem(R.id.notification_inspect_item_wipe_app).setVisible(false);
-                    mNotificationBlamePopup.getMenu()
-                            .findItem(R.id.notification_inspect_item_uninstall).setVisible(false);
                 } else {
                     try {
                         PackageManager pm = (PackageManager) mContext.getPackageManager();
@@ -921,8 +945,6 @@ public abstract class BaseStatusBar extends SystemUI implements
                               || mDpm.packageHasActiveAdmins(packageNameF)) {
                             mNotificationBlamePopup.getMenu()
                             .findItem(R.id.notification_inspect_item_wipe_app).setEnabled(false);
-                            mNotificationBlamePopup.getMenu()
-                            .findItem(R.id.notification_inspect_item_uninstall).setEnabled(false);
                         }
                     } catch (NameNotFoundException ex) {
                         Slog.e(TAG, "Failed looking up ApplicationInfo for " + packageNameF, ex);
@@ -985,13 +1007,6 @@ public abstract class BaseStatusBar extends SystemUI implements
                             }
                         } else if (item.getItemId() == MENU_HEADS_UP_ID) {
                             mPm.setHeadsUpSetting(packageNameF, !isHeadsUp);
-                        } else if (item.getItemId() == R.id.notification_inspect_item_uninstall) {
-                            Uri packageURI = Uri.parse("package:"+packageNameF);
-                            Intent uninstallIntent = new Intent(Intent.ACTION_UNINSTALL_PACKAGE, packageURI);
-                            uninstallIntent.putExtra(Intent.EXTRA_UNINSTALL_ALL_USERS, true);
-                            uninstallIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            mContext.startActivity(uninstallIntent);
-                            animateCollapsePanels(CommandQueue.FLAG_EXCLUDE_NONE);
                         } else {
                             return false;
                         }
