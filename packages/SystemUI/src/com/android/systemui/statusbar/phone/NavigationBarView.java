@@ -132,6 +132,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
 
     private int mNavBarButtonColor;
     private int mNavBarButtonColorMode;
+    public boolean mNavBarButtonColorCustom=false;
     private boolean mAppIsBinded;
     private boolean mAppIsMissing;
 
@@ -1200,10 +1201,13 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         mNavBarButtonColor = Settings.System.getIntForUser(resolver,
                 Settings.System.NAVIGATION_BAR_BUTTON_TINT, -2, UserHandle.USER_CURRENT);
 
-        if (mNavBarButtonColor == -2) {
+        if (mNavBarButtonColor == -2 || mNavBarButtonColor == 0xFFFFFFFF) {
             mNavBarButtonColor = mContext.getResources()
                     .getColor(R.color.navigationbar_button_default_color);
-        }
+            mNavBarButtonColorCustom=false;
+        } else {
+	        mNavBarButtonColorCustom=true;
+	}
 
         mNavBarButtonColorMode = Settings.System.getIntForUser(resolver,
                 Settings.System.NAVIGATION_BAR_BUTTON_TINT_MODE, 0, UserHandle.USER_CURRENT);
