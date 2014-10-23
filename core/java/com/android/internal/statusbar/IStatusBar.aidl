@@ -44,6 +44,9 @@ oneway interface IStatusBar
     void setWindowState(int window, int state);
     void setPieTriggerMask(int newMask, boolean lock);
     void setAutoRotate(boolean enabled);
+    void sendActionColorBroadcast(int st_color, int ic_color);
+    void sendAppColorBroadcast(int duration);
+    void sendAppImmersiveMode(int whats);
     void toggleNotificationShade();
     void toggleQSShade();
     void toggleSmartPulldown();
