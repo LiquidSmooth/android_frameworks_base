@@ -43,6 +43,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 
+import com.android.internal.util.omni.ColorUtils;
 import com.android.internal.util.liquid.DevUtils;
 
 import com.android.systemui.R;
@@ -85,6 +86,7 @@ public class BatteryMeterView extends View implements DemoMode {
     private int mHeight;
     private int mWidth;
     private String mWarningString;
+    private int mChangeColor = -3;
     private final float[] mBoltPoints;
     private final Path mBoltPath = new Path();
 
@@ -99,9 +101,6 @@ public class BatteryMeterView extends View implements DemoMode {
     private int mPercentageChargingColor;
     private boolean mPercentageOnly = false;
     private String mBatteryTypeView;
-
-    private boolean mCustomColor;
-    private int systemColor;
 
     private class BatteryTracker extends BroadcastReceiver {
         public static final int UNKNOWN_LEVEL = -1;
@@ -291,9 +290,23 @@ public class BatteryMeterView extends View implements DemoMode {
         for (int i=0; i<mColors.length; i+=2) {
             thresh = mColors[i];
             color = mColors[i+1];
-            if (percent <= thresh) return color;
+            if (percent <= thresh) {
+                if (mChangeColor != -3 && mBatteryColor == -2) {
+                    return mChangeColor;
+                } else {
+                    return color;
+                }
+            }
+        }
+        if (mChangeColor != -3 && mBatteryColor == -2) {
+            return mChangeColor;
         }
         return color;
+    }
+
+    public void updateSettings(int color) {
+        mChangeColor = color;
+        postInvalidate();
     }
 
     @Override
@@ -341,6 +354,19 @@ public class BatteryMeterView extends View implements DemoMode {
         if (mShowIcon) {
             c.drawRect(mFrame, mFramePaint);
         }
+
+        // fill 'er up
+        int color = 0;
+        if (tracker.plugged) {
+            if (mChangeColor != -3 && mBatteryColor == -2) {
+                color = mChangeColor;
+            } else {
+                color = mBatteryColor;
+            }
+        } else {
+            color = getColorForLevel(level);
+        }
+        mBatteryPaint.setColor(color);
 
         if (level >= FULL) {
             drawFrac = 1f;
@@ -413,6 +439,11 @@ public class BatteryMeterView extends View implements DemoMode {
             }
             mTextHeight = -mTextPaint.getFontMetrics().ascent;
 
+            int textColor = mPercentageColor;
+            if (mChangeColor != -3 && mPercentageColor ==-2) {
+                textColor = mChangeColor;
+            }
+            mTextPaint.setColor(textColor);
             String str;
             if (mPercentageOnly) {
                 str = String.valueOf(SINGLE_DIGIT_PERCENT ? (level/10) : level) + "%";
@@ -484,10 +515,6 @@ public class BatteryMeterView extends View implements DemoMode {
         mPercentageChargingColor = Settings.System.getIntForUser(resolver,
                 Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING_COLOR, -2,
                 UserHandle.USER_CURRENT);
-        mCustomColor = Settings.System.getIntForUser(resolver,
-                Settings.System.CUSTOM_SYSTEM_ICON_COLOR, 0, UserHandle.USER_CURRENT) == 1;
-        systemColor = Settings.System.getIntForUser(resolver,
-                Settings.System.SYSTEM_ICON_COLOR, -2, UserHandle.USER_CURRENT);
 
         boolean activated = (mBatteryStyle == BATTERY_STYLE_NORMAL ||
                       mBatteryStyle == BATTERY_STYLE_PERCENT ||
@@ -571,13 +598,8 @@ public class BatteryMeterView extends View implements DemoMode {
             mBatteryPaint.setColor(mContext.getResources().getColor(
                     R.color.batterymeter_charge_color));
         } else {
-            if (mCustomColor) {
-                mBatteryPaint.setColor(DevUtils.extractRGB(systemColor) | OPAQUE_MASK);
-                mFramePaint.setColor(DevUtils.extractRGB(systemColor) | FRAME_MASK);
-            } else {
-                mBatteryPaint.setColor(DevUtils.extractRGB(mBatteryColor) | OPAQUE_MASK);
-                mFramePaint.setColor(DevUtils.extractRGB(mBatteryColor) | FRAME_MASK);
-            }
+        mBatteryPaint.setColor(DevUtils.extractRGB(mBatteryColor) | OPAQUE_MASK);
+        mFramePaint.setColor(DevUtils.extractRGB(mBatteryColor) | FRAME_MASK);
         }
 
         boolean isInLevelCharge = false;
@@ -600,7 +622,7 @@ public class BatteryMeterView extends View implements DemoMode {
                         R.color.batterymeter_charge_color));
             }
         } else {
-            mTextPaint.setColor(mPercentageColor);
+        mTextPaint.setColor(mPercentageColor);
         }
 
         if (tracker.plugged) {
