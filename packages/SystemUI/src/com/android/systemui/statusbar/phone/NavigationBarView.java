@@ -131,7 +131,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     private final NavigationBarTransitions mBarTransitions;
 
     private int mNavBarButtonColor;
-    private int mNavBarButtonColorMode;
+    public int mNavBarButtonColorMode;
     private boolean mAppIsBinded;
     private boolean mAppIsMissing;
 

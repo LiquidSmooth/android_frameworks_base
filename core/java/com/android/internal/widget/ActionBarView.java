@@ -718,6 +718,13 @@ public class ActionBarView extends AbsActionBarView {
     public boolean hasLogo() {
         return mLogo != null;
     }
+	
+    /**
+     * @hide
+     */	
+    public Drawable getBackgroundActionBar() {	
+	return mUpGoerFive.getBackground();	
+    }
 
     /**
      * @hide

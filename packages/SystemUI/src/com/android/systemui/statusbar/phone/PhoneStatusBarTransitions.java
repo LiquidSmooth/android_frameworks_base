@@ -20,9 +20,29 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.res.Resources;
+import android.content.Context;
+import android.content.ContentResolver;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.UserHandle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.provider.Settings;
 
 import com.android.systemui.R;
+import com.android.internal.util.omni.ColorUtils;
+
+import java.util.ArrayList;
 
 public final class PhoneStatusBarTransitions extends BarTransitions {
     private static final float ICON_ALPHA_WHEN_NOT_OPAQUE = 1;
@@ -32,16 +52,46 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
     private final PhoneStatusBarView mView;
     private final float mIconAlphaWhenOpaque;
 
+    private ArrayList<ImageView> mIcons = new ArrayList<ImageView>();
+    private ArrayList<ImageView> mIconsReverse = new ArrayList<ImageView>();
+    private ArrayList<ImageView> mNotificationIcons = new ArrayList<ImageView>();
+    private ArrayList<TextView> mNotificationTexts = new ArrayList<TextView>();
+
     private View mLeftSide, mStatusIcons, mSignalCluster, mBattery;
     private View mClock, mCenterClock, mCircleBattery, mNetworkTraffic;
 
     private Animator mCurrentAnimation;
+    private int mCurrentColor = -3;
+    private int mCurrentBg;
+
+    private boolean mCustomColor;
+    private boolean mCustomColorNotification;
+    private int notificationColor;
+    private int systemColor;
 
     public PhoneStatusBarTransitions(PhoneStatusBarView view) {
         super(view, R.drawable.status_background);
         mView = view;
         final Resources res = mView.getContext().getResources();
+	final ContentResolver resolver = mView.getContext().getContentResolver();
         mIconAlphaWhenOpaque = res.getFraction(R.dimen.status_bar_icon_drawing_alpha, 1, 1);
+        if (Settings.System.getInt(resolver,
+              Settings.System.CUSTOM_SYSTEM_ICON_COLOR, 0) == 1) {
+                    systemColor = Settings.System.getInt(resolver,
+                                Settings.System.SYSTEM_ICON_COLOR, 0xffffffff);
+	            mCustomColor=true;
+        } else {
+	    mCustomColor=false;
+	}
+	if (Settings.System.getInt(resolver,
+              Settings.System.CUSTOM_NOTIFICATION_ICON_COLOR, 0) == 1) {
+                    notificationColor = Settings.System.getInt(resolver,
+                                Settings.System.NOTIFICATION_ICON_COLOR, 0xffffffff);
+		    mCustomColorNotification=true;
+        } else {
+	    mCustomColorNotification=false;
+	}
+	
     }
 
     public void init() {
@@ -61,6 +111,30 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
         return ObjectAnimator.ofFloat(v, "alpha", v.getAlpha(), toAlpha);
     }
 
+    private static Drawable GrayscaleDrawable (Context context, Drawable drawable) {
+    	if (drawable == null) {
+		return null;
+	}
+	int width = drawable.getIntrinsicWidth();
+    	width = width > 0 ? width : 1;
+    	int height = drawable.getIntrinsicHeight();
+    	height = height > 0 ? height : 1;
+    	Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+	Bitmap bitmap_gray = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+    	Canvas canvas = new Canvas(bitmap); 
+	Canvas canvas_gray = new Canvas(bitmap_gray); 
+	drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+    	drawable.draw(canvas);
+	Paint paint = new Paint();
+	ColorMatrix colormatrix = new ColorMatrix();
+	colormatrix.setSaturation(0);
+	ColorMatrixColorFilter filter = new ColorMatrixColorFilter(colormatrix);
+	paint.setColorFilter(filter); 
+        canvas_gray.drawBitmap(bitmap, 0, 0, paint);
+    	Drawable drawable_gray = new BitmapDrawable(context.getResources(), bitmap_gray);
+        return drawable_gray;
+    }
+
     private float getNonBatteryClockAlphaFor(int mode) {
         return mode == MODE_LIGHTS_OUT ? ICON_ALPHA_WHEN_LIGHTS_OUT_NON_BATTERY_CLOCK
                 : !isOpaque(mode) ? ICON_ALPHA_WHEN_NOT_OPAQUE
@@ -72,14 +146,138 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
                 : getNonBatteryClockAlphaFor(mode);
     }
 
-    private boolean isOpaque(int mode) {
-        return !(mode == MODE_SEMI_TRANSPARENT || mode == MODE_TRANSLUCENT);
-    }
-
     @Override
     protected void onTransition(int oldMode, int newMode, boolean animate) {
         super.onTransition(oldMode, newMode, animate);
         applyMode(newMode, animate);
+    }
+
+    public void addIcon(ImageView iv) {
+        if (!mIcons.contains(iv)) {
+            mIcons.add(iv);
+        }
+    }
+
+    public void addIconReverse(ImageView iv) {
+        if (!mIconsReverse.contains(iv)) {
+            mIconsReverse.add(iv);
+        }
+    }
+
+    public void addNotificationIcon(ImageView iv) {
+        if (!mNotificationIcons.contains(iv)) {
+            mNotificationIcons.add(iv);
+        }
+    }
+
+    public void addNotificationText(TextView tv) {
+        if (!mNotificationTexts.contains(tv)) {
+            mNotificationTexts.add(tv);
+        }
+    }
+
+    @Override
+    public void changeColorIconBackground(int bg_color, int ic_color) {
+        if (mCurrentBg == bg_color) {
+            return;
+        }
+        mCurrentBg = bg_color;
+        if (ColorUtils.isBrightColor(bg_color)) {
+            ic_color = Color.BLACK;
+        }
+        mCurrentColor = ic_color;
+        setColorChangeIcon(ic_color);
+        setColorChangeNotificationIcon(ic_color);
+        super.changeColorIconBackground(bg_color, ic_color);
+    }
+
+    public int getCurrentIconColor() {
+        return mCurrentColor;
+    }
+
+    public void updateNotificationIconColor() {
+        setColorChangeNotificationIcon(mCurrentColor);
+    }
+
+    private void setColorChangeIcon(int ic_color) {
+	if (mCustomColor) {
+		/*for (ImageView iv : mIcons) {
+			if (iv != null) {
+				iv.clearColorFilter();
+			} else {
+                 		mIcons.remove(iv);
+            		}
+		}
+		for (ImageView ivr : mIcons) {
+			if (ivr != null) {
+				ivr.clearColorFilter();
+			} else {
+                 		mIcons.remove(ivr);
+            		}
+		}*/
+		return;
+	}
+        for (ImageView iv : mIcons) {
+             if (iv != null) {
+                 if (ic_color == -3) {
+                     iv.clearColorFilter();
+                 } else {
+                     iv.setColorFilter(ic_color, PorterDuff.Mode.SRC_ATOP);
+                 }
+             } else {
+                 mIcons.remove(iv);
+             }
+        }
+        for (ImageView ivr : mIconsReverse) {
+             if (ivr != null) {
+                 if (ic_color == -3) {
+                     ivr.clearColorFilter();
+                 } else {
+                     if (ColorUtils.isBrightColor(ic_color)) {
+                         ivr.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
+                     } else {
+                         ivr.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+                     }
+                 }
+             } else {
+                 mIconsReverse.remove(ivr);
+             }
+        }
+    }
+
+    private void setColorChangeNotificationIcon(int ic_color) {
+	if (mCustomColor) {
+	 	/*for (ImageView notifiv : mNotificationIcons) {
+             		if (notifiv != null) {
+                     		notifiv.clearColorFilter();
+			} else {
+                 		mNotificationIcons.remove(notifiv);
+            		}
+		}*/
+		return;
+	}
+        for (ImageView notifiv : mNotificationIcons) {
+             if (notifiv != null) {
+                 if (ic_color == -3) {
+                     notifiv.clearColorFilter();
+                 } else {
+                     notifiv.setColorFilter(ic_color, PorterDuff.Mode.MULTIPLY);
+                 }
+             } else {
+                 mNotificationIcons.remove(notifiv);
+             }
+        }
+        for (TextView notiftv : mNotificationTexts) {
+             if (notiftv != null) {
+                 if (ic_color == -3) {
+                     notiftv.setTextColor(Color.WHITE);
+                 } else {
+                     notiftv.setTextColor(ic_color);
+                 }
+             } else {
+                 mNotificationTexts.remove(notiftv);
+             }
+        }
     }
 
     private void applyMode(int mode, boolean animate) {
