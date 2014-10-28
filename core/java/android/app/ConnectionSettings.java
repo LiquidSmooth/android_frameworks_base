@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
+import android.net.wimax.WimaxHelper;
 import android.nfc.NfcAdapter;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -29,6 +30,7 @@ public final class ConnectionSettings implements Parcelable {
     public static final int PROFILE_CONNECTION_MOBILEDATA = 0;
     public static final int PROFILE_CONNECTION_WIFI = 1;
     public static final int PROFILE_CONNECTION_WIFIAP = 2;
+    public static final int PROFILE_CONNECTION_WIMAX = 3;
     public static final int PROFILE_CONNECTION_GPS = 4;
     public static final int PROFILE_CONNECTION_SYNC = 5;
     public static final int PROFILE_CONNECTION_BLUETOOTH = 7;
@@ -182,6 +184,13 @@ public final class ConnectionSettings implements Parcelable {
                         wm.setWifiEnabled(false);
                     }
                     wm.setWifiApEnabled(null, forcedState);
+                }
+            case PROFILE_CONNECTION_WIMAX:
+                if (WimaxHelper.isWimaxSupported(context)) {
+                    currentState = WimaxHelper.isWimaxEnabled(context);
+                    if (currentState != forcedState) {
+                        WimaxHelper.setWimaxEnabled(context, forcedState);
+                    }
                 }
                 break;
             case PROFILE_CONNECTION_NFC:
