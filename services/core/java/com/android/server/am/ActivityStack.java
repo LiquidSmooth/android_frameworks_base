@@ -808,8 +808,11 @@ final class ActivityStack {
     final boolean startPausingLocked(boolean userLeaving, boolean uiSleeping, boolean resuming,
             boolean dontWait) {
         if (mPausingActivity != null) {
-            Slog.wtf(TAG, "Going to pause when pause is already pending for " + mPausingActivity);
-            completePauseLocked(false);
+            Slog.wtf(TAG, "Going to pause when pause is already pending for " + mPausingActivity
+                    + " state=" + mPausingActivity.state);
+            if (mPausingActivity.state == ActivityState.PAUSING) {
+                completePauseLocked(false);
+            }
         }
         ActivityRecord prev = mResumedActivity;
         if (prev == null) {
@@ -2556,8 +2559,23 @@ final class ActivityStack {
             ActivityRecord next = topRunningActivityLocked(null);
             if (next != r) {
                 final TaskRecord task = r.task;
-                if (r.frontOfTask && task == topTask() && task.isOverHomeStack()) {
-                    mStackSupervisor.moveHomeStackTaskToTop(task.getTaskToReturnTo());
+                if ((next == null || next.task != task) && r.frontOfTask) {
+                    if (task.isOverHomeStack() && task == topTask()) {
+                        mStackSupervisor.moveHomeStackTaskToTop(task.getTaskToReturnTo());
+                    } else {
+                        for (int taskNdx = mTaskHistory.size() - 1; taskNdx >= 0; --taskNdx) {
+                            final TaskRecord tr  = mTaskHistory.get(taskNdx);
+                            if (tr.getTopActivity() == null) {
+                                if (tr.isOverHomeStack()) {
+                                    mStackSupervisor.moveHomeStackTaskToTop(
+                                        task.getTaskToReturnTo());
+                                    break;
+                                }
+                            } else {
+                                break;
+                            }
+                        }
+                    }
                 }
             }
             ActivityRecord top = mStackSupervisor.topRunningActivityLocked();
@@ -3959,16 +3977,18 @@ final class ActivityStack {
     }
 
     void getTasksLocked(List<RunningTaskInfo> list, int callingUid, boolean allowed) {
+        boolean setFirstAsLast = mStackSupervisor.getFocusedStack() == this;
+        boolean first = true;
         for (int taskNdx = mTaskHistory.size() - 1; taskNdx >= 0; --taskNdx) {
             final TaskRecord task = mTaskHistory.get(taskNdx);
+            if (task.getTopActivity() == null) {
+                continue;
+            }
             ActivityRecord r = null;
             ActivityRecord top = null;
             int numActivities = 0;
             int numRunning = 0;
             final ArrayList<ActivityRecord> activities = task.mActivities;
-            if (activities.isEmpty()) {
-                continue;
-            }
             if (!allowed && !task.isHomeTask() && task.effectiveUid != callingUid) {
                 continue;
             }
@@ -3997,6 +4017,10 @@ final class ActivityStack {
             ci.baseActivity = r.intent.getComponent();
             ci.topActivity = top.intent.getComponent();
             ci.lastActiveTime = task.lastActiveTime;
+            if (setFirstAsLast && first) {
+                ci.lastActiveTime = SystemClock.elapsedRealtime();
+                first = false;
+            }
 
             if (top.task != null) {
                 ci.description = top.task.lastDescription;
