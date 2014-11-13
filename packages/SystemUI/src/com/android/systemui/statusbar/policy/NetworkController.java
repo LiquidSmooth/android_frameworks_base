@@ -1566,20 +1566,11 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
     }
 
     private String filterNetworkName(String string) {
-        boolean bl = true;
         String string2 = string.replace((" "), (""))
                         .replace(("."), ("_")).replace(("&"), ("_"))
                         .replace(("-"), ("")).replace(("*"), (""))
                         .replace(("@"), (""));
-        boolean bl2 = (string2.length() > 3) ? bl : false;
-        if (string2.length() != 3) {
-            bl = false;
-        }
-        if (!bl2 && bl) return string2.toLowerCase();
-        String string3 = (string2.length() > 3)
-                         ? (string2.substring(0, 4))
-                         : (string2.substring(0, 3));
-        string2 = string3.toLowerCase();
+        if (string2.length() > 4) string2 = string2.substring(0, 4);
         return string2.toLowerCase();
     }
 
