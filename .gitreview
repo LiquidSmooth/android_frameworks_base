@@ -1,0 +1,5 @@
+[gerrit]
+host=gerrit.liquidsmooth.net
+port=29418
+project=LiquidSmooth/android_frameworks_base.git
+defaultbranch=lollipop
