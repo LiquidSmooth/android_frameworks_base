@@ -2245,4 +2245,6 @@
     <!-- Boolean to enable stk functionality on Samsung phones -->
     <bool name="config_samsung_stk">false</bool>
 
+    <!-- Ignored sms packages -->
+    <string-array name="config_ignored_sms_packages"></string-array>
 </resources>

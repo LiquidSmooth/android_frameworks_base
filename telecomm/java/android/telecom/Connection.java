@@ -324,7 +324,6 @@ public abstract class Connection implements IConferenceable {
                 Connection c, String callerDisplayName, int presentation) {}
         public void onVideoStateChanged(Connection c, int videoState) {}
         public void onDisconnected(Connection c, DisconnectCause disconnectCause) {}
-        public void onSsNotificationData(int type, int code) {}
         public void onPostDialWait(Connection c, String remaining) {}
         public void onPostDialChar(Connection c, char nextChar) {}
         public void onRingbackRequested(Connection c, boolean ringback) {}
@@ -1143,14 +1142,6 @@ public abstract class Connection implements IConferenceable {
         }
     }
 
-    /** @hide */
-    public final void setSsNotificationData(int type, int code) {
-        Log.d(this, "setSsNotificationData = "+ type +" "+ code);
-        for (Listener l : mListeners) {
-            l.onSsNotificationData(type, code);
-        }
-    }
-
     /**
      * Informs listeners that this {@code Connection} is in a post-dial wait state. This is done
      * when (a) the {@code Connection} is issuing a DTMF sequence; (b) it has encountered a "wait"
@@ -1235,7 +1226,6 @@ public abstract class Connection implements IConferenceable {
             }
         }
     }
-
 
     /**
      * Tears down the Connection object.
