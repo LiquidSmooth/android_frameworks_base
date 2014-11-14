@@ -2533,8 +2533,15 @@
         android:description="@string/permdesc_broadcastPackageRemoved"
         android:protectionLevel="signature" />
 
-    <!-- Allows an application to broadcast an SMS receipt notification.
-    <p>Not for use by third-party applications. -->
+    <!-- Allows an application to intercept and rewrite outgoing SMS
+         @hide -->
+    <permission android:name="android.permission.INTERCEPT_SMS"
+        android:permissionGroup="android.permission-group.MESSAGES"
+        android:label="@string/permlab_interceptSmsSent"
+        android:description="@string/permdesc_interceptSmsSent"
+        android:protectionLevel="signature" />
+
+    <!-- Allows an application to broadcast an SMS receipt notification -->
     <permission android:name="android.permission.BROADCAST_SMS"
         android:permissionGroup="android.permission-group.MESSAGES"
         android:label="@string/permlab_broadcastSmsReceived"
@@ -2973,6 +2980,22 @@
         android:label="@string/permlab_useHardwareFramework"
         android:description="@string/permdesc_useHardwareFramework"
         android:protectionLevel="signature" />
+
+    <!-- Allows an application to read the phone blacklist data.
+         @hide This is not a third-party API (intended for system apps). -->
+    <permission android:name="android.permission.READ_PHONE_BLACKLIST"
+        android:permissionGroup="android.permission-group.SECURITY"
+        android:protectionLevel="signature|system"
+        android:label="@string/permlab_readPhoneBlacklist"
+        android:description="@string/permdesc_readPhoneBlacklist" />
+
+    <!-- Allows an application to change the phone blacklist data.
+         @hide This is not a third-party API (intended for system apps). -->
+    <permission android:name="android.permission.CHANGE_PHONE_BLACKLIST"
+        android:permissionGroup="android.permission-group.SECURITY"
+        android:protectionLevel="signature|system"
+        android:label="@string/permlab_changePhoneBlacklist"
+        android:description="@string/permdesc_changePhoneBlacklist" />
 
     <!-- The system process is explicitly the only one allowed to launch the
          confirmation UI for full backup/restore -->
