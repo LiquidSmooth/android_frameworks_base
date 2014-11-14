@@ -152,4 +152,8 @@
     <java-symbol type="integer" name="config_dayColorTemperature" />
     <java-symbol type="integer" name="config_nightColorTemperature" />
     <java-symbol type="integer" name="config_outdoorAmbientLux" />
+
+    <!-- Ignored sms packages -->
+    <java-symbol type="array" name="config_ignored_sms_packages" />
+
 </resources>
