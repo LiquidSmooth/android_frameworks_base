@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
+<<<<<<< HEAD
 /* Copyright 2013-2015, SlimRoms project
+=======
+/* Copyright 2014, SlimRoms project
+>>>>>>> 1bbf37e... [1/2] frameworks/base: Privacy Guard
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -16,7 +20,6 @@
 */
 -->
 <resources>
-
   <!-- Shortcut actions -->
   <java-symbol type="drawable" name="ic_shortcut_action_silent" />
   <java-symbol type="drawable" name="ic_shortcut_action_theme_switch" />
@@ -48,5 +51,12 @@
 
   <!-- Package Manager -->
   <java-symbol type="array" name="config_disabledComponents" />
+
+  <!-- Privacy Guard -->
+  <java-symbol type="drawable" name="stat_notify_privacy_guard" />
+  <java-symbol type="string" name="privacy_guard_notification" />
+  <java-symbol type="string" name="privacy_guard_notification_detail" />
+  <java-symbol type="string" name="privacy_guard_dialog_title" />
+  <java-symbol type="string" name="privacy_guard_dialog_summary" />
 
 </resources>
