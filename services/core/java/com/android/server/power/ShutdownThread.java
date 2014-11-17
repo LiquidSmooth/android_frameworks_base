@@ -186,7 +186,7 @@ public final class ShutdownThread extends Thread {
 
                 if ((advancedReboot == 1 && !locked) || advancedReboot == 2) {
                     // Include options in power menu for rebooting into recovery or bootloader
-                    sConfirmDialog = new AlertDialog.Builder(context)
+                    sConfirmDialog = new AlertDialog.Builder(context, AlertDialog.THEME_MATERIAL_DARK)
                             .setTitle(titleResourceId)
                             .setItems(
                                     com.android.internal.R.array.shutdown_reboot_options,
@@ -220,7 +220,7 @@ public final class ShutdownThread extends Thread {
             }
 
             if (sConfirmDialog == null) {
-                sConfirmDialog = new AlertDialog.Builder(context)
+                sConfirmDialog = new AlertDialog.Builder(context, AlertDialog.THEME_MATERIAL_DARK)
                         .setTitle(titleResourceId)
                         .setMessage(resourceId)
                         .setPositiveButton(com.android.internal.R.string.yes,
@@ -329,6 +329,7 @@ public final class ShutdownThread extends Thread {
             sIsStarted = true;
         }
 
+<<<<<<< HEAD
         //acquire audio focus to make the other apps to stop playing muisc
         mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         mAudioManager.requestAudioFocus(null,
@@ -351,6 +352,23 @@ public final class ShutdownThread extends Thread {
 
             pd.show();
         }
+=======
+        // throw up an indeterminate system dialog to indicate radio is
+        // shutting down.
+        ProgressDialog pd = new ProgressDialog(
+                        context, com.android.internal.R.style.Theme_Material_Dialog_Alert_DarkKat);
+        pd.setTitle(context.getText(mReboot
+              ? com.android.internal.R.string.reboot_system
+              : com.android.internal.R.string.power_off));
+        pd.setMessage(context.getText(mReboot
+              ? com.android.internal.R.string.reboot_progress
+              : com.android.internal.R.string.shutdown_progress));
+        pd.setIndeterminate(true);
+        pd.setCancelable(false);
+        pd.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
+
+        pd.show();
+>>>>>>> 3148671... Add dark themes for dialogs and alert dialogs:
 
         sInstance.mContext = context;
         sInstance.mPowerManager = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
