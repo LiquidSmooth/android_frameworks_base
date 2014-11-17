@@ -16,6 +16,9 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <!-- Long-press back kill application -->
+    <string name="app_killed_message">Application killed</string>
+
     <!-- Animation Strings -->
     <string name="animation_fade">Fade</string>
     <string name="animation_slide_right">Slide in right</string>
