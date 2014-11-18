@@ -191,6 +191,12 @@ public final class PowerManagerService extends SystemService
     private int mButtonTimeout;
     private int mButtonBrightness;
     private int mButtonBrightnessSettingDefault;
+    private int mKeyboardBrightness;
+    private int mKeyboardBrightnessSettingDefault;
+
+    private Light mKeyboardLight;
+    private Light mCapsLight;
+    private Light mFnLight;
 
     private final Object mLock = new Object();
 
@@ -481,6 +487,8 @@ public final class PowerManagerService extends SystemService
 
     private PerformanceManager mPerformanceManager;
 
+    private boolean mKeyboardVisible = false;
+
     public PowerManagerService(Context context) {
         super(context);
         mContext = context;
@@ -545,6 +553,7 @@ public final class PowerManagerService extends SystemService
             mScreenBrightnessSettingMaximum = pm.getMaximumScreenBrightnessSetting();
             mScreenBrightnessSettingDefault = pm.getDefaultScreenBrightnessSetting();
             mButtonBrightnessSettingDefault = pm.getDefaultButtonBrightness();
+            mKeyboardBrightnessSettingDefault = pm.getDefaultKeyboardBrightness();
 
             SensorManager sensorManager = new SystemSensorManager(mContext, mHandler.getLooper());
 
@@ -563,6 +572,9 @@ public final class PowerManagerService extends SystemService
             mLightsManager = getLocalService(LightsManager.class);
             mAttentionLight = mLightsManager.getLight(LightsManager.LIGHT_ID_ATTENTION);
             mButtonsLight = mLightsManager.getLight(LightsManager.LIGHT_ID_BUTTONS);
+            mKeyboardLight = mLightsManager.getLight(LightsManager.LIGHT_ID_KEYBOARD);
+            mCapsLight = mLightsManager.getLight(LightsManager.LIGHT_ID_CAPS);
+            mFnLight = mLightsManager.getLight(LightsManager.LIGHT_ID_FUNC);
 
             // Initialize display power management.
             mDisplayManagerInternal.initPowerManagement(
@@ -630,6 +642,9 @@ public final class PowerManagerService extends SystemService
                     false, mSettingsObserver, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.BUTTON_BRIGHTNESS),
+                    false, mSettingsObserver, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.KEYBOARD_BRIGHTNESS),
                     false, mSettingsObserver, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.BUTTON_BACKLIGHT_TIMEOUT),
@@ -760,6 +775,10 @@ public final class PowerManagerService extends SystemService
 
         mButtonBrightness = Settings.System.getIntForUser(resolver,
                 Settings.System.BUTTON_BRIGHTNESS, mButtonBrightnessSettingDefault,
+                UserHandle.USER_CURRENT);
+
+        mKeyboardBrightness = Settings.System.getIntForUser(resolver,
+                Settings.System.KEYBOARD_BRIGHTNESS, mKeyboardBrightnessSettingDefault,
                 UserHandle.USER_CURRENT);
 
         mDirty |= DIRTY_SETTINGS;
@@ -1611,17 +1630,21 @@ public final class PowerManagerService extends SystemService
                 final int screenOffTimeout = getScreenOffTimeoutLocked(sleepTimeout);
                 final int screenDimDuration = getScreenDimDurationLocked(screenOffTimeout);
 
-                mUserActivitySummary = 0;
+              mUserActivitySummary = 0;
                 if (mWakefulness == WAKEFULNESS_AWAKE && mLastUserActivityTime >= mLastWakeTime) {
                     nextTimeout = mLastUserActivityTime
                             + screenOffTimeout - screenDimDuration;
                     if (now < nextTimeout) {
-                        int buttonBrightness;
+                        int buttonBrightness, keyboardBrightness;
                         if (mButtonBrightnessOverrideFromWindowManager >= 0) {
                             buttonBrightness = mButtonBrightnessOverrideFromWindowManager;
+                            keyboardBrightness = mButtonBrightnessOverrideFromWindowManager;
                         } else {
                             buttonBrightness = mButtonBrightness;
+                            keyboardBrightness = mKeyboardBrightness;
                         }
+
+                        mKeyboardLight.setBrightness(mKeyboardVisible ? keyboardBrightness : 0);
                         if (mButtonTimeout != 0 && now > mLastUserActivityTime + mButtonTimeout) {
                              mButtonsLight.setBrightness(0);
                         } else {
@@ -1635,6 +1658,7 @@ public final class PowerManagerService extends SystemService
                         nextTimeout = mLastUserActivityTime + screenOffTimeout;
                         if (now < nextTimeout) {
                             mButtonsLight.setBrightness(0);
+                            mKeyboardLight.setBrightness(0);
                             mUserActivitySummary = USER_ACTIVITY_SCREEN_DIM;
                         }
                     }
@@ -3156,7 +3180,44 @@ public final class PowerManagerService extends SystemService
             }
         }
 
-        /**
+
+        @Override // Binder call
+        public void setKeyboardVisibility(boolean visible) {
+            synchronized (mLock) {
+                if (DEBUG_SPEW) {
+                    Slog.d(TAG, "setKeyboardVisibility: " + visible);
+                }
+                if (mKeyboardVisible != visible) {
+                    mKeyboardVisible = visible;
+                    if (!visible) {
+                        // If hiding keyboard, turn off leds
+                        setKeyboardLight(false, 1);
+                        setKeyboardLight(false, 2);
+                    }
+                      synchronized (mLock) {
+                        mDirty |= DIRTY_USER_ACTIVITY;
+                        updatePowerStateLocked();
+                    }
+                }
+            }
+        }
+
+        @Override // Binder call
+        public void setKeyboardLight(boolean on, int key) {
+            if (key == 1) {
+                if (on)
+                    mCapsLight.setColor(0x00ffffff);
+                else
+                    mCapsLight.turnOff();
+            } else if (key == 2) {
+                if (on)
+                    mFnLight.setColor(0x00ffffff);
+                else
+                    mFnLight.turnOff();
+            }
+        }
+
+         /**
          * @hide
          */
         private void wakeUp(final long eventTime, boolean checkProximity) {
