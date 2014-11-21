@@ -5930,6 +5930,12 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL = "lockscreen_quick_unlock_control";
 
+		/**
+         * Whether to include options in power menu for rebooting into recovery and bootloader
+         * @hide
+         */
+        public static final String ADVANCED_REBOOT = "advanced_reboot";
+
         /**
          * Names of the packages that the current user has explicitly allowed to
          * see all of the user's notifications, separated by ':'.
@@ -6113,7 +6119,8 @@ public final class Settings {
             STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD,
             LOCKSCREEN_QUICK_UNLOCK_CONTROL,
             DEVELOPMENT_SHORTCUT,
-            LOCKSCREEN_QUICK_UNLOCK_CONTROL
+            LOCKSCREEN_QUICK_UNLOCK_CONTROL,
+            ADVANCED_REBOOT
 
         };
 
