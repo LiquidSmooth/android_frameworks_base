@@ -47,6 +47,7 @@ import com.android.systemui.recents.views.DebugOverlayView;
 import com.android.systemui.recents.views.RecentsView;
 import com.android.systemui.recents.views.SystemBarScrimViews;
 import com.android.systemui.recents.views.ViewAnimation;
+import android.provider.Settings;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationTargetException;
@@ -70,6 +71,7 @@ public class RecentsActivity extends Activity implements RecentsView.RecentsView
     ViewStub mDebugOverlayStub;
     View mEmptyView;
     DebugOverlayView mDebugOverlay;
+
 
     // Search AppWidget
     RecentsAppWidgetHost mAppWidgetHost;
@@ -243,16 +245,28 @@ public class RecentsActivity extends Activity implements RecentsView.RecentsView
             }
             mEmptyView.setVisibility(View.VISIBLE);
             mRecentsView.setSearchBarVisibility(View.GONE);
-            findViewById(R.id.clear_recents).setVisibility(View.GONE);
         } else {
             if (mEmptyView != null) {
                 mEmptyView.setVisibility(View.GONE);
             }
-            findViewById(R.id.clear_recents).setVisibility(View.VISIBLE);
             if (mRecentsView.hasSearchBar()) {
+               
+
+
+        if (Settings.System.getInt(getContentResolver(),
+                Settings.System.RECENTS_SHOW_HIDE_SEARCH_BAR, 1) == 0) {
                 mRecentsView.setSearchBarVisibility(View.VISIBLE);
-            } else {
+        } else {
+                mRecentsView.setSearchBarVisibility(View.GONE);
+               }
+
+        } else {       
+            if (Settings.System.getInt(getContentResolver(),
+                Settings.System.RECENTS_SHOW_HIDE_SEARCH_BAR, 1) == 0) {
                 addSearchBarAppWidgetView();
+        } else {
+
+               }
             }
         }
 
