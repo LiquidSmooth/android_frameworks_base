@@ -181,6 +181,7 @@ import com.android.systemui.statusbar.policy.RotationLockControllerImpl;
 import com.android.systemui.statusbar.policy.SecurityControllerImpl;
 import com.android.systemui.statusbar.policy.UserInfoController;
 import com.android.systemui.statusbar.policy.UserSwitcherController;
+import com.android.systemui.statusbar.policy.WeatherControllerImpl;
 import com.android.systemui.statusbar.policy.ZenModeController;
 import com.android.systemui.statusbar.stack.NotificationStackScrollLayout;
 import com.android.systemui.statusbar.stack.NotificationStackScrollLayout.OnChildLocationsChangedListener;
@@ -279,7 +280,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     NextAlarmController mNextAlarmController;
     KeyguardMonitor mKeyguardMonitor;
     BrightnessMirrorController mBrightnessMirrorController;
-    AccessibilityController mAccessibilityController;
+    WeatherControllerImpl mWeatherController;
 
     int mNaturalBarHeight = -1;
     int mIconSize = -1;
@@ -1079,6 +1080,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (UserSwitcherController.isUserSwitcherAvailable(UserManager.get(mContext))) {
             mUserSwitcherController = new UserSwitcherController(mContext, mKeyguardMonitor);
         }
+        mWeatherController = new WeatherControllerImpl(mContext);
+
         mKeyguardUserSwitcher = new KeyguardUserSwitcher(mContext,
                 (ViewStub) mStatusBarWindow.findViewById(R.id.keyguard_user_switcher),
                 mKeyguardStatusBar, mNotificationPanel, mUserSwitcherController);
@@ -1116,6 +1119,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mBatteryView.setBatteryController(mBatteryController);
         mKeyguardStatusBar.setBatteryController(mBatteryController);
         mHeader.setNextAlarmController(mNextAlarmController);
+        mHeader.setWeatherController(mWeatherController);
 
         PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         mBroadcastReceiver.onReceive(mContext,
