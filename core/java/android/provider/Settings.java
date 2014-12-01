@@ -5981,6 +5981,14 @@ public final class Settings {
         public static final String QS_USE_MAIN_TILES = "sysui_qs_main_tiles";
 
         /**
+         * Whether to display a menu containing 'Wipe data', 'Force close' and other options
+         * in the notification area and in the recent app list
+         * @hide
+         */
+        public static final String DEVELOPMENT_SHORTCUT = "development_shortcut";
+
+
+        /**
          * This are the settings to be backed up.
          *
          * NOTE: Settings are backed up and restored in the order they appear
@@ -6033,9 +6041,10 @@ public final class Settings {
             SLEEP_TIMEOUT,
             PRIVACY_GUARD_DEFAULT,
             PRIVACY_GUARD_NOTIFICATION,
-            ADVANCED_REBOOT,
             STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD,
-            LOCKSCREEN_QUICK_UNLOCK_CONTROL
+            LOCKSCREEN_QUICK_UNLOCK_CONTROL,
+            ADVANCED_REBOOT,
+            DEVELOPMENT_SHORTCUT
         };
 
         /**
