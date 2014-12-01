@@ -119,6 +119,9 @@
     <!-- Heads up -->
     <uses-permission android:name="android.permission.CHANGE_HEADS_UP_STATE" />
 
+    <!-- Weather -->
+    <uses-permission android:name="com.cyanogenmod.lockclock.permission.READ_WEATHER" />
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"
