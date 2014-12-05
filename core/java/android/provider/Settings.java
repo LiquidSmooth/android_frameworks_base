@@ -5621,13 +5621,9 @@ public final class Settings {
             UI_NIGHT_MODE,
             SLEEP_TIMEOUT,
             PRIVACY_GUARD_DEFAULT,
-<<<<<<< HEAD
-            ADVANCED_REBOOT
-            STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD
-=======
+            STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD,
             ADVANCED_REBOOT,
             DEVELOPMENT_SHORTCUT
->>>>>>> 552943c... Recents: Port "Development shortcut" (2/2)
         };
 
         /**
