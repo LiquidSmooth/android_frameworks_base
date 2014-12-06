@@ -5228,6 +5228,12 @@ public final class Settings {
                 = "status_bar_locked_on_secure_keyguard";
 
         /**
+         * Whether to use the custom quick unlock screen control
+         * @hide
+         */
+        public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL = "lockscreen_quick_unlock_control";
+
+        /**
          * Names of the packages that the current user has explicitly allowed to
          * see all of the user's notifications, separated by ':'.
          *
@@ -5380,7 +5386,8 @@ public final class Settings {
             UI_NIGHT_MODE,
             SLEEP_TIMEOUT,
             PRIVACY_GUARD_DEFAULT,
-            STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD
+            STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD,
+            LOCKSCREEN_QUICK_UNLOCK_CONTROL
         };
 
         /**
