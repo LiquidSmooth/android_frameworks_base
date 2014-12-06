@@ -528,7 +528,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     }
 
     private Action getPowerAction() {
-        return new SinglePressAction(com.android.internal.R.drawable.ic_lock_power_off,
+        return new SinglePressAction(com.android.internal.R.drawable.ic_lock_power_off_dark,
                 R.string.global_action_power_off) {
 
             @Override
