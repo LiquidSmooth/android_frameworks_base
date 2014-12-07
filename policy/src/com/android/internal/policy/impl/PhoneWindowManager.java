@@ -678,6 +678,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     int     mWifiDisplayCustomRotation = -1;
     private boolean mClearedBecauseOfForceShow;
     private boolean mTopWindowIsKeyguard;
+    private boolean mHasPermanentMenuKey;
 
     private class PolicyHandler extends Handler {
         @Override
@@ -7278,6 +7279,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     @Override
     public boolean hasNavigationBar() {
         return mHasNavigationBar || mDevForceNavbar;
+    }
+
+    @Override
+    public boolean hasPermanentMenuKey() {
+        return !hasNavigationBar() && mHasPermanentMenuKey;
     }
 
     public boolean needsNavigationBar() {
