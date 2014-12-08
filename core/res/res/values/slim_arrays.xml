@@ -18,7 +18,6 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-
     <!-- Defines the shutdown options shown in the reboot dialog. -->
     <array name="shutdown_reboot_options" translatable="false">
         <item>@string/reboot_reboot</item>
@@ -97,6 +96,7 @@
         <item>@string/app_ops_delete_call_log</item>
         <item>@string/app_ops_toggle_mobile_data</item>
         <item>@string/app_ops_alarm_wakeup</item>
+
     </string-array>
 
 </resources>
