@@ -213,4 +213,8 @@
 
     <!-- Default for Settings.Global.TETHER_DUN_REQUIRED -->
     <integer name="def_tether_dun_required">0</integer>
+
+    <!-- Default for Settings.Secure.STATS_COLLECTION. -->
+    <bool name="def_cm_stats_collection">false</bool>
+
 </resources>
