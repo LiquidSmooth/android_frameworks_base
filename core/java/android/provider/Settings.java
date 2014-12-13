@@ -3164,6 +3164,7 @@ public final class Settings {
         public static final String EGG_MODE = "egg_mode";
 
         /**
+
          * Height of navigation bar buttons
          * @hide
          */
@@ -3430,7 +3431,8 @@ public final class Settings {
             INCREASING_RING,
             INCREASING_RING_START_VOLUME,
             INCREASING_RING_RAMP_UP_TIME,
-            SYSTEM_PROFILES_ENABLED
+            SYSTEM_PROFILES_ENABLED,
+            STATUS_BAR_SHOW_BATTERY_PERCENT
         };
 
         /**
