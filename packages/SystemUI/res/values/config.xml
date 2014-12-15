@@ -142,7 +142,9 @@
     <!-- milliseconds before the heads up notification accepts touches. -->
     <integer name="heads_up_sensitivity_delay">700</integer>
 
-<<<<<<< HEAD
+    <!-- milliseconds how long heads up should be in snooze. -->
+    <integer name="heads_up_snooze_time">300000</integer>
+
     <!-- Show emergency call label only without carrier label on expanded notification area -->
     <bool name="config_showEmergencyCallLabelOnly">true</bool>
     <bool name="config_showDataConnectionView">true</bool>
@@ -168,10 +170,6 @@
         <item>0</item>
     </integer-array>
     <bool name="config_showRsrpSignalLevelforLTE">false</bool>
-=======
-    <!-- milliseconds how long heads up should be in snooze. -->
-    <integer name="heads_up_snooze_time">300000</integer>
->>>>>>> edf64d3... Frameworks: Slim heads up customizations for LP (1/2)
 
     <!-- The duration in seconds to wait before the dismiss buttons are shown. -->
     <integer name="recents_task_bar_dismiss_delay_seconds">1</integer>
