@@ -3371,6 +3371,19 @@ public final class Settings {
          */
         public static final String VOLUME_MUSIC_CONTROLS = "volume_music_controls";
 
+       /**
+         * Whether to wake the screen with the back key, the value is boolean.
+         * @hide
+         */
+        public static final String BACK_WAKE_SCREEN = "back_wake_screen";
+
+        /**
+         * Whether to wake the screen with the menu key, the value is boolean.
+         * @hide
+         */
+
+        public static final String MENU_WAKE_SCREEN = "menu_wake_screen";
+
         /**
          * Enable statusbar double tap gesture on to put device to sleep
          * @hide
