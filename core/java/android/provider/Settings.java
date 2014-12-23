@@ -3438,6 +3438,24 @@ public final class Settings {
         public static final String GESTURE_ANYWHERE_TRIGGER_WIDTH = "gesture_anywhere_trigger_width";
 
         /**
+         * Whether to show the weather info on the header of the expanded status bar
+         * @hide
+         */
+        public static final String STATUS_BAR_EXPANDED_HEADER_SHOW_WEATHER = "status_bar_expanded_header_show_weather";
+
+        /**
+         * Color of the weather location on the header of the expanded status bar
+         * @hide
+         */
+        public static final String STATUS_BAR_EXPANDED_HEADER_SHOW_WEATHER_LOCATION = "status_bar_expanded_header_show_weather_location";
+
+        /**
+         * Whether to show the weather info on the header of the expanded status bar
+         * @hide
+         */
+        public static final String STATUS_BAR_EXPANDED_HEADER_WEATHER_COLOR = "status_bar_expanded_header_weather_color";
+
+        /**
          * Position of gesture anywhere trigger.
          * @hide
          */
