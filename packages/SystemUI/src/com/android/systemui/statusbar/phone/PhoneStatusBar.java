@@ -501,10 +501,18 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mAutomaticBrightness = mode != Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL;
             mBrightnessControl = Settings.System.getInt(
                     resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1;
+
+            if (mNavigationBarView != null) {
+                boolean navLeftInLandscape = Settings.System.getInt(resolver,
+                        Settings.System.NAVBAR_LEFT_IN_LANDSCAPE, 0) == 1;
+                mNavigationBarView.setLeftInLandscape(navLeftInLandscape);
+            }
+
             mTickerEnabled = Settings.System.getIntForUser(
                     resolver, Settings.System.STATUS_BAR_TICKER_ENABLED,
                     mContext.getResources().getBoolean(R.bool.enable_ticker)
                             ? 1 : 0, UserHandle.USER_CURRENT) == 1;
+
 /*
             boolean showInsidePercent = Settings.System.getIntForUser(resolver,
                     Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT, 0, mCurrentUserId) == 1;
