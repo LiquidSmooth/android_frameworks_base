@@ -18,17 +18,17 @@
 -->
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_alwaysShow="true"
     android:text="@string/use_a_different_app"
     android:minHeight="56dp"
-    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:textAppearance="?android:textAppearanceMedium"
     android:gravity="start|center_vertical"
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
-    android:background="@color/white"
+    android:background="@color/material_blue_grey_800"
     android:elevation="8dp"
     />

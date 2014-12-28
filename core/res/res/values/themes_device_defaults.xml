@@ -303,7 +303,7 @@ easier.
     <style name="Theme.DeviceDefault.Dialog.NoFrame" parent="Theme.Material.Dialog.NoFrame" />
 
     <!-- Variant of {@link #Theme_DeviceDefault} with a light-colored style -->
-    <style name="Theme.DeviceDefault.Light" parent="Theme.Material.Light" >
+    <style name="Theme.DeviceDefault.Light" parent="Theme.Material" >
         <!-- Text styles -->
         <item name="textAppearance">@style/TextAppearance.DeviceDefault</item>
         <item name="textAppearanceInverse">@style/TextAppearance.DeviceDefault.Inverse</item>
@@ -453,30 +453,30 @@ easier.
 
     <!-- Variant of the DeviceDefault (light) theme that has a solid (opaque) action bar with an
     inverse color profile. -->
-    <style name="Theme.DeviceDefault.Light.DarkActionBar" parent="Theme.Material.Light.DarkActionBar" />
+    <style name="Theme.DeviceDefault.Light.DarkActionBar" parent="Theme.Material" />
 
     <!-- Variant of {@link #Theme_DeviceDefault_Light} with no action bar -->
-    <style name="Theme.DeviceDefault.Light.NoActionBar" parent="Theme.Material.Light.NoActionBar"  />
+    <style name="Theme.DeviceDefault.Light.NoActionBar" parent="Theme.Material.NoActionBar"  />
 
     <!-- Variant of {@link #Theme_DeviceDefault_Light} with no action bar and no status bar.
          This theme sets {@link android.R.attr#windowFullscreen} to true.  -->
-    <style name="Theme.DeviceDefault.Light.NoActionBar.Fullscreen" parent="Theme.Material.Light.NoActionBar.Fullscreen"  />
+    <style name="Theme.DeviceDefault.Light.NoActionBar.Fullscreen" parent="Theme.Material.NoActionBar.Fullscreen"  />
 
     <!-- Variant of {@link #Theme_DeviceDefault_Light} with no action bar and no status bar
     and extending in to overscan region.  This theme
     sets {@link android.R.attr#windowFullscreen} and {@link android.R.attr#windowOverscan}
     to true. -->
-    <style name="Theme.DeviceDefault.Light.NoActionBar.Overscan" parent="Theme.Material.Light.NoActionBar.Overscan" />
+    <style name="Theme.DeviceDefault.Light.NoActionBar.Overscan" parent="Theme.Material.NoActionBar.Overscan" />
 
     <!-- Variant of {@link #Theme_DeviceDefault_Light} that has no title bar and translucent
          system decor.  This theme sets {@link android.R.attr#windowTranslucentStatus} and
          {@link android.R.attr#windowTranslucentNavigation} to true. -->
-    <style name="Theme.DeviceDefault.Light.NoActionBar.TranslucentDecor" parent="Theme.Material.Light.NoActionBar.TranslucentDecor" />
+    <style name="Theme.DeviceDefault.Light.NoActionBar.TranslucentDecor" parent="Theme.Material.NoActionBar.TranslucentDecor" />
 
     <!-- DeviceDefault light theme for dialog windows and activities. This changes the window to be
     floating (not fill the entire screen), and puts a frame around its contents. You can set this
     theme on an activity if you would like to make an activity that looks like a Dialog.-->
-    <style name="Theme.DeviceDefault.Light.Dialog" parent="Theme.Material.Light.Dialog" >
+    <style name="Theme.DeviceDefault.Light.Dialog" parent="Theme.Material.Dialog" >
         <item name="windowTitleStyle">@style/DialogWindowTitle.DeviceDefault.Light</item>
         <item name="windowAnimationStyle">@style/Animation.DeviceDefault.Dialog</item>
 
@@ -489,17 +489,17 @@ easier.
 
     <!-- Variant of {@link #Theme_DeviceDefault_Light_Dialog} that has a nice minimum width for a
     regular dialog. -->
-    <style name="Theme.DeviceDefault.Light.Dialog.MinWidth" parent="Theme.Material.Light.Dialog.MinWidth" />
+    <style name="Theme.DeviceDefault.Light.Dialog.MinWidth" parent="Theme.Material.Dialog.MinWidth" />
 
      <!-- Variant of {@link #Theme_DeviceDefault_Light_Dialog} without an action bar -->
-    <style name="Theme.DeviceDefault.Light.Dialog.NoActionBar" parent="Theme.Material.Light.Dialog.NoActionBar" />
+    <style name="Theme.DeviceDefault.Light.Dialog.NoActionBar" parent="Theme.Material.Dialog.NoActionBar" />
 
     <!-- Variant of {@link #Theme_DeviceDefault_Light_Dialog_NoActionBar} that has a nice minimum
     width for a regular dialog. -->
-    <style name="Theme.DeviceDefault.Light.Dialog.NoActionBar.MinWidth" parent="Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
+    <style name="Theme.DeviceDefault.Light.Dialog.NoActionBar.MinWidth" parent="Theme.Material.Dialog.NoActionBar.MinWidth" />
 
     <!-- Variant of Theme.DeviceDefault.Dialog that has a fixed size. -->
-    <style name="Theme.DeviceDefault.Light.Dialog.FixedSize">
+    <style name="Theme.DeviceDefault.Light.Dialog.FixedSize" parent="@style/Theme.DeviceDefault.Dialog">
         <item name="windowFixedWidthMajor">@dimen/dialog_fixed_width_major</item>
         <item name="windowFixedWidthMinor">@dimen/dialog_fixed_width_minor</item>
         <item name="windowFixedHeightMajor">@dimen/dialog_fixed_height_major</item>
@@ -507,7 +507,7 @@ easier.
     </style>
 
     <!-- Variant of Theme.DeviceDefault.Dialog.NoActionBar that has a fixed size. -->
-    <style name="Theme.DeviceDefault.Light.Dialog.NoActionBar.FixedSize">
+    <style name="Theme.DeviceDefault.Light.Dialog.NoActionBar.FixedSize" parent="@style/Theme.DeviceDefault.Dialog.NoActionBar">
         <item name="windowFixedWidthMajor">@dimen/dialog_fixed_width_major</item>
         <item name="windowFixedWidthMinor">@dimen/dialog_fixed_width_minor</item>
         <item name="windowFixedHeightMajor">@dimen/dialog_fixed_height_major</item>
@@ -516,32 +516,32 @@ easier.
 
     <!-- DeviceDefault light theme for a window that will be displayed either full-screen on smaller
     screens (small, normal) or as a dialog on larger screens (large, xlarge). -->
-    <style name="Theme.DeviceDefault.Light.DialogWhenLarge" parent="Theme.Material.Light.DialogWhenLarge"  />
+    <style name="Theme.DeviceDefault.Light.DialogWhenLarge" parent="Theme.Material.DialogWhenLarge"  />
 
     <!-- DeviceDefault light theme for a window without an action bar that will be displayed either
     full-screen on smaller screens (small, normal) or as a dialog on larger screens (large,
     xlarge). -->
-    <style name="Theme.DeviceDefault.Light.DialogWhenLarge.NoActionBar" parent="Theme.Material.Light.DialogWhenLarge.NoActionBar"  />
+    <style name="Theme.DeviceDefault.Light.DialogWhenLarge.NoActionBar" parent="Theme.Material.DialogWhenLarge.NoActionBar"  />
 
     <!-- DeviceDefault light theme for a presentation window on a secondary display. -->
-    <style name="Theme.DeviceDefault.Light.Dialog.Presentation" parent="Theme.Material.Light.Dialog.Presentation" />
+    <style name="Theme.DeviceDefault.Light.Dialog.Presentation" parent="Theme.Material.Dialog.Presentation" />
 
     <!-- DeviceDefault light theme for panel windows. This removes all extraneous window
     decorations, so you basically have an empty rectangle in which to place your content. It makes
     the window floating, with a transparent background, and turns off dimming behind the window. -->
-    <style name="Theme.DeviceDefault.Light.Panel" parent="Theme.Material.Light.Panel"  />
+    <style name="Theme.DeviceDefault.Light.Panel" parent="Theme.Material.Panel"  />
 
-    <style name="Theme.DeviceDefault.Light.Dialog.Alert" parent="Theme.Material.Light.Dialog.Alert">
+    <style name="Theme.DeviceDefault.Light.Dialog.Alert" parent="Theme.Material.Dialog.Alert">
         <item name="windowTitleStyle">@style/DialogWindowTitle.DeviceDefault.Light</item>
     </style>
 
-    <style name="Theme.DeviceDefault.Light.SearchBar" parent="Theme.Material.Light.SearchBar" />
+    <style name="Theme.DeviceDefault.Light.SearchBar" parent="Theme.Material.SearchBar" />
 
     <!-- DeviceDefault theme for a window that should look like the Settings app.  -->
     <style name="Theme.DeviceDefault.Settings" parent="Theme.Material.Settings" />
 
     <!-- Theme used for the intent picker activity. -->
-    <style name="Theme.DeviceDefault.Resolver" parent="Theme.Material.Light">
+    <style name="Theme.DeviceDefault.Resolver" parent="Theme.Material">
         <item name="windowIsTranslucent">true</item>
         <item name="windowNoTitle">true</item>
         <item name="windowBackground">@color/transparent</item>

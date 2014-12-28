@@ -19,7 +19,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:minHeight="?android:listPreferredItemHeight"
     android:orientation="horizontal"
 
     android:paddingStart="8dip"
@@ -45,7 +45,7 @@
             android:layout_gravity="top"
 
             android:gravity="center_vertical"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:textAppearanceLarge"
             />
         <TextView android:id="@+id/status"
             android:layout_width="match_parent"
@@ -53,7 +53,7 @@
             android:layout_gravity="bottom"
             android:minHeight="26dp"
 
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAppearance="?android:textAppearanceSmall"
             />
     </LinearLayout>
 </LinearLayout>
