@@ -61,7 +61,7 @@ please see themes_device_defaults.xml.
          Specific resources used by Holo are named using the convention @type/foo_bar_baz_holo
          with trailing _dark or _light specifiers if they are not shared between both light and
          dark versions of the theme. -->
-    <style name="Theme.Holo">
+    <style name="Theme.Holo" parent="@style/Theme">
         <item name="colorForeground">@color/bright_foreground_holo_dark</item>
         <item name="colorForegroundInverse">@color/bright_foreground_inverse_holo_dark</item>
         <item name="colorBackground">@color/background_holo_dark</item>
@@ -734,7 +734,7 @@ please see themes_device_defaults.xml.
     <!-- Variant of the holographic (light) theme that has a solid (opaque) action bar
          with an inverse color profile. The dark action bar sharply stands out against
          the light content. -->
-    <style name="Theme.Holo.Light.DarkActionBar">
+    <style name="Theme.Holo.Light.DarkActionBar" parent="@style/Theme.Holo.Light">
         <item name="windowContentOverlay">@drawable/ab_solid_shadow_holo</item>
         <item name="actionBarStyle">@style/Widget.Holo.Light.ActionBar.Solid.Inverse</item>
         <item name="actionBarWidgetTheme">@style/Theme.Holo</item>
@@ -767,7 +767,7 @@ please see themes_device_defaults.xml.
     </style>
 
     <!-- Variant of the holographic (dark) theme with no action bar. -->
-    <style name="Theme.Holo.NoActionBar">
+    <style name="Theme.Holo.NoActionBar" parent="@style/Theme.Holo">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -775,7 +775,7 @@ please see themes_device_defaults.xml.
     <!-- Variant of the holographic (dark) theme that has no title bar and fills
          the entire screen.  This theme
          sets {@link android.R.attr#windowFullscreen} to true.  -->
-    <style name="Theme.Holo.NoActionBar.Fullscreen">
+    <style name="Theme.Holo.NoActionBar.Fullscreen" parent="@style/Theme.Holo.NoActionBar">
         <item name="windowFullscreen">true</item>
         <item name="windowContentOverlay">@null</item>
     </style>
@@ -784,7 +784,7 @@ please see themes_device_defaults.xml.
          the entire screen and extends into the display overscan region.  This theme
          sets {@link android.R.attr#windowFullscreen} and {@link android.R.attr#windowOverscan}
          to true. -->
-    <style name="Theme.Holo.NoActionBar.Overscan">
+    <style name="Theme.Holo.NoActionBar.Overscan" parent="@style/Theme.Holo.NoActionBar">
         <item name="windowFullscreen">true</item>
         <item name="windowOverscan">true</item>
         <item name="windowContentOverlay">@null</item>
@@ -793,14 +793,14 @@ please see themes_device_defaults.xml.
     <!-- Variant of the holographic (dark) theme that has no title bar and translucent
          system decor.  This theme sets {@link android.R.attr#windowTranslucentStatus} and
          {@link android.R.attr#windowTranslucentNavigation} to true. -->
-    <style name="Theme.Holo.NoActionBar.TranslucentDecor">
+    <style name="Theme.Holo.NoActionBar.TranslucentDecor" parent="@style/Theme.Holo.NoActionBar">
         <item name="windowTranslucentStatus">true</item>
         <item name="windowTranslucentNavigation">true</item>
         <item name="windowContentOverlay">@null</item>
     </style>
 
     <!-- Variant of the holographic (light) theme with no action bar. -->
-    <style name="Theme.Holo.Light.NoActionBar">
+    <style name="Theme.Holo.Light.NoActionBar" parent="@style/Theme.Holo.Light">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -808,7 +808,7 @@ please see themes_device_defaults.xml.
     <!-- Variant of the holographic (light) theme that has no title bar and fills
          the entire screen.  This theme
          sets {@link android.R.attr#windowFullscreen} to true.  -->
-    <style name="Theme.Holo.Light.NoActionBar.Fullscreen">
+    <style name="Theme.Holo.Light.NoActionBar.Fullscreen" parent="@style/Theme.Holo.Light.NoActionBar">
         <item name="windowFullscreen">true</item>
         <item name="windowContentOverlay">@null</item>
     </style>
@@ -817,7 +817,7 @@ please see themes_device_defaults.xml.
          the entire screen and extends into the display overscan region.  This theme
          sets {@link android.R.attr#windowFullscreen} and {@link android.R.attr#windowOverscan}
          to true. -->
-    <style name="Theme.Holo.Light.NoActionBar.Overscan">
+    <style name="Theme.Holo.Light.NoActionBar.Overscan" parent="@style/Theme.Holo.Light.NoActionBar">
         <item name="windowFullscreen">true</item>
         <item name="windowOverscan">true</item>
         <item name="windowContentOverlay">@null</item>
@@ -826,7 +826,7 @@ please see themes_device_defaults.xml.
     <!-- Variant of the holographic (light) theme that has no title bar and translucent
          system decor.  This theme sets {@link android.R.attr#windowTranslucentStatus} and
          {@link android.R.attr#windowTranslucentNavigation} to true. -->
-    <style name="Theme.Holo.Light.NoActionBar.TranslucentDecor">
+    <style name="Theme.Holo.Light.NoActionBar.TranslucentDecor" parent="@style/Theme.Holo.Light.NoActionBar">
         <item name="windowTranslucentStatus">true</item>
         <item name="windowTranslucentNavigation">true</item>
         <item name="windowContentOverlay">@null</item>
@@ -842,7 +842,7 @@ please see themes_device_defaults.xml.
          make an activity that looks like a Dialog.
          This is the default Dialog theme for applications targeting Honeycomb
          or newer. -->
-    <style name="Theme.Holo.Dialog">
+    <style name="Theme.Holo.Dialog" parent="@style/Theme.Holo">
         <item name="windowFrame">@null</item>
         <item name="windowTitleStyle">@style/DialogWindowTitle.Holo</item>
         <item name="windowBackground">@drawable/dialog_full_holo_dark</item>
@@ -872,26 +872,26 @@ please see themes_device_defaults.xml.
 
     <!-- Variant of Theme.Holo.Dialog that has a nice minimum width for
          a regular dialog. -->
-    <style name="Theme.Holo.Dialog.MinWidth">
+    <style name="Theme.Holo.Dialog.MinWidth" parent="@style/Theme.Holo.Dialog">
         <item name="windowMinWidthMajor">@dimen/dialog_min_width_major</item>
         <item name="windowMinWidthMinor">@dimen/dialog_min_width_minor</item>
     </style>
 
     <!-- Variant of Theme.Holo.Dialog that does not include a title bar. -->
-    <style name="Theme.Holo.Dialog.NoActionBar">
+    <style name="Theme.Holo.Dialog.NoActionBar" parent="@style/Theme.Holo.Dialog">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
     <!-- Variant of Theme.Holo.Dialog.NoActionBar that has a nice minimum width for
          a regular dialog. -->
-    <style name="Theme.Holo.Dialog.NoActionBar.MinWidth">
+    <style name="Theme.Holo.Dialog.NoActionBar.MinWidth" parent="@style/Theme.Holo.Dialog.NoActionBar">
         <item name="windowMinWidthMajor">@dimen/dialog_min_width_major</item>
         <item name="windowMinWidthMinor">@dimen/dialog_min_width_minor</item>
     </style>
 
     <!-- Variant of Theme.Holo.Dialog that has a fixed size. -->
-    <style name="Theme.Holo.Dialog.FixedSize">
+    <style name="Theme.Holo.Dialog.FixedSize" parent="@style/Theme.Holo.Dialog">
         <item name="windowFixedWidthMajor">@dimen/dialog_fixed_width_major</item>
         <item name="windowFixedWidthMinor">@dimen/dialog_fixed_width_minor</item>
         <item name="windowFixedHeightMajor">@dimen/dialog_fixed_height_major</item>
@@ -899,7 +899,7 @@ please see themes_device_defaults.xml.
     </style>
 
     <!-- Variant of Theme.Holo.Dialog.NoActionBar that has a fixed size. -->
-    <style name="Theme.Holo.Dialog.NoActionBar.FixedSize">
+    <style name="Theme.Holo.Dialog.NoActionBar.FixedSize" parent="@style/Theme.Holo.Dialog.NoActionBar">
         <item name="windowFixedWidthMajor">@dimen/dialog_fixed_width_major</item>
         <item name="windowFixedWidthMinor">@dimen/dialog_fixed_width_minor</item>
         <item name="windowFixedHeightMajor">@dimen/dialog_fixed_height_major</item>
@@ -909,7 +909,7 @@ please see themes_device_defaults.xml.
     <!-- Variant of Theme.Holo.Dialog that does not include a frame (or background).
          The view hierarchy of the dialog is responsible for drawing all of
          its pixels. -->
-    <style name="Theme.Holo.Dialog.NoFrame">
+    <style name="Theme.Holo.Dialog.NoFrame" parent="@style/Theme.Holo.Dialog">
         <item name="windowBackground">@color/transparent</item>
         <item name="windowFrame">@null</item>
         <item name="windowContentOverlay">@null</item>
@@ -920,7 +920,7 @@ please see themes_device_defaults.xml.
         <item name="windowCloseOnTouchOutside">false</item>
     </style>
 
-    <style name="Theme.Holo.Dialog.BaseAlert">
+    <style name="Theme.Holo.Dialog.BaseAlert" parent="@style/Theme.Holo.Dialog">
         <item name="windowBackground">@color/transparent</item>
         <item name="windowTitleStyle">@style/DialogWindowTitle.Holo</item>
         <item name="windowContentOverlay">@null</item>
@@ -957,7 +957,7 @@ please see themes_device_defaults.xml.
          make an activity that looks like a Dialog.
          This is the default Dialog theme for applications targeting Honeycomb
          or newer. -->
-    <style name="Theme.Holo.Light.Dialog">
+    <style name="Theme.Holo.Light.Dialog" parent="@style/Theme.Holo.Light">
         <item name="windowFrame">@null</item>
         <item name="windowTitleStyle">@style/DialogWindowTitle.Holo.Light</item>
         <item name="windowBackground">@drawable/dialog_full_holo_light</item>
@@ -987,26 +987,26 @@ please see themes_device_defaults.xml.
 
     <!-- Variant of Theme.Holo.Light.Dialog that has a nice minimum width for
          a regular dialog. -->
-    <style name="Theme.Holo.Light.Dialog.MinWidth">
+    <style name="Theme.Holo.Light.Dialog.MinWidth" parent="@style/Theme.Holo.Light.Dialog">
         <item name="windowMinWidthMajor">@dimen/dialog_min_width_major</item>
         <item name="windowMinWidthMinor">@dimen/dialog_min_width_minor</item>
     </style>
 
     <!-- Variant of Theme.Holo.Light.Dialog that does not include a title bar. -->
-    <style name="Theme.Holo.Light.Dialog.NoActionBar">
+    <style name="Theme.Holo.Light.Dialog.NoActionBar" parent="@style/Theme.Holo.Light.Dialog">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
     <!-- Variant of Theme.Holo.Light.Dialog.NoActionBar that has a nice minimum width for
          a regular dialog. -->
-    <style name="Theme.Holo.Light.Dialog.NoActionBar.MinWidth">
+    <style name="Theme.Holo.Light.Dialog.NoActionBar.MinWidth" parent="@style/Theme.Holo.Light.Dialog.NoActionBar">
         <item name="windowMinWidthMajor">@dimen/dialog_min_width_major</item>
         <item name="windowMinWidthMinor">@dimen/dialog_min_width_minor</item>
     </style>
 
     <!-- Variant of Theme.Holo.Light.Dialog that has a fixed size. -->
-    <style name="Theme.Holo.Light.Dialog.FixedSize">
+    <style name="Theme.Holo.Light.Dialog.FixedSize" parent="@style/Theme.Holo.Light.Dialog">
         <item name="windowFixedWidthMajor">@dimen/dialog_fixed_width_major</item>
         <item name="windowFixedWidthMinor">@dimen/dialog_fixed_width_minor</item>
         <item name="windowFixedHeightMajor">@dimen/dialog_fixed_height_major</item>
@@ -1014,7 +1014,7 @@ please see themes_device_defaults.xml.
     </style>
 
     <!-- Variant of Theme.Holo.Light.Dialog.NoActionBar that has a fixed size. -->
-    <style name="Theme.Holo.Light.Dialog.NoActionBar.FixedSize">
+    <style name="Theme.Holo.Light.Dialog.NoActionBar.FixedSize" parent="@style/Theme.Holo.Light.Dialog.NoActionBar">
         <item name="windowFixedWidthMajor">@dimen/dialog_fixed_width_major</item>
         <item name="windowFixedWidthMinor">@dimen/dialog_fixed_width_minor</item>
         <item name="windowFixedHeightMajor">@dimen/dialog_fixed_height_major</item>
@@ -1031,7 +1031,7 @@ please see themes_device_defaults.xml.
          (large, xlarge). -->
     <style name="Theme.Holo.Light.DialogWhenLarge.NoActionBar" parent="Theme.Holo.Light.NoActionBar" />
 
-    <style name="Theme.Holo.Light.Dialog.BaseAlert">
+    <style name="Theme.Holo.Light.Dialog.BaseAlert" parent="@style/Theme.Holo.Light.Dialog">
         <item name="windowBackground">@color/transparent</item>
         <item name="windowTitleStyle">@style/DialogWindowTitle.Holo.Light</item>
         <item name="windowContentOverlay">@null</item>
@@ -1051,7 +1051,7 @@ please see themes_device_defaults.xml.
 
     <!-- Default holographic (dark) for windows that want to have the user's selected
          wallpaper appear behind them.  -->
-    <style name="Theme.Holo.Wallpaper">
+    <style name="Theme.Holo.Wallpaper" parent="@style/Theme.Holo">
         <item name="windowBackground">@color/transparent</item>
         <item name="colorBackgroundCacheHint">@null</item>
         <item name="windowShowWallpaper">true</item>
@@ -1059,7 +1059,7 @@ please see themes_device_defaults.xml.
 
     <!--Default holographic (dark) for windows that want to have the user's selected
          wallpaper appear behind them and without an action bar. -->
-    <style name="Theme.Holo.Wallpaper.NoTitleBar">
+    <style name="Theme.Holo.Wallpaper.NoTitleBar" parent="@style/Theme.Holo.Wallpaper">
         <item name="windowNoTitle">true</item>
     </style>
 
@@ -1067,7 +1067,7 @@ please see themes_device_defaults.xml.
          window decorations, so you basically have an empty rectangle in which
          to place your content.  It makes the window floating, with a transparent
          background, and turns off dimming behind the window. -->
-    <style name="Theme.Holo.Panel">
+    <style name="Theme.Holo.Panel" parent="@style/Theme.Holo">
         <item name="windowBackground">@color/transparent</item>
         <item name="colorBackgroundCacheHint">@null</item>
         <item name="windowFrame">@null</item>
@@ -1083,7 +1083,7 @@ please see themes_device_defaults.xml.
          window decorations, so you basically have an empty rectangle in which
          to place your content.  It makes the window floating, with a transparent
          background, and turns off dimming behind the window. -->
-    <style name="Theme.Holo.Light.Panel">
+    <style name="Theme.Holo.Light.Panel" parent="@style/Theme.Holo.Light">
         <item name="windowBackground">@color/transparent</item>
         <item name="colorBackgroundCacheHint">@null</item>
         <item name="windowFrame">@null</item>
@@ -1117,7 +1117,7 @@ please see themes_device_defaults.xml.
         <item name="actionModeSplitBackground">@drawable/cab_background_bottom_holo_light</item>
     </style>
 
-    <style name="Theme.Holo.CompactMenu">
+    <style name="Theme.Holo.CompactMenu" parent="@style/Theme.Holo">
         <!-- Menu/item attributes -->
         <item name="itemTextAppearance">?attr/textAppearanceMedium</item>
         <item name="listViewStyle">@style/Widget.Holo.ListView</item>
@@ -1125,7 +1125,7 @@ please see themes_device_defaults.xml.
         <item name="background">@null</item>
     </style>
 
-    <style name="Theme.Holo.Light.CompactMenu">
+    <style name="Theme.Holo.Light.CompactMenu" parent="@style/Theme.Holo.Light">
         <!-- Menu/item attributes -->
         <item name="itemTextAppearance">?attr/textAppearanceMedium</item>
         <item name="listViewStyle">@style/Widget.Holo.Light.ListView</item>
