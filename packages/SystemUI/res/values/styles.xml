@@ -31,9 +31,8 @@
         <item name="android:ambientShadowAlpha">0.35</item>
     </style>
 
-
     <!-- Alternate Recents theme -->
-    <style name="RecentsTheme.Wallpaper">
+    <style name="RecentsTheme.Wallpaper" parent="@style/RecentsTheme">
         <!-- Wallpaper -->
         <item name="android:windowBackground">@color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
@@ -41,7 +40,7 @@
     </style>
 
     <!-- Performance optimized alternate Recents theme (no wallpaper) -->
-    <style name="RecentsTheme.NoWallpaper">
+    <style name="RecentsTheme.NoWallpaper" parent="@style/RecentsTheme">
         <item name="android:windowBackground">@android:color/black</item>
     </style>
 
