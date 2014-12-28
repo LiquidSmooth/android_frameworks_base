@@ -41,7 +41,7 @@ please see themes_device_defaults.xml.
          Specific resources used by Material are named using the convention @type/foo_bar_baz_material
          with trailing _dark or _light specifiers if they are not shared between both light and
          dark versions of the theme. -->
-    <style name="Theme.Material">
+    <style name="Theme.Material" parent="@style/Theme">
         <item name="colorForeground">@color/bright_foreground_material_dark</item>
         <item name="colorForegroundInverse">@color/bright_foreground_material_light</item>
         <item name="colorBackground">@color/background_material_dark</item>
@@ -147,7 +147,7 @@ please see themes_device_defaults.xml.
         <item name="galleryItemBackground">@drawable/gallery_item_background</item>
 
         <!-- Window attributes -->
-        <item name="windowBackground">?attr/colorBackground</item>
+        <item name="windowBackground">?colorBackground</item>
         <item name="windowClipToOutline">true</item>
         <item name="windowFrame">@null</item>
         <item name="windowNoTitle">false</item>
@@ -192,12 +192,12 @@ please see themes_device_defaults.xml.
         <item name="toastFrameBackground">@drawable/toast_frame</item>
 
         <!-- Panel attributes -->
-        <item name="panelBackground">?attr/colorBackground</item>
+        <item name="panelBackground">?colorBackground</item>
         <item name="panelFullBackground">@drawable/menu_background_fill_parent_width</item>
         <!-- These three attributes do not seems to be used by the framework. Declared public though -->
-        <item name="panelColorBackground">#000</item>
-        <item name="panelColorForeground">?attr/textColorPrimary</item>
-        <item name="panelTextAppearance">?attr/textAppearance</item>
+        <item name="panelColorBackground">#ff000000</item>
+        <item name="panelColorForeground">?textColorPrimary</item>
+        <item name="panelTextAppearance">?textAppearance</item>
 
         <item name="panelMenuIsCompact">true</item>
         <item name="panelMenuListWidth">250dip</item>
@@ -739,7 +739,7 @@ please see themes_device_defaults.xml.
     <!-- Variant of the material (light) theme that has a solid (opaque) action bar
          with an inverse color profile. The dark action bar sharply stands out against
          the light content. -->
-    <style name="Theme.Material.Light.DarkActionBar">
+    <style name="Theme.Material.Light.DarkActionBar" parent="@style/Theme.Material.Light">
         <item name="actionBarWidgetTheme">@null</item>
         <item name="actionBarTheme">@style/ThemeOverlay.Material.Dark.ActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.Material.Light</item>
@@ -749,11 +749,11 @@ please see themes_device_defaults.xml.
     </style>
 
     <style name="ThemeOverlay" />
-    <style name="ThemeOverlay.Material" />
+    <style name="ThemeOverlay.Material" parent="@style/ThemeOverlay" />
 
     <!-- Theme overlay that replaces colors with their light versions but preserves
          the value of colorAccent, colorPrimary and its variants. -->
-    <style name="ThemeOverlay.Material.Light">
+    <style name="ThemeOverlay.Material.Light" parent="@style/ThemeOverlay.Material">
         <item name="colorForeground">@color/bright_foreground_material_light</item>
         <item name="colorForegroundInverse">@color/bright_foreground_material_dark</item>
         <item name="colorBackground">@color/background_material_light</item>
@@ -792,7 +792,7 @@ please see themes_device_defaults.xml.
 
     <!-- Theme overlay that replaces colors with their dark versions but preserves
          the value of colorAccent, colorPrimary and its variants. -->
-    <style name="ThemeOverlay.Material.Dark">
+    <style name="ThemeOverlay.Material.Dark" parent="@style/ThemeOverlay.Material">
         <item name="colorForeground">@color/bright_foreground_material_dark</item>
         <item name="colorForegroundInverse">@color/bright_foreground_material_light</item>
         <item name="colorBackground">@color/background_material_dark</item>
@@ -830,19 +830,19 @@ please see themes_device_defaults.xml.
 
     <!-- Theme overlay that replaces the normal control color, which by default is the same as the
          secondary text color, with the primary text color. -->
-    <style name="ThemeOverlay.Material.ActionBar">
+    <style name="ThemeOverlay.Material.ActionBar" parent="@style/ThemeOverlay.Material">
         <item name="colorControlNormal">?attr/textColorPrimary</item>
     </style>
 
     <!-- Theme overlay that replaces colors with their dark versions and replaces the normal
          control color, which by default is the same as the secondary text color, with the primary
          text color. -->
-    <style name="ThemeOverlay.Material.Dark.ActionBar">
+    <style name="ThemeOverlay.Material.Dark.ActionBar" parent="@style/ThemeOverlay.Material.Dark">
         <item name="colorControlNormal">?attr/textColorPrimary</item>
     </style>
 
     <!-- Variant of the material (dark) theme with no action bar. -->
-    <style name="Theme.Material.NoActionBar">
+    <style name="Theme.Material.NoActionBar" parent="@style/Theme.Material">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -850,7 +850,7 @@ please see themes_device_defaults.xml.
     <!-- Variant of the material (dark) theme that has no title bar and fills
          the entire screen.  This theme
          sets {@link android.R.attr#windowFullscreen} to true.  -->
-    <style name="Theme.Material.NoActionBar.Fullscreen">
+    <style name="Theme.Material.NoActionBar.Fullscreen" parent="@style/Theme.Material.NoActionBar">
         <item name="windowFullscreen">true</item>
         <item name="windowContentOverlay">@null</item>
     </style>
@@ -859,7 +859,7 @@ please see themes_device_defaults.xml.
          the entire screen and extends into the display overscan region.  This theme
          sets {@link android.R.attr#windowFullscreen} and {@link android.R.attr#windowOverscan}
          to true. -->
-    <style name="Theme.Material.NoActionBar.Overscan">
+    <style name="Theme.Material.NoActionBar.Overscan" parent="@style/Theme.Material.NoActionBar">
         <item name="windowFullscreen">true</item>
         <item name="windowOverscan">true</item>
         <item name="windowContentOverlay">@null</item>
@@ -868,14 +868,14 @@ please see themes_device_defaults.xml.
     <!-- Variant of the material (dark) theme that has no title bar and translucent
          system decor.  This theme sets {@link android.R.attr#windowTranslucentStatus} and
          {@link android.R.attr#windowTranslucentNavigation} to true. -->
-    <style name="Theme.Material.NoActionBar.TranslucentDecor">
+    <style name="Theme.Material.NoActionBar.TranslucentDecor" parent="@style/Theme.Material.NoActionBar">
         <item name="windowTranslucentStatus">true</item>
         <item name="windowTranslucentNavigation">true</item>
         <item name="windowContentOverlay">@null</item>
     </style>
 
     <!-- Variant of the material (light) theme with no action bar. -->
-    <style name="Theme.Material.Light.NoActionBar">
+    <style name="Theme.Material.Light.NoActionBar" parent="@style/Theme.Material.Light">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -883,7 +883,7 @@ please see themes_device_defaults.xml.
     <!-- Variant of the material (light) theme that has no title bar and fills
          the entire screen.  This theme
          sets {@link android.R.attr#windowFullscreen} to true.  -->
-    <style name="Theme.Material.Light.NoActionBar.Fullscreen">
+    <style name="Theme.Material.Light.NoActionBar.Fullscreen" parent="@style/Theme.Material.Light.NoActionBar">
         <item name="windowFullscreen">true</item>
         <item name="windowContentOverlay">@null</item>
     </style>
@@ -892,7 +892,7 @@ please see themes_device_defaults.xml.
          the entire screen and extends into the display overscan region.  This theme
          sets {@link android.R.attr#windowFullscreen} and {@link android.R.attr#windowOverscan}
          to true. -->
-    <style name="Theme.Material.Light.NoActionBar.Overscan">
+    <style name="Theme.Material.Light.NoActionBar.Overscan" parent="@style/Theme.Material.Light.NoActionBar">
         <item name="windowFullscreen">true</item>
         <item name="windowOverscan">true</item>
         <item name="windowContentOverlay">@null</item>
@@ -901,7 +901,7 @@ please see themes_device_defaults.xml.
     <!-- Variant of the material (light) theme that has no title bar and translucent
          system decor.  This theme sets {@link android.R.attr#windowTranslucentStatus} and
          {@link android.R.attr#windowTranslucentNavigation} to true. -->
-    <style name="Theme.Material.Light.NoActionBar.TranslucentDecor">
+    <style name="Theme.Material.Light.NoActionBar.TranslucentDecor" parent="@style/Theme.Material.Light.NoActionBar">
         <item name="windowTranslucentStatus">true</item>
         <item name="windowTranslucentNavigation">true</item>
         <item name="windowContentOverlay">@null</item>
@@ -911,7 +911,7 @@ please see themes_device_defaults.xml.
          window decorations, so you basically have an empty rectangle in which
          to place your content.  It makes the window floating, with a transparent
          background, and turns off dimming behind the window. -->
-    <style name="Theme.Material.Panel">
+    <style name="Theme.Material.Panel" parent="@style/Theme.Material">
         <item name="windowBackground">@color/transparent</item>
         <item name="colorBackgroundCacheHint">@null</item>
         <item name="windowFrame">@null</item>
@@ -927,7 +927,7 @@ please see themes_device_defaults.xml.
          window decorations, so you basically have an empty rectangle in which
          to place your content.  It makes the window floating, with a transparent
          background, and turns off dimming behind the window. -->
-    <style name="Theme.Material.Light.Panel">
+    <style name="Theme.Material.Light.Panel" parent="@style/Theme.Material.Light">
         <item name="windowBackground">@color/transparent</item>
         <item name="colorBackgroundCacheHint">@null</item>
         <item name="windowFrame">@null</item>
@@ -981,7 +981,7 @@ please see themes_device_defaults.xml.
     <!-- Menu Themes -->
     <eat-comment />
 
-    <style name="Theme.Material.CompactMenu">
+    <style name="Theme.Material.CompactMenu" parent="@style/Theme.Material">
         <!-- Menu/item attributes -->
         <item name="itemTextAppearance">?attr/textAppearanceMedium</item>
         <item name="listViewStyle">@style/Widget.Material.ListView</item>
@@ -990,7 +990,7 @@ please see themes_device_defaults.xml.
         <item name="windowElevation">@dimen/floating_window_z</item>
     </style>
 
-    <style name="Theme.Material.Light.CompactMenu">
+    <style name="Theme.Material.Light.CompactMenu" parent="@style/Theme.Material.Light">
         <!-- Menu/item attributes -->
         <item name="itemTextAppearance">?attr/textAppearanceMedium</item>
         <item name="listViewStyle">@style/Widget.Material.Light.ListView</item>
@@ -1002,7 +1002,7 @@ please see themes_device_defaults.xml.
     <!-- Dialog themes for Material -->
     <eat-comment />
 
-    <style name="Theme.Material.BaseDialog">
+    <style name="Theme.Material.BaseDialog" parent="@style/Theme.Material">
         <item name="colorBackground">@color/background_floating_material_dark</item>
 
         <item name="windowFrame">@null</item>
@@ -1044,26 +1044,26 @@ please see themes_device_defaults.xml.
 
     <!-- Variant of Theme.Material.Dialog that has a nice minimum width for
          a regular dialog. -->
-    <style name="Theme.Material.Dialog.MinWidth">
+    <style name="Theme.Material.Dialog.MinWidth" parent="@style/Theme.Material.Dialog">
         <item name="windowMinWidthMajor">@dimen/dialog_min_width_major</item>
         <item name="windowMinWidthMinor">@dimen/dialog_min_width_minor</item>
     </style>
 
     <!-- Variant of Theme.Material.Dialog that does not include a title bar. -->
-    <style name="Theme.Material.Dialog.NoActionBar">
+    <style name="Theme.Material.Dialog.NoActionBar" parent="@style/Theme.Material.Dialog">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
     <!-- Variant of Theme.Material.Dialog.NoActionBar that has a nice minimum width for
          a regular dialog. -->
-    <style name="Theme.Material.Dialog.NoActionBar.MinWidth">
+    <style name="Theme.Material.Dialog.NoActionBar.MinWidth" parent="@style/Theme.Material.Dialog.NoActionBar">
         <item name="windowMinWidthMajor">@dimen/dialog_min_width_major</item>
         <item name="windowMinWidthMinor">@dimen/dialog_min_width_minor</item>
     </style>
 
     <!-- Variant of Theme.Material.Dialog that has a fixed size. -->
-    <style name="Theme.Material.Dialog.FixedSize">
+    <style name="Theme.Material.Dialog.FixedSize" parent="@style/Theme.Material.Dialog">
         <item name="windowFixedWidthMajor">@dimen/dialog_fixed_width_major</item>
         <item name="windowFixedWidthMinor">@dimen/dialog_fixed_width_minor</item>
         <item name="windowFixedHeightMajor">@dimen/dialog_fixed_height_major</item>
@@ -1071,7 +1071,7 @@ please see themes_device_defaults.xml.
     </style>
 
     <!-- Variant of Theme.Material.Dialog.NoActionBar that has a fixed size. -->
-    <style name="Theme.Material.Dialog.NoActionBar.FixedSize">
+    <style name="Theme.Material.Dialog.NoActionBar.FixedSize" parent="@style/Theme.Material.Dialog.NoActionBar">
         <item name="windowFixedWidthMajor">@dimen/dialog_fixed_width_major</item>
         <item name="windowFixedWidthMinor">@dimen/dialog_fixed_width_minor</item>
         <item name="windowFixedHeightMajor">@dimen/dialog_fixed_height_major</item>
@@ -1081,7 +1081,7 @@ please see themes_device_defaults.xml.
     <!-- Variant of Theme.Material.Dialog that does not include a frame (or background).
          The view hierarchy of the dialog is responsible for drawing all of
          its pixels. -->
-    <style name="Theme.Material.Dialog.NoFrame">
+    <style name="Theme.Material.Dialog.NoFrame" parent="@style/Theme.Material.Dialog">
         <item name="windowBackground">@color/transparent</item>
         <item name="windowElevation">0dp</item>
         <item name="windowAnimationStyle">@null</item>
@@ -1091,7 +1091,7 @@ please see themes_device_defaults.xml.
         <item name="windowCloseOnTouchOutside">false</item>
     </style>
 
-    <style name="Theme.Material.Dialog.BaseAlert">
+    <style name="Theme.Material.Dialog.BaseAlert" parent="@style/Theme.Material.Dialog">
         <item name="windowMinWidthMajor">@dimen/dialog_min_width_major</item>
         <item name="windowMinWidthMinor">@dimen/dialog_min_width_minor</item>
     </style>
@@ -1118,7 +1118,7 @@ please see themes_device_defaults.xml.
 
     <!-- Light material dialog themes -->
 
-    <style name="Theme.Material.Light.BaseDialog">
+    <style name="Theme.Material.Light.BaseDialog" parent="@style/Theme.Material.Light">
         <item name="colorBackground">@color/background_floating_material_light</item>
 
         <item name="windowFrame">@null</item>
@@ -1160,26 +1160,26 @@ please see themes_device_defaults.xml.
 
     <!-- Variant of Theme.Material.Light.Dialog that has a nice minimum width for
          a regular dialog. -->
-    <style name="Theme.Material.Light.Dialog.MinWidth">
+    <style name="Theme.Material.Light.Dialog.MinWidth" parent="@style/Theme.Material.Light.Dialog">
         <item name="windowMinWidthMajor">@dimen/dialog_min_width_major</item>
         <item name="windowMinWidthMinor">@dimen/dialog_min_width_minor</item>
     </style>
 
     <!-- Variant of Theme.Material.Light.Dialog that does not include a title bar. -->
-    <style name="Theme.Material.Light.Dialog.NoActionBar">
+    <style name="Theme.Material.Light.Dialog.NoActionBar" parent="@style/Theme.Material.Light.Dialog">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
     <!-- Variant of Theme.Material.Light.Dialog.NoActionBar that has a nice minimum width for
          a regular dialog. -->
-    <style name="Theme.Material.Light.Dialog.NoActionBar.MinWidth">
+    <style name="Theme.Material.Light.Dialog.NoActionBar.MinWidth" parent="@style/Theme.Material.Light.Dialog.NoActionBar">
         <item name="windowMinWidthMajor">@dimen/dialog_min_width_major</item>
         <item name="windowMinWidthMinor">@dimen/dialog_min_width_minor</item>
     </style>
 
     <!-- Variant of Theme.Material.Light.Dialog that has a fixed size. -->
-    <style name="Theme.Material.Light.Dialog.FixedSize">
+    <style name="Theme.Material.Light.Dialog.FixedSize" parent="@style/Theme.Material.Light.Dialog">
         <item name="windowFixedWidthMajor">@dimen/dialog_fixed_width_major</item>
         <item name="windowFixedWidthMinor">@dimen/dialog_fixed_width_minor</item>
         <item name="windowFixedHeightMajor">@dimen/dialog_fixed_height_major</item>
@@ -1187,7 +1187,7 @@ please see themes_device_defaults.xml.
     </style>
 
     <!-- Variant of Theme.Material.Light.Dialog.NoActionBar that has a fixed size. -->
-    <style name="Theme.Material.Light.Dialog.NoActionBar.FixedSize">
+    <style name="Theme.Material.Light.Dialog.NoActionBar.FixedSize" parent="@style/Theme.Material.Light.Dialog.NoActionBar">
         <item name="windowFixedWidthMajor">@dimen/dialog_fixed_width_major</item>
         <item name="windowFixedWidthMinor">@dimen/dialog_fixed_width_minor</item>
         <item name="windowFixedHeightMajor">@dimen/dialog_fixed_height_major</item>
@@ -1204,7 +1204,7 @@ please see themes_device_defaults.xml.
          (large, xlarge). -->
     <style name="Theme.Material.Light.DialogWhenLarge.NoActionBar" parent="@style/Theme.Material.Light.NoActionBar" />
 
-    <style name="Theme.Material.Light.Dialog.BaseAlert">
+    <style name="Theme.Material.Light.Dialog.BaseAlert" parent="@style/Theme.Material.Light.Dialog">
         <item name="windowMinWidthMajor">@dimen/dialog_min_width_major</item>
         <item name="windowMinWidthMinor">@dimen/dialog_min_width_minor</item>
     </style>
@@ -1221,7 +1221,7 @@ please see themes_device_defaults.xml.
 
     <!-- Default material (dark) for windows that want to have the user's selected
          wallpaper appear behind them.  -->
-    <style name="Theme.Material.Wallpaper">
+    <style name="Theme.Material.Wallpaper" parent="@style/Theme.Material">
         <item name="windowBackground">@color/transparent</item>
         <item name="colorBackgroundCacheHint">@null</item>
         <item name="windowShowWallpaper">true</item>
@@ -1229,13 +1229,13 @@ please see themes_device_defaults.xml.
 
     <!--Default material (dark) for windows that want to have the user's selected
          wallpaper appear behind them and without an action bar. -->
-    <style name="Theme.Material.Wallpaper.NoTitleBar">
+    <style name="Theme.Material.Wallpaper.NoTitleBar" parent="@style/Theme.Material.Wallpaper">
         <item name="windowNoTitle">true</item>
     </style>
 
     <!-- Default theme for Settings and activities launched from Settings. -->
-    <style name="Theme.Material.Settings" parent="Theme.Material.Light.DarkActionBar">
-        <item name="colorBackground">@color/white</item>
+    <style name="Theme.Material.Settings" parent="Theme.Material">
+        <item name="colorBackground">@color/black</item>
         <item name="colorPrimary">@color/material_blue_grey_900</item>
         <item name="colorPrimaryDark">@color/material_blue_grey_950</item>
         <item name="colorAccent">@color/material_deep_teal_500</item>
