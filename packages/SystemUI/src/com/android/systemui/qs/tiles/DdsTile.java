@@ -30,11 +30,13 @@
 package com.android.systemui.qs.tiles;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.ContentObserver;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.provider.Settings;
+import com.android.internal.telephony.SubscriptionController;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -46,6 +48,7 @@ import com.android.systemui.qs.QSTileView;
 
 /** Quick settings tile: Dds switch **/
 public class DdsTile extends QSTile<QSTile.State> {
+    private static final Intent WIRELESS_SETTINGS = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
     private final boolean DEBUG = false;
     private final String TAG = "DdsTile";
 
@@ -74,6 +77,11 @@ public class DdsTile extends QSTile<QSTile.State> {
     @Override
     public void handleClick() {
         switchDdsToNext();
+    }
+
+    @Override
+    protected void handleLongClick() {
+        mHost.startSettingsActivity(WIRELESS_SETTINGS);
     }
 
     @Override
@@ -164,7 +172,7 @@ public class DdsTile extends QSTile<QSTile.State> {
                         mContext.getSystemService(Context.TELEPHONY_SERVICE);
                 int dataPhoneId = (int) SubscriptionManager.getDefaultDataSubId();
                 int phoneCount = tm.getPhoneCount();
-                SubscriptionManager.setDefaultDataSubId((dataPhoneId + 1) % phoneCount);
+                SubscriptionController.getInstance().setDefaultDataSubId((dataPhoneId + 1) % phoneCount);
                 return null;
             }
 
