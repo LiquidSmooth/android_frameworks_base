@@ -1242,10 +1242,16 @@ public final class Settings {
             MOVED_TO_SECURE.add(Secure.WIFI_WATCHDOG_PING_COUNT);
             MOVED_TO_SECURE.add(Secure.WIFI_WATCHDOG_PING_DELAY_MS);
             MOVED_TO_SECURE.add(Secure.WIFI_WATCHDOG_PING_TIMEOUT_MS);
-            MOVED_TO_SECURE.add(Secure.STATS_COLLECTION);
 
             // At one time in System, then Global, but now back in Secure
             MOVED_TO_SECURE.add(Secure.INSTALL_NON_MARKET_APPS);
+
+            /* CM12 CHANGES */
+            MOVED_TO_SECURE.add(Secure.STATS_COLLECTION);
+            MOVED_TO_SECURE.add(Secure.VOLUME_LINK_NOTIFICATION);
+            MOVED_TO_SECURE.add(Secure.QS_TILES);
+            MOVED_TO_SECURE.add(Secure.QS_USE_MAIN_TILES);
+            MOVED_TO_SECURE.add(Secure.QS_SHOW_BRIGHTNESS_SLIDER);
         }
 
         private static final HashSet<String> MOVED_TO_GLOBAL;
@@ -2153,6 +2159,13 @@ public final class Settings {
          */
         public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
 
+        /** Whether to show the brightness slider in quick settings panel.
+         *
+         * @hide
+         */
+        @Deprecated
+        public static final String QS_SHOW_BRIGHTNESS_SLIDER = "qs_show_brightness_slider";
+
         /**
          * Quick Settings Smart Pulldown
          *
@@ -2166,6 +2179,21 @@ public final class Settings {
          * @hide
          */
         public static final String STATUS_BAR_TICKER_ENABLED = "status_bar_ticker_enabled";
+
+       /**
+         * List of QS tile names
+         * Deprecated Use {@link android.provider.Settings.Secure.QS_TILES}
+         * @hide
+         */
+        @Deprecated
+        public static final String QS_TILES = "sysui_qs_tiles";
+
+        /**
+         * Deprecated Use {@link android.provider.Settings.Secure.QS_USE_MAIN_TILES}
+         * @hide
+         */
+        @Deprecated
+        public static final String QS_USE_MAIN_TILES = "sysui_qs_main_tiles";
 
         /**
          * Control whether the process CPU usage meter should be shown.
@@ -6188,6 +6216,25 @@ public final class Settings {
          * @hide
          */
         public static final String VOLUME_LINK_NOTIFICATION = "volume_link_notification";
+
+        /** Whether to show the brightness slider in quick settings panel.
+         *
+         * @hide
+         */
+        public static final String QS_SHOW_BRIGHTNESS_SLIDER = "qs_show_brightness_slider";
+
+        /**
+         * List of QS tile names
+         * @hide
+         */
+        public static final String QS_TILES = "sysui_qs_tiles";
+
+        /**
+         * Use "main" tiles on the first row of the quick settings panel
+         * 0 = no, 1 = yes
+         * @hide
+         */
+        public static final String QS_USE_MAIN_TILES = "sysui_qs_main_tiles";
 
         /**
          * This are the settings to be backed up.
