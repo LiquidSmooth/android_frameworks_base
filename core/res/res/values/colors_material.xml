@@ -16,12 +16,12 @@
 
 <!-- Colors specific to Material themes. -->
 <resources>
-    <color name="background_material_dark">#ff303030</color>
+    <color name="background_material_dark">#ff111619</color>
     <color name="background_material_light">#ffeeeeee</color>
-    <color name="background_floating_material_dark">#ff424242</color>
+    <color name="background_floating_material_dark">#ff222222</color>
     <color name="background_floating_material_light">#ffeeeeee</color>
 
-    <color name="primary_material_dark">#ff212121</color>
+    <color name="primary_material_dark">#ff263238</color>
     <color name="primary_material_light">#ffbdbdbd</color>
     <color name="primary_dark_material_dark">#ff000000</color>
     <color name="primary_dark_material_light">#ff757575</color>
@@ -72,7 +72,7 @@
     <color name="secondary_text_default_material_light">#8a000000</color>
 
     <color name="primary_text_default_material_dark">#ffffffff</color>
-    <color name="secondary_text_default_material_dark">#b3ffffff</color>
+    <color name="secondary_text_default_material_dark">#deffffff</color>
 
     <item name="disabled_alpha_material_light" format="float" type="dimen">0.26</item>
     <item name="disabled_alpha_material_dark" format="float" type="dimen">0.30</item>
@@ -80,8 +80,8 @@
     <!-- Primary & accent colors -->
     <eat-comment />
 
-    <color name="material_deep_teal_200">#ff80cbc4</color>
-    <color name="material_deep_teal_500">#ff009688</color>
+    <color name="material_deep_teal_200">#ffb0bec5</color>
+    <color name="material_deep_teal_500">#ff607d8b</color>
 
     <color name="material_blue_grey_800">#ff37474f</color>
     <color name="material_blue_grey_900">#ff263238</color>
