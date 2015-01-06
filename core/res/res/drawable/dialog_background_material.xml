@@ -18,6 +18,6 @@
     android:inset="16dp">
     <shape android:shape="rectangle">
         <corners android:radius="2dp" />
-        <solid android:color="?attr/colorBackground" />
+        <solid android:color="@*android:color/material_blue_grey" />
     </shape>
 </inset>
