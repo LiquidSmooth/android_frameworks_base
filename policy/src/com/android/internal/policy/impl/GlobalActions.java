@@ -39,6 +39,7 @@ import android.content.IntentFilter;
 import android.content.pm.UserInfo;
 import android.database.ContentObserver;
 import android.graphics.drawable.Drawable;
+import android.graphics.PorterDuff.Mode;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
@@ -227,7 +228,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
         mAirplaneModeOn = new ToggleAction(
                 R.drawable.ic_lock_airplane_mode,
-                R.drawable.ic_lock_airplane_mode_off_dark,
+                R.drawable.ic_lock_airplane_mode_off,
                 R.string.global_actions_toggle_airplane_mode,
                 R.string.global_actions_airplane_mode_on_status,
                 R.string.global_actions_airplane_mode_off_status) {
@@ -444,7 +445,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
     private final class RebootAction extends SinglePressAction implements LongPressAction {
         private RebootAction() {
-            super(com.android.internal.R.drawable.ic_lock_reboot_dark,
+            super(com.android.internal.R.drawable.ic_lock_reboot,
                 R.string.global_action_reboot);
 
         }
@@ -472,7 +473,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     }
 
     private Action getBugReportAction() {
-        return new SinglePressAction(com.android.internal.R.drawable.ic_lock_bugreport_dark,
+        return new SinglePressAction(com.android.internal.R.drawable.ic_lock_bugreport,
                 R.string.bugreport_title) {
 
             public void onPress() {
@@ -528,7 +529,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     }
 
     private Action getPowerAction() {
-        return new SinglePressAction(com.android.internal.R.drawable.ic_lock_power_off_dark,
+        return new SinglePressAction(com.android.internal.R.drawable.ic_lock_power_off,
                 R.string.global_action_power_off) {
 
             @Override
@@ -580,7 +581,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     }
 
     private Action getLockdownAction() {
-        return new SinglePressAction(com.android.internal.R.drawable.ic_lock_lock_dark,
+        return new SinglePressAction(com.android.internal.R.drawable.ic_lock_lock,
                 R.string.global_action_lockdown) {
 
             @Override
@@ -1045,7 +1046,8 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private static class SilentModeTriStateAction implements Action, View.OnClickListener {
 
         private final int[] ITEM_IDS = { R.id.option1, R.id.option2, R.id.option3 };
-
+        private final int[] IMAGE_VIEW_IDS = { R.id.option1_icon, R.id.option2_icon, R.id.option3_icon };
+		
         private final AudioManager mAudioManager;
         private final Handler mHandler;
         private final Context mContext;
@@ -1078,7 +1080,17 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             int selectedIndex = ringerModeToIndex(mAudioManager.getRingerMode());
             for (int i = 0; i < 3; i++) {
                 View itemView = v.findViewById(ITEM_IDS[i]);
-                itemView.setSelected(selectedIndex == i);
+                View iv = v.findViewById(IMAGE_VIEW_IDS[i]);
+                iv.setSelected(selectedIndex == i);
+                if (selectedIndex == i) {
+                    ((ImageView)iv).setColorFilter(context.getResources().getColor(
+                            R.color.global_actions_icon_color_selected),
+                            Mode.MULTIPLY);
+                } else {
+                    ((ImageView)iv).setColorFilter(context.getResources().getColor(
+                            R.color.global_actions_icon_color_normal),
+                            Mode.MULTIPLY);
+                }
                 // Set up click handler
                 itemView.setTag(i);
                 itemView.setOnClickListener(this);
