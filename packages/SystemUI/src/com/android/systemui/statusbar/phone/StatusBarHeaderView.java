@@ -21,6 +21,7 @@ import android.app.PendingIntent;
 import android.content.ContentUris;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.Settings;
@@ -910,7 +911,9 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             final boolean showingDetail = detail != null;
             transition(mClock, !showingDetail);
             transition(mDateGroup, !showingDetail);
-            transition(mWeatherContainer, !showingDetail);
+            if (mShowWeather) {
+                transition(mWeatherContainer, !showingDetail);
+            }
             if (mAlarmShowing) {
                 transition(mAlarmStatus, !showingDetail);
             }
