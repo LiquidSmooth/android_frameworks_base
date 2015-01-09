@@ -20,17 +20,19 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <FrameLayout
+<!-- exposed bg for theming -->
+    <LinearLayout
         android:id="@+id/slider_panel"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         android:background="@color/system_secondary_color"
         android:paddingTop="8dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:orientation="vertical"
         android:clipChildren="false" />
 
-     <include
+    <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         layout="@layout/zen_mode_panel" />
