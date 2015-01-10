@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /*
- * Copyright 2013, The Android Open Kang Project
+ * Copyright 2015, The LiquidSmooth Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +17,17 @@
  */
 -->
 <resources>
-
     <!-- Gesture Anywhere specific colors -->
     <color name="gesture_overlay_background_fill_color">#80000000</color>
     <color name="gesture_color">@android:color/holo_blue_light</color>
 
+    <!-- Pie controls -->
+    <color name="pie_overlay_color">#ff000000</color>
+    <color name="pie_snap_color">#ff009688</color>
+    <color name="pie_text_color">#ff009688</color>
+    <color name="pie_foreground_color">#ff009688</color>
+    <color name="pie_background_color">#ff000000</color>
+    <color name="pie_selected_color">#ff5c5c5c</color>
+    <color name="pie_long_pressed_color">#ff8c8c8c</color>
+    <color name="pie_outline_color">#ff5c5c5c</color>
 </resources>
