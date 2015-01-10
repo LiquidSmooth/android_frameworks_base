@@ -3057,6 +3057,92 @@ public final class Settings {
          */
         public static final String SCREENSHOT_SOUND = "screenshot_sound";
 
+         /**
+         * Navigation Bar show switch
+         * @hide
+         */
+        public static final String NAVBAR_FORCE_ENABLE = "navbar_force_enable";
+
+        /**
+         *
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_BUTTONS = "navigation_bar_buttons";
+
+        /**
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_HEIGHT_LANDSCAPE = "navigation_bar_height_landscape";
+
+        /**
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_HEIGHT = "navigation_bar_height";
+
+        /**
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_WIDTH = "navigation_bar_width";
+
+        /**
+         * @hide
+         */
+        public static final String SOFTKEY_LONG_PRESS_CONFIGURATION = "softkey_long_press_configuration";
+
+        /**
+         * Alternate navigation bar layouts
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_ALTERNATE_LAYOUTS = "navigation_bar_alternate_layouts";
+
+        /**
+         * Alternate layout 2
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_BUTTONS_TWO = "navigation_bar_buttons_two";
+
+        /**
+         * Alternate layout 3
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_BUTTONS_THREE = "navigation_bar_buttons_three";
+
+        /**
+         * Alternate layout 4
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_BUTTONS_FOUR = "navigation_bar_buttons_four";
+
+        /**
+         * Alternate layout 5
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_BUTTONS_FIVE = "navigation_bar_buttons_five";
+
+        /**
+         * Allow navigation bar side keys
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_SIDEKEYS = "navigation_bar_sidekeys";
+
+        /**
+         * Allow navigation bar IME arrow keys
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_ARROWS = "navigation_bar_arrows";
+
+        /**
+         * Button layout for IME arrows
+         * @hide
+         */
+        public static final String NAVIGATION_IME_LAYOUT = "navigation_ime_layout";
+
+        /**
+         * Toggle for navigation ring
+         * @hide
+         */
+        public static final String ENABLE_NAVIGATION_RING = "enable_navigation_ring";
+
         /**
          * Whether lock-to-app will be triggered by long-press on recents.
          * @hide
@@ -3224,12 +3310,6 @@ public final class Settings {
          * @hide
          */
         public static final String EGG_MODE = "egg_mode";
-
-        /**
-         * Height of navigation bar buttons
-         * @hide
-         */
-        public static final String NAVIGATION_BAR_HEIGHT = "navigation_bar_height";
 
        /**
          * Display style of the status bar battery information
@@ -3605,6 +3685,145 @@ public final class Settings {
          */
 
         public static final String T9_SEARCH_INPUT_LOCALE = "t9_search_input_locale";
+
+        /**
+         * Whether pie controls are enabled
+         * @hide
+         */
+        public static final String PIE_CONTROLS = "pie_controls";
+
+        /**
+         * Whether dynamic menu button is shown or not or dynamic (default)
+         * @hide
+         */
+        public static final String PIE_MENU = "pie_menu";
+
+        /**
+         * Whether right edge PIE is mirrored or not
+         * @hide
+         */
+        public static final String PIE_MIRROR_RIGHT = "pie_mirror_right";
+
+        /**
+         * Pie show text (0 or 1)
+         * @hide
+         */
+        public static final String PIE_SHOW_TEXT = "pie_show_text";
+
+        /**
+         * Pie show snap (0 or 1)
+         * @hide
+         */
+        public static final String PIE_SHOW_SNAP = "pie_show_snap";
+
+        /**
+         * Pie show background (0 or 1)
+         * @hide
+         */
+        public static final String PIE_SHOW_BACKGROUND = "pie_show_background";
+
+        /**
+         * Locations of the pie in the screen.
+         * (1<<0) = LEFT
+         * (1<<1) = BOTTOM
+         * (1<<2) = RIGHT
+         * (1<<3) = TOP
+         * Default: LEFT
+         * @hide
+         */
+        public static final String PIE_GRAVITY = "pie_gravity";
+
+        /**
+         * Relative pie size (fraction)
+         * Default: 1.0f
+         * @hide
+         */
+        public static final String PIE_SIZE = "pie_size";
+
+        /**
+         * Pie button color
+         * @hide
+         */
+        public static final String PIE_BUTTON_COLOR = "pie_button_color";
+
+        /**
+         * Pie button press color
+         * @hide
+         */
+        public static final String PIE_BUTTON_PRESSED_COLOR = "pie_button_pressed_color";
+
+        /**
+         * Pie button long press color
+         * @hide
+         */
+        public static final String PIE_BUTTON_LONG_PRESSED_COLOR = "pie_button_long_pressed_color";
+
+        /**
+         * Pie button outline color
+         * @hide
+         */
+        public static final String PIE_BUTTON_OUTLINE_COLOR = "pie_button_outline_color";
+
+        /**
+         * Pie background color
+         * @hide
+         */
+        public static final String PIE_BACKGROUND_COLOR = "pie_background_color";
+
+        /**
+         * Pie snap color
+         * @hide
+         */
+        public static final String PIE_SNAP_COLOR = "pie_snap_color";
+
+        /**
+         * Pie text color
+         * @hide
+         */
+        public static final String PIE_TEXT_COLOR = "pie_text_color";
+
+        /**
+         * Pie icon color
+         * @hide
+         */
+        public static final String PIE_ICON_COLOR = "pie_icon_color";
+
+        /**
+         * Pie icon color mode
+         * @hide
+         */
+        public static final String PIE_ICON_COLOR_MODE = "pie_icon_color_mode";
+
+        /**
+         * Pie button alpha
+         * @hide
+         */
+        public static final String PIE_BUTTON_ALPHA = "pie_button_alpha";
+
+        /**
+         * Pie button pressed and long pressed alpha
+         * @hide
+         */
+        public static final String PIE_BUTTON_PRESSED_ALPHA = "pie_button_pressed_alpha";
+
+        /**
+         * Pie background alpha
+         * @hide
+         */
+        public static final String PIE_BACKGROUND_ALPHA = "pie_background_alpha";
+
+        /**
+         * Pie buttons configuration first layer
+         * @hide
+         */
+        public static final String PIE_BUTTONS_CONFIG = "pie_buttons_config";
+
+        /**
+         * Pie buttons configuration second layer
+         * @hide
+         */
+        public static final String PIE_BUTTONS_CONFIG_SECOND_LAYER =
+                "pie_buttons_config_second_layer";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
