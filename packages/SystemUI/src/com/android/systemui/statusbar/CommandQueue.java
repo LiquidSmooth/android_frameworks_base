@@ -61,6 +61,8 @@ public class CommandQueue extends IStatusBar.Stub {
     private static final int MSG_START_CUSTOM_INTENT_AFTER_KEYGUARD = 19 << MSG_SHIFT;
     private static final int MSG_HIDE_HEADS_UP_CANDIDATE            = 20 << MSG_SHIFT;
     private static final int MSG_HIDE_HEADS_UP                      = 21 << MSG_SHIFT;
+    private static final int MSG_ANIMATE_PANEL_FROM_NAVBAR          = 21 << MSG_SHIFT;
+    private static final int MSG_SET_PIE_TRIGGER_MASK               = 22 << MSG_SHIFT;
 
     public static final int FLAG_EXCLUDE_NONE = 0;
     public static final int FLAG_EXCLUDE_SEARCH_PANEL = 1 << 0;
@@ -87,6 +89,7 @@ public class CommandQueue extends IStatusBar.Stub {
         public void animateExpandNotificationsPanel();
         public void animateCollapsePanels(int flags);
         public void animateExpandSettingsPanel();
+        public void animateNotificationsOrSettingsPanel();
         public void setSystemUiVisibility(int vis, int mask);
         public void topAppWindowChanged(boolean visible);
         public void setImeWindowStatus(IBinder token, int vis, int backDisposition,
@@ -102,10 +105,12 @@ public class CommandQueue extends IStatusBar.Stub {
         public void buzzBeepBlinked();
         public void notificationLightOff();
         public void notificationLightPulse(int argb, int onMillis, int offMillis);
+        public void notifyLayoutChange(int direction);
         public void setAutoRotate(boolean enabled);
         public void showCustomIntentAfterKeyguard(Intent intent);
         public void hideHeadsUpCandidate(String packageName);
         public void scheduleHeadsUpClose();
+        public void setPieTriggerMask(int newMask, boolean lock);
     }
 
     public CommandQueue(Callbacks callbacks, StatusBarIconList list) {
@@ -157,6 +162,13 @@ public class CommandQueue extends IStatusBar.Stub {
         }
     }
 
+    public void animateNotificationsOrSettingsPanel() {
+        synchronized (mList) {
+            mHandler.removeMessages(MSG_ANIMATE_PANEL_FROM_NAVBAR);
+            mHandler.sendEmptyMessage(MSG_ANIMATE_PANEL_FROM_NAVBAR);
+        }
+    }
+
     public void setSystemUiVisibility(int vis, int mask) {
         synchronized (mList) {
             mHandler.removeMessages(MSG_SET_SYSTEMUI_VISIBILITY);
@@ -202,21 +214,21 @@ public class CommandQueue extends IStatusBar.Stub {
     public void toggleRecentApps() {
         synchronized (mList) {
             mHandler.removeMessages(MSG_TOGGLE_RECENT_APPS);
-            mHandler.obtainMessage(MSG_TOGGLE_RECENT_APPS, 0, 0, null).sendToTarget();
+            mHandler.sendEmptyMessage(MSG_TOGGLE_RECENT_APPS);
         }
     }
 
     public void preloadRecentApps() {
         synchronized (mList) {
             mHandler.removeMessages(MSG_PRELOAD_RECENT_APPS);
-            mHandler.obtainMessage(MSG_PRELOAD_RECENT_APPS, 0, 0, null).sendToTarget();
+            mHandler.sendEmptyMessage(MSG_PRELOAD_RECENT_APPS);
         }
     }
 
     public void cancelPreloadRecentApps() {
         synchronized (mList) {
             mHandler.removeMessages(MSG_CANCEL_PRELOAD_RECENT_APPS);
-            mHandler.obtainMessage(MSG_CANCEL_PRELOAD_RECENT_APPS, 0, 0, null).sendToTarget();
+            mHandler.sendEmptyMessage(MSG_CANCEL_PRELOAD_RECENT_APPS);
         }
     }
 
@@ -244,6 +256,14 @@ public class CommandQueue extends IStatusBar.Stub {
         synchronized (mList) {
             mHandler.obtainMessage(MSG_NOTIFICATION_LIGHT_PULSE, onMillis, offMillis, argb)
                     .sendToTarget();
+        }
+    }
+
+    public void setPieTriggerMask(int newMask, boolean lock) {
+        synchronized (mList) {
+            mHandler.removeMessages(MSG_SET_PIE_TRIGGER_MASK);
+            mHandler.obtainMessage(MSG_SET_PIE_TRIGGER_MASK,
+                    newMask, lock ? 1 : 0, null).sendToTarget();
         }
     }
 
@@ -277,6 +297,10 @@ public class CommandQueue extends IStatusBar.Stub {
             mHandler.removeMessages(MSG_HIDE_HEADS_UP);
             mHandler.sendEmptyMessage(MSG_HIDE_HEADS_UP);
         }
+    }
+
+    public void notifyLayoutChange(int direction) {
+        mCallbacks.notifyLayoutChange(direction);
     }
 
     private final class H extends Handler {
@@ -320,6 +344,9 @@ public class CommandQueue extends IStatusBar.Stub {
                     break;
                 case MSG_EXPAND_SETTINGS:
                     mCallbacks.animateExpandSettingsPanel();
+                    break;
+                case MSG_ANIMATE_PANEL_FROM_NAVBAR:
+                    mCallbacks.animateNotificationsOrSettingsPanel();
                     break;
                 case MSG_SET_SYSTEMUI_VISIBILITY:
                     mCallbacks.setSystemUiVisibility(msg.arg1, msg.arg2);
@@ -369,6 +396,9 @@ public class CommandQueue extends IStatusBar.Stub {
                     break;
                 case MSG_HIDE_HEADS_UP:
                     mCallbacks.scheduleHeadsUpClose();
+                    break;
+                case MSG_SET_PIE_TRIGGER_MASK:
+                    mCallbacks.setPieTriggerMask(msg.arg1, msg.arg2 != 0);
                     break;
             }
         }

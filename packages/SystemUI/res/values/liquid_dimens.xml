@@ -28,4 +28,23 @@
     <dimen name="app_sidebar_icon_width">72dp</dimen>
     <dimen name="app_sidebar_icon_height">72dp</dimen>
 
+    <!-- Pie controls -->
+    <dimen name="pie_padding">4dp</dimen>
+    <dimen name="pie_snap_radius">45dp</dimen>
+    <dimen name="pie_snap_outline">4dp</dimen>
+    <dimen name="pie_outline">2dp</dimen>
+    <dimen name="pie_textsize">14sp</dimen>
+    <dimen name="pie_item_size">30dp</dimen>
+    <dimen name="pie_navbar_radius">70dp</dimen>
+    <dimen name="pie_navbar_second_layer_radius">160dp</dimen>
+    <dimen name="pie_navbar_height">85dp</dimen>
+    <dimen name="pie_sysinfo_radius">165dp</dimen>
+    <dimen name="pie_sysinfo_second_layer_radius">255dp</dimen>
+    <dimen name="pie_sysinfo_height">85sp</dimen>
+
+    <!-- The width of the view containing the menu status bar icon -->
+    <dimen name="navigation_menu_key_width">40dip</dimen>
+    <!-- The width of the view containing the layout changer icon -->
+    <dimen name="navigation_layout_changer_width">25dip</dimen>
+
 </resources>
