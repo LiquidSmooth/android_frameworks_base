@@ -290,7 +290,14 @@
 
     <!-- Zen toast visibility duration -->
     <integer name="zen_toast_visible_duration">500</integer>
+
     <!-- Whether to enable data switch or not -->
     <bool name="config_enableDataSwitch">false</bool>
+
+   <!-- Sensivity of pie gestures controls.
+         Must be minimum 1 and maximum 10 (See @EdgeServiceConstants.java).
+         Default for pie is high sensitivity -->
+   <integer name="pie_gesture_sensivity">10</integer>
+
 </resources>
 
