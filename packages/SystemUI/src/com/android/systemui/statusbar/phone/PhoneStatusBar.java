@@ -560,6 +560,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mShowStatusBarCarrier = Settings.System.getIntForUser(resolver,
                 Settings.System.STATUS_BAR_CARRIER, 0, mCurrentUserId) == 1;
             showStatusBarCarrierLabel(mShowStatusBarCarrier);
+
+            if (mNavigationBarView != null) {
+                boolean navLeftInLandscape = Settings.System.getInt(resolver,
+                        Settings.System.NAVBAR_LEFT_IN_LANDSCAPE, 0) == 1;
+                mNavigationBarView.setLeftInLandscape(navLeftInLandscape);
+            }
         }
     }
 
@@ -575,8 +581,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mShowBatteryText = false;
                 mShowBatteryTextCharging = false;
                 break;
-
-            case 6:
+ 
+        case 6:
                 //meterMode = BatteryMeterMode.BATTERY_METER_TEXT;
                 mShowBatteryText = true;
                 mShowBatteryTextCharging = true;
@@ -587,6 +593,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 break;
         }
     }
+
 
     private void updateBatteryLevelText() {
         if (mBatteryIsCharging & mShowBatteryTextCharging) {
@@ -1440,14 +1447,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     private void prepareNavigationBarView() {
         mNavigationBarView.reorient();
-
-        mNavigationBarView.getRecentsButton().setOnClickListener(mRecentsClickListener);
-        mNavigationBarView.getRecentsButton().setOnTouchListener(mRecentsPreloadOnTouchListener);
-        mNavigationBarView.getRecentsButton().setLongClickable(true);
-        mNavigationBarView.getRecentsButton().setOnLongClickListener(mLongPressBackRecentsListener);
-        mNavigationBarView.getBackButton().setLongClickable(true);
-        mNavigationBarView.getBackButton().setOnLongClickListener(mLongPressBackRecentsListener);
-        mNavigationBarView.getHomeButton().setOnTouchListener(mHomeActionListener);
+        mNavigationBarView.setListeners(mRecentsClickListener, mRecentsPreloadOnTouchListener,
+                mLongPressBackRecentsListener, mHomeActionListener);
         updateSearchPanel();
     }
 
@@ -3745,6 +3746,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         updateNotifications();
         resetUserSetupObserver();
         setControllerUsers();
+        if (mNavigationBarView != null) {
+            mNavigationBarView.updateSettings();
+        }
     }
 
     private void setControllerUsers() {
@@ -3996,6 +4000,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     protected boolean shouldDisableNavbarGestures() {
         return !isDeviceProvisioned()
                 || mExpandedVisible
+                || (mNavigationBarView != null && mNavigationBarView.isInEditMode())
                 || (mDisabled & StatusBarManager.DISABLE_SEARCH) != 0;
     }
 
@@ -4660,7 +4665,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     activityManager.stopLockTaskModeOnCurrent();
                     // When exiting refresh disabled flags.
                     mNavigationBarView.setDisabledFlags(mDisabled, true);
-                } else if ((v.getId() == R.id.back)
+                } else if ((NavbarEditor.NAVBAR_BACK.equals(v.getTag()))
                         && !mNavigationBarView.getRecentsButton().isPressed()) {
                     // If we aren't pressing recents right now then they presses
                     // won't be together, so send the standard long-press action.
@@ -4669,7 +4674,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mLastLockToAppLongPress = time;
             } else {
                 // If this is back still need to handle sending the long-press event.
-                if (v.getId() == R.id.back) {
+                if (NavbarEditor.NAVBAR_BACK.equals(v.getTag())) {
                     sendBackLongPress = true;
                 } else if (isAccessiblityEnabled && activityManager.isInLockTaskMode()) {
                     // When in accessibility mode a long press that is recents (not back)

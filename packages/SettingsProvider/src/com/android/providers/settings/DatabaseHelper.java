@@ -1828,7 +1828,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             upgradeVersion = 113;
         }
 
-        // We skipped 114 to handle a merge conflict with the introduction of theater mode.
+        if (upgradeVersion < 114) {
+            // Removal of back/recents is no longer supported
+            // due to pinned apps
+            db.beginTransaction();
+            try {
+                db.execSQL("DELETE FROM system WHERE name='"
+                        + Settings.System.NAV_BUTTONS + "'");
+                db.setTransactionSuccessful();
+            } finally {
+                db.endTransaction();
+            }
+            upgradeVersion = 114;
+        }
 
         if (upgradeVersion < 115) {
             if (mUserHandle == UserHandle.USER_OWNER) {
@@ -1916,7 +1928,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     settingsToMove, true);
             upgradeVersion = 120;
         }
-
 
         // *** Remember to update DATABASE_VERSION above!
 
