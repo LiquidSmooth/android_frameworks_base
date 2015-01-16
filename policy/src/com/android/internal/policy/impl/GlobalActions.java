@@ -39,7 +39,6 @@ import android.content.IntentFilter;
 import android.content.pm.UserInfo;
 import android.database.ContentObserver;
 import android.graphics.drawable.Drawable;
-import android.graphics.PorterDuff.Mode;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
@@ -468,8 +467,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 R.string.bugreport_title) {
 
             public void onPress() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(
-                        mContext, com.android.internal.R.style.Theme_Material_Dialog_Alert_Dark);
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                 builder.setTitle(com.android.internal.R.string.bugreport_title);
                 builder.setMessage(com.android.internal.R.string.bugreport_message);
                 builder.setNegativeButton(com.android.internal.R.string.cancel, null);
@@ -1037,8 +1035,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private static class SilentModeTriStateAction implements Action, View.OnClickListener {
 
         private final int[] ITEM_IDS = { R.id.option1, R.id.option2, R.id.option3 };
-        private final int[] IMAGE_VIEW_IDS = { R.id.option1_icon, R.id.option2_icon, R.id.option3_icon };
-		
+
         private final AudioManager mAudioManager;
         private final Handler mHandler;
         private final Context mContext;
@@ -1071,17 +1068,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             int selectedIndex = ringerModeToIndex(mAudioManager.getRingerMode());
             for (int i = 0; i < 3; i++) {
                 View itemView = v.findViewById(ITEM_IDS[i]);
-                View iv = v.findViewById(IMAGE_VIEW_IDS[i]);
-                iv.setSelected(selectedIndex == i);
-                if (selectedIndex == i) {
-                    ((ImageView)iv).setColorFilter(context.getResources().getColor(
-                            R.color.global_actions_icon_color_selected),
-                            Mode.MULTIPLY);
-                } else {
-                    ((ImageView)iv).setColorFilter(context.getResources().getColor(
-                            R.color.global_actions_icon_color_normal),
-                            Mode.MULTIPLY);
-                }
+                itemView.setSelected(selectedIndex == i);
                 // Set up click handler
                 itemView.setTag(i);
                 itemView.setOnClickListener(this);
@@ -1247,7 +1234,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         private boolean mCancelOnUp;
 
         public GlobalActionsDialog(Context context, AlertParams params) {
-            super(context, com.android.internal.R.style.Theme_Material_Dialog_Dark);
+            super(context, getDialogTheme(context));
             mContext = context;
             mAlert = new AlertController(mContext, this, getWindow());
             mAdapter = (MyAdapter) params.mAdapter;
