@@ -3504,6 +3504,27 @@ public final class Settings {
          */
         public static final String NAVBAR_LEFT_IN_LANDSCAPE = "navigation_bar_left";
 
+        /**		
+         * Heads Up Notifications
+         *
+         * @hide
+         */
+        public static final String HEADS_UP_NOTIFICATION = "heads_up_enabled";
+
+        /**
+         * Which applications to disable heads up notifications for
+         *
+         * @hide
+         */
+        public static final String HEADS_UP_CUSTOM_VALUES = "heads_up_custom_values";
+
+        /**
+         * Which applications to disable heads up notifications for
+         *
+         * @hide
+         */
+        public static final String HEADS_UP_BLACKLIST_VALUES = "heads_up_blacklist_values";
+
         /**
          * Whether to use gesture anywhere feature.
          * @hide
