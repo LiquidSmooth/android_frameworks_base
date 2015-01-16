@@ -61,29 +61,13 @@
   <!-- Gesture Sensor -->
   <java-symbol type="bool" name="config_enableGestureService" />
 
-  <!-- Themes and styles -->
-  <java-symbol type="style" name="Theme.Material.Dialog.Dark" />
-  <java-symbol type="style" name="Theme.Material.Dialog.Alert.Dark" />
-  <java-symbol type="style" name="TextAppearance.Material.Large.Dark" />
-  <java-symbol type="style" name="TextAppearance.Material.Small.Dark" />
-  <java-symbol type="drawable" name="item_background_borderless_material_dark" />
-  <java-symbol type="drawable" name="btn_borderless_material_dark" />
-  <java-symbol type="drawable" name="material_bg_blue_grey" />
-  <java-symbol type="color" name="material_blue_grey" />
-
   <!-- Config Power Menu -->
-  <java-symbol type="id" name="option1_icon" />
-  <java-symbol type="id" name="option2_icon" />
-  <java-symbol type="id" name="option3_icon" />
   <java-symbol type="drawable" name="ic_lock_reboot" />
   <java-symbol type="string" name="global_action_reboot" />
   <java-symbol type="array" name="shutdown_reboot_actions" />
   <java-symbol type="array" name="shutdown_reboot_options" />
   <java-symbol type="string" name="reboot_system" />
   <java-symbol type="string" name="reboot_progress" />
-  <java-symbol type="color" name="global_actions_icon_color_normal" />
-  <java-symbol type="color" name="global_actions_icon_color_selected" />
-  <java-symbol type="color" name="global_actions_icon_color_enabled" />
 
   <!-- Doze by default -->
   <java-symbol type="bool" name="config_doze_enabled_by_default" />
