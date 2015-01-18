@@ -79,4 +79,8 @@
     <!-- Navigation bar -->
     <string name="def_navbar_layout_warning">Empty layout: using default!</string>
 
+    <!-- Lockscreen Settings -->
+    <string name="left_shortcut_hint">Swipe right for %1$s</string>
+    <string name="right_shortcut_hint">Swipe left for %1$s</string>
+
 </resources>
