@@ -3888,7 +3888,7 @@ public final class Settings {
 
         /**
          * Base: Implement ad blocker [2/3]
-	 * Disable ads (HFM)
+	  * Disable ads (HFM)
 	 * @hide
 	 */
 	public static final String HFM_DISABLE_ADS = "hfm_disable_ads";
@@ -4166,6 +4166,13 @@ public final class Settings {
          * @hide
          */
         public static final String LISTVIEW_INTERPOLATOR = "listview_interpolator";
+
+        /**
+         * Boolean value whether to link ringtone and notification volume
+         *
+         * @hide
+         */
+        public static final String VOLUME_LINK_NOTIFICATION = "volume_link_notification";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
