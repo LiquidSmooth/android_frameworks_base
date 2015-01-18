@@ -5284,6 +5284,12 @@ public final class Settings {
         public static final String INSTALL_NON_MARKET_APPS = "install_non_market_apps";
 
         /**
+         * Launch actions for left/right lockscreen targets
+         * @hide
+         */
+        public static final String LOCKSCREEN_TARGETS = "lockscreen_target_actions";
+
+        /**
          * Comma-separated list of location providers that activities may access. Do not rely on
          * this value being present in settings.db or on ContentObserver notifications on the
          * corresponding Uri.
@@ -7261,6 +7267,12 @@ public final class Settings {
        public static final String DISPLAY_SIZE_FORCED = "display_size_forced";
 
        /**
+        * @hide
+        */
+       public static final String ZEN_DISABLE_DUCKING_DURING_MEDIA_PLAYBACK =
+               "zen_disable_ducking_during_media_playback";
+
+       /**
         * The maximum size, in bytes, of a download that the download manager will transfer over
         * a non-wifi connection.
         * @hide
@@ -7742,6 +7754,7 @@ public final class Settings {
         * The interval in milliseconds to scan at supplicant when p2p is connected
         * @hide
         */
+<<<<<<< HEAD
        public static final String WIFI_SCAN_INTERVAL_WHEN_P2P_CONNECTED_MS =
                "wifi_scan_interval_p2p_connected_ms";
 
@@ -9206,3 +9219,6 @@ public final class Settings {
         return "android-" + Long.toHexString(androidId);
     }
 }
+=======
+       public static 
+>>>>>>> 03975a5... [1/2] Add ability to ignore interruptions while active media
