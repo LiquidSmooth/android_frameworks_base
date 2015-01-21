@@ -49,6 +49,7 @@ import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.NfcTile;
+import com.android.systemui.qs.tiles.LockscreenToggleTile;
 import com.android.systemui.qs.tiles.RoamingTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.WifiTile;
@@ -294,6 +295,8 @@ public class QSTileHost implements QSTile.Host {
                 return new AdbOverNetworkTile(this);
             case QSConstants.TILE_NFC:
                 return new NfcTile(this);
+            case QSConstants.TILE_LOCKSCREEN:
+                return new LockscreenToggleTile(this);
             default:
                 throw new IllegalArgumentException("Bad tile spec: " + tileSpec);
         }
