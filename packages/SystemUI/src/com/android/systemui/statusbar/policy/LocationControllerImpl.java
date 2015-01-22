@@ -126,6 +126,19 @@ public class LocationControllerImpl extends BroadcastReceiver implements Locatio
     }
 
     /**
+     * Returns int corresponding to current location mode in settings.
+     */
+    public int getLocationCurrentState() {
+        int currentUserId = ActivityManager.getCurrentUser();
+        if (isUserLocationRestricted(currentUserId)) {
+            return Settings.Secure.LOCATION_MODE_OFF;
+        }
+        final ContentResolver cr = mContext.getContentResolver();
+        return Settings.Secure.getIntForUser(cr, Settings.Secure.LOCATION_MODE,
+                Settings.Secure.LOCATION_MODE_OFF, currentUserId);
+    }
+
+    /**
      * Returns true if location isn't disabled in settings.
      */
     public boolean isLocationEnabled() {
@@ -135,6 +148,14 @@ public class LocationControllerImpl extends BroadcastReceiver implements Locatio
         int mode = Settings.Secure.getIntForUser(resolver, Settings.Secure.LOCATION_MODE,
                 Settings.Secure.LOCATION_MODE_OFF, ActivityManager.getCurrentUser());
         return mode != Settings.Secure.LOCATION_MODE_OFF;
+    }
+
+    /**
+     * Check if advanced location tile is enabled in settings
+     */
+    public boolean isAdvancedSettingsEnabled() {
+        return Settings.Secure.getIntForUser(mContext.getContentResolver(),
+                Settings.Secure.QS_LOCATION_ADVANCED, 0, ActivityManager.getCurrentUser()) == 1;
     }
 
     /**
