@@ -1834,11 +1834,6 @@ public final class Settings {
         public static final int ADVANCED_SETTINGS_DEFAULT = 0;
 
         /**
-         * @hide
-         */
-        public static final String QS_LOCATION_ADVANCED = "qs_location_advanced";
-
-        /**
          * Navigation controls to Use
          * @hide
          */
@@ -2229,6 +2224,11 @@ public final class Settings {
          */
         @Deprecated
         public static final String QS_USE_MAIN_TILES = "sysui_qs_main_tiles";
+
+        /**
+         * @hide
+         */
+        public static final String QS_LOCATION_ADVANCED = "qs_location_advanced";
 
         /**
          * Control whether the process CPU usage meter should be shown.
