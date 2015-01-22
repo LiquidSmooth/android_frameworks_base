@@ -2,7 +2,6 @@ package com.android.systemui.volume;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.database.ContentObserver;
 import android.media.AudioManager;
@@ -63,8 +62,6 @@ public class VolumeUI extends SystemUI {
     private VolumePanel mPanel;
     private int mDismissDelay;
 
-    private Configuration mConfiguration;
-
     @Override
     public void start() {
         mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
@@ -76,29 +73,14 @@ public class VolumeUI extends SystemUI {
         putComponent(VolumeComponent.class, mVolumeController);
         updateController();
         mContext.getContentResolver().registerContentObserver(SETTING_URI, false, mObserver);
-        mConfiguration = new Configuration(mContext.getResources().getConfiguration());
     }
 
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-
-        if (isThemeChange(newConfig)) {
-            initPanel();
-        }
-        mConfiguration.setTo(newConfig);
-
         if (mPanel != null) {
             mPanel.onConfigurationChanged(newConfig);
         }
-    }
-
-    private boolean isThemeChange(Configuration newConfig) {
-        if (mConfiguration != null) {
-            int changes = mConfiguration.updateFrom(newConfig);
-            return (changes & ActivityInfo.CONFIG_THEME_RESOURCE) != 0;
-        }
-        return false;
     }
 
     @Override
