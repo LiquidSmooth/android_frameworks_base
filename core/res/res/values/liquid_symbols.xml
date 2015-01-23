@@ -364,4 +364,12 @@
     <!-- First boot install dialog -->
     <java-symbol type="string" name="android_installing_apk" />
     <java-symbol type="string" name="android_installing_title" />
+<<<<<<< HEAD:core/res/res/values/liquid_symbols.xml
 </resources>
+=======
+
+    <!-- Theme reset notification -->
+    <java-symbol type="string" name="theme_reset_notification_title" />
+    <java-symbol type="string" name="theme_reset_notification_body" />
+</resources>
+>>>>>>> 878a3ea... Themes: Watch all app crashes for problematic themes:core/res/res/values/cm_symbols.xml
