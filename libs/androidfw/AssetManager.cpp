@@ -296,10 +296,6 @@ bool AssetManager::addOverlayPath(const String8& packagePath, int32_t* cookie)
     mAssetPaths.add(oap);
     *cookie = static_cast<int32_t>(mAssetPaths.size());
 
-    if (mResources != NULL) {
-        appendPathToResTable(oap);
-    }
-
     return true;
  }
 
@@ -609,7 +605,6 @@ bool AssetManager::appendPathToResTable(const asset_path& ap) const {
     if (ap.isSystemOverlay) {
         return true;
     }
-
     Asset* ass = NULL;
     ResTable* sharedRes = NULL;
     bool shared = true;
