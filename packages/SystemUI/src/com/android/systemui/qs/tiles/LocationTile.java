@@ -41,10 +41,7 @@ import java.util.List;
 
 /** Quick settings tile: Location **/
 public class LocationTile extends QSTile<QSTile.BooleanState> {
-<<<<<<< HEAD
 
-    private static final Intent LOCATION_SETTINGS = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-=======
     private static final Intent LOCATION_SETTINGS_INTENT
             = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
     public static final Integer[] LOCATION_SETTINGS = new Integer[]{
@@ -52,7 +49,6 @@ public class LocationTile extends QSTile<QSTile.BooleanState> {
             Settings.Secure.LOCATION_MODE_SENSORS_ONLY,
             Settings.Secure.LOCATION_MODE_HIGH_ACCURACY
     };
->>>>>>> c2a6809... SystemUI: clean up Location tile
 
     private final AnimationIcon mEnable =
             new AnimationIcon(R.drawable.ic_signal_location_enable_animation);
@@ -123,29 +119,29 @@ public class LocationTile extends QSTile<QSTile.BooleanState> {
 
         switch (currentState) {
             case Settings.Secure.LOCATION_MODE_OFF:
-
                 state.contentDescription = mContext.getString(
                         R.string.accessibility_quick_settings_location_off);
-                state.iconId = mDisable;
+                state.icon = mDisable;
                 break;
             case Settings.Secure.LOCATION_MODE_BATTERY_SAVING:
                 state.contentDescription = mContext.getString(
                         R.string.accessibility_quick_settings_location_battery_saving);
-                state.iconId = R.drawable.ic_qs_location_battery_saving;
+                state.icon = ResourceIcon.get(R.drawable.ic_qs_location_battery_saving);
                 break;
             case Settings.Secure.LOCATION_MODE_SENSORS_ONLY:
                 state.contentDescription = mContext.getString(
                         R.string.accessibility_quick_settings_location_gps_only);
-                state.iconId = mEnable;
+                state.icon = mEnable;
                 break;
             case Settings.Secure.LOCATION_MODE_HIGH_ACCURACY:
                 state.contentDescription = mContext.getString(
                         R.string.accessibility_quick_settings_location_high_accuracy);
-                state.iconId = mEnable;
+                state.icon = mEnable;
                 break;
             default:
                 state.contentDescription = mContext.getString(
                         R.string.accessibility_quick_settings_location_on);
+                state.icon = mEnable;
         }
     }
 
