@@ -173,7 +173,10 @@
     <color name="exposed_TextAppearance.StatusBar.EventContent">#999999</color>
     <color name="exposed_TextAppearance.StatusBar.EventContent.Emphasis">#CCCCCC</color>
     <color name="exposed_TextAppearance.EasyCorrectSuggestion">#88C8C8C8</color>
+<<<<<<< HEAD
     <color name="exposed_Widget.Material.Light.Button_TS">#555555</color>
+=======
+>>>>>>> 5e080207f705264b7182c2125518a0b2d8cdb7d0
 
     <!-- TRDS colors -->
     <!-- commenting these out for now, until TRDS is implemented

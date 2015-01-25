@@ -19,11 +19,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+<<<<<<< HEAD
+=======
+
+    <LinearLayout
+    android:orientation="vertical" >
+>>>>>>> 5e080207f705264b7182c2125518a0b2d8cdb7d0
     <!-- exposed bg for theming -->
     <FrameLayout
         android:id="@+id/slider_panel"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+<<<<<<< HEAD
+=======
+        android:background="@color/system_secondary_color"
+>>>>>>> 5e080207f705264b7182c2125518a0b2d8cdb7d0
         android:background="@color/exposed_volume_panel"
         android:paddingTop="8dp"
         android:paddingLeft="8dp"
