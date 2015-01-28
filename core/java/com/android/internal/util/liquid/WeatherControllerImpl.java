@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 The CyanogenMod Project
+ * Copyright (C) 2015 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
-package com.android.systemui.statusbar.policy;
+package com.android.internal.util.liquid;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
 
@@ -44,8 +47,10 @@ public class WeatherControllerImpl implements WeatherController {
     public static final String[] WEATHER_PROJECTION = new String[]{
             "temperature",
             "city",
-            "condition"
+            "condition",
+            "condition_code"
     };
+    public static final String LOCK_CLOCK_PACKAGE_NAME = "com.cyanogenmod.lockclock";
 
     private final ArrayList<Callback> mCallbacks = new ArrayList<Callback>();
     private final Receiver mReceiver = new Receiver();
@@ -53,18 +58,19 @@ public class WeatherControllerImpl implements WeatherController {
 
     private WeatherInfo mCachedInfo = new WeatherInfo();
 
-
     public WeatherControllerImpl(Context context) {
         mContext = context;
                 mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
         queryWeather();
+        final IntentFilter filter = new IntentFilter();
+        filter.addAction(ACTION_UPDATE_FINISHED);
+        mContext.registerReceiver(mReceiver, filter);
     }
 
     public void addCallback(Callback callback) {
         if (callback == null || mCallbacks.contains(callback)) return;
         if (DEBUG) Log.d(TAG, "addCallback " + callback);
         mCallbacks.add(callback);
-        mReceiver.setListening(!mCallbacks.isEmpty());
         callback.onWeatherChanged(mCachedInfo); // immediately update with current values
     }
 
@@ -72,7 +78,17 @@ public class WeatherControllerImpl implements WeatherController {
         if (callback == null) return;
         if (DEBUG) Log.d(TAG, "removeCallback " + callback);
         mCallbacks.remove(callback);
-        mReceiver.setListening(!mCallbacks.isEmpty());
+    }
+
+    private Drawable getIcon(int conditionCode) {
+        try {
+            Resources resources =
+                    mContext.createPackageContext(LOCK_CLOCK_PACKAGE_NAME, 0).getResources();
+            return resources.getDrawable(resources.getIdentifier("weather_" + conditionCode,
+                    "drawable", LOCK_CLOCK_PACKAGE_NAME));
+        } catch (PackageManager.NameNotFoundException e) {
+            return null;
+        }
     }
 
     @Override
@@ -92,6 +108,8 @@ public class WeatherControllerImpl implements WeatherController {
                 mCachedInfo.temp = c.getString(0);
                 mCachedInfo.city = c.getString(1);
                 mCachedInfo.condition = c.getString(2);
+                mCachedInfo.conditionCode = c.getInt(3);
+                mCachedInfo.conditionDrawable = getIcon(mCachedInfo.conditionCode);
             } finally {
                 c.close();
             }
@@ -104,24 +122,7 @@ public class WeatherControllerImpl implements WeatherController {
         }
     }
 
-
     private final class Receiver extends BroadcastReceiver {
-        private boolean mRegistered;
-
-        public void setListening(boolean listening) {
-            if (listening && !mRegistered) {
-                if (DEBUG) Log.d(TAG, "Registering receiver");
-                final IntentFilter filter = new IntentFilter();
-                filter.addAction(ACTION_UPDATE_FINISHED);
-                mContext.registerReceiver(this, filter);
-                mRegistered = true;
-            } else if (!listening && mRegistered) {
-                if (DEBUG) Log.d(TAG, "Unregistering receiver");
-                mContext.unregisterReceiver(this);
-                mRegistered = false;
-            }
-        }
-
         @Override
         public void onReceive(Context context, Intent intent) {
             if (DEBUG) Log.d(TAG, "onReceive " + intent.getAction());
@@ -135,5 +136,4 @@ public class WeatherControllerImpl implements WeatherController {
             fireCallback();
         }
     }
-
 }

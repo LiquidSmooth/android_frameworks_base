@@ -49,6 +49,8 @@ import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.android.internal.util.liquid.WeatherController;
+import com.android.internal.util.liquid.WeatherControllerImpl;
 import com.android.keyguard.KeyguardStatusView;
 import com.android.systemui.BatteryMeterView;
 import com.android.systemui.FontSizeUtils;
@@ -58,8 +60,6 @@ import com.android.systemui.qs.QSTile;
 import com.android.systemui.statusbar.policy.BatteryController;
 import com.android.systemui.statusbar.policy.NextAlarmController;
 import com.android.systemui.statusbar.policy.UserInfoController;
-import com.android.systemui.statusbar.policy.WeatherController;
-import com.android.systemui.statusbar.policy.WeatherControllerImpl;
 
 import java.text.NumberFormat;
 
