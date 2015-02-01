@@ -79,4 +79,7 @@
     <string name="usb_media_checking">USB storage is currently being checked.</string>
     <string name="usb_media_removed">USB storage has been removed.</string>
     <string name="usb_media_shared">USB storage is currently in use by a computer.</string>
+
+    <!-- stylus gestures support -->
+    <string name="stylus_app_not_installed">%s is not installed</string>
  </resources>
