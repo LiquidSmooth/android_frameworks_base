@@ -13,7 +13,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
     <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permgrouplab_security">Security</string>
     <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
@@ -91,7 +90,7 @@
     <string name="global_action_reboot">Reboot</string>
 
     <!-- Long-press back kill application -->
-    <string name="app_killed_message">Application killed</string>
+    <string name="app_killed_message">App killed</string>
 
     <!-- Names of default profiles. -->
     <string name="profileNameDefault">Default</string>
@@ -213,8 +212,7 @@
     <string name="China_Telecom">China Telecom</string>
 
     <!-- Text of the checkbox for the permission confirmation dialog to remember the user's choice. [CHAR LIMIT=40] -->
-    <string name="permission_remember_choice">Remember</string>
-    <string name="permission">Permission</string>
+    <string name="permission_remember_choice">Remember my choice</string>
 
     <!-- Default wi-fi hotspot ssid -->
     <string name="def_wifi_wifihotspot_ssid" translatable="false"></string>
