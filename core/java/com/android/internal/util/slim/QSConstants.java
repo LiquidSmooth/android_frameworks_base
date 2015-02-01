@@ -46,6 +46,7 @@ public class QSConstants {
     public static final String TILE_MUSIC = "music";
     public static final String TILE_SCREENSHOT = "screenshot";
     public static final String TILE_SYNC = "sync";
+    public static final String TILE_USB_TETHER = "usb_tether";
     public static final String TILE_BRIGHTNESS = "brightness";
     public static final String TILE_BATTERY_SAVER = "battery_saver";
     public static final String TILE_SCREEN_OFF = "screen_off";
@@ -87,6 +88,7 @@ public class QSConstants {
         TILES_AVAILABLE.add(TILE_MUSIC);
         TILES_AVAILABLE.add(TILE_SCREENSHOT);
         TILES_AVAILABLE.add(TILE_SYNC);
+        TILES_AVAILABLE.add(TILE_USB_TETHER);
         TILES_AVAILABLE.add(TILE_BRIGHTNESS);
         TILES_AVAILABLE.add(TILE_BATTERY_SAVER);
         TILES_AVAILABLE.add(TILE_SCREEN_OFF);
