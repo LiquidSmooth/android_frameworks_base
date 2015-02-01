@@ -1609,6 +1609,9 @@ final class ActivityStack {
 
         if (DEBUG_SWITCH) Slog.v(TAG, "Resuming " + next);
 
+        // Some activities may want to alter the system power management
+        mStackSupervisor.mPm.activityResumed(next.intent);
+
         // If we are currently pausing an activity, then don't do anything
         // until that is done.
         if (!mStackSupervisor.allPausedActivitiesComplete()) {
@@ -1739,6 +1742,9 @@ final class ActivityStack {
                     mWindowManager.prepareAppTransition(prev.task == next.task
                             ? AppTransition.TRANSIT_ACTIVITY_CLOSE
                             : AppTransition.TRANSIT_TASK_CLOSE, false);
+                    if (prev.task != next.task) {
+                        mStackSupervisor.mPm.cpuBoost(2000 * 1000);
+                    }
                 }
                 mWindowManager.setAppWillBeHidden(prev.appToken);
                 mWindowManager.setAppVisibility(prev.appToken, false);
@@ -1753,6 +1759,9 @@ final class ActivityStack {
                             : next.mLaunchTaskBehind
                                     ? AppTransition.TRANSIT_TASK_OPEN_BEHIND
                                     : AppTransition.TRANSIT_TASK_OPEN, false);
+                    if (prev.task != next.task) {
+                        mStackSupervisor.mPm.cpuBoost(2000 * 1000);
+                    }
                 }
             }
             if (false) {
@@ -2015,26 +2024,26 @@ final class ActivityStack {
                     ActivityManagerService.POST_PRIVACY_NOTIFICATION_MSG, next);
             msg.sendToTarget();
             mStackSupervisor.mPrivacyGuardPackageName = next.packageName;
-        }
-    }
+	    }		
+    }		
 
-    private final void updateHeadsUpState(ActivityRecord next) {
-        String headsUpPackageName = mStackSupervisor.mHeadsUpPackageName;
-        if (headsUpPackageName != null && headsUpPackageName.equals(next.packageName)) {
-            return;
-        }
-
-        if (!mStackSupervisor
-                .getHeadsUpNotificationsEnabledForPackage(next.packageName, next.userId)) {
-            // Next package has no heads up enabled. So we do not need to notify
-            // statusbar service that the package has changed. Why bother with it?
-            mStackSupervisor.mHeadsUpPackageName = null;
-            return;
-        } else {
-            // Next package has heads up enabled. Notify statusbar service,
-            // let it decide if the heads up which is currently shown is
-            // from this package and hide it if this is the case.
-            mStackSupervisor.hideHeadsUpCandidate(next.packageName);
+    private final void updateHeadsUpState(ActivityRecord next) {		
+        String headsUpPackageName = mStackSupervisor.mHeadsUpPackageName;		
+        if (headsUpPackageName != null && headsUpPackageName.equals(next.packageName)) {		
+            return;		
+        }		
+	
+        if (!mStackSupervisor		
+                .getHeadsUpNotificationsEnabledForPackage(next.packageName, next.userId)) {		
+            // Next package has no heads up enabled. So we do not need to notify 		
+            // statusbar service that the package has changed. Why bother with it? 		
+            mStackSupervisor.mHeadsUpPackageName = null;		
+            return;		
+        } else {		
+            // Next package has heads up enabled. Notify statusbar service, 		
+            // let it decide if the heads up which is currently shown is 		
+            // from this package and hide it if this is the case. 		
+            mStackSupervisor.hideHeadsUpCandidate(next.packageName);		
             mStackSupervisor.mHeadsUpPackageName = next.packageName;
         }
     }
@@ -4009,18 +4018,16 @@ final class ActivityStack {
     }
 
     void getTasksLocked(List<RunningTaskInfo> list, int callingUid, boolean allowed) {
-        boolean setFirstAsLast = mStackSupervisor.getFocusedStack() == this;
-        boolean first = true;
         for (int taskNdx = mTaskHistory.size() - 1; taskNdx >= 0; --taskNdx) {
             final TaskRecord task = mTaskHistory.get(taskNdx);
-            if (task.getTopActivity() == null) {
-                continue;
-            }
             ActivityRecord r = null;
             ActivityRecord top = null;
             int numActivities = 0;
             int numRunning = 0;
             final ArrayList<ActivityRecord> activities = task.mActivities;
+            if (activities.isEmpty()) {
+                continue;
+            }
             if (!allowed && !task.isHomeTask() && task.effectiveUid != callingUid) {
                 continue;
             }
@@ -4049,10 +4056,6 @@ final class ActivityStack {
             ci.baseActivity = r.intent.getComponent();
             ci.topActivity = top.intent.getComponent();
             ci.lastActiveTime = task.lastActiveTime;
-            if (setFirstAsLast && first) {
-                ci.lastActiveTime = SystemClock.elapsedRealtime();
-                first = false;
-            }
 
             if (top.task != null) {
                 ci.description = top.task.lastDescription;
