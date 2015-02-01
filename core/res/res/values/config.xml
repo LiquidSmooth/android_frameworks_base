@@ -818,7 +818,6 @@
 
          Spline interpolation is used to determine the auto-brightness
          backlight values for LUX levels between these control points.
-
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
     </integer-array>
@@ -1395,11 +1394,9 @@
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
 
     <!-- User activity timeout: Minimum screen off timeout in milliseconds.
-
          Sets a lower bound for the {@link Settings.System#SCREEN_OFF_TIMEOUT} setting
          which determines how soon the device will go to sleep when there is no
          user activity.
-
          This value must be greater than zero, otherwise the device will immediately
          fall asleep again as soon as it is awoken.
     -->
@@ -1422,7 +1419,6 @@
     <integer name="config_maximumScreenDimDuration">7000</integer>
 
     <!-- User activity timeout: Maximum screen dim duration as a percentage of screen off timeout.
-
          This resource is similar to config_maximumScreenDimDuration but the maximum
          screen dim duration is defined as a ratio of the overall screen off timeout
          instead of as an absolute value in milliseconds.  This is useful for reducing
@@ -2025,8 +2021,11 @@
          for "perf_profile_values" array. Leave it blank if the device do not support
          performance profiles  -->
     <string name="config_perf_profile_default_entry" translatable="false"></string>
-	
+
 	<!--Dummy for CMs wakekeys-->
 	<integer name="config_deviceHardwareWakeKeys">0</integer>
-	
+
+    <!-- Boolean to enable Stylus gestures -->
+    <bool name="config_stylusGestures">false</bool>
+
 </resources>
