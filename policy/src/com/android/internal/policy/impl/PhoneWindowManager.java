@@ -3741,13 +3741,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         if (mHasNavigationBar) {
             if (mNavigationBarOnBottom) {
                 newMask |= EdgeGesturePosition.RIGHT.FLAG;
-                if (isPortrait && mUserNavBarHeight == 0
-                        || !isPortrait && mNavigationBarOnBottom) {
+                if (mNavigationBarHeight == 0) {
                     newMask |= EdgeGesturePosition.BOTTOM.FLAG;
                 }
             } else {
                 newMask |= EdgeGesturePosition.BOTTOM.FLAG;
-                if (mUserNavBarWidth == 0) {
+                if (mNavigationBarWidth == 0) {
                     newMask |= EdgeGesturePosition.RIGHT.FLAG;
                 }
             }
