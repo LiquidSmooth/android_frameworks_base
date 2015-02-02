@@ -915,11 +915,6 @@ public class WindowManagerService extends IWindowManager.Stub
         return mInputMonitor;
     }
 
-     @Override
-    public void sendHomeAction() {
-        mPolicy.sendHomeAction();
-    }
-
     @Override
     public boolean onTransact(int code, Parcel data, Parcel reply, int flags)
             throws RemoteException {
@@ -10839,11 +10834,6 @@ public class WindowManagerService extends IWindowManager.Stub
     @Override
     public boolean hasPermanentMenuKey() {
         return mPolicy.hasPermanentMenuKey();
-    }
-
-    @Override 
-    public boolean needsNavigationBar() {
-        return mPolicy.needsNavigationBar();
     }
 
     @Override

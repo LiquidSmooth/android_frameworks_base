@@ -50,7 +50,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.ThemeConfig;
 import android.content.res.Resources;
@@ -106,7 +105,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.WindowManagerGlobal;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewPropertyAnimator;
 import android.view.ViewStub;
@@ -331,8 +329,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // settings
     View mFlipSettingsView;
     private QSPanel mQSPanel;
-    private DevForceNavbarObserver mDevForceNavbarObserver;
-    boolean mSearchPanelAllowed = true;
 
     // task manager
     private TaskManager mTaskManager;
@@ -447,11 +443,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.BATTERY_SAVER_MODE_COLOR),
                     false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.ENABLE_NAVIGATION_RING), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.PIE_CONTROLS),
-                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -488,9 +479,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                         mBatterySaverWarningColor = mContext.getResources()
                                 .getColor(com.android.internal.R.color.battery_saver_mode_color);
                     }
-            } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.PIE_CONTROLS))) {
-                    attachPieContainer(isPieEnabled());
             }
             update();
         }
@@ -511,49 +499,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mNavigationBarView.setLeftInLandscape(navLeftInLandscape);
             }
         }
-    }
-
-    class DevForceNavbarObserver extends ContentObserver {
-        DevForceNavbarObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.NAVBAR_FORCE_ENABLE), false, this);
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            boolean visible = Settings.System.getIntForUser(mContext.getContentResolver(),
-                    Settings.System.NAVBAR_FORCE_ENABLE, 0, UserHandle.USER_CURRENT) == 1;
-            if (visible) {
-                forceAddNavigationBar();
-            } else {
-                removeNavigationBar();
-            }
-        }
-    }
-
-    private void forceAddNavigationBar() {
-        // If we have no Navbar view and we should have one, create it
-        if (mNavigationBarView != null) {
-            return;
-        }
-
-        mNavigationBarView =
-                (NavigationBarView) View.inflate(mContext, R.layout.navigation_bar, null);
-
-        mNavigationBarView.setDisabledFlags(mDisabled);
-        mNavigationBarView.setBar(this);
-        addNavigationBar();
-    }
-
-    private boolean isPieEnabled() {
-        return Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.PIE_CONTROLS, 0,
-                UserHandle.USER_CURRENT) == 1;
     }
 
     // ensure quick settings is disabled until the current user makes it through the setup wizard
@@ -769,17 +714,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         SettingsObserver observer = new SettingsObserver(mHandler);
         observer.observe();
-
-        // Developer options - Force Navigation bar
-        try {
-            boolean needsNav = mWindowManagerService.needsNavigationBar();
-            if (!needsNav) {
-                mDevForceNavbarObserver = new DevForceNavbarObserver(mHandler);
-                mDevForceNavbarObserver.observe();
-            }
-        } catch (RemoteException ex) {
-            // no window manager? good luck with that
-        }
 
         // Lastly, call to the icon policy to install/update all the icons.
         mIconPolicy = new PhoneStatusBarPolicy(mContext, mCastController);
@@ -1479,27 +1413,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private void prepareNavigationBarView() {
         mNavigationBarView.reorient();
 
-        if (mNavigationBarView.getRecentsButton() != null) {
-            mNavigationBarView.getRecentsButton().setOnClickListener(mRecentsClickListener);
-            mNavigationBarView.getRecentsButton().setOnTouchListener(mRecentsPreloadOnTouchListener);
-            mNavigationBarView.getRecentsButton().setLongClickable(true);
-            mNavigationBarView.getRecentsButton().setOnLongClickListener(mLongPressBackRecentsListener);
-        }
-
-        if (mNavigationBarView.getBackButton() != null) {
-            mNavigationBarView.getBackButton().setLongClickable(true);
-            mNavigationBarView.getBackButton().setOnLongClickListener(mLongPressBackRecentsListener);
-        }
-        setHomeActionListener();
+        mNavigationBarView.getRecentsButton().setOnClickListener(mRecentsClickListener);
+        mNavigationBarView.getRecentsButton().setOnTouchListener(mRecentsPreloadOnTouchListener);
+        mNavigationBarView.getRecentsButton().setLongClickable(true);
+        mNavigationBarView.getRecentsButton().setOnLongClickListener(mLongPressBackRecentsListener);
+        mNavigationBarView.getBackButton().setLongClickable(true);
+        mNavigationBarView.getBackButton().setOnLongClickListener(mLongPressBackRecentsListener);
+        mNavigationBarView.getHomeButton().setOnTouchListener(mHomeActionListener);
         updateSearchPanel();
     }
-
-    @Override
-    public void setHomeActionListener() {
-		if (mNavigationBarView.getHomeButton() != null) {
-			mNavigationBarView.getHomeButton().setOnTouchListener(mHomeActionListener);
-		}
-	}
 
     // For small-screen devices (read: phones) that lack hardware navigation buttons
     private void addNavigationBar() {
@@ -1516,15 +1438,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         prepareNavigationBarView();
 
         mWindowManager.addView(mNavigationBarView, getNavigationBarLayoutParams());
-        mNavigationBarOverlay.setNavigationBar(mNavigationBarView);
-    }
-
-    private void removeNavigationBar() {
-        if (DEBUG) Log.d(TAG, "removeNavigationBar: about to remove " + mNavigationBarView);
-        if (mNavigationBarView == null) return;
-
-        mWindowManager.removeView(mNavigationBarView);
-        mNavigationBarView = null;
     }
 
     private void repositionNavigationBar() {
@@ -1694,7 +1607,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         // Recalculate the position of the sliding windows and the titles.
         setAreThereNotifications();
         updateExpandedViewPos(EXPANDED_LEAVE_ALONE);
-        restorePieTriggerMask();
     }
 
     public void displayNotificationFromHeadsUp(StatusBarNotification notification) {
@@ -2807,48 +2719,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (false) postStartTracing();
     }
 
-     @Override
-    public void animateNotificationsOrSettingsPanel() {
-        if (!panelsEnabled() || mState != StatusBarState.SHADE) return;
-        int state = getExpandedNotificationState();
-        switch (state) {
-            case 0:
-                animateExpandNotificationsPanel();
-                break;
-            case 1:
-                animateCollapsePanels();
-                break;
-            case 2:
-                animateExpandSettingsPanel();
-                break;
-        }
-    }
-
-    /**
-     * State of the expanded shade:
-     * 0 = collapsed/expanding
-     * 1 = quicksettings side
-     * 2 = notifications side
-     * @hide
-     */
-    private int getExpandedNotificationState() {
-        if (mExpandedVisible) {
-
-        boolean expanded = mHeader.getExpanded();
-        boolean visibleSettingsButton = mHeader.getSettingsButtonVisibility();
-
-            // Notification button is on quick settings side
-            if (expanded && !visibleSettingsButton) {
-                return 1;
-            // Settings button is on notification side
-			}
-            if (expanded && visibleSettingsButton) {
-                return 2;
-            }
-        }
-        return 0;
-    }
-
     @Override
     public void animateExpandSettingsPanel() {
         if (SPEW) Log.d(TAG, "animateExpand: mExpandedVisible=" + mExpandedVisible);
@@ -3054,12 +2924,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     public GestureRecorder getGestureRecorder() {
         return mGestureRec;
-    }
-
-    private void forceNavigationIconHints() {
-        if (mNavigationBarView != null) {
-            mNavigationBarView.setNavigationIconHints(mNavigationIconHints, true);
-        }
     }
 
     private void setNavigationIconHints(int hints) {
@@ -3992,12 +3856,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     }
 
-    @Override
-    public void notifyLayoutChange(int direction) {
-        mNavigationBarView.notifyLayoutChange(direction);
-        mHandler.postDelayed(new Runnable() { public void run() { forceNavigationIconHints(); }}, 20);
-    }
-
     protected void loadDimens() {
         final Resources res = mContext.getResources();
 
@@ -4131,7 +3989,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     @Override
     protected boolean shouldDisableNavbarGestures() {
-    if (!mSearchPanelAllowed) return true;
         return !isDeviceProvisioned()
                 || mExpandedVisible
                 || (mDisabled & StatusBarManager.DISABLE_SEARCH) != 0;
