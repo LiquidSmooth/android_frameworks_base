@@ -2133,4 +2133,8 @@
   <java-symbol type="array" name="notification_light_package_mapping" />
   <java-symbol type="array" name="config_notificationNoAlertsVibePattern" />
 
+  <!-- Last app switch animations -->
+  <java-symbol type="anim" name="last_app_in" />
+  <java-symbol type="anim" name="last_app_out" />
+
 </resources>
