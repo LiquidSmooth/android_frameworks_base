@@ -241,7 +241,6 @@ interface IWindowManager
      * Device has a software navigation bar (separate from the status bar).
      */
     boolean hasNavigationBar();
-    boolean hasPermanentMenuKey();
 
     /**
      * Lock the device immediately with the specified options (can be null).
