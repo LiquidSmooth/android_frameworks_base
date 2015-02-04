@@ -6622,6 +6622,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     // overridden by qemu.hw.mainkeys in the emulator.
     @Override
     public boolean hasNavigationBar() {
+        return mHasNavigationBar;
+    }
+
+    public boolean needsNavigationBar() {
+        return mHasNavigationBar;
+    }
 
     @Override
     public boolean hasPermanentMenuKey() {
