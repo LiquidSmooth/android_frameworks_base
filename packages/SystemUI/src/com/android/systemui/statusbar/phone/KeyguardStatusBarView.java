@@ -296,5 +296,5 @@ public class KeyguardStatusBarView extends RelativeLayout
         if (mBatteryController != null) {
             mBatteryController.removeStateChangedCallback(this);
         }
-    }
+	}	
 }
