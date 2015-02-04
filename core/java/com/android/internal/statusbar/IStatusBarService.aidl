@@ -13,56 +13,41 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License.
  */
-
+ 
 package com.android.internal.statusbar;
 
 import android.content.Intent;
 
-import com.android.internal.statusbar.IStatusBar;
 import com.android.internal.statusbar.StatusBarIcon;
-import com.android.internal.statusbar.StatusBarIconList;
 import android.service.notification.StatusBarNotification;
 
 /** @hide */
-interface IStatusBarService
+oneway interface IStatusBar
 {
-    void expandNotificationsPanel();
-    void collapsePanels();
-    void disable(int what, IBinder token, String pkg);
-    void setIcon(String slot, String iconPackage, int iconId, int iconLevel, String contentDescription);
-    void setIconVisibility(String slot, boolean visible);
-    void removeIcon(String slot);
+    void setIcon(int index, in StatusBarIcon icon);
+    void removeIcon(int index);
+    void disable(int state);
+    void animateExpandNotificationsPanel();
+    void animateExpandSettingsPanel();
+    void animateCollapsePanels();
+    void animateNotificationsOrSettingsPanel();
+    void setSystemUiVisibility(int vis, int mask);
     void topAppWindowChanged(boolean menuVisible);
     void setImeWindowStatus(in IBinder token, int vis, int backDisposition,
             boolean showImeSwitcher);
-    void expandSettingsPanel();
-    void setCurrentUser(int newUserId);
-
-    // ---- Methods below are for use by the status bar policy services ----
-    // You need the STATUS_BAR_SERVICE permission
-    void registerStatusBar(IStatusBar callbacks, out StatusBarIconList iconList,
-            out int[] switches, out List<IBinder> binders);
-    void onPanelRevealed();
-    void onPanelHidden();
-    void onNotificationClick(String key);
-    void onNotificationError(String pkg, String tag, int id,
-            int uid, int initialPid, String message, int userId);
-    void onClearAllNotifications(int userId);
-    void onNotificationClear(String pkg, String tag, int id, int userId);
-    void onNotificationVisibilityChanged(
-            in String[] newlyVisibleKeys, in String[] noLongerVisibleKeys);
-    void onNotificationExpansionChanged(in String key, in boolean userAction, in boolean expanded);
-    void setSystemUiVisibility(int vis, int mask);
     void setWindowState(int window, int state);
+    void buzzBeepBlinked();
+    void notificationLightOff();
+    void notificationLightPulse(int argb, int millisOn, int millisOff);
 
     void showRecentApps(boolean triggeredFromAltTab);
     void hideRecentApps(boolean triggeredFromAltTab, boolean triggeredFromHomeKey);
     void toggleRecentApps();
     void preloadRecentApps();
     void cancelPreloadRecentApps();
+    void notifyLayoutChange(int direction);
     void setAutoRotate(boolean enabled);
     void showCustomIntentAfterKeyguard(inout Intent intent);
-    void hideHeadsUpCandidate(String packageName);
-    void scheduleHeadsUpClose();
     void setPieTriggerMask(int newMask, boolean lock);
 }
+
