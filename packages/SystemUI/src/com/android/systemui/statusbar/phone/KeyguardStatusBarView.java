@@ -120,6 +120,13 @@ public class KeyguardStatusBarView extends RelativeLayout
         mCarrierLabel.setTextSize(TypedValue.COMPLEX_UNIT_PX,
                 getResources().getDimensionPixelSize(
                         com.android.internal.R.dimen.text_size_small_material));
+    }
+
+    @Override
+    protected void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        // Respect font size setting.
         mBatteryLevel.setTextSize(TypedValue.COMPLEX_UNIT_PX,
                 getResources().getDimensionPixelSize(R.dimen.battery_level_text_size));
     }
@@ -294,6 +301,10 @@ public class KeyguardStatusBarView extends RelativeLayout
         return false;
     }
 
+    public void updateCarrierLabelColor(int color) {
+        mCarrierLabel.setTextColor(color);
+    }
+
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
@@ -301,5 +312,4 @@ public class KeyguardStatusBarView extends RelativeLayout
         if (mBatteryController != null) {
             mBatteryController.removeStateChangedCallback(this);
         }
-    }
 }
