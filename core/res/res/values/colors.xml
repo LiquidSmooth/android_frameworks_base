@@ -183,4 +183,5 @@
     <color name="trds_background">#ff000000</color>
     <color name="trds_text">#ffffffff</color>
 
+    <color name="dslv_icon_dark">#ff009688</color>
 </resources>
