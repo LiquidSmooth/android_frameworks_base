@@ -45,6 +45,8 @@
     <string name="zen_silent_with_warning">No interruptions, except alarms.</string>
 
     <!-- Quick settings -->
+    <string name="quick_settings_battery_saver">Battery saver</string>
+    <string name="quick_settings_battery_saver_off">Battery saver off</string>
     <string name="quick_settings_brightness">Brightness</string>
     <string name="quick_settings_screenshot">Screenshot</string>
     <string name="quick_settings_sync">Sync</string>
