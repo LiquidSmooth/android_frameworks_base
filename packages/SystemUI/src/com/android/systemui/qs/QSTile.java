@@ -31,7 +31,6 @@ import android.view.ViewGroup;
 import com.android.systemui.qs.QSTile.State;
 import com.android.systemui.statusbar.policy.BluetoothController;
 import com.android.systemui.statusbar.policy.CastController;
-import com.android.systemui.statusbar.policy.FlashlightController;
 import com.android.systemui.statusbar.policy.KeyguardMonitor;
 import com.android.systemui.statusbar.policy.Listenable;
 import com.android.systemui.statusbar.policy.LocationController;
@@ -308,7 +307,6 @@ public abstract class QSTile<TState extends State> implements Listenable {
         ZenModeController getZenModeController();
         HotspotController getHotspotController();
         CastController getCastController();
-        FlashlightController getFlashlightController();
         KeyguardMonitor getKeyguardMonitor();
 
         public interface Callback {

@@ -55,7 +55,6 @@ import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.KeyguardAffordanceView;
 import com.android.systemui.statusbar.KeyguardIndicationController;
 import com.android.systemui.statusbar.policy.AccessibilityController;
-import com.android.systemui.statusbar.policy.FlashlightController;
 import com.android.systemui.statusbar.policy.PreviewInflater;
 
 import static android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK;
@@ -93,7 +92,6 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
     private ActivityStarter mActivityStarter;
     private UnlockMethodCache mUnlockMethodCache;
     private LockPatternUtils mLockPatternUtils;
-    private FlashlightController mFlashlightController;
     private PreviewInflater mPreviewInflater;
     private KeyguardIndicationController mIndicationController;
     private AccessibilityController mAccessibilityController;
@@ -215,10 +213,6 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         mActivityStarter = activityStarter;
     }
 
-    public void setFlashlightController(FlashlightController flashlightController) {
-        mFlashlightController = flashlightController;
-    }
-
     public void setAccessibilityController(AccessibilityController accessibilityController) {
         mAccessibilityController = accessibilityController;
         accessibilityController.addStateChangedCallback(this);
@@ -337,7 +331,6 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
     }
 
     public void launchCamera() {
-        mFlashlightController.killFlashlight();
         Intent intent = getCameraIntent();
         boolean wouldLaunchResolverActivity = PreviewInflater.wouldLaunchResolverActivity(
                 mContext, intent, mLockPatternUtils.getCurrentUser());
