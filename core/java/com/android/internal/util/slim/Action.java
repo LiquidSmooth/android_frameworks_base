@@ -23,6 +23,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.input.InputManager;
+import android.hardware.TorchManager;
 import android.media.AudioManager;
 import android.media.session.MediaSessionLegacyHelper;
 import android.media.ToneGenerator;
@@ -250,6 +251,16 @@ public class Action {
                         (PowerManager) context.getSystemService(Context.POWER_SERVICE);
                 if (!powerManager.isScreenOn()) {
                     powerManager.wakeUp(SystemClock.uptimeMillis());
+                }
+                return;
+            } else if (action.equals(ActionConstants.ACTION_TORCH)) {
+                // toggle torch the new way
+                TorchManager torchManager =
+                        (TorchManager) context.getSystemService(Context.TORCH_SERVICE);
+                if (!torchManager.isTorchOn()) {
+                    torchManager.setTorchEnabled(true);
+                } else {
+                    torchManager.setTorchEnabled(false);
                 }
                 return;
             } else {
