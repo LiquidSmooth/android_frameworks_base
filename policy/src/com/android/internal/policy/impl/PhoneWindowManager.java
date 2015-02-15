@@ -5331,7 +5331,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
 
         if (useHapticFeedback) {
-            //performHapticFeedbackLw(null, HapticFeedbackConstants.VIRTUAL_KEY, false);
+            performHapticFeedbackLw(null, HapticFeedbackConstants.VIRTUAL_KEY, false);
         }
 
         if (isWakeKey) {
