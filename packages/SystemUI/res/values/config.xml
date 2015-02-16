@@ -345,4 +345,3 @@
     <integer name="shutteranimationboost_schedboost_param">0</integer>
     <integer name="shutteranimationboost_cpuboost_param">0</integer>
 </resources>
-
