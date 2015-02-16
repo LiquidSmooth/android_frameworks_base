@@ -118,10 +118,6 @@ public class TvStatusBar extends BaseStatusBar {
     public void showCustomIntentAfterKeyguard(Intent intent) {
     }
 
-    @Override // CommandQueue
-    public void hideHeadsUpCandidate(String packageName) {
-    }
-
     @Override
     protected WindowManager.LayoutParams getSearchLayoutParams(
             LayoutParams layoutParams) {
@@ -153,6 +149,11 @@ public class TvStatusBar extends BaseStatusBar {
         return true;
     }
 
+    @Override
+    public boolean isExpandedVisible() {
+        return false;
+    }
+
     public View getStatusBarView() {
         return null;
     }
@@ -169,7 +170,7 @@ public class TvStatusBar extends BaseStatusBar {
     public void scheduleHeadsUpEscalation() {
     }
 
-    @Override // CommandQueue
+    @Override
     public void scheduleHeadsUpClose() {
     }
 
@@ -184,6 +185,10 @@ public class TvStatusBar extends BaseStatusBar {
 
     @Override
     protected void createAndAddWindows() {
+    }
+
+    @Override
+    public void hideHeadsUp() {
     }
 
     @Override

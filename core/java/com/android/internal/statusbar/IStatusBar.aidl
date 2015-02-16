@@ -1,4 +1,4 @@
-/**
+ /**
  * Copyright (c) 2007, The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -48,8 +48,6 @@ oneway interface IStatusBar
     void notifyLayoutChange(int direction);
     void setAutoRotate(boolean enabled);
     void showCustomIntentAfterKeyguard(inout Intent intent);
-    void hideHeadsUpCandidate(String packageName);
-    void scheduleHeadsUpClose();
     void setPieTriggerMask(int newMask, boolean lock);
 }
 
