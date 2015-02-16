@@ -7754,7 +7754,6 @@ public final class Settings {
         * The interval in milliseconds to scan at supplicant when p2p is connected
         * @hide
         */
-<<<<<<< HEAD
        public static final String WIFI_SCAN_INTERVAL_WHEN_P2P_CONNECTED_MS =
                "wifi_scan_interval_p2p_connected_ms";
 
@@ -9219,6 +9218,3 @@ public final class Settings {
         return "android-" + Long.toHexString(androidId);
     }
 }
-=======
-       public static 
->>>>>>> 03975a5... [1/2] Add ability to ignore interruptions while active media
