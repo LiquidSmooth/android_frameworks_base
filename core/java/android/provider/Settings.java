@@ -7257,6 +7257,12 @@ public final class Settings {
        public static final String DISPLAY_SIZE_FORCED = "display_size_forced";
 
        /**
+        * @hide
+        */
+       public static final String ZEN_DISABLE_DUCKING_DURING_MEDIA_PLAYBACK =
+               "zen_disable_ducking_during_media_playback";
+
+       /**
         * The maximum size, in bytes, of a download that the download manager will transfer over
         * a non-wifi connection.
         * @hide
