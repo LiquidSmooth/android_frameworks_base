@@ -57,12 +57,12 @@ public class CommandQueue extends IStatusBar.Stub {
     private static final int MSG_BUZZ_BEEP_BLINKED                  = 15 << MSG_SHIFT;
     private static final int MSG_NOTIFICATION_LIGHT_OFF             = 16 << MSG_SHIFT;
     private static final int MSG_NOTIFICATION_LIGHT_PULSE           = 17 << MSG_SHIFT;
-    private static final int MSG_SHOW_SCREEN_PIN_REQUEST            = 18 << MSG_SHIFT;
-    private static final int MSG_SET_AUTOROTATE_STATUS              = 19 << MSG_SHIFT;
-    private static final int MSG_START_CUSTOM_INTENT_AFTER_KEYGUARD = 20 << MSG_SHIFT;
-    private static final int MSG_HIDE_HEADS_UP_CANDIDATE            = 21 << MSG_SHIFT;
-    private static final int MSG_HIDE_HEADS_UP                      = 22 << MSG_SHIFT;
-
+    private static final int MSG_HIDE_HEADS_UP                      = 18 << MSG_SHIFT;
+    private static final int MSG_SHOW_SCREEN_PIN_REQUEST            = 19 << MSG_SHIFT;
+    private static final int MSG_SET_AUTOROTATE_STATUS              = 20 << MSG_SHIFT;
+    private static final int MSG_START_CUSTOM_INTENT_AFTER_KEYGUARD = 21 << MSG_SHIFT;
+    private static final int MSG_HIDE_HEADS_UP_CANDIDATE            = 22 << MSG_SHIFT;
+    private static final int MSG_HIDE_HEADS_UP                      = 23 << MSG_SHIFT;
     public static final int FLAG_EXCLUDE_NONE = 0;
     public static final int FLAG_EXCLUDE_SEARCH_PANEL = 1 << 0;
     public static final int FLAG_EXCLUDE_RECENTS_PANEL = 1 << 1;
@@ -107,7 +107,6 @@ public class CommandQueue extends IStatusBar.Stub {
         public void showScreenPinningRequest();
         public void setAutoRotate(boolean enabled);
         public void showCustomIntentAfterKeyguard(Intent intent);
-        public void hideHeadsUpCandidate(String packageName);
         public void scheduleHeadsUpClose();
     }
 
@@ -273,12 +272,12 @@ public class CommandQueue extends IStatusBar.Stub {
         }
     }
 
-    public void hideHeadsUpCandidate(String packageName) {
-        synchronized (mList) {
-            mHandler.removeMessages(MSG_HIDE_HEADS_UP_CANDIDATE);
-            mHandler.obtainMessage(MSG_HIDE_HEADS_UP_CANDIDATE,
-                0, 0, packageName).sendToTarget();
-        }
+    public void pause() {
+        mPaused = true;
+    }
+
+    public void resume() {
+        mPaused = false;
     }
 
     public void scheduleHeadsUpClose() {
@@ -286,14 +285,6 @@ public class CommandQueue extends IStatusBar.Stub {
             mHandler.removeMessages(MSG_HIDE_HEADS_UP);
             mHandler.sendEmptyMessage(MSG_HIDE_HEADS_UP);
         }
-    }
-
-    public void pause() {
-        mPaused = true;
-    }
-
-    public void resume() {
-        mPaused = false;
     }
 
     private final class H extends Handler {
@@ -387,9 +378,6 @@ public class CommandQueue extends IStatusBar.Stub {
                     break;
                 case MSG_START_CUSTOM_INTENT_AFTER_KEYGUARD:
                     mCallbacks.showCustomIntentAfterKeyguard((Intent) msg.obj);
-                    break;
-                case MSG_HIDE_HEADS_UP_CANDIDATE:
-                    mCallbacks.hideHeadsUpCandidate((String) msg.obj);
                     break;
                 case MSG_HIDE_HEADS_UP:
                     mCallbacks.scheduleHeadsUpClose();

@@ -65,6 +65,4 @@ interface IStatusBarService
     void cancelPreloadRecentApps();
     void setAutoRotate(boolean enabled);
     void showCustomIntentAfterKeyguard(inout Intent intent);
-    void hideHeadsUpCandidate(String packageName);
-    void scheduleHeadsUpClose();
 }
