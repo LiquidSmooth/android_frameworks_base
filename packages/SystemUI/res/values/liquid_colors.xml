@@ -60,9 +60,8 @@
         @color/system_bar_background_semi_transparent
     </color>
     <color name="navigation_bar_background_transparent">@color/system_bar_background_transparent</color>
-
-    <!-- app sidebar trigger region color -->
-    <color name="trigger_region_color">#8015a0e5</color>
+    
+    <color name="trigger_region_color">#8015a0e5</color>
 
     <!-- Battery base color -->
     <color name="batterymeter_base_color">#FFFFFFFF</color>
