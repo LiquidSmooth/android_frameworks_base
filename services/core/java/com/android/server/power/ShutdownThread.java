@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
  
 package com.android.server.power;
 
@@ -245,7 +244,7 @@ public final class ShutdownThread extends Thread {
 
     private static int getAdvancedReboot(Context context) {
         return Settings.Secure.getInt(context.getContentResolver(),
-                Settings.Secure.ADVANCED_REBOOT, 0);
+                Settings.Secure.ADVANCED_REBOOT, 1);
     }
 
     private static class CloseDialogReceiver extends BroadcastReceiver
