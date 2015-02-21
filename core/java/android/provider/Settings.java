@@ -2516,6 +2516,18 @@ public final class Settings {
         public static final String TIME_12_24 = "time_12_24";
 
         /**
+         * Toast Animations
+         * @hide
+         */
+        public static final String TOAST_ANIMATION = "toast_animation";
+
+        /**
+         * Enable statusbar double tap gesture on to put device to sleep
+         * @hide
+         */
+        public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
+		
+        /**
          *
          * @hide
          */

@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.ContentResolver;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.database.ContentObserver;
 import android.graphics.Point;
 import android.os.RemoteException;
 import android.os.UserHandle;
@@ -183,6 +184,13 @@ public class ViewConfiguration {
      * Maximum velocity to initiate a fling, as measured in dips per second
      */
     private static int MAXIMUM_FLING_VELOCITY = 8000;
+
+    /**
+     * Maximum velocity to initiate a fling, as measured in dips per second
+     * @hide
+     */
+    public static final int DEFAULT_MAXIMUM_FLING_VELOCITY = 16000;    
+
     /**
      * Delay before dispatching a recurring accessibility event in milliseconds.
      * This delay guarantees that a recurring event will be send at most once
