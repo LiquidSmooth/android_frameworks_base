@@ -28,7 +28,6 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.support.v7.graphics.Palette;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;

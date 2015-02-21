@@ -157,7 +157,6 @@ public class WeatherControllerImpl implements WeatherController {
             fireCallback();
         }
     }
-}
 
     @Override
     public void updateWeather() {

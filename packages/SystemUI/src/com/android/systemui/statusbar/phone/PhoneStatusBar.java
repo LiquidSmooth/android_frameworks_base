@@ -468,12 +468,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             if (uri.equals(Settings.System.getUriFor(
                     Settings.System.HEADS_UP_SNOOZE_TIME))) {
                     final int snoozeTime = Settings.System.getIntForUser(
-            } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.LOCK_SCREEN_TEXT_COLOR))
-                || uri.equals(Settings.System.getUriFor(
-                    Settings.System.LOCK_SCREEN_ICON_COLOR))) {
-                setKeyguardTextAndIconColors();
-            } else if (uri.equals(Settings.System.getUriFor(
                             mContext.getContentResolver(),
                             Settings.System.HEADS_UP_SNOOZE_TIME,
                             mContext.getResources().getInteger(
@@ -483,6 +477,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     if (mHeadsUpNotificationView != null) {
                         mHeadsUpNotificationView.setSnoozeVisibility(snoozeTime != 0);
                     }
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.LOCK_SCREEN_TEXT_COLOR))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.System.LOCK_SCREEN_ICON_COLOR))) {
+                setKeyguardTextAndIconColors();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.HEADS_UP_NOTIFCATION_DECAY))) {
                     mHeadsUpNotificationDecay = Settings.System.getIntForUser(
@@ -2224,9 +2223,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         int iconColor =
                 Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.LOCK_SCREEN_ICON_COLOR, 0xffffffff);
-        if (mKeyguardStatusBar != null) {
-            mKeyguardStatusBar.updateCarrierLabelColor(textColor);
-        }
         if (mKeyguardBottomArea != null) {
             mKeyguardBottomArea.updateTextColor(textColor);
             mKeyguardBottomArea.updateIconColor(iconColor);
