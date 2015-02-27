@@ -15,5 +15,6 @@
      limitations under the License.
 -->
 <resources>
-    <dimen name="qs_tile_icon_size_visualizer">40dp</dimen>
+    <!-- tint of the Visualizer tile -->
+    <color name="visualizer_fill_color">#96FFFFFF</color>
 </resources>
