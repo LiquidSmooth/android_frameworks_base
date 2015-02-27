@@ -76,11 +76,12 @@ public class FlashlightTile extends QSTile<QSTile.BooleanState> implements
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
-        if (arg instanceof UserBoolean) {
-            state.value = ((UserBoolean) arg).value;
-        }
         if (state.value) {
             mWasLastOn = SystemClock.uptimeMillis();
+        }
+
+        if (arg instanceof UserBoolean) {
+            state.value = ((UserBoolean) arg).value;
         }
 
         if (!state.value && mWasLastOn != 0) {
