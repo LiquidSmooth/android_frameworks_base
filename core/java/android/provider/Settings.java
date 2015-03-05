@@ -3585,6 +3585,12 @@ public final class Settings {
          */
         public static final String VOLUME_MUSIC_CONTROLS = "volume_music_controls";
 
+	   /**
+         * Config for Slim Action Tile
+         *
+         * @hide
+         */
+        public static final String QUICK_TILE_CONFIG = "quick_tile_config";
 
         /**
          * Custom System Animations
