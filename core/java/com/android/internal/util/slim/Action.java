@@ -70,9 +70,15 @@ public class Action {
                 Log.w("Action", "Error getting window manager service", e);
             }
 
-            IStatusBarService barService = IStatusBarService.Stub.asInterface(
+            final IStatusBarService barService = IStatusBarService.Stub.asInterface(
                     ServiceManager.getService(Context.STATUS_BAR_SERVICE));
             if (barService == null) {
+                return; // ouch
+            }
+
+            final IWindowManager windowManagerService = IWindowManager.Stub.asInterface(
+                    ServiceManager.getService(Context.WINDOW_SERVICE));
+            if (windowManagerService == null) {
                 return; // ouch
             }
 
@@ -101,6 +107,12 @@ public class Action {
                 return;
             } else if (action.equals(ActionConstants.ACTION_IME_NAVIGATION_DOWN)) {
                 triggerVirtualKeypress(KeyEvent.KEYCODE_DPAD_DOWN, isLongpress);
+                return;
+            } else if (action.equals(ActionConstants.ACTION_POWER_MENU)) {
+                try {
+                    windowManagerService.toggleGlobalMenu();
+                } catch (RemoteException e) {
+                }
                 return;
             } else if (action.equals(ActionConstants.ACTION_POWER)) {
                 PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
@@ -132,7 +144,7 @@ public class Action {
                 } catch (RemoteException e) {
                 }
                 return;
-            } else if (action.equals(ActionConstants.ACTION_SCREENSHOT)) {
+           } else if (action.equals(ActionConstants.ACTION_SCREENSHOT)) {
                 try {
                     barService.toggleScreenshot();
                 } catch (RemoteException e) {
@@ -276,6 +288,17 @@ public class Action {
                 return;
             }
 
+    }
+
+    public static boolean isNavBarEnabled(Context context) {
+        return Settings.System.getIntForUser(context.getContentResolver(),
+                Settings.System.NAVIGATION_BAR_SHOW,
+                isNavBarDefault(context) ? 1 : 0, UserHandle.USER_CURRENT) == 1;
+    }
+
+    public static boolean isNavBarDefault(Context context) {
+        return context.getResources().getBoolean(
+                com.android.internal.R.bool.config_showNavigationBar);
     }
 
     public static boolean isActionKeyEvent(String action) {
