@@ -2567,6 +2567,12 @@ public final class Settings {
          */
         public static final String DATE_FORMAT = "date_format";
 
+         /**
+        * Developer options - Navigation Bar show switch
+        * @hide
+        */
+        public static final String DEV_FORCE_SHOW_NAVBAR = "dev_force_show_navbar";
+
         /**
          * Whether the setup wizard has been run before (on first boot), or if
          * it still needs to be run.
