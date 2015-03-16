@@ -2027,6 +2027,10 @@
          is the max width/height allowed in dips.-->
     <dimen name="config_mediaMetadataBitmapMaxSize">320dp</dimen>
 
+    <!-- The list of components which should be forced to be enabled. -->
+    <string-array name="config_forceEnabledComponents" translatable="false">
+    </string-array>
+
     <string translatable="false" name="prohibit_manual_network_selection_in_gobal_mode">false</string>
 
     <!-- An array of CDMA roaming indicators which means international roaming -->
