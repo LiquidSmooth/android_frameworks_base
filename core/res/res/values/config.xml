@@ -2274,6 +2274,16 @@
     <bool name="config_proximityCheckOnWake">false</bool>
     <integer name="config_proximityCheckTimeout">250</integer>
 
+    <!-- Packages that are allowed to write killswitch values -->
+    <string-array name="config_packagesAllowedAccessToKillSwitch" translatable="false">
+    </string-array>
+
+    <!-- Path to the library that contains the kill switch library -->
+    <string name="config_killSwitchLib" translatable="false"></string>
+
+    <!-- Name of the class which implements the IKillSwitch interface -->
+    <string name="config_killSwitchClass" translatable="false"></string>
+
     <!-- Hardware "softkeys" present on the device, stored as a bit field.
          This integer should equal the sum of the corresponding value for each
          of the following keys present:
