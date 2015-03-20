@@ -52,6 +52,15 @@ import com.android.systemui.qs.tiles.NotificationsTile;
 import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.LockscreenToggleTile;
 import com.android.systemui.qs.tiles.LteTile;
+<<<<<<< HEAD
+=======
+import com.android.systemui.qs.tiles.MusicTile;
+import com.android.systemui.qs.tiles.NotificationsTile;
+import com.android.systemui.qs.tiles.ProfilesTile;
+import com.android.systemui.qs.tiles.PerfProfileTile;
+import com.android.systemui.qs.tiles.PowerMenuTile;
+import com.android.systemui.qs.tiles.RebootTile;
+>>>>>>> 9786af7... FWB: Add music tile (1/2)
 import com.android.systemui.qs.tiles.RoamingTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.VisualizerTile;
@@ -315,6 +324,33 @@ public class QSTileHost implements QSTile.Host {
                 return new VisualizerTile(this);
             case QSConstants.TILE_SCREEN_TIMEOUT:
                 return new ScreenTimeoutTile(this);
+<<<<<<< HEAD
+=======
+            case QSConstants.TILE_SCREENSHOT:
+                return new ScreenshotTile(this);
+            case QSConstants.TILE_SCREENRECORD:
+                return new ScreenrecordTile(this);
+            case QSConstants.TILE_SYNC:
+                return new SyncTile(this);
+            case QSConstants.TILE_LIVE_DISPLAY:
+                return new LiveDisplayTile(this);
+            case QSConstants.TILE_BRIGHTNESS:
+                return new BrightnessTile(this);
+            case QSConstants.TILE_BATTERY_SAVER:
+                return new BatterySaverTile(this);
+            case QSConstants.TILE_SCREEN_OFF:
+                return new ScreenOffTile(this);
+            case QSConstants.TILE_EXPANDED_DESKTOP:
+                return new ExpandedDesktopTile(this);
+            case QSConstants.TILE_AMBIENT_DISPLAY:
+                return new AmbientDisplayTile(this);
+            case QSConstants.TILE_REBOOT:
+                return new RebootTile(this);
+            case QSConstants.TILE_SLIMACTION:
+                return new SlimActionTile(this);
+            case QSConstants.TILE_MUSIC:
+                return new MusicTile(this);
+>>>>>>> 9786af7... FWB: Add music tile (1/2)
             default:
                 throw new IllegalArgumentException("Bad tile spec: " + tileSpec);
         }
