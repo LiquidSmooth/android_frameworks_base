@@ -44,4 +44,7 @@
     <!-- Zen mode: No interruptions title, with a warning about alarms. [CHAR LIMIT=60] -->
     <string name="zen_silent_with_warning">No interruptions, except alarms.</string>
 
+    <!-- Quick settings -->
+    <string name="quick_settings_screenshot">Screenshot</string>
+
 </resources>
