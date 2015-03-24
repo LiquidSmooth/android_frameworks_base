@@ -57,5 +57,7 @@
 
     <!-- Quick settings -->
     <string name="quick_settings_screenshot">Screenshot</string>
+    <string name="quick_settings_sync">Sync</string>
+    <string name="quick_settings_sync_off">Sync off</string>
 
 </resources>
