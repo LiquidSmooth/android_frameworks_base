@@ -31,7 +31,6 @@ public class QSConstants {
     public static final String TILE_LOCATION = "location";
     public static final String TILE_CAST = "cast";
     public static final String TILE_HOTSPOT = "hotspot";
-    public static final String TILE_NOTIFICATIONS = "notifications";
     public static final String TILE_DATA = "data";
     public static final String TILE_ROAMING = "roaming";
     public static final String TILE_DDS = "dds";
@@ -64,7 +63,6 @@ public class QSConstants {
         TILES_AVAILABLE.addAll(TILES_DEFAULT);
         TILES_AVAILABLE.add(TILE_INVERSION);
         TILES_AVAILABLE.add(TILE_HOTSPOT);
-        TILES_AVAILABLE.add(TILE_NOTIFICATIONS);
         TILES_AVAILABLE.add(TILE_DATA);
         TILES_AVAILABLE.add(TILE_ROAMING);
         TILES_AVAILABLE.add(TILE_DDS);
