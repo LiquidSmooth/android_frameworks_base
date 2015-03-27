@@ -23,7 +23,7 @@ import android.telephony.TelephonyManager;
 
 import com.android.internal.telephony.Phone;
 
-import com.android.internal.util.cm.QSUtils;
+import com.android.internal.util.slim.QSUtils;
 import com.android.systemui.qs.QSTile;
 import com.android.systemui.R;
 
