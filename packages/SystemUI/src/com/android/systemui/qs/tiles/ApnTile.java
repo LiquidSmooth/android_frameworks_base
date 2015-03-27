@@ -119,7 +119,6 @@ public class ApnTile extends QSTile<QSTile.State> {
             updateApnIcon();
             mCurrentApnName = apnName;
         }
-        state.iconId = mCurrentIcon;
         state.label = apnName.toUpperCase();
         state.contentDescription = apnName;
     }

@@ -92,14 +92,14 @@ public class DdsTile extends QSTile<QSTile.State> {
             if (DEBUG) Log.d(TAG, "mobile data is on.");
             switch(dataPhoneId) {
                 case PhoneConstants.SUB1:
-                    state.iconId = R.drawable.ic_qs_data_on_1;
+                    state.icon = ResourceIcon.get(R.drawable.ic_qs_data_on_1);
                     break;
                 case PhoneConstants.SUB2:
-                    state.iconId = R.drawable.ic_qs_data_on_2;
+                    state.icon = ResourceIcon.get(R.drawable.ic_qs_data_on_2);
                     break;
                 case PhoneConstants.SUB3:
                 default:
-                    state.iconId = 0;
+                    state.icon = null;
                     break;
             }
             state.label = mContext.getString(R.string.quick_settings_dds_sub, dataPhoneId + 1);
@@ -109,14 +109,14 @@ public class DdsTile extends QSTile<QSTile.State> {
             if (DEBUG) Log.d(TAG, "mobile data is off.");
             switch(dataPhoneId) {
                 case PhoneConstants.SUB1:
-                    state.iconId = R.drawable.ic_qs_data_off_1;
+                    state.icon = ResourceIcon.get(R.drawable.ic_qs_data_off_1);
                     break;
                 case PhoneConstants.SUB2:
-                    state.iconId = R.drawable.ic_qs_data_off_2;
+                    state.icon = ResourceIcon.get(R.drawable.ic_qs_data_off_2);
                     break;
                 case PhoneConstants.SUB3:
                 default:
-                    state.iconId = 0;
+                    state.icon = null;
                     break;
             }
             state.label = mContext.getString(R.string.quick_settings_data_off);
