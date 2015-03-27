@@ -125,8 +125,8 @@ public class FlashlightTile extends QSTile<QSTile.BooleanState> implements
     }
 
     @Override
-    public void onFlashlightAvailabilityChanged(boolean available) {
-        refreshState();
+    public void onTorchAvailabilityChanged(boolean available) {
+        refreshState(mTorchManager.isTorchOn());
     }
 
     private Runnable mRecentlyOnTimeout = new Runnable() {
