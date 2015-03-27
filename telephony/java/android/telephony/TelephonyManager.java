@@ -1369,6 +1369,21 @@ public class TelephonyManager {
     }
 
     /**
+     * Returns the icc operator numeric for a given subId
+     *
+     */
+    /** {@hide} */
+    public String getIccOperatorNumeric(int subId) {
+        try {
+            return getITelephony().getIccOperatorNumeric(subId);
+        } catch (RemoteException ex) {
+            return null;
+        } catch (NullPointerException ex) {
+            return null;
+        }
+    }
+
+    /**
      * {@hide}
      */
     public void toggleLTE(boolean on) {
