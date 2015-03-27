@@ -41,18 +41,6 @@
     <!-- Content description of the location tile in quick settings when on, high accuracy mode (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_location_high_accuracy">Location reporting: high accuracy mode.</string>
 
-    <!-- QuickSettings: Mobile data [CHAR LIMIT=NONE] -->
-    <string name="quick_settings_mobile_data_label">Mobile data</string>
-    <!-- QuickSettings: Roaming [CHAR LIMIT=NONE] -->
-    <string name="quick_settings_roaming_label">Roaming</string>
-
-    <!-- QuickSettings: Apn switch button label [CHAR LIMIT=NONE] -->
-    <string name="quick_settings_apn_switch_label">APN switch</string>
-
-    <!-- QuickSettings: Dds [CHAR LIMIT=NONE] -->
-    <string name="quick_settings_dds_sub">Card <xliff:g id="number">%d</xliff:g> data</string>
-    <string name="quick_settings_data_off">Data off</string>
-
     <!-- QuickSettings: Location detail panel title [CHAR LIMIT=NONE] -->
     <string name="quick_settings_location_detail_title">Location mode</string>
     <!-- QuickSettings: Location (On, low-power) [CHAR LIMIT=NONE] -->
