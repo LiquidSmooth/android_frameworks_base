@@ -26,7 +26,6 @@ import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Handler;
 import android.os.Message;
-import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
