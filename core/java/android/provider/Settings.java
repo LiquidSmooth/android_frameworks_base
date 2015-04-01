@@ -3765,6 +3765,12 @@ public final class Settings {
         public static final String RECENTS_SHOW_HIDE_SEARCH_BAR = "recents_show_hide_search_bar";
 
         /**
+         * Show clear button in recents?
+         * @hide
+         */
+        public static final String RECENTS_SHOW_CLEAR_BUTTON = "recents_show_clear_button";
+
+        /**
          * Position of app circle bar trigger
          *
          * @hide
