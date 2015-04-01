@@ -2879,7 +2879,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
                 // Go home
                 launchHomeFromHotKey();
->>>>>>> d5916c4... [1/2] Slims Hardware Key Rebinding PS18
                 return -1;
             }
 

@@ -717,7 +717,7 @@ public class LockPatternUtils {
      * @param pattern The new pattern to save.
      */
      public void saveLockGesture(Gesture gesture) {
-         this.saveLockGesture(gesture, false);
+         this.saveLockGesture(gesture, false, getCurrentOrCallingUserId());
      }
 
     /**
@@ -725,15 +725,14 @@ public class LockPatternUtils {
      * @param pattern The new pattern to save.
      * @param isFallback Specifies if this is a fallback to biometric weak
      */
-    public void saveLockGesture(Gesture gesture, boolean isFallback) {
+    public void saveLockGesture(Gesture gesture, boolean isFallback, int userId) {
         try {
-            int userId = getCurrentOrCallingUserId();
             getLockSettings().setLockGesture(gesture, userId);
             DevicePolicyManager dpm = getDevicePolicyManager();
             if (gesture != null) {
                 setBoolean(GESTURE_EVER_CHOSEN_KEY, true);
                 if (!isFallback) {
-                    deleteGallery();
+                    deleteGallery(userId);
                     setLong(PASSWORD_TYPE_KEY, DevicePolicyManager.PASSWORD_QUALITY_GESTURE_WEAK);
                     dpm.setActivePasswordState(DevicePolicyManager.PASSWORD_QUALITY_GESTURE_WEAK,
                             0, 0, 0, 0, 0, 0, 0, userId);
@@ -741,14 +740,14 @@ public class LockPatternUtils {
                     setLong(PASSWORD_TYPE_KEY, DevicePolicyManager.PASSWORD_QUALITY_BIOMETRIC_WEAK);
                     setLong(PASSWORD_TYPE_ALTERNATE_KEY,
                             DevicePolicyManager.PASSWORD_QUALITY_GESTURE_WEAK);
-                    finishBiometricWeak();
+                    finishBiometricWeak(userId);
                     dpm.setActivePasswordState(DevicePolicyManager.PASSWORD_QUALITY_BIOMETRIC_WEAK,
                            0, 0, 0, 0, 0, 0, 0, userId);
                 }
             } else {
                 dpm.setActivePasswordState(DevicePolicyManager.PASSWORD_QUALITY_UNSPECIFIED, 0, 0,
                         0, 0, 0, 0, 0, userId);
-            }
+            } 
         } catch (RemoteException re) {
             Log.e(TAG, "Couldn't save lock gesture " + re);
         }
