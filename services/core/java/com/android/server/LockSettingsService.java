@@ -35,6 +35,7 @@ import android.gesture.GestureLibrary;
 import android.gesture.Prediction;
 import android.gesture.GestureStore;
 import android.os.Binder;
+import android.os.Environment;
 import android.os.IBinder;
 import android.os.Process;
 import android.os.RemoteException;
@@ -52,6 +53,8 @@ import android.util.Slog;
 
 import com.android.internal.widget.ILockSettings;
 import com.android.internal.widget.LockPatternUtils;
+
+import java.io.File;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -74,6 +77,8 @@ public class LockSettingsService extends ILockSettings.Stub {
 
     private final LockSettingsStorage mStorage;
 
+    private static final String SYSTEM_DIRECTORY = "/system/";
+    private static final String LOCK_PATTERN_FILE = "gesture.key";
     private static final String LOCK_GESTURE_FILE = "lock_gesture.key";
 
     private static final String LOCK_GESTURE_NAME = "lock_gesture";

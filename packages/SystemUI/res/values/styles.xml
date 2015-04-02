@@ -301,5 +301,4 @@
         <item name="android:overScrollMode">never</item>
         <item name="android:divider">@null</item>
     </style>
-
 </resources>
