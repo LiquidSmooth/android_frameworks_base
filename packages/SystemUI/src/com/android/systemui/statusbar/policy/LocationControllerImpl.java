@@ -193,7 +193,8 @@ public class LocationControllerImpl extends BroadcastReceiver implements Locatio
      */
     public boolean isAdvancedSettingsEnabled() {
         return Settings.Secure.getIntForUser(mContext.getContentResolver(),
-                Settings.Secure.QS_LOCATION_ADVANCED, 0, ActivityManager.getCurrentUser()) == 1;
+                         //FIXME should be Secure
+                Settings.System.QS_LOCATION_ADVANCED, 0, ActivityManager.getCurrentUser()) == 1;
     }
 
     /**
