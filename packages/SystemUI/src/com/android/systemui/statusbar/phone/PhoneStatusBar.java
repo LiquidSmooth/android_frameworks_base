@@ -278,6 +278,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     NextAlarmController mNextAlarmController;
     KeyguardMonitor mKeyguardMonitor;
     BrightnessMirrorController mBrightnessMirrorController;
+    AccessibilityController mAccessibilityController;
     WeatherControllerImpl mWeatherController;
 
     int mNaturalBarHeight = -1;

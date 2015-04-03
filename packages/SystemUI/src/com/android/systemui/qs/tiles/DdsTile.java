@@ -40,6 +40,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.SubscriptionController;
 import com.android.systemui.R;
 import com.android.systemui.qs.QSTile;
 import com.android.systemui.qs.QSTileView;
@@ -164,7 +165,7 @@ public class DdsTile extends QSTile<QSTile.State> {
                         mContext.getSystemService(Context.TELEPHONY_SERVICE);
                 int dataPhoneId = (int) SubscriptionManager.getDefaultDataSubId();
                 int phoneCount = tm.getPhoneCount();
-                SubscriptionManager.setDefaultDataSubId((dataPhoneId + 1) % phoneCount);
+                SubscriptionController.getInstance().setDefaultDataSubId((dataPhoneId + 1) % phoneCount);
                 return null;
             }
 
