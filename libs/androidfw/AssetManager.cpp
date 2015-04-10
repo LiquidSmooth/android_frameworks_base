@@ -609,6 +609,7 @@ bool AssetManager::appendPathToResTable(const asset_path& ap) const {
     if (ap.isSystemOverlay) {
         return true;
     }
+
     Asset* ass = NULL;
     ResTable* sharedRes = NULL;
     bool shared = true;
