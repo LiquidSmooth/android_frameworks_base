@@ -6051,8 +6051,10 @@ status_t ResTable::createIdmap(const ResTable& overlay,
 
     KeyedVector<uint8_t, IdmapTypeMap> map;
 
-    // overlaid packages are assumed to contain only one package group
-    const PackageGroup* pg = mPackageGroups[0];
+    // Overlaid packages are assumed to contain only one package group or two package group
+    // as one is "system package(android)", and another is "application package". So we need
+    // to use the last package group to create idmap.
+    const PackageGroup* pg = mPackageGroups[mPackageGroups.size() - 1];
 
     // starting size is header
     *outSize = ResTable::IDMAP_HEADER_SIZE_BYTES;
@@ -6115,11 +6117,18 @@ status_t ResTable::createIdmap(const ResTable& overlay,
             }
 
             if (typeMap.entryOffset + typeMap.entryMap.size() < entryIndex) {
+                const size_t oldSize = typeMap.entryMap.size();
                 // pad with 0xffffffff's (indicating non-existing entries) before adding this entry
                 size_t index = typeMap.entryMap.size();
                 size_t numItems = entryIndex - (typeMap.entryOffset + index);
                 if (typeMap.entryMap.insertAt(0xffffffff, index, numItems) < 0) {
                     return NO_MEMORY;
+                }
+                const size_t newSize = typeMap.entryMap.size();
+                for (size_t i = oldSize; i < newSize; ++i) {
+                    // As this entry is not present in this idmap, so init the item as 0xffffffff.
+                    // Please refer to the function IdmapEntries.lookup().
+                    typeMap.entryMap.editItemAt(i) = 0xffffffff;
                 }
             }
             typeMap.entryMap.add(Res_GETENTRY(overlayResID));
