@@ -25,7 +25,4 @@
     <string-array name="config_disabledComponents" translatable="false">
     </string-array>
 
-    <!-- Configuration to sending and receiving Mms when mobile data is disable.-->
-    <bool name="config_enable_mms_with_mobile_data_off">false</bool>
-
 </resources>
