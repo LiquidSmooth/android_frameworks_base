@@ -368,11 +368,6 @@ public class MiniThumbFile {
         if (r == null || ri == null) return null;
 
         // Firstly, find the position in thumbdata file for this "id" according to index file.
-        long pos = getIndex(id, false);
-        if(pos < 0) return null;
-
-        pos *= BYTES_PER_MINTHUMB;
-
         FileLock lock = null;
         long index = BYTES_PER_INDEX * id;
         long pos = -1;
