@@ -1275,8 +1275,8 @@ public final class ActivityManagerService extends ActivityManagerNative
     static final int DISMISS_DIALOG_MSG = 48;
     static final int NOTIFY_TASK_STACK_CHANGE_LISTENERS_MSG = 49;
 
-    static final int POST_PRIVACY_NOTIFICATION_MSG = 48;
-    static final int CANCEL_PRIVACY_NOTIFICATION_MSG = 49;
+    static final int POST_PRIVACY_NOTIFICATION_MSG = 50;
+    static final int CANCEL_PRIVACY_NOTIFICATION_MSG = 51;
 
     static final int FIRST_ACTIVITY_STACK_MSG = 100;
     static final int FIRST_BROADCAST_QUEUE_MSG = 200;

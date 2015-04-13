@@ -205,27 +205,6 @@ public class PhoneStatusBarPolicy {
         return null;
     }
 
-    private final void updateSDCardtoAbsent() {
-        mService.setIcon(SDCARD_ABSENT, R.drawable.stat_sys_no_sdcard, 0, null);
-        mService.setIconVisibility(SDCARD_ABSENT, !isSdCardInsert(mContext));
-    }
-
-    private boolean isSdCardInsert(Context context) {
-        return !mStorageManager.getVolumeState(getSDPath(context)).equals(
-                android.os.Environment.MEDIA_REMOVED);
-    }
-
-    private String getSDPath(Context context) {
-        StorageVolume[] volumes = mStorageManager.getVolumeList();
-        for (int i = 0; i < volumes.length; i++) {
-            if (volumes[i].isRemovable() && volumes[i].allowMassStorage()
-                    && volumes[i].getDescription(context).contains(SDCARD_KEYWORD)) {
-                return volumes[i].getPath();
-            }
-        }
-        return null;
-    }
-
     public void setZenMode(int zen) {
         mZen = zen;
         updateVolumeZen();

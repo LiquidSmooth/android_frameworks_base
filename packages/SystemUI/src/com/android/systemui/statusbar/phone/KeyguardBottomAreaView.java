@@ -500,13 +500,6 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
                 .setDuration(DOZE_ANIMATION_ELEMENT_DURATION);
     }
 
-    private void updateEmergencyButton() {
-        boolean enabled = getResources().getBoolean(R.bool.config_showEmergencyButton);
-        if (mEmergencyButton != null) {
-            mLockPatternUtils.updateEmergencyCallButtonState(mEmergencyButton, enabled, false);
-        }
-    }
-
     private final BroadcastReceiver mDevicePolicyReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             post(new Runnable() {
