@@ -162,4 +162,11 @@
     <string name="weather_info_not_available">Weather informations not available</string>
 
     <string name="quick_settings_remove">Remove tile</string>
+
+    <!-- Interruption level: None. [CHAR LIMIT=20] -->
+    <string name="interruption_level_silent">Silent</string>
+
+    <!-- Zen mode: No interruptions title, with a warning about alarms. [CHAR LIMIT=60] -->
+    <string name="zen_silent_with_warning">No interruptions, except alarms.</string>
+
 </resources>
