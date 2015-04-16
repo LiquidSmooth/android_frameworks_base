@@ -5881,12 +5881,6 @@ public final class Settings {
          * @hide
          */
         public static final String QS_USE_MAIN_TILES = "sysui_qs_main_tiles";
-		
-		/**
-         * Whether to include options in power menu for rebooting into recovery or bootloader
-         * @hide
-         */
-        public static final String ADVANCED_REBOOT = "advanced_reboot";
 
         /**
          * Whether to display a menu containing 'Wipe data', 'Force close' and other options
@@ -5950,9 +5944,9 @@ public final class Settings {
             PRIVACY_GUARD_DEFAULT,
             STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD,
             LOCKSCREEN_QUICK_UNLOCK_CONTROL,
-			ADVANCED_REBOOT,
-            DEVELOPMENT_SHORTCUT
-			
+            DEVELOPMENT_SHORTCUT,
+            LOCKSCREEN_QUICK_UNLOCK_CONTROL
+
         };
 
         /**
