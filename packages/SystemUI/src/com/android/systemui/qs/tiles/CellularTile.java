@@ -37,9 +37,16 @@ import cyanogenmod.app.StatusBarPanelCustomTile;
 
 /** Quick settings tile: Cellular **/
 public class CellularTile extends QSTile<QSTile.SignalState> {
-    private static final Intent CELLULAR_SETTINGS = new Intent().setComponent(new ComponentName(
+    private static final Intent DATA_USAGE_SETTINGS = new Intent().setComponent(new ComponentName(
             "com.android.settings", "com.android.settings.Settings$DataUsageSummaryActivity"));
-    private static final Intent WIRELESS_SETTINGS = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+    private static final Intent MOBILE_NETWORK_SETTINGS = new Intent(Intent.ACTION_MAIN)
+            .setComponent(new ComponentName("com.android.phone",
+                    "com.android.phone.MobileNetworkSettings"));
+    private static final Intent MOBILE_NETWORK_SETTINGS_MSIM = new Intent(Intent.ACTION_MAIN)
+            .setClassName("com.android.phone", "com.android.phone.msim.SelectSubscription")
+            .putExtra("PACKAGE", "com.android.phone")
+            .putExtra("TARGET_CLASS", "com.android.phone.MobileNetworkSettings")
+            .putExtra("TARGET_THEME", "Theme.Material.Settings");
 
     private final NetworkController mController;
     private final CellularDetailAdapter mDetailAdapter;
@@ -82,7 +89,7 @@ public class CellularTile extends QSTile<QSTile.SignalState> {
         if (mController.isMobileDataSupported()) {
             mController.setMobileDataEnabled(!mController.isMobileDataEnabled());
         } else {
-            mHost.startSettingsActivity(CELLULAR_SETTINGS);
+            mHost.startSettingsActivity(DATA_USAGE_SETTINGS);
         }
     }
 
@@ -101,7 +108,11 @@ public class CellularTile extends QSTile<QSTile.SignalState> {
 
     @Override
     protected void handleLongClick() {
-        mHost.startSettingsActivity(WIRELESS_SETTINGS);
+        if (mTelephonyManager.getDefault().getPhoneCount() > 1) {
+            mHost.startSettingsActivity(MOBILE_NETWORK_SETTINGS_MSIM);
+        } else {
+            mHost.startSettingsActivity(MOBILE_NETWORK_SETTINGS);
+        }
     }
 
     @Override
@@ -241,7 +252,7 @@ public class CellularTile extends QSTile<QSTile.SignalState> {
 
         @Override
         public Intent getSettingsIntent() {
-            return CELLULAR_SETTINGS;
+            return DATA_USAGE_SETTINGS;
         }
 
         @Override
