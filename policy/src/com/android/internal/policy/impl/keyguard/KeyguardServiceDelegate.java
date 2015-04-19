@@ -148,10 +148,10 @@ public class KeyguardServiceDelegate {
                 mKeyguardService.onScreenTurnedOn(new KeyguardShowDelegate(
                         mShowListenerWhenConnect));
                 mShowListenerWhenConnect = null;
-                sendStateChangeBroadcast(true);
             }
             if (mKeyguardState.bootCompleted) {
                 mKeyguardService.onBootCompleted();
+                sendStateChangeBroadcast(true);
             }
         }
 
@@ -351,6 +351,7 @@ public class KeyguardServiceDelegate {
             mKeyguardService.onBootCompleted();
         }
         mKeyguardState.bootCompleted = true;
+        sendStateChangeBroadcast(true);
     }
 
     public void onActivityDrawn() {
