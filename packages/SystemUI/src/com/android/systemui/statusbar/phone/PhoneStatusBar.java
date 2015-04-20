@@ -493,7 +493,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.STATUS_BAR_BATTERY_STYLE),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_TICKER_ENABLED),
+                    Settings.System.STATUS_BAR_SHOW_TICKER),
                     false, this, UserHandle.USER_ALL);
             update();
         }
@@ -517,6 +517,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 || uri.equals(Settings.System.getUriFor(
                     Settings.System.LOCK_SCREEN_ICON_COLOR))) {
                 setKeyguardTextAndIconColors();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_SHOW_TICKER))) {
+                mTickerEnabled = Settings.System.getIntForUser(
+                        mContext.getContentResolver(),
+                        Settings.System.STATUS_BAR_SHOW_TICKER,
+                        mContext.getResources().getBoolean(R.bool.enable_ticker)
+                        ? 1 : 0, UserHandle.USER_CURRENT) == 1;
+                initTickerView();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.HEADS_UP_NOTIFCATION_DECAY))) {
                     mHeadsUpNotificationDecay = Settings.System.getIntForUser(
@@ -579,12 +587,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 boolean navLeftInLandscape = Settings.System.getInt(resolver,
                         Settings.System.NAVBAR_LEFT_IN_LANDSCAPE, 0) == 1;
                 mNavigationBarView.setLeftInLandscape(navLeftInLandscape);
-
-            mTickerEnabled = Settings.System.getIntForUser(
-                    resolver, Settings.System.STATUS_BAR_TICKER_ENABLED,
-                    mContext.getResources().getBoolean(R.bool.enable_ticker)
-                            ? 1 : 0, UserHandle.USER_CURRENT) == 1;
-            }
         }
     }
 
@@ -1121,7 +1123,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mKeyguardBottomArea.setKeyguardIndicationController(mKeyguardIndicationController);
 
         mTickerEnabled = Settings.System.getIntForUser(mContext.getContentResolver(),
-                    Settings.System.STATUS_BAR_TICKER_ENABLED,
+                    Settings.System.STATUS_BAR_SHOW_TICKER,
                     mContext.getResources().getBoolean(R.bool.enable_ticker)
                             ? 1 : 0, UserHandle.USER_CURRENT) == 1;
         initTickerView();
