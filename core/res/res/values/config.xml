@@ -2309,4 +2309,6 @@
     <!-- The list of components which should be forced to be enabled. -->
     <string-array name="config_forceEnabledComponents" translatable="false">
     </string-array>
+
+    <string-array name="config_externalCMServices"></string-array>
 </resources>
