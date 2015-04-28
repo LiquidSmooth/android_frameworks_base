@@ -156,10 +156,7 @@ public abstract class Conference implements IConferenceable {
      * @hide
      */
     public void removeCapability(int capability) {
-        int newCapabilities = mConnectionCapabilities;
-        newCapabilities &= ~capability;
-
-        setConnectionCapabilities(newCapabilities);
+        mConnectionCapabilities &= ~capability;
     }
 
     /**
@@ -169,10 +166,7 @@ public abstract class Conference implements IConferenceable {
      * @hide
      */
     public void addCapability(int capability) {
-        int newCapabilities = mConnectionCapabilities;
-        newCapabilities |= capability;
-
-        setConnectionCapabilities(newCapabilities);
+        mConnectionCapabilities |= capability;
     }
 
     /**
