@@ -76,7 +76,7 @@ public class ImsStreamMediaProfile implements Parcelable {
     }
 
     public ImsStreamMediaProfile() {
-        mAudioQuality = AUDIO_QUALITY_NONE;
+        mAudioQuality = AUDIO_QUALITY_AMR_WB;
         mAudioDirection = DIRECTION_SEND_RECEIVE;
         mVideoQuality = VIDEO_QUALITY_NONE;
         mVideoDirection = DIRECTION_INVALID;

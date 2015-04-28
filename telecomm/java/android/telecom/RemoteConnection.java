@@ -552,7 +552,7 @@ public final class RemoteConnection {
     /**
      * @return A bitmask of the properties of the {@code RemoteConnection}, as defined in
      *         {@link CallProperties}.
-     *  @hide
+     * @hide
      */
     public int getCallProperties() {
         return mCallProperties;
