@@ -233,4 +233,6 @@
   <java-symbol type="string" name="android_installing_apk" />
   <java-symbol type="string" name="android_installing_title" />
 
+  <java-symbol type="string" name="custom_tile_listener_binding_label" />
+
 </resources>

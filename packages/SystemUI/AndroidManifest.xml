@@ -141,6 +141,9 @@
     <!-- Weather -->
     <uses-permission android:name="com.cyanogenmod.lockclock.permission.READ_WEATHER" />
 
+    <!-- Quick Settings Tile Listener -->
+    <uses-permission android:name="android.permission.BIND_CUSTOM_TILE_LISTENER_SERVICE"/>
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"
