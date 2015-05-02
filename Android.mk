@@ -15,6 +15,9 @@
 #
 LOCAL_PATH := $(call my-dir)
 
+
+#test
+
 # We have a special case here where we build the library's resources
 # independently from its code, so we need to find where the resource
 # class source got placed in the course of building the resources.
