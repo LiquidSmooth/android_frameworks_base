@@ -1843,7 +1843,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             upgradeVersion = 113;
         }
 
-		if (upgradeVersion < 114) {
+        if (upgradeVersion < 114) {
             String[] qsTiles = new String[] {
                     Settings.Secure.QS_TILES,
                     Settings.Secure.QS_USE_MAIN_TILES
@@ -1863,20 +1863,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     settingsToMove, true);
             upgradeVersion = 115;
         }
-       
-	   if (upgradeVersion < 116) {
-            // Removal of back/recents is no longer supported
-            // due to pinned apps
-            db.beginTransaction();
-            try {
-                db.execSQL("DELETE FROM system WHERE name='"
-                        + Settings.System.NAV_BUTTONS + "'");
-                db.setTransactionSuccessful();
-            } finally {
-                db.endTransaction();
-            }
-            upgradeVersion = 116;
-        }
+
 
         if (upgradeVersion < 117) {
             moveSettingsToNewTable(db, TABLE_SYSTEM, TABLE_SECURE,
