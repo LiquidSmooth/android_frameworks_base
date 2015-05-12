@@ -159,4 +159,8 @@
     <string name="live_display_outdoor_summary">Use outdoor settings only</string>
     <string name="live_display_hint">LiveDisplay can help reduce eyestrain and help you sleep at night. Click here to try it out!</string>
 
+    <!-- Flashlight notification -->
+    <string name="notification_flashlight_on_title">Flashlight is on</string>
+    <string name="notification_flashlight_on_summary">Tap to turn off</string>
+
 </resources>
