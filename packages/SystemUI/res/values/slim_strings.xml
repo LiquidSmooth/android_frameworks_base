@@ -25,9 +25,6 @@
     <!-- Battery level text while charging [CHAR LIMIT=2] -->
     <string name="battery_level_template_charging"><xliff:g id="level" example="45">%d</xliff:g>~</string>
 
-    <!-- Screenshot -->
-    <string name="shortcut_screenshot">Screenshot</string>
-
     <!-- Dialog Cancel/OK -->
     <string name="cancel">Cancel</string>
     <string name="dlg_ok">Ok</string>

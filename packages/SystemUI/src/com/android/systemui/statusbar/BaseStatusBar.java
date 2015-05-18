@@ -1357,15 +1357,15 @@ public abstract class BaseStatusBar extends SystemUI implements
                  }
                  break;
              case MSG_TOGGLE_LAST_APP:
-                 if (DEBUG) Slog.d(TAG, "toggle last app");
+                 if (DEBUG) Log.d(TAG, "toggle last app");
                  getLastApp();
                  break;
              case MSG_TOGGLE_KILL_APP:
-                 if (DEBUG) Slog.d(TAG, "toggle kill app");
+                 if (DEBUG) Log.d(TAG, "toggle kill app");
                  mHandler.post(mKillTask);
                  break;
              case MSG_TOGGLE_SCREENSHOT:
-                 if (DEBUG) Slog.d(TAG, "toggle screenshot");
+                 if (DEBUG) Log.d(TAG, "toggle screenshot");
                  takeScreenshot();
                  break;
             }
@@ -2458,7 +2458,6 @@ public abstract class BaseStatusBar extends SystemUI implements
         }
     };
 
-<<<<<<< HEAD
     protected void addAppCircleSidebar() {
         if (mAppCircleSidebar == null) {
             mAppCircleSidebar = (AppCircleSidebar) View.inflate(mContext, R.layout.app_circle_sidebar, null);
