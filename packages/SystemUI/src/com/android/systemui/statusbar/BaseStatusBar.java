@@ -16,6 +16,7 @@
 
 package com.android.systemui.statusbar;
 
+import android.service.gesture.EdgeGestureManager;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.TimeInterpolator;
@@ -106,6 +107,8 @@ import com.android.internal.util.slim.DeviceUtils;
 import com.android.systemui.R;
 import com.android.systemui.RecentsComponent;
 import com.android.systemui.SearchPanelView;
+import com.android.systemui.statusbar.phone.NavigationBarOverlay;
+import com.android.systemui.statusbar.policy.PieController;
 import com.android.systemui.SwipeHelper;
 import com.android.systemui.SystemUI;
 import com.android.systemui.chaos.lab.gestureanywhere.GestureAnywhereView;
@@ -149,6 +152,7 @@ public abstract class BaseStatusBar extends SystemUI implements
     protected static final int MSG_TOGGLE_LAST_APP = 1032;
     protected static final int MSG_TOGGLE_KILL_APP = 1033;
     protected static final int MSG_TOGGLE_SCREENSHOT = 1034;
+    protected static final int MSG_SET_PIE_TRIGGER_MASK = 1035;
 
     protected static final boolean ENABLE_HEADS_UP = true;
     // scores above this threshold should be displayed in heads up mode.
@@ -224,6 +228,38 @@ public abstract class BaseStatusBar extends SystemUI implements
     private NotificationColorUtil mNotificationColorUtil;
 
     private UserManager mUserManager;
+
+    /**
+     * An interface for navigation key bars to allow status bars to signal which keys are
+     * currently of interest to the user.<br>
+     * See {@link NavigationBarView} in Phone UI for an example.
+     */
+    public interface NavigationBarCallback {
+        /**
+         * @param hints flags from StatusBarManager (NAVIGATION_HINT...) to indicate which key is
+         * available for navigation
+         * @see StatusBarManager
+         */
+        public abstract void setNavigationIconHints(int hints);
+        /**
+         * @param showMenu {@code true} when an menu key should be displayed by the navigation bar.
+         */
+        public abstract void setMenuVisibility(boolean showMenu);
+        /**
+         * @param disabledFlags flags from View (STATUS_BAR_DISABLE_...) to indicate which key
+         * is currently disabled on the navigation bar.
+         * {@see View}
+         */
+        public void setDisabledFlags(int disabledFlags);
+    };
+    private ArrayList<NavigationBarCallback> mNavigationCallbacks =
+            new ArrayList<NavigationBarCallback>();
+
+    // Pie Control
+    private PieController mPieController;
+    protected NavigationBarOverlay mNavigationBarOverlay;
+
+    private EdgeGestureManager mEdgeGestureManager;
 
     // UI-specific methods
 
@@ -444,6 +480,9 @@ public abstract class BaseStatusBar extends SystemUI implements
                 updateLockscreenNotificationSetting();
 
                 userSwitched(mCurrentUserId);
+                if (mPieController != null) {
+                    mPieController.refreshContainer();
+                }
             } else if (Intent.ACTION_USER_ADDED.equals(action)) {
                 updateCurrentProfilesCache();
             } else if (DevicePolicyManager.ACTION_DEVICE_POLICY_MANAGER_STATE_CHANGED.equals(
@@ -673,6 +712,8 @@ public abstract class BaseStatusBar extends SystemUI implements
                    ));
         }
 
+        initPieController();
+
         mCurrentUserId = ActivityManager.getCurrentUser();
         setHeadsUpUser(mCurrentUserId);
 
@@ -685,6 +726,29 @@ public abstract class BaseStatusBar extends SystemUI implements
         mContext.registerReceiver(mBroadcastReceiver, filter);
 
         updateCurrentProfilesCache();
+    }
+
+    private void initPieController() {
+        if (mEdgeGestureManager == null) {
+            mEdgeGestureManager = EdgeGestureManager.getInstance();
+        }
+        if (mNavigationBarOverlay == null) {
+            mNavigationBarOverlay = new NavigationBarOverlay();
+        }
+        if (mPieController == null) {
+            mPieController = new PieController(
+                    mContext, this, mEdgeGestureManager, mNavigationBarOverlay);
+            addNavigationBarCallback(mPieController);
+        }
+    }
+
+    protected void attachPieContainer(boolean enabled) {
+        initPieController();
+        if (enabled) {
+            mPieController.attachContainer();
+        } else {
+            mPieController.detachContainer(false);
+        }
     }
 
     protected void notifyUserAboutHiddenNotifications() {
@@ -731,6 +795,12 @@ public abstract class BaseStatusBar extends SystemUI implements
                             setupIntent);
 
             mNoMan.notify(HIDDEN_NOTIFICATION_ID, note.build());
+        }
+    }
+
+    public void setOverwriteImeIsActive(boolean enabled) {
+        if (mEdgeGestureManager != null) {
+            mEdgeGestureManager.setOverwriteImeIsActive(enabled);
         }
     }
 
@@ -1139,6 +1209,14 @@ public abstract class BaseStatusBar extends SystemUI implements
         mHandler.sendEmptyMessage(msg);
     }
 
+    @Override
+    public void setPieTriggerMask(int newMask, boolean lock) {
+        int msg = MSG_SET_PIE_TRIGGER_MASK;
+        mHandler.removeMessages(msg);
+        mHandler.obtainMessage(MSG_SET_PIE_TRIGGER_MASK,
+                newMask, lock ? 1 : 0, null).sendToTarget();
+    }
+
     protected abstract WindowManager.LayoutParams getSearchLayoutParams(
             LayoutParams layoutParams);
 
@@ -1367,6 +1445,9 @@ public abstract class BaseStatusBar extends SystemUI implements
              case MSG_TOGGLE_SCREENSHOT:
                  if (DEBUG) Log.d(TAG, "toggle screenshot");
                  takeScreenshot();
+                 break;
+             case MSG_SET_PIE_TRIGGER_MASK:
+                 updatePieTriggerMask(m.arg1, m.arg2 != 0);
                  break;
             }
         }
@@ -2331,6 +2412,41 @@ public abstract class BaseStatusBar extends SystemUI implements
             mNotificationListener.unregisterAsSystemService();
         } catch (RemoteException e) {
             // Ignore.
+        }
+    }
+
+    public void addNavigationBarCallback(NavigationBarCallback callback) {
+        mNavigationCallbacks.add(callback);
+    }
+
+    protected void propagateNavigationIconHints(int hints) {
+        for (NavigationBarCallback callback : mNavigationCallbacks) {
+            callback.setNavigationIconHints(hints);
+        }
+    }
+
+    protected void propagateMenuVisibility(boolean showMenu) {
+        for (NavigationBarCallback callback : mNavigationCallbacks) {
+            callback.setMenuVisibility(showMenu);
+        }
+    }
+
+    protected void propagateDisabledFlags(int disabledFlags) {
+        for (NavigationBarCallback callback : mNavigationCallbacks) {
+            callback.setDisabledFlags(disabledFlags);
+        }
+    }
+
+    // Pie Controls
+    public void updatePieTriggerMask(int newMask, boolean lock) {
+        if (mPieController != null) {
+            mPieController.updatePieTriggerMask(newMask, lock);
+        }
+    }
+
+    public void restorePieTriggerMask() {
+        if (mPieController != null) {
+            mPieController.restorePieTriggerMask();
         }
     }
 

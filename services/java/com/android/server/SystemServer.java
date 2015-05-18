@@ -88,6 +88,7 @@ import com.android.server.net.NetworkStatsService;
 import com.android.server.notification.NotificationManagerService;
 import com.android.server.os.SchedulingPolicyService;
 import com.android.server.pm.BackgroundDexOptService;
+import com.android.server.gesture.EdgeGestureService;
 import com.android.server.pm.Installer;
 import com.android.server.pm.LauncherAppsService;
 import com.android.server.pm.PackageManagerService;
@@ -554,6 +555,7 @@ public final class SystemServer {
         LockSettingsService lockSettings = null;
         AssetAtlasService atlas = null;
         MediaRouterService mediaRouter = null;
+        EdgeGestureService edgeGestureService = null;
         GestureService gestureService = null;
         ThemeService themeService = null;
 
@@ -1061,6 +1063,14 @@ public final class SystemServer {
                   reportWtf("starting DigitalPenService", e);
               }
             }
+
+            try {
+                Slog.i(TAG, "EdgeGesture service");
+                edgeGestureService = new EdgeGestureService(context, inputManager);
+                ServiceManager.addService("edgegestureservice", edgeGestureService);
+            } catch (Throwable e) {
+                Slog.e(TAG, "Failure starting EdgeGesture service", e);
+            }
         }
 
         if (!disableNonCoreServices) {
@@ -1168,6 +1178,14 @@ public final class SystemServer {
         filter.addCategory(Intent.CATEGORY_THEME_PACKAGE_INSTALLED_STATE_CHANGE);
         filter.addDataScheme("package");
         context.registerReceiver(new AppsFailureReceiver(), filter);
+
+        if (edgeGestureService != null) {
+            try {
+                edgeGestureService.systemReady();
+            } catch (Throwable e) {
+                reportWtf("making EdgeGesture service ready", e);
+            }
+        }
 
         // These are needed to propagate to the runnable below.
         final MountService mountServiceF = mountService;
