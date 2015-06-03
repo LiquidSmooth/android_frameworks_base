@@ -175,13 +175,4 @@
     <color name="Red_700">#ffc53929</color>
     <color name="Red_800">#ffb93221</color>
 
-    <!-- TRDS colors -->
-<!-- commenting these out for now, until TRDS is implemented
-    <color name="trds_background">#ffffffff</color>
-    <color name="trds_text">#ff000000</color>
--->
-    <color name="trds_background">#ff000000</color>
-    <color name="trds_text">#ffffffff</color>
-
-    <color name="dslv_icon_dark">#ff009688</color>
 </resources>
