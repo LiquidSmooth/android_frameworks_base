@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="notification_mtrl_action_textcolor">@color/secondary_text_material_light</color>
+    <color name="notification_mtrl_big_picture_bg">#CCEEEEEE</color>
+    <color name="resolver_list_bg">@color/white</color>
+
+    <!-- TRDS colors -->
+<!-- commenting these out for now, until TRDS is implemented
+    <color name="trds_background">#ffffffff</color>
+    <color name="trds_text">#ff000000</color>
+-->
+    <!-- No need to theme for now -->
+    <color name="trds_background">#ff000000</color>
+    <color name="trds_text">#ffffffff</color>
+
+    <!-- Movable options (Look at power menu, nav bar) -->
+    <color name="dslv_icon_dark">#ff009688</color>
+
+</resources>
