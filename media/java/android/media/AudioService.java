@@ -587,6 +587,11 @@ public class AudioService extends IAudioService.Stub {
 
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         mHasVibrator = vibrator == null ? false : vibrator.hasVibrator();
+		
+		// must be init before updateStreamVolumeAlias who uses mLinkNotificationWithVolume
+        mLinkNotificationWithVolume = Settings.Secure.getIntForUser(mContentResolver,
+                Settings.Secure.VOLUME_LINK_NOTIFICATION, 1, UserHandle.USER_CURRENT) == 1;
+
 
        // Intialized volume
         int maxVolume = SystemProperties.getInt("ro.config.vc_call_vol_steps",
@@ -1107,8 +1112,7 @@ public class AudioService extends IAudioService.Stub {
             readDockAudioSettings(cr);
         }
 
-        mLinkNotificationWithVolume = Settings.Secure.getInt(cr,
-                Settings.Secure.VOLUME_LINK_NOTIFICATION, 1) == 1;
+
 
         mMuteAffectedStreams = System.getIntForUser(cr,
                 System.MUTE_STREAMS_AFFECTED,
@@ -4706,9 +4710,10 @@ public class AudioService extends IAudioService.Stub {
             mContentResolver.registerContentObserver(Settings.System.getUriFor(
                 Settings.System.VOLUME_KEYS_CONTROL_MEDIA_STREAM), false, this,
                 UserHandle.USER_ALL);
+		mContentResolver.registerContentObserver(Settings.Secure.getUriFor(
+                Settings.Secure.VOLUME_LINK_NOTIFICATION), false, this);
         }
 
-        @Override
         public void onChange(boolean selfChange, Uri uri) {
             super.onChange(selfChange, uri);
             // FIXME This synchronized is not necessary if mSettingsLock only protects mRingerMode.
@@ -4736,19 +4741,19 @@ public class AudioService extends IAudioService.Stub {
                 } else if (uri.equals(Settings.Global.getUriFor(
                     Settings.Global.DOCK_AUDIO_MEDIA_ENABLED))) {
                     readDockAudioSettings(mContentResolver);
-                } else if (uri.equals(Settings.Global.getUriFor(
-                    Settings.Secure.VOLUME_LINK_NOTIFICATION))) {
-                    mLinkNotificationWithVolume = Settings.System.getInt(mContentResolver,
-                            Settings.Secure.VOLUME_LINK_NOTIFICATION, 1) == 1;
-                    if (mLinkNotificationWithVolume) {
-                        mStreamVolumeAlias[AudioSystem.STREAM_NOTIFICATION] = AudioSystem.STREAM_RING;
-                    } else {
-                        mStreamVolumeAlias[AudioSystem.STREAM_NOTIFICATION] = AudioSystem.STREAM_NOTIFICATION;
-                    }
+                }
+
+                mLinkNotificationWithVolume = Settings.Secure.getInt(mContentResolver,
+                        Settings.Secure.VOLUME_LINK_NOTIFICATION, 1) == 1;
+                if (mLinkNotificationWithVolume) {
+                    mStreamVolumeAlias[AudioSystem.STREAM_NOTIFICATION] = AudioSystem.STREAM_RING;
+                } else {
+                    mStreamVolumeAlias[AudioSystem.STREAM_NOTIFICATION] = AudioSystem.STREAM_NOTIFICATION;
                 }
             }
         }
     }
+
 
     // must be called synchronized on mConnectedDevices
     private void makeA2dpDeviceAvailable(String address) {
