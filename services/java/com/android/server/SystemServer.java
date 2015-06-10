@@ -1187,9 +1187,6 @@ public final class SystemServer {
             }
         }
 
-            }
-        }
-
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_APP_FAILURE);
         filter.addAction(Intent.ACTION_APP_FAILURE_RESET);
