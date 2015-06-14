@@ -43,6 +43,7 @@ public class FlashlightTile extends QSTile<QSTile.BooleanState> implements
         super(host);
         mTorchManager = (TorchManager) mContext.getSystemService(Context.TORCH_SERVICE);
         mTorchManager.addListener(this);
+        mTorchAvailable = mTorchManager.isAvailable();
     }
 
     @Override
@@ -95,7 +96,7 @@ public class FlashlightTile extends QSTile<QSTile.BooleanState> implements
 
         // Always show the tile when the flashlight is or was recently on. This is needed because
         // the camera is not available while it is being used for the flashlight.
-        state.visible = mWasLastOn != 0 || mTorchManager.isAvailable();
+        state.visible = mWasLastOn != 0 || mTorchAvailable;
         state.label = mHost.getContext().getString(R.string.quick_settings_flashlight_label);
         final AnimationIcon icon = state.value ? mEnable : mDisable;
         icon.setAllowAnimation(arg instanceof UserBoolean && ((UserBoolean) arg).userInitiated);
@@ -116,8 +117,8 @@ public class FlashlightTile extends QSTile<QSTile.BooleanState> implements
     }
 
     @Override
-    public void onTorchOff() {
-        refreshState(UserBoolean.BACKGROUND_FALSE);
+    public void onTorchStateChanged(boolean on) {
+        refreshState(on ? UserBoolean.BACKGROUND_TRUE : UserBoolean.BACKGROUND_FALSE);
     }
 
     @Override
@@ -127,7 +128,8 @@ public class FlashlightTile extends QSTile<QSTile.BooleanState> implements
 
     @Override
     public void onTorchAvailabilityChanged(boolean available) {
-        refreshState();
+        mTorchAvailable = available;
+        refreshState(mTorchManager.isTorchOn());
     }
 
     private Runnable mRecentlyOnTimeout = new Runnable() {
