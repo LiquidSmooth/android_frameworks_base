@@ -525,12 +525,12 @@ public class NavigationBarView extends LinearLayout {
         }
 
         Drawable d = ActionHelper.getActionIconImage(mContext, clickAction, iconUri);
+
         if (d != null) {
             if (colorize && mNavBarButtonColorMode != 3) {
-                v.setImageBitmap(ColorHelper.getColoredBitmap(d, mNavBarButtonColor));
-            } else {
-                v.setImageDrawable(d);
+                d = ColorHelper.getColoredDrawable(d, mNavBarButtonColor);
             }
+            v.setImageDrawable(d);
         }
         v.setRippleColor(mRippleColor);
         return v;
@@ -563,10 +563,10 @@ public class NavigationBarView extends LinearLayout {
         if (mNavBarButtonColorMode != 3) {
             if (d instanceof VectorDrawable) {
                 d.setTint(mNavBarButtonColor);
-                v.setImageDrawable(d);
             } else {
-                v.setImageBitmap(ColorHelper.getColoredBitmap(d, mNavBarButtonColor));
+                d = ColorHelper.getColoredDrawable(d, mNavBarButtonColor);
             }
+            v.setImageDrawable(d);
         } else {
             v.setImageDrawable(d);
         }

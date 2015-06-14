@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2015 The SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -252,27 +253,30 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 continue;
             }
 
-            Drawable icon = PolicyHelper.getPowerMenuIconImage(mContext, actionKey, config.getIcon());
+            Drawable enabledIcon = PolicyHelper.getPowerMenuIconImage(
+                    mContext, actionKey, config.getIcon(), true);
+            Drawable disabledIcon = PolicyHelper.getPowerMenuIconImage(
+                    mContext, actionKey, config.getIcon(), false);
+            enabledIcon = ImageHelper.resize(mContext, enabledIcon, 36);
+            disabledIcon = ImageHelper.resize(mContext, disabledIcon, 36);
 
             if (actionKey.equals(PolicyConstants.ACTION_POWER_OFF)) {
-                mItems.add(getPowerAction(icon));
+                mItems.add(getPowerAction(disabledIcon));
             } else if (actionKey.equals(PolicyConstants.ACTION_REBOOT)) {
-                mItems.add(new RebootAction(icon));
+                mItems.add(new RebootAction(disabledIcon));
             } else if (actionKey.equals(PolicyConstants.ACTION_AIRPLANE)) {
-                constructAirPlaneModeToggle(icon);
+                constructAirPlaneModeToggle(enabledIcon, disabledIcon);
                 mItems.add(mAirplaneModeOn);
             } else if ((actionKey.equals(PolicyConstants.ACTION_SOUND)) && (mShowSilentToggle)) {
                 mItems.add(mSilentModeAction);
             } else if (actionKey.equals(PolicyConstants.ACTION_USERS)) {
-                if (SystemProperties.getBoolean("fw.power_user_switcher", false)) {
-                    addUsersToMenu(mItems);
-                }
+                addUsersToMenu(mItems);
             } else if (actionKey.equals(PolicyConstants.ACTION_LOCKDOWN)) {
-                mItems.add(getLockdownAction(icon));
+                mItems.add(getLockdownAction(disabledIcon));
             } else if (actionKey != null) {
                 // must be a screenshot, custom app or action shorcut
                 mItems.add(
-                    new SinglePressAction(icon, config.getClickActionDescription()) {
+                    new SinglePressAction(disabledIcon, config.getClickActionDescription()) {
                         public void onPress() {
                             com.android.internal.util.slim.Action.processAction(
                                 mContext, config.getClickAction(), false);
@@ -292,12 +296,12 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
         mAdapter = new MyAdapter();
 
-        AlertParams params = new AlertParams(getUiContext());
+        AlertParams params = new AlertParams(mContext);
         params.mAdapter = mAdapter;
         params.mOnClickListener = this;
         params.mForceInverseBackground = true;
 
-        GlobalActionsDialog dialog = new GlobalActionsDialog(getUiContext(), params);
+        GlobalActionsDialog dialog = new GlobalActionsDialog(mContext, params);
         dialog.setCanceledOnTouchOutside(false); // Handled by the custom class.
 
         dialog.getListView().setItemsCanFocus(true);
@@ -321,10 +325,10 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         return dialog;
     }
 
-    private void constructAirPlaneModeToggle(Drawable icon) {
+    private void constructAirPlaneModeToggle(Drawable enabledIcon, Drawable disabledIcon) {
         mAirplaneModeOn = new ToggleAction(
-                icon,
-                icon,
+                enabledIcon,
+                disabledIcon,
                 R.string.global_actions_toggle_airplane_mode,
                 R.string.global_actions_airplane_mode_on_status,
                 R.string.global_actions_airplane_mode_off_status) {
@@ -1051,7 +1055,9 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 handleShow();
                 break;
             case MESSAGE_REFRESH_AIRPLANEMODE:
-	        mAirplaneModeOn.updateState(mAirplaneState);
+                if (mAirplaneModeOn != null) {
+                    mAirplaneModeOn.updateState(mAirplaneState);
+                }
 	        mAdapter.notifyDataSetChanged();
 	        break;
             }
