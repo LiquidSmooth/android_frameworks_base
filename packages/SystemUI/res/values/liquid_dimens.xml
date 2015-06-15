@@ -42,4 +42,6 @@
     <dimen name="recent_text_size">20dp</dimen>
     <dimen name="recent_thumbnail_bottom_padding">3dp</dimen>
 
+    <!-- Padding end for weather text -->
+    <dimen name="status_bar_weather_padding_end">16dp</dimen>
 </resources>
