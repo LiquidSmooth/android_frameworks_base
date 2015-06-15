@@ -73,4 +73,16 @@
         <item name="android:padding">@dimen/card_expand_layout_padding</item>
     </style>
 
+    <style name="TextAppearance.StatusBar.Expanded.WeatherTemp">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/status_bar_temperature_text_color</item>
+    </style>
+
+    <style name="TextAppearance.StatusBar.Expanded.WeatherLocation">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/status_bar_temperature_location_text_color</item>
+    </style>
+
 </resources>
