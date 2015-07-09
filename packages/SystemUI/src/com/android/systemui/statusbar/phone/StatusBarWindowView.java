@@ -131,7 +131,7 @@ public class StatusBarWindowView extends FrameLayout {
         // We need to ensure that our window doesn't suffer from overdraw which would normally
         // occur if our window is translucent. Since we are drawing the whole window anyway with
         // the scrim, we don't need the window to be cleared in the beginning.
-        if (mService.isScrimSrcModeEnabled()) {
+	if (mService.isScrimSrcModeEnabled()) {
             IBinder windowToken = getWindowToken();
             WindowManager.LayoutParams lp = (WindowManager.LayoutParams) getLayoutParams();
             lp.token = windowToken;
