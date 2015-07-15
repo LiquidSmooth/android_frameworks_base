@@ -162,4 +162,15 @@
     <string name="weather_info_not_available">Weather informations not available</string>
 
     <string name="quick_settings_remove">Remove tile</string>
+
+    <!-- Navigation ring target shortcuts -->
+    <string name="navbar_dialog_title">Choose action to assign</string>
+    <string name="navigation_ring_title">Quick launch shortcuts</string>
+    <string name="navring_target_reset_message">Delete all user created navigation bar shortcuts and restore to default?</string>
+    <string name="navring_target_reset">Navigation bar shortcuts reset to default</string>
+    <string name="navring_action_none">None</string>
+    <string name="navring_choose_action_title">Choose action</string>
+    <string name="select_application">Select application</string>
+    <string name="lockscreen_target_empty">Empty</string>
+
 </resources>
