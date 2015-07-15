@@ -235,4 +235,7 @@
 
   <java-symbol type="string" name="custom_tile_listener_binding_label" />
 
+  <!-- LED pulse -->
+  <java-symbol type="bool" name="config_ledCanPulse" />
+
 </resources>
