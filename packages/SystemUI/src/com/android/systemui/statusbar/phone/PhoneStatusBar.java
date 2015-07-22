@@ -24,6 +24,7 @@ import static android.app.StatusBarManager.WINDOW_STATE_HIDDEN;
 import static android.app.StatusBarManager.WINDOW_STATE_SHOWING;
 import static android.app.StatusBarManager.windowStateToString;
 import static com.android.systemui.statusbar.phone.BarTransitions.MODE_LIGHTS_OUT;
+import static com.android.systemui.statusbar.phone.BarTransitions.MODE_LIGHTS_OUT_TRANSLUCENT;
 import static com.android.systemui.statusbar.phone.BarTransitions.MODE_OPAQUE;
 import static com.android.systemui.statusbar.phone.BarTransitions.MODE_SEMI_TRANSPARENT;
 import static com.android.systemui.statusbar.phone.BarTransitions.MODE_TRANSLUCENT;
@@ -3203,6 +3204,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             // clobbering the bit below
             final boolean wasRecentsVisible = (mSystemUiVisibility & View.RECENT_APPS_VISIBLE) > 0;
 
+            // private flag to permit a transparent navbar when the bar is vertical (landscape)
+            // this is buggy unless carefully controlled.
+            if (mNavigationBarView != null) {
+                mNavigationBarView.setTransparencyAllowedWhenVertical(
+                        (diff & View.SYSTEM_UI_ALLOW_TRANSPARENT_VERTICAL_NAV) != 0);
+            }
+
             mSystemUiVisibility = newVal;
 
             // update low profile
@@ -3309,7 +3317,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     }
 
     private int barMode(int vis, int transientFlag, int translucentFlag) {
+        int lightsOutTranslucent = View.SYSTEM_UI_FLAG_LOW_PROFILE | View.STATUS_BAR_TRANSLUCENT;
         return (vis & transientFlag) != 0 ? MODE_SEMI_TRANSPARENT
+                : (vis & lightsOutTranslucent) == lightsOutTranslucent ? MODE_LIGHTS_OUT_TRANSLUCENT
                 : (vis & translucentFlag) != 0 ? MODE_TRANSLUCENT
                 : (vis & View.SYSTEM_UI_TRANSPARENT) != 0 ? MODE_TRANSPARENT
                 : (vis & View.SYSTEM_UI_FLAG_LOW_PROFILE) != 0 ? MODE_LIGHTS_OUT
