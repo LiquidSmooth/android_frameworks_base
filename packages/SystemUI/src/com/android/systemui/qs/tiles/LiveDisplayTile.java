@@ -73,6 +73,7 @@ public class LiveDisplayTile extends QSTile<LiveDisplayTile.LiveDisplayState> {
 
         mDefaultDayTemperature = mContext.getResources().getInteger(
                 com.android.internal.R.integer.config_dayColorTemperature);
+        loadDayTemperature();
 
         mObserver = new LiveDisplayObserver(mHandler);
         mObserver.startObserving();
@@ -148,6 +149,13 @@ public class LiveDisplayTile extends QSTile<LiveDisplayTile.LiveDisplayState> {
                 Integer.valueOf(mValues[next]), UserHandle.USER_CURRENT);
     }
 
+    private void loadDayTemperature() {
+        mDayTemperature = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.DISPLAY_TEMPERATURE_DAY,
+                mDefaultDayTemperature,
+                UserHandle.USER_CURRENT);
+    }
+
     private class LiveDisplayObserver extends ContentObserver {
         public LiveDisplayObserver(Handler handler) {
             super(handler);
@@ -155,10 +163,7 @@ public class LiveDisplayTile extends QSTile<LiveDisplayTile.LiveDisplayState> {
 
         @Override
         public void onChange(boolean selfChange) {
-            mDayTemperature = Settings.System.getIntForUser(mContext.getContentResolver(),
-                    Settings.System.DISPLAY_TEMPERATURE_DAY,
-                    mDefaultDayTemperature,
-                    UserHandle.USER_CURRENT);
+            loadDayTemperature();
             refreshState(getCurrentModeIndex());
         }
 
