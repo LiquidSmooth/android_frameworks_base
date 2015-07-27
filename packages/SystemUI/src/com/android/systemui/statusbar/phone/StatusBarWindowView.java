@@ -131,7 +131,7 @@ public class StatusBarWindowView extends FrameLayout {
         // We need to ensure that our window doesn't suffer from overdraw which would normally
         // occur if our window is translucent. Since we are drawing the whole window anyway with
         // the scrim, we don't need the window to be cleared in the beginning.
-        if (mService.isScrimSrcModeEnabled()) {
+        if (mService != null && mService.isScrimSrcModeEnabled()) {
             IBinder windowToken = getWindowToken();
             WindowManager.LayoutParams lp = (WindowManager.LayoutParams) getLayoutParams();
             lp.token = windowToken;
@@ -202,7 +202,7 @@ public class StatusBarWindowView extends FrameLayout {
             if (DEBUG) Log.w(TAG, "logging double tap gesture");
             mDoubleTapGesture.onTouchEvent(ev);
         }
-        if (mNotificationPanel.isFullyExpanded()
+        if (mNotificationPanel != null && mNotificationPanel.isFullyExpanded()
                 && mStackScrollLayout.getVisibility() == View.VISIBLE
                 && mService.getBarState() == StatusBarState.KEYGUARD
                 && !mService.isQsExpanded()
