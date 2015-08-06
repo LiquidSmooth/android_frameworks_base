@@ -23,6 +23,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.android.systemui.qs.QSTile;
 
 import com.android.systemui.FontSizeUtils;
 import com.android.systemui.R;
@@ -60,7 +61,8 @@ public class DataUsageDetailView extends LinearLayout {
                 R.dimen.qs_data_usage_text_size);
     }
 
-    public void bind(NetworkController.DataUsageInfo info) {
+    public void bind(QSTile.Host host, NetworkController.MobileDataController.DataUsageInfo info) {
+        final QSTile.Host mHost = host;
         final Resources res = mContext.getResources();
         final int titleId;
         final long bytes;
