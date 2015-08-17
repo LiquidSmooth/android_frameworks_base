@@ -1109,6 +1109,16 @@ public final class SystemServer {
         // MMS service broker
         mmsService = mSystemServiceManager.startService(MmsServiceBroker.class);
 
+        // Externally-defined services
+        for (String service : externalServices) {
+            try {
+                Slog.i(TAG, service);
+                mSystemServiceManager.startService(service);
+            } catch (Throwable e) {
+                Slog.e(TAG, "Failure starting " + service , e);
+            }
+        }
+
         // It is now time to start up the app processes...
 
         try {
@@ -1177,12 +1187,6 @@ public final class SystemServer {
             }
         }
 
-        for (String service : externalServices) {
-            try {
-                Slog.i(TAG, service);
-                mSystemServiceManager.startService(service);
-            } catch (Throwable e) {
-                Slog.e(TAG, "Failure starting " + service , e);
             }
         }
 
