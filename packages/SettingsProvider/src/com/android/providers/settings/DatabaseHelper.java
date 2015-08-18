@@ -2466,6 +2466,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         R.string.def_date_format);
             }
 
+            loadIntegerSetting(stmt, Settings.System.NOTIFICATION_LIGHT_BRIGHTNESS_LEVEL,
+                    R.integer.def_notification_brightness_level);
+
         } finally {
             if (stmt != null) stmt.close();
         }

@@ -72,6 +72,7 @@
   <java-symbol type="bool" name="config_doze_enabled_by_default" />
 
   <!-- Notification and battery light -->
+  <java-symbol type="bool" name="config_adjustableNotificationLedBrightness" />
   <java-symbol type="bool" name="config_intrusiveNotificationLed" />
   <java-symbol type="bool" name="config_multiColorNotificationLed" />
   <java-symbol type="bool" name="config_intrusiveBatteryLed" />
