@@ -6638,8 +6638,8 @@ public final class Settings {
         public static final String ADVANCED_REBOOT = "advanced_reboot";
 
         /**
-         * Whether to show the lockscreen visualizer.
-         * 0 will disable it, anything else will enable it. Default is on.
+         * Whether to show the keyguard visualizer.
+         * Boolean setting. 0 = no, 1 = yes.
          * @hide
          */
         public static final String LOCKSCREEN_VISUALIZER_ENABLED = "lockscreen_visualizer";
