@@ -246,4 +246,7 @@
 
   <java-symbol type="array" name="config_externalCMServices" />
 
+  <!-- Non-themeable packages -->
+  <java-symbol type="array" name="non_themeable_packages" />
+
 </resources>
