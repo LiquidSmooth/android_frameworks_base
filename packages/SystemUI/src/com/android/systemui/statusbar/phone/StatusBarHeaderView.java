@@ -1002,7 +1002,12 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_SHOW_WEATHER), false, this);
+                    Settings.System.STATUS_BAR_SHOW_WEATHER), 
+                    false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CUSTOM_HEADER),
+                    false, this);
+
             update();
         }
 
@@ -1026,6 +1031,12 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             mShowWeather = Settings.System.getInt(
                     resolver, Settings.System.STATUS_BAR_SHOW_WEATHER, 1) == 1;
             updateVisibilities();
+
+            if (updateAll ||
+                uri.equals(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CUSTOM_HEADER))) {
+                updateEverything();
+            }
         }
     }
 
