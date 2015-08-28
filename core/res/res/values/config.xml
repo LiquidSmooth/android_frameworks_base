@@ -2311,4 +2311,8 @@
     </string-array>
 
     <string-array name="config_externalCMServices"></string-array>
+
+    <!--Dummy for CMs wakekeys-->
+    <integer name="config_deviceHardwareWakeKeys">0</integer>
+
 </resources>
