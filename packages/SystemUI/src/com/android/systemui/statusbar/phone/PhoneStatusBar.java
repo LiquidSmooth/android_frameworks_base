@@ -133,7 +133,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.internal.statusbar.StatusBarIcon;
-import com.android.internal.util.cm.ActionUtils;
 import com.android.internal.util.cm.WeatherControllerImpl;
 import com.android.keyguard.KeyguardHostView.OnDismissAction;
 import com.android.keyguard.ViewMediatorCallback;
@@ -4957,7 +4956,17 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
 
             if (hijackRecentsLongPress) {
-                ActionUtils.switchToLastApp(mContext, mCurrentUserId);
+                final ActivityManager am =
+                        (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+                ActivityManager.RunningTaskInfo lastTask = getLastTask(am);
+
+                if (lastTask != null) {
+                    if (DEBUG) Log.d(TAG, "switching to " + lastTask.topActivity.getPackageName());
+                    final ActivityOptions opts = ActivityOptions.makeCustomAnimation(mContext,
+                            R.anim.last_app_in, R.anim.last_app_out);
+                    am.moveTaskToFront(lastTask.id, ActivityManager.MOVE_TASK_NO_USER_ACTION,
+                            opts.toBundle());
+                }
             }
 
             return sendBackLongPress;
