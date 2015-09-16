@@ -539,6 +539,12 @@ public abstract class BatteryStats implements Parcelable {
                  */
                 public abstract int getLaunches(int which);
             }
+
+
+            // MUTT
+			public abstract long allowMutt (boolean shouldUpdateBg);
+			public abstract int getAllowed();
+			public abstract int getDenied();
         }
     }
 
@@ -1236,6 +1242,13 @@ public abstract class BatteryStats implements Parcelable {
     
     public static final int NUM_DATA_CONNECTION_TYPES = DATA_CONNECTION_OTHER+1;
     
+	// MUTT
+	public abstract long allowMutt(int uid, String name);
+	public abstract long nextMutt(int uid, String name);
+	public abstract void setScale(int scale);	// A value of 0 to 100
+	public abstract boolean getMuttForPackage(int uid, String name);
+	public abstract void setMuttForPackage(int uid, String name, boolean enabled);
+     
     /**
      * Returns the time in microseconds that the phone has been running with
      * the given data connection.
@@ -2314,6 +2327,7 @@ public abstract class BatteryStats implements Parcelable {
                         : packageStats.entrySet()) {
               
                     Uid.Pkg ps = ent.getValue();
+
                     int wakeups = ps.getWakeups(which);
                     Map<String, ? extends  Uid.Pkg.Serv> serviceStats = ps.getServiceStats();
                     for (Map.Entry<String, ? extends BatteryStats.Uid.Pkg.Serv> sent
@@ -3375,6 +3389,13 @@ public abstract class BatteryStats implements Parcelable {
                     pw.print(prefix); pw.print("    Apk "); pw.print(ent.getKey()); pw.println(":");
                     boolean apkActivity = false;
                     Uid.Pkg ps = ent.getValue();
+                    // MUTT
+                   int muttAllow = ps.getAllowed();
+                   int muttDenied = ps.getDenied();
+                   pw.print(prefix); pw.print("      ");
+                           pw.print(muttAllow); pw.print(" mutt allowed ");
+                           pw.print(muttDenied); pw.println(" mutt denied ");
+                   // MUTT ENDS
                     int wakeups = ps.getWakeups(which);
                     if (wakeups != 0) {
                         pw.print(prefix); pw.print("      ");

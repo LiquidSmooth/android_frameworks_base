@@ -418,6 +418,9 @@ public final class ActiveServices {
         }
         r.callStart = false;
         synchronized (r.stats.getBatteryStats()) {
+        	// MUTT
+			Slog.v(TAG, "MUTT startRunningLocked " + r.packageName); 
+
             r.stats.startRunningLocked();
         }
         String error = bringUpServiceLocked(r, service.getFlags(), callerFg, false);

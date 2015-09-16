@@ -297,6 +297,10 @@ public final class ActivityManagerService extends ActivityManagerNative
     static final long MONITOR_CPU_MAX_TIME = 0x0fffffff;    // wait possibly forever for next cpu sample.
     static final boolean MONITOR_THREAD_CPU_USAGE = false;
 
+
+    public ActivityStack mMainStack;
+
+
     // The flags that are set for all calls we make to the package manager.
     static final int STOCK_PM_FLAGS = PackageManager.GET_SHARED_LIBRARY_FILES;
 
@@ -3445,6 +3449,12 @@ public final class ActivityManagerService extends ActivityManagerNative
         }
     }
 
+    void reportResumedActivityLocked(ActivityRecord r) {
+         //Slog.i(TAG, "**** REPORT RESUME: " + r);
+       mBatteryStatsService.noteFg(r.app.uid, r.packageName);
+         updateUsageStats(r, true);
+     }
+
     private void dispatchProcessesChanged() {
         int N;
         synchronized (this) {
@@ -3832,6 +3842,21 @@ public final class ActivityManagerService extends ActivityManagerNative
                 null, null, null, options, userId, container, inTask);
         return ret;
     }
+
+     final int startActivityInPackage2(int uid, String callingPackage,
+            Intent intent, String resolvedType, IBinder resultTo,
+            String resultWho, int requestCode, int startFlags, Bundle options, int userId) {
+
+
+        userId = handleIncomingUser(Binder.getCallingPid(), Binder.getCallingUid(), userId,
+                false, true, "startActivityInPackage", null);
+
+        int ret = mStackSupervisor.startActivityMayWait(null, uid, callingPackage, intent,
+                resolvedType, null, null, resultTo, resultWho, requestCode, startFlags,
+                null, null, null, options, userId, null, null);
+        return ret;
+    }
+
 
     @Override
     public final int startActivities(IApplicationThread caller, String callingPackage,

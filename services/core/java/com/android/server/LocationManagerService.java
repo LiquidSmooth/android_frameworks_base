@@ -125,6 +125,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+// MUTT
+import android.os.ServiceManager;
+import com.android.internal.app.IBatteryStats;
 
 /**
  * The service class that manages LocationProviders and issues location
@@ -172,6 +175,8 @@ public class LocationManagerService extends ILocationManager.Stub {
 
     private final Context mContext;
     private final AppOpsManager mAppOps;
+    // MUTT
+	private final IBatteryStats mBatteryStats;
 
     // used internally for synchronization
     private final Object mLock = new Object();
@@ -250,6 +255,11 @@ public class LocationManagerService extends ILocationManager.Stub {
         mContext = context;
         mAppOps = (AppOpsManager)context.getSystemService(Context.APP_OPS_SERVICE);
         mGeoFencerEnabled = false;
+
+        // MUTT
+        mBatteryStats = IBatteryStats.Stub.asInterface(
+							ServiceManager.getService("batteryinfo"));
+
         if (D) Log.d(TAG, "Constructed");
 
         // most startup is deferred until systemReady()
@@ -807,72 +817,93 @@ public class LocationManagerService extends ILocationManager.Stub {
         }
 
         public boolean callStatusChangedLocked(String provider, int status, Bundle extras) {
-            if (mListener != null) {
-                try {
-                    synchronized (this) {
-                        // synchronize to ensure incrementPendingBroadcastsLocked()
-                        // is called before decrementPendingBroadcasts()
-                        mListener.onStatusChanged(provider, status, extras);
-                        // call this after broadcasting so we do not increment
-                        // if we throw an exeption.
-                        incrementPendingBroadcastsLocked();
-                    }
-                } catch (RemoteException e) {
-                    return false;
-                }
-            } else {
-                Intent statusChanged = new Intent();
-                statusChanged.putExtras(new Bundle(extras));
-                statusChanged.putExtra(LocationManager.KEY_STATUS_CHANGED, status);
-                try {
-                    synchronized (this) {
-                        // synchronize to ensure incrementPendingBroadcastsLocked()
-                        // is called before decrementPendingBroadcasts()
-                        mPendingIntent.send(mContext, 0, statusChanged, this, mLocationHandler,
-                                getResolutionPermission(mAllowedResolutionLevel));
-                        // call this after broadcasting so we do not increment
-                        // if we throw an exeption.
-                        incrementPendingBroadcastsLocked();
-                    }
-                } catch (PendingIntent.CanceledException e) {
-                    return false;
-                }
-            }
-            return true;
+           try {
+				if(mBatteryStats.allowMutt(mUid, mPackageName) == 0) { 
+					if (mListener != null) {
+						try {
+							synchronized (this) {
+								// synchronize to ensure incrementPendingBroadcastsLocked()
+								// is called before decrementPendingBroadcasts()
+								mListener.onStatusChanged(provider, status, extras);
+								// call this after broadcasting so we do not increment
+								// if we throw an exeption.
+								incrementPendingBroadcastsLocked();
+							}
+						} catch (RemoteException e) {
+							return false;
+						}
+					} else {
+						Intent statusChanged = new Intent();
+						statusChanged.putExtras(new Bundle(extras));
+						statusChanged.putExtra(LocationManager.KEY_STATUS_CHANGED, status);
+						try {
+							synchronized (this) {
+								// synchronize to ensure incrementPendingBroadcastsLocked()
+								// is called before decrementPendingBroadcasts()
+								mPendingIntent.send(mContext, 0, statusChanged, this, mLocationHandler,
+										getResolutionPermission(mAllowedResolutionLevel));
+								// call this after broadcasting so we do not increment
+								// if we throw an exeption.
+								incrementPendingBroadcastsLocked();
+							}
+						} catch (PendingIntent.CanceledException e) {
+							return false;
+						}
+					}
+					return true;
+				} else {
+					Slog.w(TAG, "MUTT callLocationChangedLocked failed");
+					return false;
+				}
+			} catch (RemoteException e) {
+				Slog.w(TAG, "MUTT callProviderEnabledLocked exception");
+				return false;
+			}
         }
 
         public boolean callLocationChangedLocked(Location location) {
-            if (mListener != null) {
-                try {
-                    synchronized (this) {
-                        // synchronize to ensure incrementPendingBroadcastsLocked()
-                        // is called before decrementPendingBroadcasts()
-                        mListener.onLocationChanged(new Location(location));
-                        // call this after broadcasting so we do not increment
-                        // if we throw an exeption.
-                        incrementPendingBroadcastsLocked();
-                    }
-                } catch (RemoteException e) {
-                    return false;
-                }
-            } else {
-                Intent locationChanged = new Intent();
-                locationChanged.putExtra(LocationManager.KEY_LOCATION_CHANGED, new Location(location));
-                try {
-                    synchronized (this) {
-                        // synchronize to ensure incrementPendingBroadcastsLocked()
-                        // is called before decrementPendingBroadcasts()
-                        mPendingIntent.send(mContext, 0, locationChanged, this, mLocationHandler,
-                                getResolutionPermission(mAllowedResolutionLevel));
-                        // call this after broadcasting so we do not increment
-                        // if we throw an exeption.
-                        incrementPendingBroadcastsLocked();
-                    }
-                } catch (PendingIntent.CanceledException e) {
-                    return false;
-                }
-            }
-            return true;
+            try {
+				if(mBatteryStats.allowMutt(mUid, mPackageName) == 0) { 
+					if (mListener != null) {
+						try {
+							synchronized (this) {
+								// synchronize to ensure incrementPendingBroadcastsLocked()
+								// is called before decrementPendingBroadcasts()
+								mListener.onLocationChanged(new Location(location));
+								// call this after broadcasting so we do not increment
+								// if we throw an exeption.
+								incrementPendingBroadcastsLocked();
+
+							}
+						} catch (RemoteException e) {
+							return false;
+						}
+					} else {
+						Intent locationChanged = new Intent();
+						locationChanged.putExtra(LocationManager.KEY_LOCATION_CHANGED, new Location(location));
+						try {
+							synchronized (this) {
+								// synchronize to ensure incrementPendingBroadcastsLocked()
+								// is called before decrementPendingBroadcasts()
+								mPendingIntent.send(mContext, 0, locationChanged, this, mLocationHandler,
+										getResolutionPermission(mAllowedResolutionLevel));
+								// call this after broadcasting so we do not increment
+								// if we throw an exeption.
+								incrementPendingBroadcastsLocked();
+							}
+						} catch (PendingIntent.CanceledException e) {
+							return false;
+						}
+					}
+					return true;
+				} else {
+					Slog.w(TAG, "MUTT callLocationChangedLocked failed");
+					return false;
+				}
+			} catch (RemoteException e) {
+				Slog.w(TAG, "MUTT callProviderEnabledLocked exception");
+				return false;
+			}
         }
 
         public boolean callProviderEnabledLocked(String provider, boolean enabled) {
@@ -880,41 +911,52 @@ public class LocationManagerService extends ILocationManager.Stub {
             // An app may get/lose location access as providers are enabled/disabled.
             updateMonitoring(true);
 
-            if (mListener != null) {
-                try {
-                    synchronized (this) {
-                        // synchronize to ensure incrementPendingBroadcastsLocked()
-                        // is called before decrementPendingBroadcasts()
-                        if (enabled) {
-                            mListener.onProviderEnabled(provider);
-                        } else {
-                            mListener.onProviderDisabled(provider);
-                        }
-                        // call this after broadcasting so we do not increment
-                        // if we throw an exeption.
-                        incrementPendingBroadcastsLocked();
-                    }
-                } catch (RemoteException e) {
-                    return false;
-                }
-            } else {
-                Intent providerIntent = new Intent();
-                providerIntent.putExtra(LocationManager.KEY_PROVIDER_ENABLED, enabled);
-                try {
-                    synchronized (this) {
-                        // synchronize to ensure incrementPendingBroadcastsLocked()
-                        // is called before decrementPendingBroadcasts()
-                        mPendingIntent.send(mContext, 0, providerIntent, this, mLocationHandler,
-                                getResolutionPermission(mAllowedResolutionLevel));
-                        // call this after broadcasting so we do not increment
-                        // if we throw an exeption.
-                        incrementPendingBroadcastsLocked();
-                    }
-                } catch (PendingIntent.CanceledException e) {
-                    return false;
-                }
-            }
-            return true;
+            try {
+				if(mBatteryStats.allowMutt(mUid, mPackageName) == 0) { 
+					if (mListener != null) {
+						try {
+							synchronized (this) {
+								// synchronize to ensure incrementPendingBroadcastsLocked()
+								// is called before decrementPendingBroadcasts()
+								if (enabled) {
+									mListener.onProviderEnabled(provider);
+								} else {
+									mListener.onProviderDisabled(provider);
+								}
+								// call this after broadcasting so we do not increment
+								// if we throw an exeption.
+								incrementPendingBroadcastsLocked();
+							}
+						} catch (RemoteException e) {
+							return false;
+						}
+					} else {
+						Intent providerIntent = new Intent();
+						providerIntent.putExtra(LocationManager.KEY_PROVIDER_ENABLED, enabled);
+						try {
+							synchronized (this) {
+								// synchronize to ensure incrementPendingBroadcastsLocked()
+								// is called before decrementPendingBroadcasts()
+								mPendingIntent.send(mContext, 0, providerIntent, this, mLocationHandler,
+										getResolutionPermission(mAllowedResolutionLevel));
+								// call this after broadcasting so we do not increment
+								// if we throw an exeption.
+								incrementPendingBroadcastsLocked();
+							}
+						} catch (PendingIntent.CanceledException e) {
+							return false;
+						}
+					}
+					return true;
+				}
+				else {
+					Slog.w(TAG, "MUTT callProviderEnabledLocked failed");
+					return false;
+				}
+			} catch (RemoteException e) {
+				Slog.w(TAG, "MUTT callProviderEnabledLocked exception");
+				return false;
+			}
         }
 
         @Override
